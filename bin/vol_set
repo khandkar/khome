@@ -1,0 +1,16 @@
+#! /bin/bash
+
+set -e
+
+if [ "$1" != "" ]
+then
+    value="$1"
+else
+    value="50%"
+fi
+
+for sink in $(pactl list sinks | grep '^Sink #' | awk -F\# '{print $2}')
+do
+    pactl set-sink-mute   "$sink" false
+    pactl set-sink-volume "$sink" "$value"
+done
