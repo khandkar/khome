@@ -9,8 +9,6 @@ else
     value="50%"
 fi
 
-for sink in $(pactl list sinks | grep '^Sink #' | awk -F\# '{print $2}')
-do
-    pactl set-sink-mute   "$sink" false
-    pactl set-sink-volume "$sink" "$value"
-done
+sink="$(pactl info | awk '/^Default Sink:/ {print $3; exit 0}')"
+pactl set-sink-mute   "$sink" false
+pactl set-sink-volume "$sink" "$value"
