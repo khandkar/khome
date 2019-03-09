@@ -1,1 +1,4 @@
-. $HOME/lib/login_*.sh
+for file in $HOME/lib/login_*.sh
+do
+    . $file
+done
