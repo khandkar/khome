@@ -1,0 +1,21 @@
+#! /bin/sh
+
+set -e;
+
+name="$1";
+
+if [ "$name" != "" ];
+then
+    timestamp=`date +'%F--%H-%M--%S'`;
+    directory="$HOME/Experiments/$timestamp--$name";
+    mkdir -p "$directory";
+    cd "$directory";
+    echo "# $name\n" > README.md;
+    git init >&2
+    git add . >&2
+    git commit -m 'Initial commit' >&2
+    echo "$directory";
+else
+    echo "Please give the experiment a name, as the first argument.";
+    exit 1;
+fi;

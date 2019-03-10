@@ -32,3 +32,7 @@ man() {
     LESS_TERMCAP_us=$'\e[01;32m' \
     command man "$@"
 }
+
+experiment() {
+    cd "$($HOME/bin/experiment $@)"
+}
