@@ -36,3 +36,7 @@ man() {
 experiment() {
     cd "$($HOME/bin/experiment $@)"
 }
+
+hump() {
+    ledit -l $(stty size | awk '{print $2}') ocaml $@
+}
