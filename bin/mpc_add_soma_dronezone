@@ -1,0 +1,3 @@
+#! /bin/sh
+
+mpc add $($HOME/bin/soma_file_of_pls http://somafm.com/dronezone256.pls)

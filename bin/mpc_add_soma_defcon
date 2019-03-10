@@ -1,0 +1,3 @@
+#! /bin/sh
+
+mpc add $($HOME/bin/soma_file_of_pls https://somafm.com/defcon256.pls)

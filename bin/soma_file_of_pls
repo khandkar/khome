@@ -1,0 +1,3 @@
+#! /bin/bash
+
+curl "$1" | awk -F= '{metadata[$1] = $2} END {print metadata["File1"]}'
