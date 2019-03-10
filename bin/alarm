@@ -1,0 +1,19 @@
+#! /bin/sh
+
+case "$1"
+    in "")
+        printf "How many seconds to sleep?" 1>&2
+        exit 1
+    ;; *)
+        seconds="$1"
+esac
+
+$HOME/bin/snore "$seconds"
+
+printf "!!! TIMES UP !!!\n"
+
+while true
+do
+    play -q -n synth 0.25 sin 500 2> /dev/null
+    sleep 0.25
+done
