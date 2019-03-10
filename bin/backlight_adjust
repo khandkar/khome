@@ -1,0 +1,31 @@
+#! /bin/sh
+
+set -e
+
+fun="$1"
+screen_brightness_device_path="/sys/class/backlight/intel_backlight"
+
+# Padding with space because when fun="=10", awk fails to parse fun==10
+new=$(
+    awk -v fun=" $fun" '
+        FILENAME ~ "/max_brightness$" {max = $1; next}
+        FILENAME ~     "/brightness$" {cur = $1; next}
+
+        END {
+            unit  = max / 100
+            oper  = substr(fun, 2, 1)
+            units = substr(fun, 3, length(fun) - 1)
+            if (oper == "=") {new = unit * units} else
+            if (oper == "+") {new = cur + (unit * units)} else
+            if (oper == "-") {new = cur - (unit * units)} else {
+                printf("Unrecognized operator: %s\n", oper) > "/dev/stderr"
+                exit(1)
+            }
+            print int(new)
+        }
+    ' \
+    "$screen_brightness_device_path/max_brightness" \
+    "$screen_brightness_device_path/brightness"
+)
+
+echo "${new}" | tee "${screen_brightness_device_path}/brightness"
