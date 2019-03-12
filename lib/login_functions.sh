@@ -40,3 +40,7 @@ experiment() {
 hump() {
     ledit -l $(stty size | awk '{print $2}') ocaml $@
 }
+
+howto() {
+    cd $HOME/Archives/Documents/HOWTOs && cat $(fzf) && cd -
+}
