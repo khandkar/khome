@@ -1,3 +1,3 @@
-PATH=$HOME/bin:/snap/bin:/sbin:/usr/sbin:$PATH
-EDITOR=vim
-VISUAL=$EDITOR
+export PATH=$HOME/bin:/snap/bin:/sbin:/usr/sbin:$PATH
+export EDITOR=vim
+export VISUAL=$EDITOR
