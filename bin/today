@@ -1,0 +1,65 @@
+#! /bin/sh
+
+set -e
+
+repeat() {
+    x="$1"
+    n="$2"
+    awk -v x="$x" -v n="$n" 'BEGIN {for (i=1; i<=n; i++) {printf x}}'
+}
+
+bar=$(repeat '-' '80')
+ts_fmt='+%A, %Y %B %d, %H:%M:%S'
+ts_lang='el_GR.UTF-8'
+timestamp_local=$(LANG="$ts_lang"                 date "$ts_fmt")
+timestamp_west=$( LANG="$ts_lang" TZ='US/Pacific' date "$ts_fmt")
+timestamp_pl=$(   LANG="$ts_lang" TZ='Poland'     date "$ts_fmt")
+timestamp_nz=$(   LANG="$ts_lang" TZ='NZ'         date "$ts_fmt")
+
+ip_addresses=$(
+    ip addr \
+    | awk '
+        /^[0-9]+:/ {
+            interface = $2
+            sub(":$", "", interface)
+            interfaces[++interface_count] = interface
+        }
+
+        /^ +inet +/ {
+            addr = $2
+            sub("/[0-9]+$", "", addr)
+            addrs[interface] = addr
+        }
+
+        END {
+            for (i=1; i<=interface_count; i++) {
+                interface = interfaces[i]
+                print interface, addrs[interface]
+            }
+        }' \
+    | column -t
+)
+
+weather=$(
+    curl "http://wttr.in/${ZIP_CODE}?1" 2> /dev/null \
+    || \
+    echo "Weather update failed" \
+)
+
+clear
+#LANG="$ts_lang" ncal -M $(date +%Y)
+LANG="$ts_lang" ncal -M
+echo "$bar"
+(
+    echo 'LOCAL'       ',' "$timestamp_local"
+    echo 'Pacific'     ',' "$timestamp_west"
+    echo 'Poland'      ',' "$timestamp_pl"
+    echo 'New Zealand' ',' "$timestamp_nz"
+) \
+| column -ts,
+echo "$bar"
+echo "$ip_addresses"
+echo "$bar"
+echo ''
+echo "$weather"
+echo ''
