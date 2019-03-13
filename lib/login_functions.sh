@@ -42,7 +42,7 @@ hump() {
 }
 
 howto() {
-    cd $HOME/Archives/Documents/HOWTOs && cat $(fzf) && cd -
+    cat $(ls -1 -d  $HOME/Archives/Documents/HOWTOs/* | fzf)
 }
 
 gh_fetch_repos() {
