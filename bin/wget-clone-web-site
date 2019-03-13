@@ -1,0 +1,6 @@
+#! /bin/sh
+
+# Recursively download the site
+OPT_RECURSIVE='-r'
+
+wget-clone-web $OPT_RECURSIVE $@

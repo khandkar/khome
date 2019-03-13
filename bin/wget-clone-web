@@ -1,0 +1,48 @@
+#! /bin/sh
+
+uri_and_extra_options=$@;
+
+
+# Continue partially downloaded
+OPT_CONTINUE='-c'
+
+OPT_WAIT='--wait 0.75'
+
+# Randomly select wait (above) in range from wait*0.5 to wait*1.5
+OPT_WAIT_RANDON='--random-wait'
+
+# --page-requisites "download all the files that are necessary to properly
+# display a given HTML page."
+OPT_PAGE_REQUISITES='-p'
+
+# --user-agent=""
+#OPT_USER_AGENT="-U='Mozilla/5.0 (X11; Linux i586; rv:31.0) Gecko/20100101 Firefox/31.0'"
+OPT_USER_AGENT="-U='ELinks (0.12pre6; NetBSD; 800x600)'"
+
+# --convert-links
+# After the download is complete, convert the links in the document to make
+# them suitable for local viewing.  This affects not only the visible
+# hyperlinks, but any part of the document that links to external content, such
+# as embedded images, links to style sheets, hyperlinks to non-HTML content,
+# etc.
+OPT_LINKS_LOCAL='-k'
+
+# --adjust-extension
+# Ensure file extension matches file's MIME type
+OPT_EXT_ADJUST='-E'
+
+# Disrespect robots.txt
+OPT_ROBOTS_OFF='-e robots=off'
+
+
+wget \
+    -a wget.log \
+    $OPT_CONTINUE \
+    $OPT_WAIT \
+    $OPT_WAIT_RANDON \
+    $OPT_PAGE_REQUISITES \
+    $OPT_LINKS_LOCAL \
+    $OPT_EXT_ADJUST \
+    "$OPT_USER_AGENT" \
+    $OPT_ROBOTS_OFF \
+    $uri_and_extra_options
