@@ -1,0 +1,54 @@
+#!/bin/sh
+
+# =============================================================================
+# This is a modified version of this:
+# https://help.github.com/articles/changing-author-info
+# =============================================================================
+
+
+FILTER_SCRIPT_TEMPLATE='
+an="$GIT_AUTHOR_NAME";
+am="$GIT_AUTHOR_EMAIL";
+cn="$GIT_COMMITTER_NAME";
+cm="$GIT_COMMITTER_EMAIL";
+
+if [ "$GIT_COMMITTER_EMAIL" = "OLD_COMMITTER_EMAIL" ];
+then
+    cn="$GIT_COMMITTER_NAME";
+    cm="NEW_COMMITTER_EMAIL";
+fi;
+
+if [ "$GIT_AUTHOR_EMAIL" = "OLD_AUTHOR_EMAIL" ];
+then
+    an="$GIT_AUTHOR_NAME";
+    am="NEW_AUTHOR_EMAIL";
+fi;
+
+export GIT_AUTHOR_NAME="$an";
+export GIT_AUTHOR_EMAIL="$am";
+export GIT_COMMITTER_NAME="$cn";
+export GIT_COMMITTER_EMAIL="$cm";
+'
+
+
+git_filter_branch() {
+    git filter-branch -f --env-filter "$1"
+}
+
+
+main() {
+    old_email="$1"
+    new_email="$2"
+
+    filter_script=$(\
+        echo $FILTER_SCRIPT_TEMPLATE \
+        | sed "s/OLD_COMMITTER_EMAIL/$old_email/g" \
+        | sed "s/NEW_COMMITTER_EMAIL/$new_email/g" \
+        | sed "s/OLD_AUTHOR_EMAIL/$old_email/g" \
+        | sed "s/NEW_AUTHOR_EMAIL/$new_email/g" \
+    )
+
+    git_filter_branch "$filter_script"
+}
+
+main "$@"
