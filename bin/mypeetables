@@ -1,0 +1,112 @@
+#! /bin/bash
+
+set -e
+
+PATH="/sbin:$PATH"
+
+DIR_CFG="/home/siraaj/etc/mypeetables"
+FILE_HOSTS_BLACKLIST="$DIR_CFG/hosts_blacklist"
+FILE_PORTS_OPEN="$DIR_CFG/ports_open"
+
+set_policy__accept() {
+    iptables -P INPUT   ACCEPT
+    iptables -P OUTPUT  ACCEPT
+    iptables -P FORWARD ACCEPT
+}
+
+set_policy__drop() {
+    iptables -P INPUT   DROP
+    iptables -P OUTPUT  DROP
+    iptables -P FORWARD DROP
+}
+
+flush() {
+    iptables -F
+    iptables -X
+    iptables -t nat -F
+    iptables -t nat -X
+    iptables -t mangle -F
+    iptables -t mangle -X
+
+    set_policy__accept
+}
+
+drop_offenders() {
+    cat "$FILE_HOSTS_BLACKLIST" \
+    | grep -v '^#' \
+    | grep -v '^ *$' \
+    | while read addr; do
+        iptables -A INPUT -s "$addr" -j DROP
+    done
+}
+
+accept() {
+    # accept established connections
+    iptables -A INPUT   -m state --state ESTABLISHED,RELATED -j ACCEPT
+    iptables -A OUTPUT  -m state --state ESTABLISHED,RELATED -j ACCEPT
+    iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+    # accept all traffic on loopback inteface
+    iptables -A INPUT  -i lo -j ACCEPT
+    iptables -A OUTPUT -o lo -j ACCEPT
+
+    # accept outgoing connections
+    iptables -A INPUT  -s $(hostname) -m state --state NEW -j ACCEPT
+    iptables -A OUTPUT                -m state --state NEW -j ACCEPT
+
+    # accept icmp
+    #iptables -A INPUT -p icmp -j ACCEPT
+
+    # Services
+    cat "$FILE_PORTS_OPEN" \
+    | grep -v '^#' \
+    | grep -v '^ *$' \
+    | while read port protocol; do
+        iptables \
+            -A INPUT \
+            -m state \
+            --state NEW \
+            -p "$protocol" \
+            -m "$protocol" \
+            --dport "$port" \
+            -j ACCEPT
+    done
+
+
+}
+
+reject() {
+    iptables -A INPUT   -j NFLOG
+    iptables -A FORWARD -j NFLOG
+    #iptables -A INPUT   -j REJECT --reject-with icmp-host-prohibited
+    #iptables -A FORWARD -j REJECT --reject-with icmp-host-prohibited
+}
+
+command_off() {
+    flush
+}
+
+command_on() {
+    flush
+    set_policy__drop
+    accept
+    drop_offenders
+    reject
+}
+
+failwith() {
+    error_msg="$1"
+    echo "$error_msg" >&2
+    exit 1
+}
+
+main() {
+    command="$1"
+    case "$command"
+    in  'on'  ) command_on
+    ;;  'off' ) command_off
+    ;;  *     ) failwith "Error: Unknown command: \"$command\". Known: on, off."
+    esac
+}
+
+main "$@"
