@@ -44,3 +44,22 @@ hump() {
 howto() {
     cd $HOME/Archives/Documents/HOWTOs && cat $(fzf) && cd -
 }
+
+gh_fetch_repos() {
+    curl "https://api.github.com/$1/$2/repos?page=1&per_page=10000"
+}
+
+gh_clone() {
+    gh_fetch_repos "$1" "$2" \
+    | jq --raw-output '.[] | select(.fork | not) | .git_url' \
+    | parallel -j 25 \
+    git clone {}
+}
+
+gh_clone_user() {
+    gh_clone 'users' "$1"
+}
+
+gh_clone_org() {
+    gh_clone 'orgs' "$1"
+}
