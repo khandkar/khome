@@ -1,6 +1,11 @@
-#! /bin/sh
+#! /bin/bash
 
 set -e
+
+DIR_DATA="$HOME/var/run/today"
+FILE_WEATHER="$DIR_DATA/weather"
+
+mkdir -p "$DIR_DATA"
 
 repeat() {
     x="$1"
@@ -40,11 +45,21 @@ ip_addresses=$(
     | column -t
 )
 
-weather=$(
-    curl "http://wttr.in/${ZIP_CODE}?1" 2> /dev/null \
-    || \
-    echo "Weather update failed" \
-)
+weather_fetch() {
+    curl "http://wttr.in/${ZIP_CODE}?1" \
+    1> "$FILE_WEATHER" \
+    2> /dev/null
+}
+
+weather_get_or_fetch() {
+    weather_file_age=$(( $(date +%s) - $(stat -c '%Y' "$FILE_WEATHER") ))
+    weather_file_age_limit=$(( 3 * 60 * 60 ))
+    if [[ ! -e $FILE_WEATHER || $weather_file_age -ge $weather_file_age_limit ]]
+    then
+        weather_fetch
+    fi
+    cat "$FILE_WEATHER"
+}
 
 clear
 #LANG="$ts_lang" ncal -M $(date +%Y)
@@ -61,5 +76,6 @@ echo "$bar"
 echo "$ip_addresses"
 echo "$bar"
 echo ''
-echo "$weather"
+echo "Fetched on: $(stat -c %y $FILE_WEATHER)"
+echo "$(weather_get_or_fetch)"
 echo ''
