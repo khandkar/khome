@@ -51,15 +51,20 @@ weather_fetch() {
     2> /dev/null
 }
 
+weather_file_age() {
+    echo $(( $(date +%s) - $(stat -c '%Y' "$FILE_WEATHER") ))
+}
+
 weather_get_or_fetch() {
-    weather_file_age=$(( $(date +%s) - $(stat -c '%Y' "$FILE_WEATHER") ))
     weather_file_age_limit=$(( 3 * 60 * 60 ))
-    if [[ ! -e $FILE_WEATHER || $weather_file_age -ge $weather_file_age_limit ]]
+    if [[ ! -e $FILE_WEATHER || weather_file_age -ge $weather_file_age_limit ]]
     then
         weather_fetch
     fi
     cat "$FILE_WEATHER"
 }
+
+weather="$(weather_get_or_fetch)"
 
 clear
 #LANG="$ts_lang" ncal -M $(date +%Y)
@@ -77,5 +82,5 @@ echo "$ip_addresses"
 echo "$bar"
 echo ''
 echo "Fetched on: $(stat -c %y $FILE_WEATHER)"
-echo "$(weather_get_or_fetch)"
+echo "$weather"
 echo ''
