@@ -3,4 +3,4 @@ khata
 
 Home environment.
 
-![screenshot](screenshot.jpg)
+![mascot](mascot.jpg)
