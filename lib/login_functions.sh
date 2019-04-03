@@ -64,6 +64,36 @@ gh_clone_org() {
     gh_clone 'orgs' "$1"
 }
 
+work_log_template() {
+cat << EOF
+$(date +%F)
+==========
+
+Morning report
+--------------
+
+### Yesterday
+
+### Today
+
+### Blockers
+
+Day's notes
+-----------
+EOF
+}
+
+work_log() {
+    mkdir -p "$DIR_WORK_LOG"
+    file_work_log_today="${DIR_WORK_LOG}/$(date +%F).md"
+    if [ ! -f "$file_work_log_today" ]
+    then
+        work_log_template > "$file_work_log_today"
+    fi
+    vim "$file_work_log_today"
+
+}
+
 weather() {
     curl "http://wttr.in/$WEATHER_LOCATION"
 }
