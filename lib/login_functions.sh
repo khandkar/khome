@@ -63,3 +63,7 @@ gh_clone_user() {
 gh_clone_org() {
     gh_clone 'orgs' "$1"
 }
+
+weather() {
+    curl "http://wttr.in/$WEATHER_LOCATION"
+}
