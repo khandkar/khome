@@ -2,8 +2,7 @@
 
 case "$1"
     in "")
-        printf "How many seconds to sleep?" 1>&2
-        exit 1
+        seconds=0
     ;; *)
         seconds="$1"
 esac
