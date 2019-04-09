@@ -72,9 +72,9 @@ $(date +%F)
 Morning report
 --------------
 
-### Yesterday
+### Previous
 
-### Today
+### Current
 
 ### Blockers
 
