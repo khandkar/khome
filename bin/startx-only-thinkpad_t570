@@ -1,0 +1,18 @@
+#! /bin/sh
+
+# qutebrowser
+ln -sf ~/.config/qutebrowser/config_for_dpi_high.py ~/.config/qutebrowser/config_for_dpi.py
+
+# dunst
+ln -sf ~/bin/dunst_dpi_high ~/bin/dunst_dpi
+
+# xrandr
+ln -sf ~/.xinitrc-xrandr-only-thinkpad_t570 ~/.xinitrc-xrandr
+
+# st
+ln -sf ~/bin/st_dpi_high ~/bin/st
+
+# dwm
+ln -sf ~/bin/dwm_dpi_high ~/bin/dwm
+
+startx

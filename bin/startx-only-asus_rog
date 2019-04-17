@@ -1,0 +1,18 @@
+#! /bin/sh
+
+# qutebrowser
+ln -sf ~/.config/qutebrowser/config_for_dpi_normal.py ~/.config/qutebrowser/config_for_dpi.py
+
+# dunst
+ln -sf ~/bin/dunst_dpi_norm ~/bin/dunst_dpi
+
+# xrandr
+ln -sf ~/.xinitrc-xrandr-only-asus_rog ~/.xinitrc-xrandr
+
+# st
+ln -sf ~/bin/st_dpi_norm ~/bin/st
+
+# dwm
+ln -sf ~/bin/dwm_dpi_norm ~/bin/dwm
+
+startx

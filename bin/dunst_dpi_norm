@@ -1,0 +1,3 @@
+#! /bin/sh
+
+dunst -geometry '400x80-0+30' -font 'Terminus 14'
