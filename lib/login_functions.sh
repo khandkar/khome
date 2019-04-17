@@ -35,7 +35,7 @@ man() {
 }
 
 experiment() {
-    cd "$($HOME/bin/experiment $@)" || exit 1
+    cd "$(~/bin/experiment $@)" || exit 1
 }
 
 hump() {
