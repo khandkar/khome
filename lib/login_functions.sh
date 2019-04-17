@@ -43,7 +43,7 @@ hump() {
 }
 
 howto() {
-    cat $(ls -1 -d  $HOME/Archives/Documents/HOWTOs/* | fzf)
+    cat "$(find  ~/Archives/Documents/HOWTOs -mindepth 1 -maxdepth 1 | sort | fzf)"
 }
 
 gh_fetch_repos() {
