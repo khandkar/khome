@@ -98,3 +98,15 @@ work_log() {
 weather() {
     curl "http://wttr.in/$WEATHER_LOCATION"
 }
+
+bt_devs_paired() {
+    bluetoothctl -- paired-devices \
+    | awk '{print $2}' \
+    | xargs bluetoothctl -- info
+}
+
+bt_devs() {
+    bluetoothctl -- devices \
+    | awk '{print $2}' \
+    | xargs bluetoothctl -- info
+}
