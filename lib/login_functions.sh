@@ -1,4 +1,5 @@
 # Top Disk-Using directories
+# TODO: Consider using numfmt instead of awk
 tdu() {
     du "$1" \
     | sort -n -k 1 -r --parallel="$(nproc)" \
