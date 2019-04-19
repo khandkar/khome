@@ -15,6 +15,32 @@ tdu() {
     | cut -c 1-115
 }
 
+# Most-recently modified file system objects
+recent() {
+    # Intentional non-quoting of the parameters, so that some can be ignored if
+    # not passed, rather than be passed to find as empty strings.
+    # NOTE that %T+ is a GNU extention.
+    find $@ -printf '%T@ %T+ %p\0' \
+    | sort -z -k 1 -n -r \
+    | head -n "$(stty size | awk 'NR == 1 {print $1 - 5}')" -z \
+    | gawk -v RS='\0' '
+        {
+            sub("^" $1 " +", "")  # Remove epoch time
+            sub("+", " ")         # Blank-out the default separator
+            sub("\\.[0-9]+", "")  # Remove fractional seconds
+            print
+        }'
+    # gawk is able to split records on \0, while awk cannot.
+}
+
+recent_dirs() {
+    recent "$1" -type d
+}
+
+recent_files() {
+    recent "$1" -type f
+}
+
 pa_def_sink() {
     pactl info | awk '/^Default Sink:/ {print $3}'
 }
