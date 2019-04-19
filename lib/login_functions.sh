@@ -91,6 +91,15 @@ gh_clone_org() {
     gh_clone 'orgs' "$1"
 }
 
+gh_clone_repo() {
+    gh_username=$(echo "$1" | awk -F / '"$1 == "https" && $3 == github.com" {print $4}')
+    gh_dir="${HOME}/Archives/Software/src/repos/remote/github.com/${gh_username}"
+    mkdir -p "$gh_dir"
+    cd "$gh_dir" || exit 1
+    git clone "$1"
+    cd - || exit 1
+}
+
 work_log_template() {
 cat << EOF
 $(date +%F)
