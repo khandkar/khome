@@ -17,10 +17,13 @@ tdu() {
 
 # Most-recently modified file system objects
 recent() {
-    # Intentional non-quoting of the parameters, so that some can be ignored if
-    # not passed, rather than be passed to find as empty strings.
-    # NOTE that %T+ is a GNU extention.
+    # NOTES:
+    # - intentionally not quoting the parameters, so that some can be ignored
+    #   if not passed, rather than be passed to find as an empty string;
+    # - %T+ is a GNU extension;
+    # - gawk is able to split records on \0, while awk cannot.
     find $@ -printf '%T@ %T+ %p\0' \
+    | tee >(gawk -v RS='\0' 'END { printf("[INFO] Total found: %d\n", NR); }') \
     | sort -z -k 1 -n -r \
     | head -n "$(stty size | awk 'NR == 1 {print $1 - 5}')" -z \
     | gawk -v RS='\0' '
@@ -30,7 +33,6 @@ recent() {
             sub("\\.[0-9]+", "")  # Remove fractional seconds
             print
         }'
-    # gawk is able to split records on \0, while awk cannot.
 }
 
 recent_dirs() {
