@@ -400,6 +400,7 @@ htop						install
 hunspell-en-us					install
 hwinfo						install
 hwloc-nox					install
+i3lock						install
 i965-va-driver:amd64				install
 i965-va-driver:i386				install
 iamerican					install
@@ -1262,6 +1263,7 @@ libmariadb3:amd64				install
 libmatroska6v5:amd64				install
 libmbim-glib4:amd64				install
 libmbim-proxy					install
+libmd0:amd64					install
 libmenu-cache-bin				install
 libmenu-cache3:amd64				install
 libmetis5:amd64					install
@@ -2043,6 +2045,7 @@ libxcb-xfixes0:i386				install
 libxcb-xfixes0-dev:amd64			install
 libxcb-xinerama0:amd64				install
 libxcb-xkb1:amd64				install
+libxcb-xrm0:amd64				install
 libxcb-xtest0:amd64				install
 libxcb-xv0:amd64				install
 libxcb1:amd64					install
@@ -2269,6 +2272,7 @@ msbuild						install
 msbuild-libhostfxr				install
 msbuild-sdkresolver				install
 mtools						deinstall
+mtree-netbsd					install
 multiarch-support				install
 multitail					install
 mupdf						install
