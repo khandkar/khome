@@ -15,3 +15,6 @@ install_packages: system/debian/dpkg-selections
 
 system/debian/dpkg-selections:
 	@dpkg --get-selections > $@
+
+system/debian/apt-sources.list:
+	@cp /etc/apt/sources.list $@
