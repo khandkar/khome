@@ -117,6 +117,7 @@ debian-faq					install
 debian-goodies					install
 debian-keyring					install
 debianutils					install
+deborphan					install
 deepin-icon-theme				install
 desktop-file-utils				install
 devhelp						install
@@ -125,6 +126,7 @@ devscripts					install
 dfc						install
 dh-autoreconf					install
 dh-strip-nondeterminism				install
+dialog						install
 dict						install
 dict-foldoc					install
 dict-gcide					install
