@@ -15,4 +15,4 @@ ln -sf ~/bin/st_dpi_norm ~/bin/st
 # dwm
 ln -sf ~/bin/dwm_dpi_norm ~/bin/dwm
 
-startx
+/usr/bin/startx

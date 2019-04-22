@@ -5,3 +5,4 @@ alias tree='tree --dirsfirst'
 alias dotnet="$HOME/.dotnet/dotnet"
 alias fsi="dotnet $HOME/.dotnet/sdk/2.1.503/FSharp/fsi.exe"
 alias tm='tmux'
+alias startx='printf "Use a specialized startx-...\n"'
