@@ -1,6 +1,9 @@
 MAKEFLAGS := --no-builtin-rules
 
-.PHONY: install install_packages
+DPKG_SELECTIONS := system/debian/dpkg-selections
+APT_SOURCES     := system/debian/apt-sources.list
+
+.PHONY: update install install_packages
 
 install:
 	@cp  -Rp  home/bin          $(HOME)/
@@ -9,12 +12,10 @@ install:
 	@cp       home/.fonts.conf  $(HOME)/
 	@fc-cache                   $(HOME)/.fonts
 
-install_packages: system/debian/dpkg-selections
+install_packages: $(DPKG_SELECTIONS)
 	@dpkg --set-selections < $<
 	@apt-get -u dselect-upgrade
 
-system/debian/dpkg-selections:
-	@dpkg --get-selections > $@
-
-system/debian/apt-sources.list:
-	@cp /etc/apt/sources.list $@
+update:
+	@dpkg --get-selections > $(DPKG_SELECTIONS)
+	@cp /etc/apt/sources.list $(APT_SOURCES)
