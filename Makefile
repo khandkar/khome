@@ -12,6 +12,11 @@ install:
 	@cp       home/.fonts.conf  $(HOME)/
 	@fc-cache                   $(HOME)/.fonts
 
+# May still need to run:
+# 1. dselect update
+# 2. interactive dselect with install,
+# 3. apt update
+# 4. apt upgrade
 install_packages: $(DPKG_SELECTIONS)
 	@dpkg --set-selections < $<
 	@apt-get -u dselect-upgrade
