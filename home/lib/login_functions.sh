@@ -15,6 +15,21 @@ tdu() {
     | cut -c 1-115
 }
 
+# Top Disk-Using Files
+tduf() {
+    find "$1" -type f -printf '%s\t%p\0' \
+    | sort -z -n -k 1 -r \
+    | head -z -n 50 \
+    | gawk -v RS='\0' '
+        {
+            size = $1
+            path = $0
+            sub("^" $1 "\t+", "", path)
+            gb = size / 1024 / 1024 / 1024
+            printf("%f\t%s\n", gb, path)
+        }'
+}
+
 # Most-recently modified file system objects
 recent() {
     # NOTES:
