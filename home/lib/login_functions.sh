@@ -94,7 +94,12 @@ gh_fetch_repos() {
 }
 
 gh_clone() {
-    gh_fetch_repos "$1" "$2" \
+    gh_user_type="$1"
+    gh_user_name="$2"
+    gh_dir="${DIR_GITHUB}/${gh_user_name}"
+    mkdir -p "$gh_dir"
+    cd "$gh_dir" || exit 1
+    gh_fetch_repos "$gh_user_type" "$gh_user_name" \
     | jq --raw-output '.[] | select(.fork | not) | .git_url' \
     | parallel -j 25 \
     git clone {}
@@ -110,7 +115,7 @@ gh_clone_org() {
 
 gh_clone_repo() {
     gh_username=$(echo "$1" | awk -F / '"$1 == "https" && $3 == github.com" {print $4}')
-    gh_dir="${HOME}/Archives/Software/src/repos/remote/github.com/${gh_username}"
+    gh_dir="${DIR_GITHUB}/${gh_username}"
     mkdir -p "$gh_dir"
     cd "$gh_dir" || exit 1
     git clone "$1"
