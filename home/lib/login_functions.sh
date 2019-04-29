@@ -119,7 +119,6 @@ gh_clone_repo() {
     mkdir -p "$gh_dir"
     cd "$gh_dir" || exit 1
     git clone "$1"
-    cd - || exit 1
 }
 
 work_log_template() {
