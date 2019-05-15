@@ -166,3 +166,16 @@ bt_devs() {
     | awk '{print $2}' \
     | xargs bluetoothctl -- info
 }
+
+run() {
+    stderr="$(mktemp)"
+    $@ 2> >(tee "$stderr")
+    code="$?"
+    urgency=''
+    case "$code" in
+        0) urgency='normal';;
+        *) urgency='critical'
+    esac
+    notify-send -u "$urgency" "Job done: $code" "$(cat $stderr)"
+    rm "$stderr"
+}
