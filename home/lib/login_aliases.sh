@@ -1,4 +1,4 @@
-alias   l='ls -lFhv'
+alias   l='ls -lFhv --group-directories-first'
 alias  la='l -A'
 alias  ll='la --color=auto'
 alias lll='la --color=never'
