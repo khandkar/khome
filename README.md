@@ -1,7 +1,7 @@
 khome
 =====
 
-Environment. Currently in use on Debian 10 (Buster).
+Environment. Currently Debian GNU/Linux 10 (Buster).
 
 
 Use cases
