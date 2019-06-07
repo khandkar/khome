@@ -1,12 +1,29 @@
 khome
 =====
 
-Environment. Currently Debian GNU/Linux 10 (Buster).
+Environment.
 
 
-Use cases
----------
+Hardware
+--------
+- Laptops:
+    - ThinkPad T420
+    - ThinkPad T420s
+    - ThinkPad T570
+- Monitors:
+    - Asus ROG PG348Q 34" 3440 x 1440
+    - Dell 1920x1080
+- Keyboard:
+    - DREVO Tyrfing V2
+- Mouse:
+    - PICTEC GEPC034AB
 
+
+Software
+--------
+
+- OS:
+    - Debian GNU/Linux 10 (Buster)
 - Dictionary:
     - `dict`
 - File browsing:
@@ -68,8 +85,7 @@ Use cases
     - `hsetroot` (background color)
     - `feh` (background image)
 
-Potentially useful
-------------------
+### Potentially useful
 
 - Desktop search:
     - [doodle](https://grothoff.org/christian/doodle/)
