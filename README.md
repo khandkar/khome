@@ -22,7 +22,8 @@ Use cases
         - Editing:
             - `gimp`
         - Viewing:
-            - `sxiv`
+            - `sxiv` (primary)
+            - `eog` (secondary)
     - Music:
         - Local:
             - `ripit` (rip CDs)
@@ -55,7 +56,8 @@ Use cases
 - Web browsing:
     - `qutebrowser` (primary)
     - `chromium` (fallback)
-    - `elinks`
+    - `elinks` (occasional)
+    - `ddgr` (occasional small web search)
 - X
     - `dwm`
     - `khatus` (currently x2)
