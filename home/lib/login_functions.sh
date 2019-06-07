@@ -151,6 +151,11 @@ work_log() {
 
 }
 
+note() {
+    mkdir -p "$DIR_NOTES"
+    vim "$DIR_NOTES/$(date +'%Y_%m_%d--%H_%M_%S%z')--$1.md"
+}
+
 weather() {
     curl "http://wttr.in/$WEATHER_LOCATION"
 }
