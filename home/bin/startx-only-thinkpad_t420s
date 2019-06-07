@@ -1,0 +1,18 @@
+#! /bin/sh
+
+# qutebrowser
+ln -sf ~/.config/qutebrowser/config_for_dpi_low.py ~/.config/qutebrowser/config_for_dpi.py
+
+# dunst
+ln -sf ~/bin/dunst_dpi_low ~/bin/dunst_dpi
+
+# xrandr
+ln -sf ~/.xinitrc-xrandr-only-thinkpad_t420s ~/.xinitrc-xrandr
+
+# st
+ln -sf ~/bin/st_dpi_low ~/bin/st
+
+# dwm
+ln -sf ~/bin/dwm_dpi_low ~/bin/dwm
+
+/usr/bin/startx

@@ -1,0 +1,4 @@
+#! /bin/sh
+
+# 1920x1080
+dunst -geometry '350x80-0+18' -font 'Terminus 8'
