@@ -1,2 +1,5 @@
 # PDF utilities
 poppler-utils
+
+# X11 API man pages
+libx11-doc
