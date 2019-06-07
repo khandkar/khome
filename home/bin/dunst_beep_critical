@@ -1,0 +1,7 @@
+#! /bin/sh
+
+#play -q -n synth 0.5 sin 750
+for i in $(seq 3)
+do
+    play -q -n synth 0.1 sin 115
+done
