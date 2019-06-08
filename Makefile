@@ -12,6 +12,7 @@ install:
 	@cp       home/.profile     $(HOME)/
 	@cp       home/.fonts.conf  $(HOME)/
 	@fc-cache                   $(HOME)/.fonts
+	@cp       home/.mpdconf     $(HOME)/
 	@cp       home/.xbindkeysrc $(HOME)/
 
 # May still need to run:

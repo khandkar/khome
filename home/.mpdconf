@@ -1,0 +1,52 @@
+#
+music_directory                    "/home/siraaj/Archives/Audio"
+playlist_directory                 "/home/siraaj/var/lib/mpd/playlists"
+db_file                            "/home/siraaj/var/lib/mpd/tag_cache"
+log_file                           "/home/siraaj/var/log/mpd/mpd.log"
+pid_file                           "/home/siraaj/var/run/mpd/pid"
+state_file                         "/home/siraaj/var/lib/mpd/state"
+sticker_file                       "/home/siraaj/var/lib/mpd/sticker.sql"
+user                               "siraaj"
+group                              "siraaj"
+bind_to_address                    "localhost"
+bind_to_address                    "/home/siraaj/var/run/mpd/socket"
+#port                              "6600"
+log_level                         "verbose"  # "default", "secure" or "verbose"
+#gapless_mp3_playback              "yes"
+#restore_paused                    "no"
+#save_absolute_paths_in_playlists  "no"
+#metadata_to_use                   "artist,album,title,track,name,genre,date,composer,performer,disc"
+#auto_update                       "yes"
+#auto_update_depth                 "3"
+#follow_outside_symlinks           "yes"
+#follow_inside_symlinks            "yes"
+zeroconf_enabled                   "no"
+
+input {
+        plugin "local"
+}
+
+audio_output {
+    type        "pulse"
+    name        "alsa_output.pci-0000_00_1b.0.analog-stereo"
+}
+
+audio_output {
+    type    "fifo"
+    name    "pcm.fifo"
+    path    "/home/siraaj/var/run/mpd/pcm.fifo"
+    format  "44100:16:2"
+}
+
+filesystem_charset      "UTF-8"
+id3v1_encoding          "UTF-8"
+
+decoder {
+    plugin "flac"
+    enabled "yes"
+}
+
+decoder {
+    plugin "vorbis"
+    enabled "yes"
+}
