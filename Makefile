@@ -8,6 +8,7 @@ APT_SOURCES     := system/debian/apt-sources.list
 install:
 	@cp  -Rp  home/bin          $(HOME)/
 	@cp  -Rp  home/lib          $(HOME)/
+	@cp  -Rp  home/.config/     $(HOME)/
 	@cp       home/.profile     $(HOME)/
 	@cp       home/.fonts.conf  $(HOME)/
 	@fc-cache                   $(HOME)/.fonts
