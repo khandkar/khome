@@ -12,6 +12,7 @@ install:
 	@cp       home/.profile     $(HOME)/
 	@cp       home/.fonts.conf  $(HOME)/
 	@fc-cache                   $(HOME)/.fonts
+	@cp       home/.Rprofile    $(HOME)/
 	@cp       home/.mpdconf     $(HOME)/
 	@cp       home/.xbindkeysrc $(HOME)/
 
