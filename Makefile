@@ -1,8 +1,8 @@
 MAKEFLAGS := --no-builtin-rules
 
-.PHONY: install
+.PHONY: install_home
 
-install:
+install_home:
 	@cp  -Rp  home/bin          $(HOME)/
 	@cp  -Rp  home/lib          $(HOME)/
 	@cp       home/.compton.conf $(HOME)/
