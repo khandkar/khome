@@ -3,6 +3,8 @@ khome
 
 Environment.
 
+![Screenshot of floating mode on T420s](screenshot-floating-t420s.png)
+
 
 Hardware
 --------
