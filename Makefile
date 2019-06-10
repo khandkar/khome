@@ -15,6 +15,7 @@ install:
 	@fc-cache                   $(HOME)/.fonts
 	@cp       home/.Rprofile    $(HOME)/
 	@cp       home/.mpdconf     $(HOME)/
+	@cp       home/.tmux.conf   $(HOME)/
 	@cp       home/.xbindkeysrc $(HOME)/
 
 # May still need to run:
