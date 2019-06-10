@@ -1,9 +1,6 @@
 MAKEFLAGS := --no-builtin-rules
 
-DPKG_SELECTIONS := system/debian/dpkg-selections
-APT_SOURCES     := system/debian/apt-sources.list
-
-.PHONY: update install install_packages
+.PHONY: install
 
 install:
 	@cp  -Rp  home/bin          $(HOME)/
@@ -17,16 +14,3 @@ install:
 	@cp       home/.mpdconf     $(HOME)/
 	@cp       home/.tmux.conf   $(HOME)/
 	@cp       home/.xbindkeysrc $(HOME)/
-
-# May still need to run:
-# 1. dselect update
-# 2. interactive dselect with install,
-# 3. apt update
-# 4. apt upgrade
-install_packages: $(DPKG_SELECTIONS)
-	@dpkg --set-selections < $<
-	@apt-get -u dselect-upgrade
-
-update:
-	@dpkg --get-selections > $(DPKG_SELECTIONS)
-	@cp /etc/apt/sources.list $(APT_SOURCES)
