@@ -1,0 +1,7 @@
+# Debian packages I DO want, but are not part of the minimal install.
+
+# PDF utilities
+poppler-utils
+
+# X11 API man pages
+libx11-doc
