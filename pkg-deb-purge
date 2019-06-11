@@ -1,3 +1,5 @@
 # Debian packages I do NOT want, but somehow ended-up with at one point..
 
-kactivitymanagerd  # Sounds evil
+# Sounds evil
+kactivities-bin
+kactivitymanagerd
