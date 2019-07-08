@@ -10,7 +10,7 @@ ln -sf ~/bin/dunst_dpi_low ~/bin/dunst_dpi
 ln -sf ~/.xinitrc-xrandr-only-thinkpad_t420s ~/.xinitrc-xrandr
 
 # st
-ln -sf ~/bin/st_dpi_low ~/bin/st
+ln -sf ~/bin/st_dpi_norm ~/bin/st
 
 # dwm
 ln -sf ~/bin/dwm_dpi_low ~/bin/dwm
