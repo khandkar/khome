@@ -18,8 +18,9 @@ Hardware
     - Dell 1920x1080
 - Keyboard:
     - DREVO Tyrfing V2
-- Mouse:
+- Mice:
     - PICTEC GEPC034AB
+    - Apple Mighty Mouse USB (A1152)
 
 
 Software
