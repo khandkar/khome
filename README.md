@@ -9,6 +9,7 @@ Environment.
 Hardware
 --------
 - Laptops:
+    - Purism Librem 15 v4
     - ThinkPad T420
     - ThinkPad T420s
     - ThinkPad T570
