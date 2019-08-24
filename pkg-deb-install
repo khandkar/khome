@@ -1,7 +1,20 @@
 # Debian packages I DO want, but are not part of the minimal install.
 
+vim
+tree
+htop
+
+# Can't deny - it does look good...
+task-gnome-desktop
+
+# meta-package for both client and server packages
+ssh
+
 # PDF utilities
 poppler-utils
 
 # X11 API man pages
 libx11-doc
+
+# a pretty df
+dfc
