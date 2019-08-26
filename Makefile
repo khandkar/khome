@@ -1,6 +1,6 @@
 MAKEFLAGS := --no-builtin-rules
 
-.PHONY: install_home
+.PHONY: install_home install_pkgs
 
 install_home:
 	@cp  -Rp  home/bin          $(HOME)/
@@ -14,3 +14,6 @@ install_home:
 	@cp       home/.mpdconf     $(HOME)/
 	@cp       home/.tmux.conf   $(HOME)/
 	@cp       home/.xbindkeysrc $(HOME)/
+
+install_pkgs: install_pkgs.sh pkg-deb-install
+	./install_pkgs.sh
