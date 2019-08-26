@@ -3,6 +3,34 @@
 vim
 tree
 htop
+zsh
+zsh-syntax-highlighting
+git
+qutebrowser
+make
+apt-file
+jq
+curl
+lftp
+aspell
+
+# Shell script linter
+shellcheck
+
+# File managers
+ranger
+nnn
+pcmanfm
+
+# GNU Parallel.
+# Some of my scripts still use it, though it can mostly be replaced with
+# xargs -P $N.
+parallel
+
+xfonts-terminus
+
+# fuzzy finder
+fzf
 
 # Can't deny - it does look good...
 task-gnome-desktop
@@ -18,3 +46,9 @@ libx11-doc
 
 # a pretty df
 dfc
+
+# Music Player daemon and clients
+mpd
+mpc
+ncmpc
+ncmpcpp
