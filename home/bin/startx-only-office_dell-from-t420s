@@ -1,18 +1,5 @@
 #! /bin/sh
 
-# qutebrowser
-ln -sf ~/.config/qutebrowser/config_for_dpi_low.py ~/.config/qutebrowser/config_for_dpi.py
-
-# dunst
-ln -sf ~/bin/dunst_dpi_low ~/bin/dunst_dpi
-
-# xrandr
+config_dpi_low
 ln -sf ~/.xinitrc-xrandr-only-office_dell-from-t420s ~/.xinitrc-xrandr
-
-# st
-ln -sf ~/bin/st_dpi_low ~/bin/st
-
-# dwm
-ln -sf ~/bin/dwm_dpi_low ~/bin/dwm
-
 /usr/bin/startx
