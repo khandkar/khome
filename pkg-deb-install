@@ -17,6 +17,7 @@ aspell
 cheese
 newsboat
 nmap
+build-essential
 
 # Web browsers
 qutebrowser
