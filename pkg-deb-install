@@ -18,6 +18,16 @@ cheese
 newsboat
 nmap
 build-essential
+dunst
+hsetroot
+feh
+xbindkeys
+gawk
+original-awk
+libnotify-bin
+
+# X11 compositor
+compton
 
 # Web browsers
 qutebrowser
