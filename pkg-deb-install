@@ -1,18 +1,28 @@
 # Debian packages I DO want, but are not part of the minimal install.
 
 vim
+vim-gtk3
 tree
 htop
 zsh
 zsh-syntax-highlighting
 git
-qutebrowser
 make
 apt-file
 jq
 curl
 lftp
 aspell
+cheese
+newsboat
+
+# Web browsers
+qutebrowser
+chromium
+
+# SoX: Swiss army knife of sound processing
+# provides the play command
+sox
 
 # Shell script linter
 shellcheck
