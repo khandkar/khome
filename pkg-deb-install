@@ -27,6 +27,11 @@ gawk
 original-awk
 libnotify-bin
 
+# dwm build
+libx11-dev
+libxft-dev
+libxinerama-dev
+
 # X11 compositor
 compton
 
