@@ -81,3 +81,10 @@ mpd
 mpc
 ncmpc
 ncmpcpp
+
+# Dictionary
+dictd
+dict
+dict-gcide
+dict-jargon
+dict-wn
