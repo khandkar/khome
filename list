@@ -3,9 +3,10 @@
 ! /^\#/ && ! /^$/ {
     xs[$1]++
 }
-    
+
 END {
     for (x in xs) {
-        printf("%s%s", sep, x, sep = " ")
+        printf("%s%s", sep, x)
+        sep = " "
     }
 }
