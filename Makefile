@@ -1,8 +1,8 @@
 MAKEFLAGS := --no-builtin-rules
 
-.PHONY: install_home install_pkgs purge_pkgs pkgs
+.PHONY: home pkgs_install pkgs_purge pkgs
 
-install_home:
+home:
 	@cp  -Rp  home/bin           $(HOME)/
 	@cp  -Rp  home/lib           $(HOME)/
 	@cp       home/.compton.conf $(HOME)/
@@ -16,11 +16,11 @@ install_home:
 	@cp       home/.xbindkeysrc  $(HOME)/
 
 pkgs:
-	$(MAKE) install_pkgs
-	$(MAKE) purge_pkgs
+	$(MAKE) pkgs_install
+	$(MAKE) pkgs_purge
 
-install_pkgs: list pkgs-install
+pkgs_install: list pkgs-install
 	sudo apt install $(shell ./list pkgs-install)
 
-purge_pkgs: list pkgs-purge
+pkgs_purge: list pkgs-purge
 	sudo apt purge $(shell ./list pkgs-purge)
