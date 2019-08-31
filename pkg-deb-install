@@ -88,3 +88,6 @@ dict
 dict-gcide
 dict-jargon
 dict-wn
+
+# Provides hxpipe utility, used by khatus weather sensor
+html-xml-utils
