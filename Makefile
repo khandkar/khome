@@ -1,6 +1,6 @@
 MAKEFLAGS := --no-builtin-rules
 
-.PHONY: install_home install_pkgs
+.PHONY: install_home install_pkgs purge_pkgs pkgs
 
 install_home:
 	@cp  -Rp  home/bin           $(HOME)/
@@ -15,5 +15,12 @@ install_home:
 	@cp       home/.tmux.conf    $(HOME)/
 	@cp       home/.xbindkeysrc  $(HOME)/
 
+pkgs:
+	$(MAKE) install_pkgs
+	$(MAKE) purge_pkgs
+
 install_pkgs: list pkgs-install
 	sudo apt install $(shell ./list pkgs-install)
+
+purge_pkgs: list pkgs-purge
+	sudo apt purge $(shell ./list pkgs-purge)
