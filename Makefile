@@ -1,6 +1,6 @@
 MAKEFLAGS := --no-builtin-rules
 
-.PHONY: home pkgs_install pkgs_purge pkgs
+.PHONY: home pkgs_install pkgs_purge pkgs deps
 
 home:
 	@cp  -Rp  home/bin           $(HOME)/
@@ -24,3 +24,6 @@ pkgs_install: list pkgs-install
 
 pkgs_purge: list pkgs-purge
 	sudo apt purge $(shell ./list pkgs-purge)
+
+deps:
+	@$(foreach d,$(wildcard deps/*),cd $(d) && make)
