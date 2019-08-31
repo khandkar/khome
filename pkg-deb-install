@@ -56,8 +56,6 @@ pcmanfm
 # xargs -P $N.
 parallel
 
-xfonts-terminus
-
 # fuzzy finder
 fzf
 
