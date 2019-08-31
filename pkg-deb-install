@@ -61,9 +61,6 @@ xfonts-terminus
 # fuzzy finder
 fzf
 
-# Can't deny - it does look good...
-task-gnome-desktop
-
 # meta-package for both client and server packages
 ssh
 
