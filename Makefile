@@ -15,5 +15,5 @@ install_home:
 	@cp       home/.tmux.conf   $(HOME)/
 	@cp       home/.xbindkeysrc $(HOME)/
 
-install_pkgs: install_pkgs.sh pkg-deb-install
-	./install_pkgs.sh
+install_pkgs: list pkgs-install
+	sudo apt install $(shell ./list pkgs-install)
