@@ -26,6 +26,7 @@ xbindkeys
 gawk
 original-awk
 libnotify-bin
+r-base
 
 # dwm build
 libx11-dev
