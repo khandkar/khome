@@ -93,3 +93,9 @@ Software
 
 - Desktop search:
     - [doodle](https://grothoff.org/christian/doodle/)
+
+Reading list
+------------
+- https://wiki.archlinux.org/index.php/Xinit
+- https://aur.archlinux.org/cgit/aur.git/tree/?h=xinit-xsession
+- https://wiki.archlinux.org/index.php/PCManFM
