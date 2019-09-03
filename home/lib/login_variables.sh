@@ -7,3 +7,6 @@ export DIR_NOTES="$HOME/Documents/Notes"
 # .Net Core
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$HOME/.dotnet
+
+# DPI
+. "$HOME/lib/login_variables_dpi.sh"
