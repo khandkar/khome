@@ -27,6 +27,7 @@ gawk
 original-awk
 libnotify-bin
 r-base
+locate
 
 # dwm build
 libx11-dev
