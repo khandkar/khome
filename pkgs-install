@@ -28,6 +28,7 @@ original-awk
 libnotify-bin
 r-base
 locate
+units
 
 # dwm build
 libx11-dev
