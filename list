@@ -6,6 +6,9 @@
 
 END {
     for (x in xs) {
+        if (xs[x] > 1) {
+            printf ">>> [WARNING] : '%s' was listed %d times.\n", x, xs[x] > "/dev/stderr"
+        }
         printf("%s%s", sep, x)
         sep = " "
     }
