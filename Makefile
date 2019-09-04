@@ -1,6 +1,6 @@
 MAKEFLAGS := --no-builtin-rules
 
-.PHONY: home pkgs_install pkgs_purge pkgs deps
+.PHONY: home pkgs_deb_install pkgs_deb_purge pkgs deps
 
 home:
 	@cp  -Rp  home/bin           $(HOME)/
@@ -16,18 +16,18 @@ home:
 	@cp       home/.xbindkeysrc  $(HOME)/
 
 pkgs:
-	$(MAKE) pkgs_install
-	$(MAKE) pkgs_purge
+	$(MAKE) pkgs_deb_install
+	$(MAKE) pkgs_deb_purge
 	$(MAKE) pkgs_snap_classic
 
-pkgs_install: list pkgs-install
-	sudo apt install $(shell ./list pkgs-install)
+pkgs_deb_install: list pkgs-deb-install.list
+	sudo apt install $(shell ./list pkgs-deb-install.list)
 
-pkgs_purge: list pkgs-purge
-	sudo apt purge $(shell ./list pkgs-purge)
+pkgs_deb_purge: list pkgs-deb-purge.list
+	sudo apt purge $(shell ./list pkgs-deb-purge.list)
 
-pkgs_snap_classic: list pkgs-snap-classic
-	@$(MAKE) $(foreach p,$(shell ./list pkgs-snap-classic),pkg_snap_classic_$(p))
+pkgs_snap_classic: list pkgs-snap-classic.list
+	@$(MAKE) $(foreach p,$(shell ./list pkgs-snap-classic.list),pkg_snap_classic_$(p))
 
 # Depends on 'snapd' deb pkg being already installed
 pkg_snap_classic_%:
