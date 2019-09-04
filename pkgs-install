@@ -94,3 +94,17 @@ html-xml-utils
 # Image viewers
 eog
 sxiv
+
+# Networking tools:
+# - netstat
+# - ifconfig
+# - ipmaddr
+# - iptunnel
+# - mii-tool
+# - nameif
+# - plipconfig
+# - rarp
+# - route
+# - slattach
+# - arp
+net-tools
