@@ -88,3 +88,7 @@ dict-wn
 
 # Provides hxpipe utility, used by khatus weather sensor
 html-xml-utils
+
+# Image viewers
+eog
+sxiv
