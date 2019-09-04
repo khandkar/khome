@@ -66,6 +66,8 @@ ssh
 
 # PDF utilities
 poppler-utils
+mupdf
+mupdf-tools
 
 # X11 API man pages
 libx11-doc
