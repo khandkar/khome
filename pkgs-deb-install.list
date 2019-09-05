@@ -96,7 +96,8 @@ dict-wn
 html-xml-utils
 
 # Image viewers
-eog
+eog  # Eye of GNOME
+eom  # Eye of MATE
 sxiv
 
 # Networking tools:
