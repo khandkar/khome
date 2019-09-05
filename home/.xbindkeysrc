@@ -16,6 +16,7 @@
 "backlight_adjust -5"
     XF86MonBrightnessDown
 
+# mate-screensaver equivalent: "mate-screensaver-command --lock"
 "xscreensaver-command -activate"
    XF86ScreenSaver
 "xscreensaver-command -activate"
