@@ -1,6 +1,8 @@
 MAKEFLAGS := --no-builtin-rules
 
-.PHONY: home pkgs_deb_install pkgs_deb_purge pkgs deps
+DEPS := $(wildcard deps/*)
+
+.PHONY: home pkgs_deb_install pkgs_deb_purge pkgs deps $(DEPS)
 
 home:
 	@cp  -Rp  home/bin           $(HOME)/
@@ -33,5 +35,11 @@ pkgs_snap_classic: list pkgs-snap-classic.list
 pkg_snap_classic_%:
 	sudo snap install --classic $*
 
-deps:
-	@$(foreach d,$(wildcard deps/*),cd $(d) && make)
+deps: $(DEPS)
+
+define GEN_DEP_RULE
+$(1):
+	cd $1 && make
+endef
+
+$(foreach d,$(DEPS),$(eval $(call GEN_DEP_RULE,$(d))))
