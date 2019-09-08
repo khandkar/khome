@@ -33,6 +33,8 @@ snapd # https://snapcraft.io/docs/installing-snap-on-debian
 encfs
 xscreensaver
 youtube-dl
+mplayer
+mpv
 
 # dwm build
 libx11-dev
