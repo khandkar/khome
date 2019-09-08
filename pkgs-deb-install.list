@@ -32,6 +32,7 @@ units
 snapd # https://snapcraft.io/docs/installing-snap-on-debian
 encfs
 xscreensaver
+youtube-dl
 
 # dwm build
 libx11-dev
