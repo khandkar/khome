@@ -37,6 +37,7 @@ mplayer
 mpv
 whois
 mono-complete
+screengrab
 
 # dwm build
 libx11-dev
