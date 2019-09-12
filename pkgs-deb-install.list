@@ -36,6 +36,7 @@ youtube-dl
 mplayer
 mpv
 whois
+mono-complete
 
 # dwm build
 libx11-dev
