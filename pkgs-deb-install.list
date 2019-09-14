@@ -38,6 +38,7 @@ mpv
 whois
 mono-complete
 screengrab
+tlp  # Laptop power management tools
 
 # dwm build
 libx11-dev
