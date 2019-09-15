@@ -39,6 +39,7 @@ whois
 mono-complete
 screengrab
 tlp  # Laptop power management tools
+erlang
 
 # dwm build
 libx11-dev
