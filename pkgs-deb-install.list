@@ -40,6 +40,7 @@ mono-complete
 screengrab
 tlp  # Laptop power management tools
 erlang
+elixir
 
 # dwm build
 libx11-dev
