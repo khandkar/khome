@@ -41,6 +41,7 @@ screengrab
 tlp  # Laptop power management tools
 erlang
 elixir
+openconnect  # VPN cllient compatible with Cisco's AnyConnect
 
 # dwm build
 libx11-dev
