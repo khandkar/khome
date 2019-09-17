@@ -43,6 +43,16 @@ erlang
 elixir
 openconnect  # VPN cllient compatible with Cisco's AnyConnect
 
+# Librem 15v4 Bluetooth.
+# A post-install reboot may be insufficient if incorrect firmware was loaded
+# before, so a cold shutdown is best.
+#
+# Apparently the firmware is loaded into the card's memory, which isn't cleared
+# as long as power is supplied (and between reboots - it is).
+#
+# Ref: https://tracker.pureos.net/T23  (different situation, same idea)
+firmware-atheros
+
 # dwm build
 libx11-dev
 libxft-dev
