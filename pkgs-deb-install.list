@@ -53,6 +53,9 @@ openconnect  # VPN cllient compatible with Cisco's AnyConnect
 # Ref: https://tracker.pureos.net/T23  (different situation, same idea)
 firmware-atheros
 
+# To connect to headphones:
+pulseaudio-module-bluetooth
+
 # dwm build
 libx11-dev
 libxft-dev
