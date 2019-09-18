@@ -99,3 +99,4 @@ Reading list
 - https://wiki.archlinux.org/index.php/Xinit
 - https://aur.archlinux.org/cgit/aur.git/tree/?h=xinit-xsession
 - https://wiki.archlinux.org/index.php/PCManFM
+- https://www.ibm.com/developerworks/library/os-xapianomega/
