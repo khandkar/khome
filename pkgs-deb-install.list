@@ -43,6 +43,10 @@ erlang
 elixir
 openconnect  # VPN cllient compatible with Cisco's AnyConnect
 
+# Xapian desktop search:
+xapian-omega  # index with omindex
+xapian-tools  # search with quest
+
 # Librem 15v4 Bluetooth.
 # A post-install reboot may be insufficient if incorrect firmware was loaded
 # before, so a cold shutdown is best.
