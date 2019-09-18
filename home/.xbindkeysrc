@@ -11,9 +11,9 @@
 "vol_mute"
    XF86AudioMute
 
-"backlight_adjust +5"
+"sudo /home/siraaj/bin/backlight_adjust +5"
     XF86MonBrightnessUp
-"backlight_adjust -5"
+"sudo /home/siraaj/bin/backlight_adjust -5"
     XF86MonBrightnessDown
 
 # mate-screensaver equivalent: "mate-screensaver-command --lock"
