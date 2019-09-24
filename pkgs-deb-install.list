@@ -43,6 +43,10 @@ erlang
 elixir
 openconnect  # VPN cllient compatible with Cisco's AnyConnect
 
+# SML
+smlnj
+smlnj-doc
+
 # Xapian desktop search:
 xapian-omega  # index with omindex
 xapian-tools  # search with quest
