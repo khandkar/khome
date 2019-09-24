@@ -124,6 +124,8 @@ dict-jargon            # hacker slang
 dict-wn                # WordNet
 dict-freedict-eng-rus  # English-Russian
 dict-freedict-eng-ell  # English-Modern Greek
+dict-freedict-eng-lat  # English-Latin
+dict-freedict-lat-eng  # Latin-English
 
 # Provides hxpipe utility, used by khatus weather sensor
 html-xml-utils
