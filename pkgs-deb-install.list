@@ -118,6 +118,8 @@ dict
 dict-gcide
 dict-jargon
 dict-wn
+dict-freedict-eng-rus  # English-Russian
+dict-freedict-eng-ell  # English-Modern Greek
 
 # Provides hxpipe utility, used by khatus weather sensor
 html-xml-utils
