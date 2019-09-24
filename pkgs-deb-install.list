@@ -113,11 +113,11 @@ ncmpc
 ncmpcpp
 
 # Dictionary
-dictd
-dict
-dict-gcide
-dict-jargon
-dict-wn
+dictd                  # server
+dict                   # client
+dict-gcide             # Collaborative International Dictionary of English
+dict-jargon            # hacker slang
+dict-wn                # WordNet
 dict-freedict-eng-rus  # English-Russian
 dict-freedict-eng-ell  # English-Modern Greek
 
