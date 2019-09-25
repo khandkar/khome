@@ -2,7 +2,7 @@ MAKEFLAGS := --no-builtin-rules
 
 DEPS := $(wildcard deps/*)
 
-.PHONY: home pkgs_deb_install pkgs_deb_purge pkgs deps $(DEPS)
+.PHONY: home pkgs_deb_install pkgs_deb_purge pkgs deps $(DEPS) pkgs_snap_classic pkgs_snap_strict
 
 home:
 	@cp  -Rp  home/bin           $(HOME)/
@@ -21,6 +21,7 @@ pkgs:
 	$(MAKE) pkgs_deb_install
 	$(MAKE) pkgs_deb_purge
 	$(MAKE) pkgs_snap_classic
+	$(MAKE) pkgs_snap_strict
 
 pkgs_deb_install: list pkgs-deb-install.list
 	sudo apt install $(shell ./list pkgs-deb-install.list)
@@ -31,9 +32,14 @@ pkgs_deb_purge: list pkgs-deb-purge.list
 pkgs_snap_classic: list pkgs-snap-classic.list
 	@$(MAKE) $(foreach p,$(shell ./list pkgs-snap-classic.list),pkg_snap_classic_$(p))
 
-# Depends on 'snapd' deb pkg being already installed
+pkgs_snap_strict: list pkgs-snap-strict.list
+	@$(MAKE) $(foreach p,$(shell ./list pkgs-snap-strict.list),pkg_snap_strict_$(p))
+
+# 'snap' command comes from 'snapd' deb pkg
 pkg_snap_classic_%:
 	sudo snap install --classic $*
+pkg_snap_strict_%:
+	sudo snap install $*
 
 deps: $(DEPS)
 
