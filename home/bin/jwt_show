@@ -1,0 +1,27 @@
+#! /usr/bin/awk -f
+
+function print_title(title,    _i) {
+    print title
+    for (_i = 1; _i <= length(title); _i++)
+        printf "="
+    printf "\n"
+}
+
+function print_decoded_field(field,    _i, _decode) {
+    _decode = "base64 -d | json_pp"
+    print $field | _decode
+    close(_decode)
+}
+
+BEGIN {
+    FS = "."
+}
+
+{
+    print_title("Header")
+    print_decoded_field(1)
+    print_title("Payload")
+    print_decoded_field(2)
+    print_title("Signature")
+    print $3
+}
