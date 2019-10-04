@@ -1,0 +1,132 @@
+#! /bin/sh
+
+usage() {
+    echo "EXAMPLE (whole tree)   : $0 | neato -T png > ps.png && open ps.png"
+    echo "EXAMPLE (user clusters): $0 | sdp   -T png > ps.png && open ps.png"
+}
+
+
+compile() {
+    awk -v kernel="$(uname -v)" -v whoami="$(whoami)" \
+    '
+        BEGIN {
+            p2cmd[0] = "swapper/sched"
+            color_base = 20
+            color_incr = 30
+            color_hi  = sprintf("grey%d", (color_base + (color_incr * 0)))
+            color_mid = sprintf("grey%d", (color_base + (color_incr * 1)))
+            color_low = sprintf("grey%d", (color_base + (color_incr * 2)))
+        }
+
+        NR > 1 {
+            p2pp[$1]=$2;
+            p2user_id[$1]=$3
+            p2user_name[$1]=$4
+            p2cmd[$1]=$5
+            user_names[$4]=1
+        }
+
+        END {
+            print "strict digraph G {";
+
+            print "start=0;";
+            print "colorscheme=brewer;";
+            print "fontsize=8;";
+            print "fontname=Helvetica;";
+            print "label=\"" kernel "\";";
+
+            printf(\
+                "edge [ fontsize=8 \
+                      , fontname=Helvetica \
+                      , len=2.0 \
+                      , color=%s \
+                      ];",
+                color_low\
+            )
+
+            print "node [ fontsize=8 \
+                        , fontname=Helvetica \
+                        , shape=ellipse \
+                        ]; \
+                    ";
+
+            ##### Vertices (clustered by user)
+            for (user in user_names) {
+                printf "subgraph \"cluster_%s\" {\n", user
+                printf "label=\"%s\"\n", user
+                for (p in p2pp) {
+                    if (p2user_name[p] == user) {
+                        color     = p2user_name[p] == whoami ? color_hi : color_low
+                        fontcolor = p2user_name[p] == whoami ? color_hi : color_mid
+                        printf(\
+                            "\"%d\"\
+                            [ fontsize=8 \
+                            , fontname=Helvetica \
+                            , shape=ellipse \
+                            , label=\"%s\n%d\" \
+                            , color=\"%s\" \
+                            , fontcolor=\"%s\" \
+                            ];",
+                            p,
+                            p2cmd[p],
+                            p,
+                            color,
+                            fontcolor\
+                        )
+                    }
+                }
+                print "}"
+            }
+
+            ##### Vertices (without a user)
+            for (p in p2cmd) {
+                if (!p2user_name[p]) {
+                    printf(\
+                        "\"%d\"\
+                        [ fontsize=8 \
+                        , fontname=Helvetica \
+                        , shape=ellipse \
+                        , label=\"%s\n%d\" \
+                        , color=\"%s\" \
+                        , fontcolor=\"%s\" \
+                        ];",
+                        p,
+                        p2cmd[p],
+                        p,
+                        color_low,
+                        color_mid\
+                    )
+                }
+            }
+
+            ##### Edges (across clusters)
+            for (p in p2pp) {
+                printf "\"%d\" -> \"%d\";\n",  p2pp[p], p, p
+            }
+
+            print "}";
+        }
+    '
+}
+
+
+procs() {
+    if [ "$(uname)" = 'Linux' ]; then
+        ps -eo pid,ppid,euid,euser,comm
+    else
+        ps -eco pid,ppid,euid,euser,comm
+    fi
+}
+
+
+main() {
+    case "$1" in
+        '--help') usage
+        ;;
+        *) procs | grep "$1" | compile
+        ;;
+    esac
+}
+
+
+main "$1"
