@@ -42,6 +42,11 @@ tlp  # Laptop power management tools
 erlang
 elixir
 openconnect  # VPN cllient compatible with Cisco's AnyConnect
+graphviz
+graphviz-doc
+cups
+ddgr  # Duck Duck Go CLI client
+wikipedia2text  # Wikipedia CLI client
 
 # SML
 smlnj
