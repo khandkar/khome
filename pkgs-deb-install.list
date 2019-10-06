@@ -47,6 +47,7 @@ graphviz-doc
 cups
 ddgr  # Duck Duck Go CLI client
 wikipedia2text  # Wikipedia CLI client
+neofetch
 
 # SML
 smlnj
