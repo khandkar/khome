@@ -13,15 +13,18 @@ compile() {
             return dst_min + ((src_cur * (dst_max - dst_min)) / src_max)
         }
 
-        function vert_print(v,    _color) {
+        function vert_print(v,    _color, _fontcolor) {
             _color =\
                 num_scale(\
-                    parent2child_count[v],
-                    max_children,
+                    child2nice[v] + 20,
+                    20 + 20,
                     COLORSCHEME_MIN,
                     COLORSCHEME_MAX\
                 )
-            fontcolor = _color >= 5 ? 1 : 9
+            _fontcolor = \
+                _color == COLORSCHEME_MAX || _color == COLORSCHEME_MIN \
+                ? sprintf("/%s/%d", COLORSCHEME, COLORSCHEME_MID) \
+                : sprintf("/%s/%d", "greys9", 9)
             printf(\
                 "\"%d\"\
                 [ fontsize=8 \
@@ -29,28 +32,22 @@ compile() {
                 , fontname=Helvetica \
                 , shape=ellipse \
                 , label=\"%s\n%d\" \
-                , colorscheme=%s \
-                , color=%d \
-                , fontcolor=%d \
+                , color=\"/%s/%d\" \
+                , fontcolor=\"%s\" \
                 ];",
                 v,
                 child2cmd[v],
                 v,
                 COLORSCHEME,
                 _color,
-                fontcolor\
+                _fontcolor\
             )
         }
 
-        function edge_print(child,    _parent, _color) {
+        function edge_print(child,    _parent, _color, _colorscheme) {
             _parent = child2parent[child]
-            _color =\
-                num_scale(\
-                    parent2child_count[_parent],
-                    max_children,
-                    COLORSCHEME_MIN,
-                    COLORSCHEME_MAX\
-                )
+            _colorscheme = "greys9"
+            _color = 3
             printf(\
                 "\"%s\" -> \"%s\"\
                 [ fontsize=8 \
@@ -61,21 +58,30 @@ compile() {
                 ];\n",
                 _parent,
                 child,
-                COLORSCHEME,
+                _colorscheme,
                 _color\
             )
         }
 
         BEGIN {
-            COLORSCHEME = "orrd9"
-            # Good gradient colorschemes:
-            # - "orrd9"
-            # - "oranges9"
-            # - "bupu9"
-            # - "greys9"
+            # Hot->Cold gradual colorschemes:
+            # - rdbu11
+            # - rdbu9
+            # - rdbu8
 
-            COLORSCHEME_MIN = 2
+            # Light->Dark gradual colorschemes:
+            # - reds9
+            # - blues9
+            # - orrd9
+            # - oranges9
+            # - bupu9
+            # - greys9
+
+            COLORSCHEME_MIN = 1
+            COLORSCHEME_MID = 5
             COLORSCHEME_MAX = 9
+            COLORSCHEME = sprintf("rdbu%d", COLORSCHEME_MAX)
+
             child2cmd[0] = "swapper/sched"
         }
 
@@ -88,7 +94,8 @@ compile() {
             child2parent[$1]    = $2
             child2user_id[$1]   = $3
             child2user_name[$1] = $4
-            child2cmd[$1]       = $5
+            child2nice[$1]      = $5
+            child2cmd[$1]       = $6
             user_names[$4]      = 1
         }
 
@@ -129,9 +136,9 @@ compile() {
 
 procs() {
     if [ "$(uname)" = 'Linux' ]; then
-        ps -eo pid,ppid,euid,euser,comm
+        ps -eo 'pid,ppid,euid,euser,nice,comm'
     else
-        ps -eco pid,ppid,euid,euser,comm
+        ps -eco 'pid,ppid,euid,euser,nice,comm'
     fi
 }
 
