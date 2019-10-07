@@ -106,8 +106,7 @@ compile() {
             print "fontsize=8;";
             print "fontname=Helvetica;";
             print "label=\"" kernel "\";";
-            printf "colorscheme=%s;\n", COLORSCHEME
-            print "fontcolor=9;"
+            print "fontcolor=\"/greys9/9\";"
 
             ##### Vertices (clustered by user)
             for (user_name in user_names) {
