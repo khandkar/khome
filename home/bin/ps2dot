@@ -13,7 +13,24 @@ compile() {
             return dst_min + ((src_cur * (dst_max - dst_min)) / src_max)
         }
 
-        function vert_print(v,    _color, _fontcolor) {
+        function vert_print(v,    _color, _fontcolor, _shape, _state) {
+            _shape = "rectangle"
+            _state = child2state[v]
+            if (_state == "D") {
+                _shape = "circle"
+            } else if (_state == "I") {
+                _shape = "octagon"
+            } else if (_state == "R") {
+                _shape = "star"
+            } else if (_state == "S") {
+                _shape = "oval"
+            } else if (_state == "T") {
+                _shape = "square"
+            } else if (_state == "t") {
+                _shape = "Msquare"
+            } else if (_state == "Z") {
+                _shape = "diamond"
+            }
             _color =\
                 num_scale(\
                     child2nice[v] + 20,
@@ -28,16 +45,18 @@ compile() {
             printf(\
                 "\"%d\"\
                 [ fontsize=8 \
-                , style=filled \
+                , border=1 \
+                , style=\"filled,solid\" \
                 , fontname=Helvetica \
-                , shape=ellipse \
                 , label=\"%s\n%d\" \
-                , color=\"/%s/%d\" \
+                , shape=\"%s\" \
+                , fillcolor=\"/%s/%d\" \
                 , fontcolor=\"%s\" \
                 ];",
                 v,
-                child2cmd[v],
+                child2comm[v],
                 v,
+                _shape,
                 COLORSCHEME,
                 _color,
                 _fontcolor\
@@ -46,8 +65,8 @@ compile() {
 
         function edge_print(child,    _parent, _color, _colorscheme) {
             _parent = child2parent[child]
-            _colorscheme = "greys9"
-            _color = 3
+            _colorscheme = COLORSCHEME
+            _color = COLORSCHEME_MID
             printf(\
                 "\"%s\" -> \"%s\"\
                 [ fontsize=8 \
@@ -79,10 +98,10 @@ compile() {
 
             COLORSCHEME_MIN = 1
             COLORSCHEME_MID = 5
-            COLORSCHEME_MAX = 9
-            COLORSCHEME = sprintf("rdbu%d", COLORSCHEME_MAX)
+            COLORSCHEME_MAX = 10
+            COLORSCHEME = sprintf("rdylgn%d", COLORSCHEME_MAX)
 
-            child2cmd[0] = "swapper/sched"
+            child2comm[0] = "swapper/sched"
         }
 
         NR > 1 {
@@ -95,7 +114,8 @@ compile() {
             child2user_id[$1]   = $3
             child2user_name[$1] = $4
             child2nice[$1]      = $5
-            child2cmd[$1]       = $6
+            child2state[$1]     = $6
+            child2comm[$1]      = $7
             user_names[$4]      = 1
         }
 
@@ -119,7 +139,7 @@ compile() {
             }
 
             ##### Vertices (without a user)
-            for (c in child2cmd)
+            for (c in child2comm)
                 if (!child2user_name[c])
                     vert_print(c)
 
@@ -135,9 +155,9 @@ compile() {
 
 procs() {
     if [ "$(uname)" = 'Linux' ]; then
-        ps -eo 'pid,ppid,euid,euser,nice,comm'
+        ps -eo 'pid,ppid,euid,euser,nice,s,comm'
     else
-        ps -eco 'pid,ppid,euid,euser,nice,comm'
+        ps -eco 'pid,ppid,euid,euser,nice,s,comm'
     fi
 }
 
