@@ -9,100 +9,117 @@ usage() {
 compile() {
     awk -v kernel="$(uname -v)" -v whoami="$(whoami)" \
     '
+        function num_scale(src_cur, src_max, dst_min, dst_max) {
+            return dst_min + ((src_cur * (dst_max - dst_min)) / src_max)
+        }
+
+        function vert_print(v,    _color) {
+            _color =\
+                num_scale(\
+                    parent2child_count[v],
+                    max_children,
+                    COLORSCHEME_MIN,
+                    COLORSCHEME_MAX\
+                )
+            fontcolor = _color >= 5 ? 1 : 9
+            printf(\
+                "\"%d\"\
+                [ fontsize=8 \
+                , style=filled \
+                , fontname=Helvetica \
+                , shape=ellipse \
+                , label=\"%s\n%d\" \
+                , colorscheme=%s \
+                , color=%d \
+                , fontcolor=%d \
+                ];",
+                v,
+                child2cmd[v],
+                v,
+                COLORSCHEME,
+                _color,
+                fontcolor\
+            )
+        }
+
+        function edge_print(child,    _parent, _color) {
+            _parent = child2parent[child]
+            _color =\
+                num_scale(\
+                    parent2child_count[_parent],
+                    max_children,
+                    COLORSCHEME_MIN,
+                    COLORSCHEME_MAX\
+                )
+            printf(\
+                "\"%s\" -> \"%s\"\
+                [ fontsize=8 \
+                , fontname=Helvetica \
+                , len=2.0 \
+                , colorscheme=%s \
+                , color=%d \
+                ];\n",
+                _parent,
+                child,
+                COLORSCHEME,
+                _color\
+            )
+        }
+
         BEGIN {
-            p2cmd[0] = "swapper/sched"
-            color_base = 20
-            color_incr = 30
-            color_hi  = sprintf("grey%d", (color_base + (color_incr * 0)))
-            color_mid = sprintf("grey%d", (color_base + (color_incr * 1)))
-            color_low = sprintf("grey%d", (color_base + (color_incr * 2)))
+            COLORSCHEME = "orrd9"
+            # Good gradient colorschemes:
+            # - "orrd9"
+            # - "oranges9"
+            # - "bupu9"
+            # - "greys9"
+
+            COLORSCHEME_MIN = 2
+            COLORSCHEME_MAX = 9
+            child2cmd[0] = "swapper/sched"
         }
 
         NR > 1 {
-            p2pp[$1]=$2;
-            p2user_id[$1]=$3
-            p2user_name[$1]=$4
-            p2cmd[$1]=$5
-            user_names[$4]=1
+            parent2child_count[$2]++
+            max_children = \
+                parent2child_count[$2] > max_children\
+                ? parent2child_count[$2]\
+                : max_children
+            child2parent[$1]    = $2
+            child2user_id[$1]   = $3
+            child2user_name[$1] = $4
+            child2cmd[$1]       = $5
+            user_names[$4]      = 1
         }
 
         END {
             print "strict digraph G {";
 
             print "start=0;";
-            print "colorscheme=brewer;";
             print "fontsize=8;";
             print "fontname=Helvetica;";
             print "label=\"" kernel "\";";
-
-            printf(\
-                "edge [ fontsize=8 \
-                      , fontname=Helvetica \
-                      , len=2.0 \
-                      , color=%s \
-                      ];",
-                color_low\
-            )
-
-            print "node [ fontsize=8 \
-                        , fontname=Helvetica \
-                        , shape=ellipse \
-                        ]; \
-                    ";
+            printf "colorscheme=%s;\n", COLORSCHEME
+            print "fontcolor=9;"
 
             ##### Vertices (clustered by user)
-            for (user in user_names) {
-                printf "subgraph \"cluster_%s\" {\n", user
-                printf "label=\"%s\"\n", user
-                for (p in p2pp) {
-                    if (p2user_name[p] == user) {
-                        color     = p2user_name[p] == whoami ? color_hi : color_low
-                        fontcolor = p2user_name[p] == whoami ? color_hi : color_mid
-                        printf(\
-                            "\"%d\"\
-                            [ fontsize=8 \
-                            , fontname=Helvetica \
-                            , shape=ellipse \
-                            , label=\"%s\n%d\" \
-                            , color=\"%s\" \
-                            , fontcolor=\"%s\" \
-                            ];",
-                            p,
-                            p2cmd[p],
-                            p,
-                            color,
-                            fontcolor\
-                        )
-                    }
-                }
+            for (user_name in user_names) {
+                printf "subgraph \"cluster_%s\" {\n", user_name
+                printf "label=\"%s\"\n", user_name
+                for (c in child2parent)
+                    if (child2user_name[c] == user_name)
+                        vert_print(c)
                 print "}"
             }
 
             ##### Vertices (without a user)
-            for (p in p2cmd) {
-                if (!p2user_name[p]) {
-                    printf(\
-                        "\"%d\"\
-                        [ fontsize=8 \
-                        , fontname=Helvetica \
-                        , shape=ellipse \
-                        , label=\"%s\n%d\" \
-                        , color=\"%s\" \
-                        , fontcolor=\"%s\" \
-                        ];",
-                        p,
-                        p2cmd[p],
-                        p,
-                        color_low,
-                        color_mid\
-                    )
-                }
-            }
+            for (c in child2cmd)
+                if (!child2user_name[c])
+                    vert_print(c)
 
             ##### Edges (across clusters)
-            for (p in p2pp) {
-                printf "\"%d\" -> \"%d\";\n",  p2pp[p], p, p
-            }
+            for (c in child2parent)
+                edge_print(c)
 
             print "}";
         }
