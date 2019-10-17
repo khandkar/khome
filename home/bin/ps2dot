@@ -13,7 +13,7 @@ compile() {
             return dst_min + ((src_cur * (dst_max - dst_min)) / src_max)
         }
 
-        function vert_print(v,    _color, _fontcolor, _shape, _state) {
+        function vert_print(v,    _color, _fontcolor, _shape, _state, _size, _height, _label, _label_base, _label_ext) {
             _shape = "rectangle"
             _state = child2state[v]
             if (_state == "D") {
@@ -33,52 +33,69 @@ compile() {
             }
             _color =\
                 num_scale(\
-                    child2nice[v] + 20,
-                    20 + 20,
-                    COLORSCHEME_MIN,
-                    COLORSCHEME_MAX\
+                    child2cpu[v],
+                    max_cpu,
+                    VERT_COLORSCHEME_MAX,
+                    VERT_COLORSCHEME_MIN\
                 )
+            _size =\
+                num_scale(\
+                    child2mem[v],
+                    max_mem,
+                    1,
+                    5\
+                ) / 5
+            _height = _size
             _fontcolor = \
-                _color == COLORSCHEME_MAX || _color == COLORSCHEME_MIN \
-                ? sprintf("/%s/%d", COLORSCHEME, COLORSCHEME_MID) \
+                _color == VERT_COLORSCHEME_MAX || _color == VERT_COLORSCHEME_MIN \
+                ? sprintf("/%s/%d", VERT_COLORSCHEME, VERT_COLORSCHEME_MID) \
                 : sprintf("/%s/%d", "greys9", 9)
+            _fontcolor = \
+                _size < 0.5 \
+                ? sprintf("/%s/%d", "greys9", 9) \
+                : _fontcolor
+            _label_base = \
+                sprintf("%s\n%d", child2comm[v], v)
+            _label_ext = \
+                _size >= 0.5 \
+                ? sprintf("\ncpu: %.1f%%\nmem: %.1f%%", child2cpu[v], child2mem[v]) \
+                : ""
+            _label = _label_base _label_ext
             printf(\
                 "\"%d\"\
                 [ fontsize=8 \
+                , fixedsize=true \
+                , height=%f \
                 , border=1 \
                 , style=\"filled,solid\" \
                 , fontname=Helvetica \
-                , label=\"%s\n%d\" \
+                , label=\"%s\" \
                 , shape=\"%s\" \
                 , fillcolor=\"/%s/%d\" \
                 , fontcolor=\"%s\" \
                 ];",
                 v,
-                child2comm[v],
-                v,
+                _height,
+                _label,
                 _shape,
-                COLORSCHEME,
+                VERT_COLORSCHEME,
                 _color,
                 _fontcolor\
             )
         }
 
-        function edge_print(child,    _parent, _color, _colorscheme) {
+        function edge_print(child,    _parent) {
             _parent = child2parent[child]
-            _colorscheme = COLORSCHEME
-            _color = COLORSCHEME_MID
             printf(\
                 "\"%s\" -> \"%s\"\
                 [ fontsize=8 \
                 , fontname=Helvetica \
                 , len=2.0 \
-                , colorscheme=%s \
-                , color=%d \
+                , color=\"%s\" \
                 ];\n",
                 _parent,
                 child,
-                _colorscheme,
-                _color\
+                EDGE_COLOR\
             )
         }
 
@@ -87,6 +104,7 @@ compile() {
             # - rdbu11
             # - rdbu9
             # - rdbu8
+            # - rdylgn10  # 3 - 11
 
             # Light->Dark gradual colorschemes:
             # - reds9
@@ -96,10 +114,12 @@ compile() {
             # - bupu9
             # - greys9
 
-            COLORSCHEME_MIN = 1
-            COLORSCHEME_MID = 5
-            COLORSCHEME_MAX = 10
-            COLORSCHEME = sprintf("rdylgn%d", COLORSCHEME_MAX)
+            VERT_COLORSCHEME_MIN = 1
+            VERT_COLORSCHEME_MID = 4
+            VERT_COLORSCHEME_MAX = 8
+            VERT_COLORSCHEME = "rdylgn10"
+
+            EDGE_COLOR = "/ylorbr9/3"
 
             child2comm[0] = "swapper/sched"
         }
@@ -115,8 +135,12 @@ compile() {
             child2user_name[$1] = $4
             child2nice[$1]      = $5
             child2state[$1]     = $6
-            child2comm[$1]      = $7
+            child2cpu[$1]       = $7
+            child2mem[$1]       = $8
+            child2comm[$1]      = $9
             user_names[$4]      = 1
+            max_cpu = $7 > max_cpu ? $7 : max_cpu
+            max_mem = $8 > max_mem ? $8 : max_mem
         }
 
         END {
@@ -155,9 +179,9 @@ compile() {
 
 procs() {
     if [ "$(uname)" = 'Linux' ]; then
-        ps -eo 'pid,ppid,euid,euser,nice,s,comm'
+        ps -eo  'pid,ppid,euid,euser,nice,s,%cpu,%mem,comm'
     else
-        ps -eco 'pid,ppid,euid,euser,nice,s,comm'
+        ps -eco 'pid,ppid,euid,euser,nice,s,%cpu,%mem,comm'
     fi
 }
 
