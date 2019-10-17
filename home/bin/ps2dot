@@ -14,23 +14,50 @@ compile() {
         }
 
         function vert_print(v,    _color, _fontcolor, _shape, _state, _size, _height, _label, _label_base, _label_ext) {
-            _shape = "rectangle"
             _state = child2state[v]
+            _style = "filled,solid"
+
+            # -----------------------------------------------------------------
+            # Sleeping/idling
+            # -----------------------------------------------------------------
+            # D uninterruptible sleep (usually IO)
             if (_state == "D") {
                 _shape = "circle"
+            # I Idle kernel thread
             } else if (_state == "I") {
-                _shape = "octagon"
-            } else if (_state == "R") {
-                _shape = "star"
+                _shape = "circle"
+            # S interruptible sleep (waiting for an event to complete)
             } else if (_state == "S") {
-                _shape = "oval"
+                _shape = "circle"
+            # -----------------------------------------------------------------
+            # Running
+            # -----------------------------------------------------------------
+            # R running or runnable (on run queue)
+            } else if (_state == "R") {
+                _shape = "rarrow"
+            # -----------------------------------------------------------------
+            # Stopped
+            # -----------------------------------------------------------------
+            # T stopped by job control signal
             } else if (_state == "T") {
                 _shape = "square"
+            # t stopped by debugger during the tracing
             } else if (_state == "t") {
-                _shape = "Msquare"
+                _shape = "square"
+            # -----------------------------------------------------------------
+            # Dead
+            # -----------------------------------------------------------------
+            # Z defunct ("zombie") process, terminated but not reaped by its parent
             } else if (_state == "Z") {
-                _shape = "diamond"
+                _shape = "Msquare"
+                _style = "solid"
+            # -----------------------------------------------------------------
+            # UNKNOWN STATE
+            # -----------------------------------------------------------------
+            } else {
+                _shape = "doublecircle"
             }
+
             _color =\
                 num_scale(\
                     child2cpu[v],
@@ -43,9 +70,10 @@ compile() {
                     child2mem[v],
                     max_mem,
                     1,
-                    5\
-                ) / 5
+                    4\
+                ) / 4
             _height = _size
+            _width  = _size
             _fontcolor = \
                 _color == VERT_COLORSCHEME_MAX || _color == VERT_COLORSCHEME_MIN \
                 ? sprintf("/%s/%d", VERT_COLORSCHEME, VERT_COLORSCHEME_MID) \
@@ -66,8 +94,9 @@ compile() {
                 [ fontsize=8 \
                 , fixedsize=true \
                 , height=%f \
+                , width=%f \
                 , border=1 \
-                , style=\"filled,solid\" \
+                , style=\"%s\" \
                 , fontname=Helvetica \
                 , label=\"%s\" \
                 , shape=\"%s\" \
@@ -76,6 +105,8 @@ compile() {
                 ];",
                 v,
                 _height,
+                _width,
+                _style,
                 _label,
                 _shape,
                 VERT_COLORSCHEME,
