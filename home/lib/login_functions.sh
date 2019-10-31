@@ -147,13 +147,13 @@ work_log() {
     then
         work_log_template > "$file_work_log_today"
     fi
-    vim "$file_work_log_today"
+    vim -c 'set spell' "$file_work_log_today"
 
 }
 
 note() {
     mkdir -p "$DIR_NOTES"
-    vim "$DIR_NOTES/$(date +'%Y_%m_%d--%H_%M_%S%z')--$1.md"
+    vim -c 'set spell' "$DIR_NOTES/$(date +'%Y_%m_%d--%H_%M_%S%z')--$1.md"
 }
 
 weather() {
