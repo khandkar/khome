@@ -6,7 +6,6 @@ tree
 htop
 zsh
 zsh-syntax-highlighting
-git
 tig
 make
 apt-file
@@ -32,7 +31,6 @@ units
 snapd # https://snapcraft.io/docs/installing-snap-on-debian
 encfs
 xscreensaver
-youtube-dl
 mplayer
 mpv
 whois
@@ -48,6 +46,32 @@ cups
 ddgr  # Duck Duck Go CLI client
 wikipedia2text  # Wikipedia CLI client
 neofetch
+time  # Surprisingly, GNU time isn't installed by default!
+caja-open-terminal
+ffmpeg
+pandoc
+
+graphicsmagick
+graphicsmagick-imagemagick-compat  # provides /usr/bin/convert
+
+#------------------------------------------------------------------------------
+# Git
+#------------------------------------------------------------------------------
+git
+
+# GUI
+git-gui
+git-cola  # HiDPI. Overall nicer than default.
+
+# Documentation
+git-doc
+gitmagic
+#------------------------------------------------------------------------------
+
+
+# Guile
+guile-2.0
+guile-2.0-doc
 
 # SML
 smlnj
@@ -154,3 +178,10 @@ sxiv
 # - slattach
 # - arp
 net-tools
+
+# Net monitoring
+speedometer
+cbm
+
+# Internet speed test
+speedtest-cli
