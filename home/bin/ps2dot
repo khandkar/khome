@@ -1,12 +1,14 @@
 #! /bin/sh
 
+set -e
+
 usage() {
     echo "EXAMPLE (whole tree)   : $0 | neato -T png > ps.png && open ps.png"
     echo "EXAMPLE (user clusters): $0 | sdp   -T png > ps.png && open ps.png"
 }
 
 
-compile() {
+ps2dot() {
     awk -v kernel="$(uname -v)" -v whoami="$(whoami)" \
     '
         function num_scale(src_cur, src_max, dst_min, dst_max) {
@@ -219,9 +221,22 @@ procs() {
 
 main() {
     case "$1" in
-        '--help') usage
+        '--help')
+            usage
         ;;
-        *) procs | grep "$1" | compile
+        *)
+            timestamp="$(date +'%Y-%m-%d_%H:%M:%S%z')"
+            host="$(hostname)"
+            kernel="$(uname -s | awk '{print tolower($0)}')"
+            filename_base=$(mktemp "ps.$host.$kernel.$timestamp.XXXXX")
+            file_log="$filename_base.log"
+            file_dot="$filename_base.dot"
+            mv "$filename_base" "$file_log"
+            procs | grep "$1" | ps2dot 2> "$file_log" > "$file_dot"
+            time neato -T png "$file_dot" 2> "$file_log" > "$filename_base.neato.png"
+            time fdp   -T png "$file_dot" 2> "$file_log" > "$filename_base.fdp.png"
+            time dot   -T png "$file_dot" 2> "$file_log" > "$filename_base.dot.png"
+            ls -1 "$filename_base"*
         ;;
     esac
 }
