@@ -12,4 +12,4 @@ ln -sf ~/bin/st_dpi_norm ~/bin/st
 # dwm
 ln -sf ~/bin/dwm_dpi_norm ~/bin/dwm
 
-ln -sf ~/lib/login_variables_dpi_high.sh ~/lib/login_variables_dpi.sh
+ln -sf ~/lib/login_variables_dpi_norm.sh ~/lib/login_variables_dpi.sh
