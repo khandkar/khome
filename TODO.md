@@ -4,3 +4,4 @@
     - [ ] [st](https://github.com/khandkar/st)
     - [ ] [ii-tools](https://github.com/khandkar/ii-tools)
     - [ ] ii
+- [ ] Track git configs
