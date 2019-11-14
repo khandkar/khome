@@ -1,0 +1,15 @@
+#
+coreutils
+htop
+macvim
+mono
+neofetch
+ranger
+tig
+tmux
+tree
+
+# MPD
+mpd
+ncmpc
+ncmpcpp
