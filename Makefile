@@ -2,7 +2,19 @@ MAKEFLAGS := --no-builtin-rules
 
 DEPS := $(wildcard deps/*)
 
-.PHONY: home pkgs_deb_install pkgs_deb_purge pkgs_debian pkgs_mac pkgs_brew_install pkgs_brew_cask_install deps $(DEPS) pkgs_snap_classic pkgs_snap_strict mpdconf
+.PHONY: \
+    $(DEPS) \
+    deps \
+    home \
+    mpdconf \
+    pkgs_brew_cask_install \
+    pkgs_brew_install \
+    pkgs_deb_install \
+    pkgs_deb_purge \
+    pkgs_debian \
+    pkgs_mac \
+    pkgs_snap_classic \
+    pkgs_snap_strict
 
 home: mpdconf
 	@cp  -Rp  home/bin           $(HOME)/
