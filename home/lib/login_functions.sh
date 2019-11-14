@@ -2,7 +2,7 @@
 # TODO: Consider using numfmt instead of awk
 tdu() {
     du "$1" \
-    | sort -n -k 1 -r --parallel="$(nproc)" \
+    | sort -n -k 1 -r \
     | head -50 \
     | awk '
         {

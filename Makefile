@@ -2,9 +2,9 @@ MAKEFLAGS := --no-builtin-rules
 
 DEPS := $(wildcard deps/*)
 
-.PHONY: home pkgs_deb_install pkgs_deb_purge pkgs deps $(DEPS) pkgs_snap_classic pkgs_snap_strict
+.PHONY: home pkgs_deb_install pkgs_deb_purge pkgs_debian pkgs_mac pkgs_brew_install pkgs_brew_cask_install deps $(DEPS) pkgs_snap_classic pkgs_snap_strict mpdconf
 
-home:
+home: mpdconf
 	@cp  -Rp  home/bin           $(HOME)/
 	@cp  -Rp  home/lib           $(HOME)/
 	@cp       home/.compton.conf $(HOME)/
@@ -13,15 +13,31 @@ home:
 	@cp       home/.fonts.conf   $(HOME)/
 	@fc-cache                    $(HOME)/.fonts
 	@cp       home/.Rprofile     $(HOME)/
-	@cp       home/.mpdconf      $(HOME)/
 	@cp       home/.tmux.conf    $(HOME)/
 	@cp       home/.xbindkeysrc  $(HOME)/
 
-pkgs:
+mpdconf:
+	@mkdir -p ~/Archives/Audio
+	@mkdir -p ~/var/lib/mpd/playlists
+	@mkdir -p ~/var/log/mpd
+	@mkdir -p ~/var/run/mpd
+	@cp home/.mpdconf $(HOME)/
+
+pkgs_debian:
 	$(MAKE) pkgs_deb_install
 	$(MAKE) pkgs_deb_purge
 	$(MAKE) pkgs_snap_classic
 	$(MAKE) pkgs_snap_strict
+
+pkgs_mac:
+	$(MAKE) pkgs_brew_install
+	$(MAKE) pkgs_brew_cask_install
+
+pkgs_brew_install: list pkgs-brew-install.list
+	brew install $(shell ./list pkgs-brew-install.list)
+
+pkgs_brew_cask_install: list pkgs-brew-cask-install.list
+	brew cask install $(shell ./list pkgs-brew-cask-install.list)
 
 pkgs_deb_install: list pkgs-deb-install.list
 	sudo apt install $(shell ./list pkgs-deb-install.list)
