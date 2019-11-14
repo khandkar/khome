@@ -5,3 +5,5 @@
     - [ ] [ii-tools](https://github.com/khandkar/ii-tools)
     - [ ] ii
 - [ ] Track git configs
+- [ ] Track zsh
+- [ ] Track oh-my-zsh install recipe as dep
