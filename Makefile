@@ -2,9 +2,9 @@ MAKEFLAGS := --no-builtin-rules
 
 DEPS := $(wildcard deps/*)
 
-.PHONY: home pkgs_deb_install pkgs_deb_purge pkgs deps $(DEPS) pkgs_snap_classic pkgs_snap_strict
+.PHONY: home pkgs_deb_install pkgs_deb_purge pkgs deps $(DEPS) pkgs_snap_classic pkgs_snap_strict mpdconf
 
-home:
+home: mpdconf
 	@cp  -Rp  home/bin           $(HOME)/
 	@cp  -Rp  home/lib           $(HOME)/
 	@cp       home/.compton.conf $(HOME)/
@@ -13,9 +13,15 @@ home:
 	@cp       home/.fonts.conf   $(HOME)/
 	@fc-cache                    $(HOME)/.fonts
 	@cp       home/.Rprofile     $(HOME)/
-	@cp       home/.mpdconf      $(HOME)/
 	@cp       home/.tmux.conf    $(HOME)/
 	@cp       home/.xbindkeysrc  $(HOME)/
+
+mpdconf:
+	@mkdir -p ~/Archives/Audio
+	@mkdir -p ~/var/lib/mpd/playlists
+	@mkdir -p ~/var/log/mpd
+	@mkdir -p ~/var/run/mpd
+	@cp home/.mpdconf $(HOME)/
 
 pkgs:
 	$(MAKE) pkgs_deb_install
