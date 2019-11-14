@@ -1,15 +1,13 @@
 #
-music_directory                    "/home/siraaj/Archives/Audio"
-playlist_directory                 "/home/siraaj/var/lib/mpd/playlists"
-db_file                            "/home/siraaj/var/lib/mpd/tag_cache"
-log_file                           "/home/siraaj/var/log/mpd/mpd.log"
-pid_file                           "/home/siraaj/var/run/mpd/pid"
-state_file                         "/home/siraaj/var/lib/mpd/state"
-sticker_file                       "/home/siraaj/var/lib/mpd/sticker.sql"
-user                               "siraaj"
-group                              "siraaj"
+music_directory                    "~/Archives/Audio"
+playlist_directory                 "~/var/lib/mpd/playlists"
+db_file                            "~/var/lib/mpd/tag_cache"
+log_file                           "~/var/log/mpd/mpd.log"
+pid_file                           "~/var/run/mpd/pid"
+state_file                         "~/var/lib/mpd/state"
+sticker_file                       "~/var/lib/mpd/sticker.sql"
 bind_to_address                    "localhost"
-bind_to_address                    "/home/siraaj/var/run/mpd/socket"
+bind_to_address                    "~/var/run/mpd/socket"
 #port                              "6600"
 log_level                         "verbose"  # "default", "secure" or "verbose"
 #gapless_mp3_playback              "yes"
@@ -34,7 +32,7 @@ audio_output {
 audio_output {
     type    "fifo"
     name    "pcm.fifo"
-    path    "/home/siraaj/var/run/mpd/pcm.fifo"
+    path    "~/var/run/mpd/pcm.fifo"
     format  "44100:16:2"
 }
 
