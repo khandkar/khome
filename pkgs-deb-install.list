@@ -54,10 +54,14 @@ pandoc
 graphicsmagick
 graphicsmagick-imagemagick-compat  # provides /usr/bin/convert
 
+cvs
+
 #------------------------------------------------------------------------------
 # Git
 #------------------------------------------------------------------------------
 git
+git-cvs
+git-svn
 
 # GUI
 git-gui
@@ -67,6 +71,10 @@ git-cola  # HiDPI. Overall nicer than default.
 git-doc
 gitmagic
 #------------------------------------------------------------------------------
+
+# subversion
+subversion
+subversion-tools
 
 
 # Guile
