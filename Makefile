@@ -21,6 +21,7 @@ home: mpdconf
 	@cp  -Rp  home/lib           $(HOME)/
 	@cp       home/.compton.conf $(HOME)/
 	@cp  -Rp  home/.config/      $(HOME)/
+	@cp  -Rp  home/.newsboat/    $(HOME)/
 	@cp       home/.profile      $(HOME)/
 	@cp       home/.fonts.conf   $(HOME)/
 	@fc-cache                    $(HOME)/.fonts
