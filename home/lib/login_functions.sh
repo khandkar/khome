@@ -140,7 +140,7 @@ gh_clone_repo() {
 
 work_log_template() {
 cat << EOF
-$(date +%F)
+$(date '+%F %A')
 ==========
 
 Morning report
