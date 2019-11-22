@@ -6,4 +6,3 @@ LINES=60
 
 mpc listall | khomenu -l "$LINES" | mpc insert
 mpc play
-mpc next
