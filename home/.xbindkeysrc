@@ -105,3 +105,7 @@
 # Screenshot
 "screengrab -r"
     Print
+
+# Search mpd lib and play selection
+"mpplay"
+    Mod4+p

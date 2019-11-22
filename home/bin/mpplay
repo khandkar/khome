@@ -1,0 +1,29 @@
+#! /bin/sh
+
+set -e
+
+# TODO: Get theme-appropriate font and colors from some central config file.
+
+FONT_NAME='terminus'
+FONT_SIZE=32
+FONT="$FONT_NAME:pixelsize=$FONT_SIZE:antialias=false:autohint=true"
+BG_NORM='#3a3a3a'
+FG_NORM='#dcdccc'
+BG_SELECTED="$BG_NORM"
+FG_SELECTED='#72d5a3'
+LINES=60
+
+path=$(
+    mpc listall | dmenu \
+        -i \
+        -l "$LINES" \
+        -fn "$FONT" \
+        -nb "$BG_NORM" \
+        -nf "$FG_NORM" \
+        -sb "$BG_SELECTED" \
+        -sf "$FG_SELECTED"
+)
+
+mpc insert "$path"
+mpc play
+mpc next
