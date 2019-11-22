@@ -7,3 +7,4 @@
 - [ ] Track git configs
 - [ ] Track zsh
 - [ ] Track oh-my-zsh install recipe as dep
+- [ ] fzf versions of dmenu-using multimedia launchers (for Mac compatibility)
