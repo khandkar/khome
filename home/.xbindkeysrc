@@ -109,3 +109,7 @@
 # Search mpd lib and play selection
 "mpplay"
     Mod4+p
+
+# Search video catalog and play selection
+"video_catalog_play"
+    Mod4+v

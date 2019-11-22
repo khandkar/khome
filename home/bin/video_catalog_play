@@ -1,0 +1,8 @@
+#! /bin/sh
+
+set -e
+
+LINES=60
+
+file=$(khomenu -l "$LINES" < "$FILE_VIDEO_CATALOG")
+mpv "$file"
