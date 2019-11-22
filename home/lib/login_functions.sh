@@ -89,6 +89,23 @@ howto() {
     cat "$(find  ~/Archives/Documents/HOWTOs -mindepth 1 -maxdepth 1 | sort | fzf)"
 }
 
+yt() {
+    local _yt_uri
+    local _yt_id
+    local _yt_title
+    local _yt_dir
+
+    _yt_uri="$1"
+    _yt_id=$(youtube-dl --get-id "$_yt_uri")
+    _yt_title=$(youtube-dl --get-title "$_yt_uri")
+    _yt_dir="${DIR_YOUTUBE}/individual-videos/${_yt_title}--${_yt_id}"
+
+    mkdir -p "$_yt_dir"
+    cd "$_yt_dir" || exit 1
+    echo "$_yt_uri" > 'uri'
+    youtube-dl -c --write-description --write-info-json "$_yt_uri"
+}
+
 gh_fetch_repos() {
     curl "https://api.github.com/$1/$2/repos?page=1&per_page=10000"
 }
