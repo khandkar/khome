@@ -50,6 +50,7 @@ time  # Surprisingly, GNU time isn't installed by default!
 caja-open-terminal
 ffmpeg
 pandoc
+nq  # Unix CLI queue utility
 
 graphicsmagick
 graphicsmagick-imagemagick-compat  # provides /usr/bin/convert
