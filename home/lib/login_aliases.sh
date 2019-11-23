@@ -1,3 +1,4 @@
+alias h='history | fzf -e'
 alias   l='ls -lFhv --group-directories-first'
 alias  la='l -A'
 alias  ll='la --color=auto'
