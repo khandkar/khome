@@ -51,6 +51,7 @@ caja-open-terminal
 ffmpeg
 pandoc
 nq  # Unix CLI queue utility
+neomutt
 
 graphicsmagick
 graphicsmagick-imagemagick-compat  # provides /usr/bin/convert
