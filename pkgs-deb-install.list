@@ -1,5 +1,6 @@
 # Debian packages I DO want, but are not part of the minimal install.
 
+at  # Surprisingly not in base install!
 vim
 vim-gtk3
 tree
