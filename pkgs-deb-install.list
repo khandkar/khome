@@ -52,6 +52,7 @@ ffmpeg
 pandoc
 nq  # Unix CLI queue utility
 neomutt
+lm-sensors
 
 graphicsmagick
 graphicsmagick-imagemagick-compat  # provides /usr/bin/convert
