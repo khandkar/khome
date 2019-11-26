@@ -1,6 +1,7 @@
 #
 coreutils
 encfs
+fzf
 graphviz
 htop
 macvim
