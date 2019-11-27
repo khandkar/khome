@@ -10,6 +10,9 @@ export DIR_LOG_MPD="$DIR_LOG/mpd"
 export FILE_LOG_MPD="$DIR_LOG_MPD/mpd.log"
 export FILE_VIDEO_CATALOG="$DIR_VIDEO/catalog"
 
+export NQDIR="$HOME/var/run/nq"
+mkdir -p "$NQDIR"
+
 # .Net Core
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$HOME/.dotnet
