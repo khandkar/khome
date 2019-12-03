@@ -1,3 +1,10 @@
+#
+
+d() {
+    local -r word=$(fzf < /usr/share/dict/words)
+    dict "$word"
+}
+
 # Top Disk-Using directories
 # TODO: Consider using numfmt instead of awk
 tdu() {
