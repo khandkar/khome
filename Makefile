@@ -13,6 +13,7 @@ DEPS := $(wildcard deps/*)
     pkgs_deb_purge \
     pkgs_debian \
     pkgs_mac \
+    pkgs_pip \
     pkgs_snap_classic \
     pkgs_snap_strict
 
@@ -39,12 +40,16 @@ mpdconf:
 pkgs_debian:
 	$(MAKE) pkgs_deb_install
 	$(MAKE) pkgs_deb_purge
+	$(MAKE) pkgs_pip
 	$(MAKE) pkgs_snap_classic
 	$(MAKE) pkgs_snap_strict
 
 pkgs_mac:
 	$(MAKE) pkgs_brew_install
 	$(MAKE) pkgs_brew_cask_install
+
+pkgs_pip:
+	sudo pip3 install $(shell ./list pkgs-pip.list)
 
 pkgs_brew_install: list pkgs-brew-install.list
 	brew install $(shell ./list pkgs-brew-install.list)

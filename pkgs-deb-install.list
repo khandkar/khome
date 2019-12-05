@@ -57,6 +57,7 @@ lm-sensors
 fslint    # File system maintenance utilities
 goaccess  # Web server log analyzer
 xinput    # Configure touchpad
+python3-pip
 
 graphicsmagick
 graphicsmagick-imagemagick-compat  # provides /usr/bin/convert
