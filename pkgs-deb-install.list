@@ -59,6 +59,7 @@ goaccess  # Web server log analyzer
 xinput    # Configure touchpad
 python3-pip
 db-util
+sacc  # Gopher client
 
 graphicsmagick
 graphicsmagick-imagemagick-compat  # provides /usr/bin/convert
