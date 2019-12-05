@@ -1,0 +1,19 @@
+[Added Associations]
+video/webm=vlc.desktop;userapp-"mplayer"-ML9VSZ.desktop;
+image/png=okularApplication_kimgio.desktop;
+image/jpeg=eog.desktop;okularApplication_kimgio.desktop;
+application/pdf=atril.desktop;
+text/plain=gvim.desktop;
+text/x-ocaml=gvim.desktop;
+application/octet-stream=gvim.desktop;
+x-scheme-handler/http=exo-web-browser.desktop
+x-scheme-handler/https=exo-web-browser.desktop
+inode/directory=exo-file-manager.desktop
+x-scheme-handler/trash=exo-file-manager.desktop
+inode/symlink=gvim.desktop;
+application/illustrator=gimp.desktop;
+
+[Default Applications]
+text/plain=gvim.desktop
+image/jpeg=eog.desktop
+application/illustrator=gimp.desktop
