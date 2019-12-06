@@ -100,3 +100,27 @@ Reading list
 - https://aur.archlinux.org/cgit/aur.git/tree/?h=xinit-xsession
 - https://wiki.archlinux.org/index.php/PCManFM
 - https://www.ibm.com/developerworks/library/os-xapianomega/
+
+Directory tree organization
+---------------------------
+An incomplete sketch.
+
+```
+Archives
+    Audio
+    Backups
+        $machine_1
+        ...
+        $machine_n
+    Documents
+    Image
+        Photos
+            $year
+                $month
+                    $day
+                        ?$event_name
+        Screenshots
+    Video
+Projects
+Work
+```
