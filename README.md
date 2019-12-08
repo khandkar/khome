@@ -106,21 +106,47 @@ Directory tree organization
 An incomplete sketch.
 
 ```
-Archives
-    Audio
-    Backups
-        $machine_1
-        ...
-        $machine_n
-    Documents
-    Image
-        Photos
-            $year
-                $month
-                    $day
-                        ?$event_name
-        Screenshots
-    Video
-Projects
-Work
+$HOME/
+    bin/
+    etc/
+    irc/
+    lib/
+    opt/
+    tmp/
+    usr/
+    var/
+    Archives/
+        Audio/
+        Backups/
+            $machine/
+        Documents/
+        Image/
+            Misc/
+            Photos/
+                $year/
+                    $month/
+                        $day/
+                            ?$event_name/
+            Screenshots/
+            Wallpapers/
+        Software/
+            bin/
+                $vendor/
+            src/
+                packages/
+                repos/
+                    remote/
+                        $server/
+                            $repo/
+                tarballs/
+        Video/
+            Film/
+                $film/
+            Web/
+                $server/
+    Experiments/
+        ${timestamp}--${experiment-name}/
+    Projects/
+        $project/
+    Work/
 ```
