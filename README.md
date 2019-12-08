@@ -10,7 +10,7 @@ Hardware
 --------
 - Laptops:
     - Purism Librem 15 v4
-    - ThinkPad T420
+    - ThinkPad T400
     - ThinkPad T420s
     - ThinkPad T570
 - Monitors:
