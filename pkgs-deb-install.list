@@ -60,6 +60,7 @@ xinput    # Configure touchpad
 python3-pip
 db-util
 sacc  # Gopher client
+dnsutils  # dig and friends
 
 graphicsmagick
 graphicsmagick-imagemagick-compat  # provides /usr/bin/convert
