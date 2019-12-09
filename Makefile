@@ -83,3 +83,22 @@ $(1):
 endef
 
 $(foreach d,$(DEPS),$(eval $(call GEN_DEP_RULE,$(d))))
+
+diff:
+	diff $(HOME)/.Rprofile                       home/.Rprofile
+	diff $(HOME)/.compton.conf                   home/.compton.conf
+	diff $(HOME)/.config/dunst/dunstrc           home/.config/dunst/dunstrc
+	diff $(HOME)/.config/mimeapps.list           home/.config/mimeapps.list
+	diff $(HOME)/.config/neofetch/config.conf    home/.config/neofetch/config.conf
+	diff $(HOME)/.config/ranger/rc.conf          home/.config/ranger/rc.conf
+	diff $(HOME)/.fonts.conf                     home/.fonts.conf
+	diff $(HOME)/.mpdconf                        home/.mpdconf
+	diff $(HOME)/.newsboat/config                home/.newsboat/config
+	diff $(HOME)/.profile                        home/.profile
+	diff $(HOME)/.tmux.conf                      home/.tmux.conf
+	diff $(HOME)/.xbindkeysrc                    home/.xbindkeysrc
+	diff $(HOME)/lib/login_aliases.sh            home/lib/login_aliases.sh
+	diff $(HOME)/lib/login_functions.sh          home/lib/login_functions.sh
+	diff $(HOME)/lib/login_variables.sh          home/lib/login_variables.sh
+	diff $(HOME)/lib/login_variables_dpi_high.sh home/lib/login_variables_dpi_high.sh
+	diff $(HOME)/lib/login_variables_dpi_norm.sh home/lib/login_variables_dpi_norm.sh
