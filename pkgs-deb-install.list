@@ -59,7 +59,6 @@ goaccess  # Web server log analyzer
 xinput    # Configure touchpad
 python3-pip
 db-util
-sacc  # Gopher client
 dnsutils  # dig and friends
 
 graphicsmagick
@@ -129,6 +128,12 @@ compton
 # Web browsers
 qutebrowser
 chromium
+lynx
+elinks
+firefox-esr
+
+# Gopher clients
+sacc
 
 # SoX: Swiss army knife of sound processing
 # provides the play command
