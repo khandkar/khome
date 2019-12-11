@@ -61,6 +61,11 @@ python3-pip
 db-util
 dnsutils  # dig and friends
 
+# "modern" ls alternative: uses colours to distinguish file types and metadata;
+# does other things good too, like drawing a tree.
+# https://the.exa.website/
+exa
+
 graphicsmagick
 graphicsmagick-imagemagick-compat  # provides /usr/bin/convert
 
