@@ -1,3 +1,11 @@
 #
 tcpreplay  # Tool to replay saved tcpdump files at arbitrary speeds
 gitit      # Wiki engine backed by a git or darcs filestore
+
+# https://info-beamer.com/opensource
+#
+# interactive multimedia presentation framework info-beamer allows you to rapidly
+# prototype interactive multimedia presentations using the Lua programming
+# language. A directory (called a node) consists of resource files (images,
+# videos, fonts or shaders) and a control script called node.lua.
+info-beamer
