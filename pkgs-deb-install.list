@@ -194,6 +194,9 @@ dict-freedict-lat-eng  # Latin-English
 # Provides hxpipe utility, used by khatus weather sensor
 html-xml-utils
 
+# Provides urlencode, among other things:
+gridsite-clients
+
 # Image viewers
 eog  # Eye of GNOME
 eom  # Eye of MATE
