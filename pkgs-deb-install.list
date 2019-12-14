@@ -101,6 +101,12 @@ subversion-tools
 guile-2.0
 guile-2.0-doc
 
+# Racket
+racket
+
+# Lisp
+sbcl
+
 # SML
 smlnj
 smlnj-doc
