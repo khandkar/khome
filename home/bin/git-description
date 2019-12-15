@@ -1,0 +1,31 @@
+#! /bin/sh
+
+set -e
+
+exe="$0"
+cmd="$1"
+remote="$2"
+
+usage() {
+    printf "Usage: %s [push|pull] REMOTE\n" "$exe"
+    exit 1
+}
+
+case "$cmd" in
+    push | pull) ;;
+    *) usage ;;
+esac
+
+case "$remote" in
+    '') usage ;;
+    *) ;;
+esac
+
+remote_url=$(git remote get-url "$remote")
+remote_file="${remote_url}/description"
+local_file='.git/description'
+
+case "$cmd" in
+    push) scp "$local_file" "$remote_file";;
+    pull) scp "$remote_file" "$local_file";;
+esac
