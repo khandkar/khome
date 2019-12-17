@@ -67,6 +67,10 @@ debian-goodies # Misc. helper scripts. See: apt show debian-goodies
 # https://the.exa.website/
 exa
 
+# Screen color temperature setters
+redshift  # Lots of code and features, adjusts automatically throughout the day.
+sct       # 80 lines of C, does nothing automatically.
+
 graphicsmagick
 graphicsmagick-imagemagick-compat  # provides /usr/bin/convert
 
