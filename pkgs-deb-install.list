@@ -32,6 +32,8 @@ units
 snapd # https://snapcraft.io/docs/installing-snap-on-debian
 encfs
 xscreensaver
+xscreensaver-data
+xscreensaver-data-extra
 mplayer
 mpv
 whois
