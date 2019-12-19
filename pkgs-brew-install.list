@@ -1,5 +1,6 @@
 #
 coreutils
+dict
 encfs
 fzf
 graphviz
