@@ -82,6 +82,11 @@ cvs
 # Git
 #------------------------------------------------------------------------------
 git
+
+# Large File Support
+git-lfs
+
+# Integration with other VCS
 git-cvs
 git-svn
 
