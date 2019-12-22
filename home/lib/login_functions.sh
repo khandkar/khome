@@ -6,28 +6,51 @@ d() {
 }
 
 shell_activity_report() {
+    # TODO: optional concrete number output
+    # TODO: manual weekday calc (since forking date is so expensive)
+    # TODO: optional combinations of granularities: hour, weekday, month, year
     history \
     | awk '
         {
+            # NOTE: $2 & $3 are specific to oh-my-zsh history output
+            date = $2
             time = $3
-            ok = split(time, t, ":")
-            if (ok) {
-                hour = t[1] + 0  # Coerce number from string
-                cnt = count[hour]++
+            d_fields = split(date, d, "-")
+            t_fields = split(time, t, ":")
+            if (t_fields && d_fields) {
+                # +0 to coerce number from string
+                month = d[2] + 0
+                hour = t[1] + 0
+                c = count[month, hour]++
             }
-            if (cnt > max)
-                max = cnt
+            if (c > max)
+                max = c
         }
 
-            END {
+        END {
+            m[ 1] = "January"
+            m[ 2] = "February"
+            m[ 3] = "March"
+            m[ 4] = "April"
+            m[ 5] = "May"
+            m[ 6] = "June"
+            m[ 7] = "July"
+            m[ 8] = "August"
+            m[ 9] = "September"
+            m[10] = "October"
+            m[11] = "November"
+            m[12] = "December"
+            for (month = 1; month <= 12; month++) {
+                printf "%s\n", m[month];
                 for (hour=0; hour<24; hour++) {
-                    c = count[hour]
-                    printf "%2d ", hour
-                    for (i=1; i<=((c * 100) / max); i++)
+                    c = count[month, hour]
+                    printf "  %2d ", hour
+                    for (i = 1; i <= (c * 100) / max; i++)
                         printf "|"
                     printf "\n"
                 }
-            }'
+            }
+        }'
 }
 
 top_commands() {
