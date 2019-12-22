@@ -5,6 +5,31 @@ d() {
     dict "$word"
 }
 
+shell_activity_report() {
+    history \
+    | awk '
+        {
+            time = $3
+            ok = split(time, t, ":")
+            if (ok) {
+                hour = t[1] + 0  # Coerce number from string
+                cnt = count[hour]++
+            }
+            if (cnt > max)
+                max = cnt
+        }
+
+            END {
+                for (hour=0; hour<24; hour++) {
+                    c = count[hour]
+                    printf "%2d ", hour
+                    for (i=1; i<=((c * 100) / max); i++)
+                        printf "|"
+                    printf "\n"
+                }
+            }'
+}
+
 top_commands() {
     history \
     | awk '
