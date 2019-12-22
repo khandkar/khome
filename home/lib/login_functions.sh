@@ -5,6 +5,40 @@ d() {
     dict "$word"
 }
 
+top_commands() {
+    history \
+    | awk '
+        {
+            count[$4]++
+        }
+
+        END {
+            for (cmd in count)
+                print count[cmd], cmd
+        }' \
+    | sort -n -r -k 1 \
+    | head -50 \
+    | awk '
+        {
+            cmd[NR] = $2
+            c = count[NR] = $1 + 0  # + 0 to coerce number from string
+            if (c > max)
+                max = c
+        }
+
+        END {
+            for (i = 1; i <= NR; i++) {
+                c = count[i]
+                printf "%s %d ", cmd[i], c
+                scaled = (c * 100) / max
+                for (j = 1; j <= scaled; j++)
+                    printf "|"
+                printf "\n"
+            }
+        }' \
+    | column -t
+}
+
 # Top Disk-Using directories
 # TODO: Consider using numfmt instead of awk
 tdu() {
