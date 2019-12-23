@@ -1,0 +1,22 @@
+#! /bin/sh
+
+set -e
+
+awk '
+    {
+        v = val[NR] = $1
+        key[NR] = $2
+        if (v > max)
+            max = v
+    }
+
+    END {
+        for (i = 1; i <= NR; i++) {
+            printf "%s ", key[i]
+            for (j = 1; j <= (val[i] * 100) / max; j++) {
+                printf "|"
+            }
+            printf "\n"
+        }
+    }' \
+| column -t
