@@ -15,7 +15,7 @@ shell_activity_report() {
         '') group_by='dow';;
         *)
             echo "Usage: $0 [mon|dow]" >&2
-            exit 1
+            kill -INT $$
     esac
     history \
     | awk -v group_by="$group_by" '
@@ -216,7 +216,7 @@ man() {
 }
 
 experiment() {
-    cd "$(~/bin/experiment $@)" || exit 1
+    cd "$(~/bin/experiment $@)" || kill -INT $$
 }
 
 hump() {
@@ -239,7 +239,7 @@ yt() {
     _yt_dir="${DIR_YOUTUBE}/individual-videos/${_yt_title}--${_yt_id}"
 
     mkdir -p "$_yt_dir"
-    cd "$_yt_dir" || exit 1
+    cd "$_yt_dir" || kill -INT $$
     echo "$_yt_uri" > 'uri'
     youtube-dl -c --write-description --write-info-json "$_yt_uri"
 }
@@ -253,7 +253,7 @@ gh_clone() {
     gh_user_name="$2"
     gh_dir="${DIR_GITHUB}/${gh_user_name}"
     mkdir -p "$gh_dir"
-    cd "$gh_dir" || exit 1
+    cd "$gh_dir" || kill -INT $$
     gh_fetch_repos "$gh_user_type" "$gh_user_name" \
     | jq --raw-output '.[] | select(.fork | not) | .git_url' \
     | parallel -j 25 \
@@ -272,7 +272,7 @@ gh_clone_repo() {
     gh_username=$(echo "$1" | awk -F / '"$1 == "https" && $3 == github.com" {print $4}')
     gh_dir="${DIR_GITHUB}/${gh_username}"
     mkdir -p "$gh_dir"
-    cd "$gh_dir" || exit 1
+    cd "$gh_dir" || kill -INT $$
     git clone "$1"
 }
 
