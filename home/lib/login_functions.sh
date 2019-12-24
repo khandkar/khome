@@ -15,7 +15,7 @@ shell_activity_report() {
         'dow') ;;
         '') group_by='dow';;
         *)
-            echo "Usage: $0 DIRECTORY [mon|dow]" >&2
+            echo "Usage: $0 [mon|dow]" >&2
             exit 1
     esac
     history \
