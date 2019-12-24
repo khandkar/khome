@@ -7,7 +7,6 @@ d() {
 
 shell_activity_report() {
     # TODO: optional concrete number output
-    # TODO: manual weekday calc (since forking date is so expensive)
     # TODO: optional combinations of granularities: hour, weekday, month, year
     local group_by="$1"
     case "$group_by" in
