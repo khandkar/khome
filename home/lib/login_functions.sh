@@ -9,8 +9,42 @@ shell_activity_report() {
     # TODO: optional concrete number output
     # TODO: manual weekday calc (since forking date is so expensive)
     # TODO: optional combinations of granularities: hour, weekday, month, year
+    local group_by="$1"
+    case "$group_by" in
+        'mon') ;;
+        'dow') ;;
+        '') group_by='dow';;
+        *)
+            echo "Usage: $0 DIRECTORY [mon|dow]" >&2
+            exit 1
+    esac
     history \
-    | awk '
+    | awk -v group_by="$group_by" '
+        function date2dow(y, m, d,    _t, _i) {
+            # Contract:
+            #   y > 1752,  1 <= m <= 12.
+            # Source:
+            #   Sakamoto`s methods
+            #   https://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week#Sakamoto%27s_methods
+            _t[ 0] = 0
+            _t[ 1] = 3
+            _t[ 2] = 2
+            _t[ 3] = 5
+            _t[ 4] = 0
+            _t[ 5] = 3
+            _t[ 6] = 5
+            _t[ 7] = 1
+            _t[ 8] = 4
+            _t[ 9] = 6
+            _t[10] = 2
+            _t[11] = 4
+            y -= m < 3
+            _i = int(y + y/4 - y/100 + y/400 + _t[m - 1] + d) % 7
+            _i = _i == 0 ? 7 : _i  # Make Sunday last
+            return _i
+
+        }
+
         {
             # NOTE: $2 & $3 are specific to oh-my-zsh history output
             date = $2
@@ -19,15 +53,27 @@ shell_activity_report() {
             t_fields = split(time, t, ":")
             if (t_fields && d_fields) {
                 # +0 to coerce number from string
+                year  = d[1] + 0
                 month = d[2] + 0
+                day   = d[3] + 0
                 hour = t[1] + 0
-                c = count[month, hour]++
+                dow = date2dow(year, month, day)
+                g = group_by == "mon" ? month : dow  # dow is default
+                c = count[g, hour]++
             }
             if (c > max)
                 max = c
         }
 
         END {
+            w[1] = "Monday"
+            w[2] = "Tuesday"
+            w[3] = "Wednesday"
+            w[4] = "Thursday"
+            w[5] = "Friday"
+            w[6] = "Saturday"
+            w[7] = "Sunday"
+
             m[ 1] = "January"
             m[ 2] = "February"
             m[ 3] = "March"
@@ -40,10 +86,14 @@ shell_activity_report() {
             m[10] = "October"
             m[11] = "November"
             m[12] = "December"
-            for (month = 1; month <= 12; month++) {
-                printf "%s\n", m[month];
+
+            n = group_by == "mon" ? 12 : 7  # dow is default
+
+            for (gid = 1; gid <= n; gid++) {
+                group = group_by == "mon" ? m[gid] : w[gid]
+                printf "%s\n", group;
                 for (hour=0; hour<24; hour++) {
-                    c = count[month, hour]
+                    c = count[gid, hour]
                     printf "  %2d ", hour
                     for (i = 1; i <= (c * 100) / max; i++)
                         printf "|"
