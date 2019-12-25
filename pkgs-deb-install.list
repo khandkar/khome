@@ -78,6 +78,9 @@ graphicsmagick-imagemagick-compat  # provides /usr/bin/convert
 
 cvs
 
+# Emacs
+emacs-nox
+
 # Vim
 vim
 vim-gtk3
