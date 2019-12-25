@@ -1,8 +1,6 @@
 # Debian packages I DO want, but are not part of the minimal install.
 
 at  # Surprisingly not in base install!
-vim
-vim-gtk3
 tree
 htop
 zsh
@@ -79,6 +77,10 @@ graphicsmagick
 graphicsmagick-imagemagick-compat  # provides /usr/bin/convert
 
 cvs
+
+# Vim
+vim
+vim-gtk3
 
 #------------------------------------------------------------------------------
 # Git
