@@ -1,0 +1,17 @@
+#! /bin/sh
+
+video-find $@ \
+| xargs \
+    -0 \
+    -P "$(nproc)" \
+    -I {} \
+    sh -c '
+        duration=$(ffprobe \
+            -i "{}" \
+            -show_entries \
+            format=duration \
+            -v quiet \
+            -of csv="p=0" \
+            -sexagesimal)
+        printf "%s\t%s\n" "$duration" "{}"
+        '
