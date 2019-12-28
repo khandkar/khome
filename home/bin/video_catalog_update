@@ -2,13 +2,4 @@
 
 set -e
 
-find "$DIR_VIDEO" \
-    -type f \
-    -print0 \
-| xargs \
-    -0 \
-    -P "$(nproc)" \
-    -I{} \
-    sh -c 'printf "%s %s\n" $(mimetype -b "{}") "{}"' \
-| awk '/^video/ {sub($1 " +", ""); print}' \
-> "$FILE_VIDEO_CATALOG"
+video-find "$DIR_VIDEO" | xargs -0 -I% echo % > "$FILE_VIDEO_CATALOG"
