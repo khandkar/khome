@@ -248,5 +248,8 @@ cbm
 # Internet speed test
 speedtest-cli
 
+# Retro net
+finger
+
 # Games
 colobot
