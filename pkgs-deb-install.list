@@ -123,6 +123,9 @@ guile-2.0-doc
 # Racket
 racket
 
+# Chez Scheme
+chezscheme
+
 # Lisp
 sbcl
 
