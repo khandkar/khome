@@ -1,0 +1,36 @@
+#! /bin/sh
+
+set -e
+
+exe="$0"
+cmd="push"
+remote="$1"
+
+usage() {
+    printf 'Usage: %s REMOTE\n' "$exe"
+    exit 1
+}
+
+case "$cmd" in
+    push) ;;
+    *) usage ;;
+esac
+
+case "$remote" in
+    '') usage ;;
+    *) ;;
+esac
+
+file_src='README.md'
+file_out='README.html'
+
+pandoc "$file_src" > "$file_out"
+
+local_path="$file_out"
+remote_url=$(git remote get-url "$remote")
+remote_path="${remote_url}/$file_out"
+
+case "$cmd" in
+    push) scp  "$local_path" "$remote_path";;
+    pull) scp "$remote_path"  "$local_path";;
+esac
