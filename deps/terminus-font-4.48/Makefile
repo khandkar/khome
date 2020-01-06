@@ -1,3 +1,5 @@
+# See: https://wiki.debian.org/Fonts
+
 .PHONY: maybeall all download extract build install
 
 maybeall:
