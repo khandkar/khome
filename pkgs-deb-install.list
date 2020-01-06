@@ -63,6 +63,7 @@ dnsutils  # dig and friends
 debian-goodies # Misc. helper scripts. See: apt show debian-goodies
 zeal  # Documentation browser, like Dash.app
 mlterm
+nginx-doc
 
 # "modern" ls alternative: uses colours to distinguish file types and metadata;
 # does other things good too, like drawing a tree.
