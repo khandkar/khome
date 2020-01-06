@@ -22,6 +22,8 @@ build: data/terminus-font-4.48
 
 install: data/terminus-font-4.48
 	cd data/terminus-font-4.48 && make install fontdir
+	sudo dpkg-reconfigure fontconfig-config
+	fc-cache -fv
 
 
 data/terminus-font-4.48.tar.gz:
