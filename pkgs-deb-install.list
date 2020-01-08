@@ -202,6 +202,10 @@ mupdf
 mupdf-tools
 atril
 zathura
+zathura-cb
+zathura-djvu
+zathura-pdf-poppler
+zathura-ps
 
 # X11 API man pages
 libx11-doc
