@@ -200,6 +200,8 @@ ssh
 poppler-utils
 mupdf
 mupdf-tools
+atril
+zathura
 
 # X11 API man pages
 libx11-doc
