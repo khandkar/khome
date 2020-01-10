@@ -140,8 +140,8 @@ top_commands() {
 # TODO: Consider using numfmt instead of awk
 tdu() {
     du "$1" \
-    | sort -n -k 1 -r \
-    | head -50 \
+    | sort -n -k 1 \
+    | tail -50 \
     | awk '
         {
             size = $1
@@ -156,8 +156,8 @@ tdu() {
 # Top Disk-Using Files
 tduf() {
     find "$1" -type f -printf '%s\t%p\0' \
-    | sort -z -n -k 1 -r \
-    | head -z -n 50 \
+    | sort -z -n -k 1 \
+    | tail -z -n 50 \
     | gawk -v RS='\0' '
         {
             size = $1
