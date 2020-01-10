@@ -68,6 +68,7 @@ tmux
 font-manager
 tup  # fast build system
 clang
+rhash
 
 # "modern" ls alternative: uses colours to distinguish file types and metadata;
 # does other things good too, like drawing a tree.
