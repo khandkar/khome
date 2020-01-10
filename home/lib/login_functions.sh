@@ -312,7 +312,12 @@ note() {
 }
 
 weather() {
-    curl "http://wttr.in/$WEATHER_LOCATION"
+    local _weather_location
+    case "$1" in
+        '') _weather_location="$WEATHER_LOCATION";;
+         *) _weather_location="$1"
+    esac
+    curl "http://wttr.in/$_weather_location"
 }
 
 bt_devs_paired() {
