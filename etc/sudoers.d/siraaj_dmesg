@@ -1,0 +1,1 @@
+siraaj ALL=(ALL) NOPASSWD:/bin/dmesg
