@@ -70,6 +70,8 @@ tup  # fast build system
 clang
 rhash
 jsbeautifier
+pidgin
+pidgin-skype
 
 # "modern" ls alternative: uses colours to distinguish file types and metadata;
 # does other things good too, like drawing a tree.
@@ -245,6 +247,7 @@ gridsite-clients
 eog  # Eye of GNOME
 eom  # Eye of MATE
 sxiv
+shotwell  # Photo manager
 
 # Networking tools:
 # - netstat
