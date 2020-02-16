@@ -72,6 +72,7 @@ rhash
 jsbeautifier
 pidgin
 pidgin-skype
+rig  # Random Identity Generator
 
 # "modern" ls alternative: uses colours to distinguish file types and metadata;
 # does other things good too, like drawing a tree.
