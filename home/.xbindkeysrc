@@ -113,3 +113,8 @@
 # Search video catalog and play selection
 "video-catalog-play"
     Mod4+v
+
+"gvim ~/TODO.md"
+    alt + shift + t
+"gvim ~/Documents/Drafts.txt"
+    alt + shift + d
