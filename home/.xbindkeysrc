@@ -116,5 +116,5 @@
 
 "gvim ~/TODO.md"  # .md filetype is already set to activate spell check
     alt + shift + t
-"gvim -c 'set spell' ~/Documents/Drafts.txt"
+"gvim -c 'set spell' ~/Documents/Drafts.md"
     alt + shift + d

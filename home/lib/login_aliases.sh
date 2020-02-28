@@ -13,4 +13,4 @@ alias tm='tmux'
 alias mans='man $(man -k . | sort | fzf -e | awk "{print \$1}")'
 alias twread='twtxt timeline --limit 1000 | less'
 alias todo='vim ~/TODO.md'  # .md filetype is already set to activate spell check
-alias drafts='gvim -c "set spell" ~/Documents/Drafts.txt'
+alias drafts='gvim -c "set spell" ~/Documents/Drafts.md'
