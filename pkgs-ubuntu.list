@@ -1,0 +1,280 @@
+# Ubuntu packages
+
+at  # Surprisingly not in base install!
+tree
+htop
+zsh
+zsh-syntax-highlighting
+tig
+make
+apt-file
+jq
+curl
+lftp
+aspell
+cheese
+newsboat
+nmap
+build-essential
+xkcdpass
+dunst
+hsetroot
+feh
+xbindkeys
+gawk
+original-awk
+libnotify-bin
+r-base
+locate
+units
+snapd # https://snapcraft.io/docs/installing-snap-on-debian
+encfs
+xscreensaver
+xscreensaver-data
+xscreensaver-data-extra
+mplayer
+mpv
+whois
+mono-complete
+screengrab
+tlp  # Laptop power management tools
+erlang
+elixir
+openconnect  # VPN cllient compatible with Cisco's AnyConnect
+graphviz
+graphviz-doc
+cups
+ddgr  # Duck Duck Go CLI client
+wikipedia2text  # Wikipedia CLI client
+neofetch
+time  # Surprisingly, GNU time isn't installed by default!
+caja-open-terminal
+ffmpeg
+pandoc
+nq  # Unix CLI queue utility
+neomutt
+lm-sensors
+fslint    # File system maintenance utilities
+goaccess  # Web server log analyzer
+xinput    # Configure touchpad
+python3-pip
+db-util
+dnsutils  # dig and friends
+debian-goodies # Misc. helper scripts. See: apt show debian-goodies
+zeal  # Documentation browser, like Dash.app
+mlterm
+nginx-doc
+tmux
+font-manager
+tup  # fast build system
+clang
+rhash
+jsbeautifier
+pidgin
+pidgin-skype
+rig  # Random Identity Generator
+fortune-mod
+exfat-utils  # exFAT filesystem support
+
+# "modern" ls alternative: uses colours to distinguish file types and metadata;
+# does other things good too, like drawing a tree.
+# https://the.exa.website/
+exa
+
+# Screen color temperature setters
+redshift  # Lots of code and features, adjusts automatically throughout the day.
+sct       # 80 lines of C, does nothing automatically.
+
+graphicsmagick
+graphicsmagick-imagemagick-compat  # provides /usr/bin/convert
+
+cvs
+
+# Emacs
+emacs-nox
+
+# Vim
+vim
+vim-gtk3
+
+# Mate
+mate-equake-applet  # monitors earthquakes
+
+#------------------------------------------------------------------------------
+# Git
+#------------------------------------------------------------------------------
+git
+
+# Large File Support
+git-lfs
+
+# Integration with other VCS
+git-cvs
+git-svn
+
+# GUI
+git-gui
+git-cola  # HiDPI. Overall nicer than default.
+
+# Documentation
+git-doc
+gitmagic
+
+# Web
+gitweb
+lighttpd  # Was needed by 'git instaweb'
+highlight  # Syntax highlighter which can be used by gitweb.
+#------------------------------------------------------------------------------
+
+# subversion
+subversion
+subversion-tools
+
+
+# Guile
+guile-2.0
+guile-2.0-doc
+
+# Racket
+racket
+
+# Chez Scheme
+chezscheme
+
+# Lisp
+sbcl
+
+# SML
+smlnj
+smlnj-doc
+
+# Xapian desktop search:
+xapian-omega  # index with omindex
+xapian-tools  # search with quest
+
+# Librem 15v4 Bluetooth.
+# A post-install reboot may be insufficient if incorrect firmware was loaded
+# before, so a cold shutdown is best.
+#
+# Apparently the firmware is loaded into the card's memory, which isn't cleared
+# as long as power is supplied (and between reboots - it is).
+#
+# Ref: https://tracker.pureos.net/T23  (different situation, same idea)
+firmware-atheros
+
+# To connect to headphones:
+pulseaudio-module-bluetooth
+
+# dwm build
+libx11-dev
+libxft-dev
+libxinerama-dev
+
+# X11 compositor
+compton
+
+# Web browsers
+qutebrowser
+chromium
+lynx
+elinks
+firefox-esr
+
+# Gopher clients
+sacc
+
+# SoX: Swiss army knife of sound processing
+# provides the play command
+sox
+
+# Shell script linter
+shellcheck
+
+# File managers
+ranger
+nnn
+pcmanfm
+
+# GNU Parallel.
+# Some of my scripts still use it, though it can mostly be replaced with
+# xargs -P $N.
+parallel
+
+# fuzzy finder
+fzf
+
+# meta-package for both client and server packages
+ssh
+
+# PDF utilities
+poppler-utils
+mupdf
+mupdf-tools
+atril
+zathura
+zathura-cb
+zathura-djvu
+zathura-pdf-poppler
+zathura-ps
+
+# X11 API man pages
+libx11-doc
+
+# a pretty df
+dfc
+
+# Music Player daemon and clients
+mpd
+mpc
+ncmpc
+ncmpcpp
+
+# Dictionary
+dictd                  # server
+dict                   # client
+dict-gcide             # Collaborative International Dictionary of English
+dict-jargon            # hacker slang
+dict-wn                # WordNet
+dict-freedict-eng-rus  # English-Russian
+dict-freedict-eng-ell  # English-Modern Greek
+dict-freedict-eng-lat  # English-Latin
+dict-freedict-lat-eng  # Latin-English
+
+# Provides hxpipe utility, used by khatus weather sensor
+html-xml-utils
+
+# Provides urlencode, among other things:
+gridsite-clients
+
+# Image viewers
+eog  # Eye of GNOME
+eom  # Eye of MATE
+sxiv
+shotwell  # Photo manager
+
+# Networking tools:
+# - netstat
+# - ifconfig
+# - ipmaddr
+# - iptunnel
+# - mii-tool
+# - nameif
+# - plipconfig
+# - rarp
+# - route
+# - slattach
+# - arp
+net-tools
+
+# Net monitoring
+speedometer
+cbm
+
+# Internet speed test
+speedtest-cli
+
+# Retro net
+finger
+
+# Games
+colobot
