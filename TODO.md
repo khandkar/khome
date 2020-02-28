@@ -8,3 +8,4 @@
 - [ ] Track zsh
 - [ ] Track oh-my-zsh install recipe as dep
 - [ ] fzf versions of dmenu-using multimedia launchers (for Mac compatibility)
+- [ ] Update bin location from ~/bin to /usr/local/bin for suckless tools (in DPI config scripts)
