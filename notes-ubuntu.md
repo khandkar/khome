@@ -8,3 +8,9 @@ Graphical boot
 ### Enable
 
 	sudo systemctl set-default graphical.target
+
+
+Fonts
+-----
+
+https://wiki.ubuntu.com/Fonts
