@@ -44,6 +44,9 @@ pkgs_debian:
 	$(MAKE) pkgs_snap_classic
 	$(MAKE) pkgs_snap_strict
 
+pkgs_ubuntu: list pkgs-ubuntu.list
+	sudo apt install $(shell ./list pkgs-ubuntu.list)
+
 pkgs_mac:
 	$(MAKE) pkgs_brew_install
 	$(MAKE) pkgs_brew_cask_install
