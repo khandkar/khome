@@ -48,7 +48,6 @@ ddgr  # Duck Duck Go CLI client
 wikipedia2text  # Wikipedia CLI client
 neofetch
 time  # Surprisingly, GNU time isn't installed by default!
-caja-open-terminal
 ffmpeg
 pandoc
 nq  # Unix CLI queue utility
@@ -98,6 +97,8 @@ vim
 vim-gtk3
 
 # Mate
+caja
+caja-open-terminal
 mate-equake-applet  # monitors earthquakes
 
 #------------------------------------------------------------------------------
