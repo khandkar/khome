@@ -2,13 +2,13 @@
   control+shift + q
 
 # Increase volume
-"vol_inc"
+"pactl set-sink-volume @DEFAULT_SINK@ +5%"
    XF86AudioRaiseVolume
 # Decrease volume
-"vol_dec"
+"pactl set-sink-volume @DEFAULT_SINK@ -5%"
    XF86AudioLowerVolume
 # Mute
-"vol_mute"
+"pactl set-sink-mute @DEFAULT_SINK@ toggle"
    XF86AudioMute
 
 "sudo /home/siraaj/bin/backlight_adjust +5"
