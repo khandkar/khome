@@ -1,7 +1,0 @@
-# Mate had these (and others) among Startup Applications:
-
-    /usr/lib/at-spi2-core/at-spi-bus-launcher --launch-immediately
-
-    start-pulseaudio-x11
-
-    mate-screensaver
