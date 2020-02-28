@@ -1,0 +1,9 @@
+#! /bin/sh
+
+for pkg in $(./list pkgs-deb-install.list)
+do
+	if ! apt show $pkg > /dev/null 2>&1
+	then
+		echo $pkg
+	fi
+done
