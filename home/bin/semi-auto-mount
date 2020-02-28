@@ -1,0 +1,10 @@
+#! /bin/sh
+
+path="$(
+    lsblk -rpo 'name,type,size,mountpoint' \
+    | awk '!$4 && $2 == "part"' \
+    | khomenu -l 60 \
+    | awk '{print $1}'
+)"
+
+notify-send 'semi-auto-mount' "$(udisksctl mount --block-device "$path" --no-user-interaction 2>&1)"
