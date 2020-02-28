@@ -66,7 +66,7 @@ mlterm
 nginx-doc
 tmux
 font-manager
-tup  # fast build system
+#tup  # fast build system # Not available in Ubuntu repos
 clang
 rhash
 jsbeautifier
@@ -79,7 +79,7 @@ exfat-utils  # exFAT filesystem support
 # "modern" ls alternative: uses colours to distinguish file types and metadata;
 # does other things good too, like drawing a tree.
 # https://the.exa.website/
-exa
+#exa  # Not available in Ubuntu repos
 
 # Screen color temperature setters
 redshift  # Lots of code and features, adjusts automatically throughout the day.
@@ -98,7 +98,7 @@ vim
 vim-gtk3
 
 # Mate
-mate-equake-applet  # monitors earthquakes
+#mate-equake-applet  # monitors earthquakes # Not available in Ubuntu repos
 
 #------------------------------------------------------------------------------
 # Git
@@ -160,7 +160,7 @@ xapian-tools  # search with quest
 # as long as power is supplied (and between reboots - it is).
 #
 # Ref: https://tracker.pureos.net/T23  (different situation, same idea)
-firmware-atheros
+#firmware-atheros  # Not available in Ubuntu repos
 
 # To connect to headphones:
 pulseaudio-module-bluetooth
@@ -175,13 +175,13 @@ compton
 
 # Web browsers
 qutebrowser
-chromium
+chromium-browser
 lynx
 elinks
-firefox-esr
+firefox
 
 # Gopher clients
-sacc
+#sacc  # Not available in Ubuntu repos
 
 # SoX: Swiss army knife of sound processing
 # provides the play command
@@ -201,7 +201,7 @@ pcmanfm
 parallel
 
 # fuzzy finder
-fzf
+#fzf  # Not available in Ubuntu repos
 
 # meta-package for both client and server packages
 ssh
