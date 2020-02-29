@@ -1,3 +1,5 @@
+# (Mod4 is Windows key)
+
 "xbindkeys_show"
   control+shift + q
 
@@ -51,7 +53,6 @@
 "mpc next"
     XF86AudioNext
 # Otherwise use combinations:
-# (Mod4 is Windows key)
 "mpc toggle"
     Mod4 + Down
 "mpc stop"
