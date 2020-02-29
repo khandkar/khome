@@ -1,16 +1,19 @@
 "xbindkeys_show"
   control+shift + q
 
-# Increase volume
+# -----------
+# Volume
+# -----------
 "pactl set-sink-volume @DEFAULT_SINK@ +5%"
    XF86AudioRaiseVolume
-# Decrease volume
 "pactl set-sink-volume @DEFAULT_SINK@ -5%"
    XF86AudioLowerVolume
-# Mute
 "pactl set-sink-mute @DEFAULT_SINK@ toggle"
    XF86AudioMute
 
+# ----------
+# Backlight
+# ----------
 "sudo /home/siraaj/bin/backlight_adjust +5"
     XF86MonBrightnessUp
 "sudo /home/siraaj/bin/backlight_adjust -5"
@@ -22,6 +25,9 @@
 "sudo /home/siraaj/bin/backlight_adjust -5"
     shift+XF86AudioLowerVolume
 
+# -------------------
+# Screen saver/locker
+# -------------------
 # mate-screensaver equivalent: "mate-screensaver-command --lock"
 "xscreensaver-command -activate"
    XF86ScreenSaver
@@ -47,13 +53,13 @@
 # Otherwise use combinations:
 # (Mod4 is Windows key)
 "mpc toggle"
-    Mod4+Down
+    Mod4 + Down
 "mpc stop"
-    Mod4+Up
+    Mod4 + Up
 "mpc prev"
-    Mod4+Left
+    Mod4 + Left
 "mpc next"
-    Mod4+Right
+    Mod4 + Right
 
 ## cmus-remote
 #"cmus-remote --stop"
@@ -66,15 +72,9 @@
 #    XF86AudioNext
 
 
-# Quick access to in-terminal apps
-"st -e htop"
-    Mod4+h
-"st -e ncmpcpp"
-    Mod4+n
-"st -e ranger"
-    Mod4+r
-
+# --------------------
 # Transparency adjust
+# --------------------
 "compton-trans 40"
     Mod4 + 4
 "compton-trans 45"
@@ -102,18 +102,32 @@
 "compton-trans 100"
     Mod4 + 0
 
+# ------------------------
 # Screenshot
+# ------------------------
 "screengrab -r"
     Print
 
+# ----------------
+# App launchers
+# ----------------
+
+"st -e htop"
+    Mod4 + h
+"st -e ncmpcpp"
+    Mod4 + n
+"st -e ranger"
+    Mod4 + r
+
 # Search mpd lib and play selection
 "mpplay"
-    Mod4+p
+    Mod4 + p
 
 # Search video catalog and play selection
 "video-catalog-play"
-    Mod4+v
+    Mod4 + v
 
+# Edit specific files
 "gvim ~/TODO.md"  # .md filetype is already set to activate spell check
     alt + shift + t
 "gvim -c 'set spell' ~/Documents/Drafts.md"
