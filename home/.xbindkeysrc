@@ -132,9 +132,9 @@
     Mod4 + e
 # Edit specific files
 "gvim ~/TODO.md"  # .md filetype is already set to activate spell check
-    alt + shift + t
+    Mod4 + t
 "gvim -c 'set spell' ~/Documents/Drafts.md"
-    alt + shift + d
+    Mod4 + d
 
 # File browser
 "caja"
