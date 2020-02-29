@@ -127,8 +127,19 @@
 "video-catalog-play"
     Mod4 + v
 
+# Editor
+"gvim"
+    Mod4 + e
 # Edit specific files
 "gvim ~/TODO.md"  # .md filetype is already set to activate spell check
     alt + shift + t
 "gvim -c 'set spell' ~/Documents/Drafts.md"
     alt + shift + d
+
+# File browser
+"caja"
+    Mod4 + f
+
+# Web browser
+"qutebrowser"
+    Mod4 + w
