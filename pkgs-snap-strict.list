@@ -1,4 +1,6 @@
 #
 riot-web
 spotify
+spotifyd
+spt        # Spotify TUI client: https://github.com/Rigellute/spotify-tui
 openra # A Libre/Free Real Time Strategy game engine supporting early Westwood classics
