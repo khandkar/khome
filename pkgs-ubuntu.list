@@ -286,4 +286,4 @@ adwaita-qt
 gnome-themes-standard
 gnome-themes-ubuntu
 
-lxappearance
+lxappearance  # https://wiki.archlinux.org/index.php/GTK
