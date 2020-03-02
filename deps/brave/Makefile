@@ -1,0 +1,2 @@
+brave:
+	sh brave.sh
