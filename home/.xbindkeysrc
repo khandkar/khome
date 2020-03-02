@@ -138,7 +138,7 @@
     Mod4 + d
 
 # File browser
-"pcmanfm-qt"  # caja is super-slow to launch from dwm in Ubuntu
+"pcmanfm"
     Mod4 + f
 
 # Web browser
