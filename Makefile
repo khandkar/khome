@@ -25,7 +25,7 @@ home: mpdconf
 	@cp  -Rp  home/.newsboat/    $(HOME)/
 	@cp       home/.profile      $(HOME)/
 	@cp       home/.fonts.conf   $(HOME)/
-	@fc-cache                    $(HOME)/.fonts
+	@fc-cache -fv
 	@cp       home/.Rprofile     $(HOME)/
 	@cp       home/.tmux.conf    $(HOME)/
 	@cp       home/.xbindkeysrc  $(HOME)/
