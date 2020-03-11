@@ -290,3 +290,5 @@ gnome-themes-standard
 gnome-themes-ubuntu
 
 lxappearance  # https://wiki.archlinux.org/index.php/GTK
+
+ifuse  # Mount iPhone
