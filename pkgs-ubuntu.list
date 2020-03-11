@@ -12,6 +12,9 @@ jq
 curl
 lftp
 aspell
+aspell-en  # English
+aspell-ru  # Russian
+aspell-el  # Greek
 cheese
 newsboat
 nmap
