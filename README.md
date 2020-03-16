@@ -9,6 +9,8 @@ Environment.
 Hardware
 --------
 - Laptops:
+    - Dell XPS 13 9300 Developer Edition
+    - ASUS L203M
     - Purism Librem 15 v4
     - ThinkPad T400
     - ThinkPad T420s
