@@ -5,9 +5,46 @@
 #     - awk
 #     - hxpipe (packaged in html-xml-utils on Debian and Ubuntu)
 
+VALID_LOCATIONS='
+    Albany
+    Broome
+    Delaware
+    Dutchess
+    Erie
+    Greene
+    Herkimer
+    Monroe
+    Montgomery
+    Nassau
+    Orange
+    Putnam
+    Rockland
+    Saratoga
+    Schenectady
+    Suffolk
+    Tioga
+    Tompkins
+    Ulster
+    Westchester
+    New York State (Outside of NYC)
+    New York City:
+    Total Positive Cases (Statewide)
+    '
+DEFAULT_LOCATION='New York City:'
+
+usage() {
+        printf "Usage: %s [LOCATION]\n" "$0"
+        printf '\n'
+        printf 'LOCATION ='
+        printf '%s\n' "$VALID_LOCATIONS"
+        printf "Default LOCATION:\n    %s\n" "$DEFAULT_LOCATION"
+        exit 1
+}
+
 case "$1" in
-    '') location='New York City:';;
-     *) location="$1";;
+    '-h') usage;;
+    ''  ) location="$DEFAULT_LOCATION";;
+     *  ) location="$1";;
 esac
 
 curl 'https://health.ny.gov/diseases/communicable/coronavirus/' \
