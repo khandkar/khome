@@ -1,0 +1,101 @@
+#! /bin/sh
+#
+# Dependencies:
+#     - curl
+#     - awk
+#     - hxpipe (packaged in html-xml-utils on Debian and Ubuntu)
+
+VALID_LOCATIONS='
+    Boston:
+    Massachusetts:
+    '
+
+DEFAULT_LOCATION='Boston:'
+
+usage() {
+        printf "Usage: %s [LOCATION]\n" "$0"
+        printf '\n'
+        printf 'LOCATION ='
+        printf '%s\n' "$VALID_LOCATIONS"
+        printf "Default LOCATION:\n    %s\n" "$DEFAULT_LOCATION"
+        exit 1
+}
+
+case "$1" in
+    '-h') usage;;
+    ''  ) location="$DEFAULT_LOCATION";;
+     *  ) location="$1";;
+esac
+
+curl 'https://www.boston.gov/news/coronavirus-disease-covid-19-boston' \
+| hxpipe \
+| awk '
+    /^[\(\)]/ {
+        update_node()
+        next
+    }
+
+    /^A/ && $2 == "CDATA" {
+        update_node_attributes()
+        next
+    }
+
+    /^-/ {
+        XmlPayload = substr($0, 2, length($0))
+    }
+
+    XmlPath == "/html/body/div/div/input/header/div/div/div/section/article/div/div/div/div/div/div/div/div/address" \
+    && XmlPayload ~ /^[A-Z][a-z]+: +[0-9]+/ {
+        print XmlPayload
+    }
+
+    function path_to_string(path, depth,    p, i) {
+        p = ""
+        for (i = 1; i <= depth; i++) {
+            p = p "/" path[i]
+        }
+        return p
+    }
+
+    function update_node(    paren, name, key, val, path, attr) {
+        paren = substr($1, 1, 1)
+        name = substr($1, 2, length($1) - 1)
+        if (paren == "(") {
+            _depth++
+            _path[_depth] = name
+            XmlPath = path_to_string(_path, _depth)
+            for (key in _hxpipe_curr_attrs) {
+                val = _hxpipe_curr_attrs[key]
+                XmlAttr[XmlPath, key] = val
+            }
+        } else if (paren == ")") {
+            delete _hxpipe_curr_attrs
+            XmlPayload = ""
+            for (key in XmlAttr) {
+                split(key, k, SUBSEP)
+                path = k[1]
+                attr = k[2]
+                if (path == XmlPath) delete XmlAttr[key]
+            }
+            _depth--
+            XmlPath = path_to_string(_path, _depth)
+        } else {
+            printf("ERROR in input line %d - not a parenthesis: \"%s\"\n", NR, paren) > "/dev/stderr"
+            exit 1
+        }
+    }
+
+    function update_node_attributes(    key, val, s) {
+        key = substr($1, 2, length($1))
+        val = $0
+        s = " +"
+        sub("^" $1 s $2 s, "", val)
+        _hxpipe_curr_attrs[key] = val
+    }
+    ' \
+| awk -v location="$location" '
+    $1 == location {
+        weird_space_character = " ";
+        n = split($2, cases, weird_space_character);
+        print cases[1]
+    }'
