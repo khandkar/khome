@@ -231,6 +231,7 @@ dfc
 # Music Player daemon and clients
 mpd
 mpc
+libmpdclient-dev  # mpd/client.h
 ncmpc
 ncmpcpp
 
