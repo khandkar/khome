@@ -6,3 +6,8 @@ for file in $HOME/lib/login_*.sh
 do
     . $file
 done
+
+if test ! "$SSH_AGENT_PID"
+then
+    eval "$(ssh-agent)"
+fi
