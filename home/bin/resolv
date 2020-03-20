@@ -1,0 +1,40 @@
+#! /bin/sh
+
+FILE='/etc/resolv.conf'
+CONTENT=\
+'nameserver 167.206.13.180
+nameserver 167.206.13.181
+nameserver 192.168.1.1'
+
+uncommented() {
+	echo "$CONTENT"
+}
+
+commented() {
+	for line in "$CONTENT"
+	do
+		echo "$line" | sed 's/^/#/'
+	done
+}
+
+switch_on() {
+	chattr -i "$FILE"  # Make mutable
+	rm -f "$FILE"
+	uncommented > "$FILE"
+	chmod a+r "$FILE"
+}
+
+switch_off() {
+	rm -f "$FILE"
+	commented > "$FILE"
+	chmod a-rw "$FILE"
+	chattr +i "$FILE"  # Make immutable
+}
+
+case "$1" in
+	'on' ) switch_on;;
+	'off') switch_off;;
+	'')
+		echo "usage: $0 SWITCH\n\nSWITCH = on | off"
+		exit 1;;
+esac
