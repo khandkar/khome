@@ -12,6 +12,9 @@ jq
 curl
 lftp
 aspell
+aspell-en  # English
+aspell-ru  # Russian
+aspell-el  # Greek
 cheese
 newsboat
 nmap
@@ -74,6 +77,7 @@ pidgin-skype
 rig  # Random Identity Generator
 fortune-mod
 exfat-utils  # exFAT filesystem support
+linux-doc    # Kernel docs. Found it with: apt-file search power_supply_class.txt
 
 # "modern" ls alternative: uses colours to distinguish file types and metadata;
 # does other things good too, like drawing a tree.
@@ -227,6 +231,7 @@ dfc
 # Music Player daemon and clients
 mpd
 mpc
+libmpdclient-dev  # mpd/client.h
 ncmpc
 ncmpcpp
 
@@ -279,3 +284,13 @@ finger
 
 # Games
 colobot
+
+# GNOME themes
+#adwaita-icon-theme-full  # In Ubuntu, not in Debian
+adwaita-qt
+gnome-themes-standard
+#gnome-themes-ubuntu  # In Ubuntu, not in Debian
+
+lxappearance  # https://wiki.archlinux.org/index.php/GTK
+
+ifuse  # Mount iPhone
