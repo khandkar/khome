@@ -7,6 +7,8 @@ do
     . $file
 done
 
+umask 077
+
 if test ! "$SSH_AGENT_PID"
 then
     eval "$(ssh-agent)"
