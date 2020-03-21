@@ -16,15 +16,15 @@
 # ----------
 # Backlight
 # ----------
-"sudo /home/siraaj/bin/backlight_adjust +5"
+"sudo /home/siraaj/bin/backlight_adjust +1"
     XF86MonBrightnessUp
-"sudo /home/siraaj/bin/backlight_adjust -5"
+"sudo /home/siraaj/bin/backlight_adjust -1"
     XF86MonBrightnessDown
 
 # Workaround: XF86MonBrightness(Up|Down) keys stopped working on Librem 15v4 :(
-"sudo /home/siraaj/bin/backlight_adjust +5"
+"sudo /home/siraaj/bin/backlight_adjust +1"
     shift+XF86AudioRaiseVolume
-"sudo /home/siraaj/bin/backlight_adjust -5"
+"sudo /home/siraaj/bin/backlight_adjust -1"
     shift+XF86AudioLowerVolume
 
 # -------------------
