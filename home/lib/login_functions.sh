@@ -206,6 +206,16 @@ void_pkgs() {
 
 # Colorful man
 man() {
+    # mb: begin blink
+    # md: begin bold
+    # me: end   bold, blink and underline
+    #
+    # so: begin standout (reverse video)
+    # se: end   standout
+    #
+    # us: begin underline
+    # ue: end   underline
+
     LESS_TERMCAP_md=$'\e[01;31m' \
     LESS_TERMCAP_me=$'\e[0m' \
     LESS_TERMCAP_se=$'\e[0m' \
