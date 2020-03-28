@@ -235,6 +235,11 @@ libmpdclient-dev  # mpd/client.h
 ncmpc
 ncmpcpp
 
+# ncurses
+libncurses5-dev
+ncurses-doc
+ncurses-examples
+
 # Dictionary
 dictd                  # server
 dict                   # client
