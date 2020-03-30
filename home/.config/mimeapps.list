@@ -12,6 +12,7 @@ inode/directory=caja.desktop
 x-scheme-handler/trash=caja.desktop
 inode/symlink=caja.desktop;
 application/illustrator=gimp.desktop;
+video/quicktime=mpv.desktop;
 
 [Default Applications]
 text/plain=gvim.desktop
