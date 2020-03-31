@@ -44,13 +44,6 @@ mpdconf:
 	@mkdir -p ~/var/run/mpd
 	@cp home/.mpdconf $(HOME)/
 
-pkgs_debian:
-	$(MAKE) pkgs_deb_install
-	$(MAKE) pkgs_deb_purge
-	$(MAKE) pkgs_pip
-	$(MAKE) pkgs_snap_classic
-	$(MAKE) pkgs_snap_strict
-
 pkgs_ubuntu: list pkgs-ubuntu.list
 	sudo apt install $(shell ./list pkgs-ubuntu.list)
 
