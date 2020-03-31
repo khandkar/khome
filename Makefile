@@ -44,6 +44,9 @@ mpdconf:
 	@mkdir -p ~/var/run/mpd
 	@cp home/.mpdconf $(HOME)/
 
+pkgs_golang: list pkgs-golang.list
+	go get $(shell ./list pkgs-golang.list)
+
 pkgs_ubuntu: list pkgs-ubuntu.list
 	sudo apt install $(shell ./list pkgs-ubuntu.list)
 
