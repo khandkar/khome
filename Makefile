@@ -3,6 +3,7 @@ MAKEFLAGS := --no-builtin-rules
 DEPS := $(wildcard deps/*)
 
 .PHONY: \
+	default \
     $(DEPS) \
     deps \
     home \
@@ -16,6 +17,12 @@ DEPS := $(wildcard deps/*)
     pkgs_pip \
     pkgs_snap_classic \
     pkgs_snap_strict
+
+default:
+	@echo '================================================================================'
+	@echo '| Default target disabled. Specify a concrete one.'
+	@echo '================================================================================'
+	@exit 1
 
 home: mpdconf
 	@cp  -Rp  home/bin           $(HOME)/
