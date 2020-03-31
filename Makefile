@@ -101,6 +101,7 @@ diff:
 	diff $(HOME)/.config/mimeapps.list           home/.config/mimeapps.list
 	diff $(HOME)/.config/neofetch/config.conf    home/.config/neofetch/config.conf
 	diff $(HOME)/.config/ranger/rc.conf          home/.config/ranger/rc.conf
+	diff $(HOME)/.config/screengrab/screengrab.conf  home/.config/screengrab/screengrab.conf
 	diff $(HOME)/.fonts.conf                     home/.fonts.conf
 	diff $(HOME)/.mpdconf                        home/.mpdconf
 	diff $(HOME)/.newsboat/config                home/.newsboat/config
