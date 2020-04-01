@@ -135,12 +135,13 @@
 # Editor
 "gvim"
     Mod4 + e
+
 # Edit specific files
-"gvim ~/TODO.md"  # .md filetype is already set to activate spell check
+"gvim ~/TODO.md"
     Mod4 + t
-"gvim -c 'set spell' ~/Documents/drafts.md"
+"gvim' ~/Documents/drafts.md"
     Mod4 + d
-"gvim -c 'set spell' ~/Documents/bookmarks.md"
+"gvim' ~/Documents/bookmarks.md"
     Mod4 + b
 
 # File browser
