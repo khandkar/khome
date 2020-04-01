@@ -1,9 +1,8 @@
 alias c='ncal -Mb'  # -M : start week with Monday, -b : use old format (like in cal)
 alias h='history | fzf -e'
-alias   l='ls -lFhv --group-directories-first'
-alias  la='l -A'
-alias  ll='la --color=auto'
-alias lll='la --color=never'
+alias   l='ls -lFhv --group-directories-first --color=auto'
+alias  ll='l -a'
+alias lll='ll --color=never'
 alias tree='tree --dirsfirst'
 #alias dotnet='~/.dotnet/dotnet'
 alias fsi='ledit dotnet /usr/share/dotnet/sdk/2.1.504/FSharp/fsi.exe'
