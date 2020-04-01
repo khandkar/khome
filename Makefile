@@ -44,18 +44,31 @@ mpdconf:
 	@mkdir -p ~/var/run/mpd
 	@cp home/.mpdconf $(HOME)/
 
+#
+# Golang
+#
 pkgs_golang: list pkgs-golang.list
 	go get $(shell ./list pkgs-golang.list)
 
+#
+# Ubuntu
+#
 pkgs_ubuntu: list pkgs-ubuntu.list
 	sudo apt install $(shell ./list pkgs-ubuntu.list)
+
+#
+# PIP
+#
+pkgs_pip:
+	sudo pip3 install $(shell ./list pkgs-pip.list)
+
+#
+# Homebrew/Mac
+#
 
 pkgs_mac:
 	$(MAKE) pkgs_brew_install
 	$(MAKE) pkgs_brew_cask_install
-
-pkgs_pip:
-	sudo pip3 install $(shell ./list pkgs-pip.list)
 
 # TODO: Test pkgs_brew_tap when list contains multiple items
 pkgs_brew_tap: list pkgs-brew-tap.list
@@ -67,12 +80,18 @@ pkgs_brew_install: list pkgs-brew-install.list
 pkgs_brew_cask_install: list pkgs-brew-cask-install.list
 	brew cask install $(shell ./list pkgs-brew-cask-install.list)
 
+#
+# Debian
+#
 pkgs_deb_install: list pkgs-deb-install.list
 	sudo apt install $(shell ./list pkgs-deb-install.list)
 
 pkgs_deb_purge: list pkgs-deb-purge.list
 	sudo apt purge $(shell ./list pkgs-deb-purge.list)
 
+#
+# Snap
+#
 pkgs_snap_classic: list pkgs-snap-classic.list
 	@$(MAKE) $(foreach p,$(shell ./list pkgs-snap-classic.list),pkg_snap_classic_$(p))
 
