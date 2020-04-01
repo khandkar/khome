@@ -57,6 +57,10 @@ pkgs_mac:
 pkgs_pip:
 	sudo pip3 install $(shell ./list pkgs-pip.list)
 
+# TODO: Test pkgs_brew_tap when list contains multiple items
+pkgs_brew_tap: list pkgs-brew-tap.list
+	brew tap $(shell ./list pkgs-brew-tap.list)
+
 pkgs_brew_install: list pkgs-brew-install.list
 	brew install $(shell ./list pkgs-brew-install.list)
 

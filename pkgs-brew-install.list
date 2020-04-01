@@ -2,6 +2,7 @@
 coreutils
 dict
 encfs
+font-terminus
 fzf
 graphviz
 htop
