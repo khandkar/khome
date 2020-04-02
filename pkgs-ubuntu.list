@@ -78,6 +78,7 @@ rig  # Random Identity Generator
 fortune-mod
 exfat-utils  # exFAT filesystem support
 linux-doc    # Kernel docs. Found it with: apt-file search power_supply_class.txt
+locales-all
 
 # "modern" ls alternative: uses colours to distinguish file types and metadata;
 # does other things good too, like drawing a tree.
