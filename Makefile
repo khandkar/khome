@@ -24,7 +24,8 @@ default:
 	@echo '================================================================================'
 	@exit 1
 
-home: mpdconf
+home: mpdconf compiled
+	@cp  -Rp       bin           $(HOME)/
 	@cp  -Rp  home/bin           $(HOME)/
 	@cp  -Rp  home/lib           $(HOME)/
 	@cp       home/.compton.conf $(HOME)/
@@ -42,6 +43,11 @@ mpdconf:
 	@mkdir -p ~/var/log/mpd
 	@mkdir -p ~/var/run/mpd
 	@cp home/.mpdconf $(HOME)/
+
+compiled:
+	mkdir -p bin
+	cd src && make
+	mv src/clockloop bin/
 
 font_cache:
 	@fc-cache -fv
