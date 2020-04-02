@@ -139,9 +139,9 @@
 # Edit specific files
 "gvim ~/TODO.md"
     Mod4 + t
-"gvim' ~/Documents/drafts.md"
+"gvim ~/Documents/drafts.md"
     Mod4 + d
-"gvim' ~/Documents/bookmarks.md"
+"gvim ~/Documents/bookmarks.md"
     Mod4 + b
 
 # File browser
