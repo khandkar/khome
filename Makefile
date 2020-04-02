@@ -32,7 +32,6 @@ home: mpdconf
 	@cp  -Rp  home/.newsboat/    $(HOME)/
 	@cp       home/.profile      $(HOME)/
 	@cp       home/.fonts.conf   $(HOME)/
-	@fc-cache -fv
 	@cp       home/.Rprofile     $(HOME)/
 	@cp       home/.tmux.conf    $(HOME)/
 	@cp       home/.xbindkeysrc  $(HOME)/
@@ -43,6 +42,9 @@ mpdconf:
 	@mkdir -p ~/var/log/mpd
 	@mkdir -p ~/var/run/mpd
 	@cp home/.mpdconf $(HOME)/
+
+font_cache:
+	@fc-cache -fv
 
 #
 # Golang
