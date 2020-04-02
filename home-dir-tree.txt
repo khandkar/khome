@@ -1,0 +1,106 @@
+old
+---
+Archives/
+DONE/
+Documents/
+Downloads/
+Exercises/
+Experiments/
+Forks/
+Projects/
+Projects/priv
+Projects/pub
+School/
+TODO/
+Work
+bin/
+lib/
+mnt/
+opt/
+tmp/
+var/
+
+new
+---
+.local
+.local/bin
+.local/lib
+.local/mnt
+.local/opt
+.local/var
+arc
+arc/audio
+arc/doc
+arc/img
+arc/img/photo
+arc/sw
+arc/sw/bin
+arc/sw/src
+arc/video
+dld
+dld/audio
+dld/books
+dld/fonts
+dld/img
+dld/papers
+dld/sw
+dld/video
+exr
+frk
+frk/suckless
+prj
+prj/prv
+prj/pub
+sch
+wrk
+x
+
+.local  even more-local /usr/local
+arc     archives
+bin     binaries/executables
+dld     downloads
+exr     exercises
+frk     forks
+prj     projects
+sch     school
+wrk     work
+x       experiments
+
+map
+---
+Archives            -->  arc
+Archives/Audio      -->  arc/audio
+Archives/Documents  -->  arc/doc
+Archives/Images     -->  arc/img
+Archives/Software   -->  arc/sw
+Archives/Videos     -->  arc/video
+DONE                ~~>  doc/TODO.md
+Documents           -->  doc
+Downloads           -->  dld
+Exercises           -->  exr
+Experiments         -->  x
+Forks               -->  frk
+Projects            -->  prj
+Projects/priv       -->  prj/prv
+Projects/pub        -->  prj/pub
+School              -->  sch
+TODO                ~~>  doc/TODO.md
+Work                -->  wrk
+bin                 -->  .local/bin
+lib                 -->  .local/lib
+mnt                 -->  .local/mnt
+opt                 -->  .local/opt
+tmp                 -->  .local/tmp
+var                 -->  .local/var
+
+
+TODO
+----
+
+- [ ] configure programs to not create these:
+    - [ ] Desktop/
+    - [ ] Downloads/
+    - [ ] Webcam/
+    - [ ] go/
+    - [ ] snap/
+- [ ] hunt-down all hard-coded paths and replace with $DIR_FOO
