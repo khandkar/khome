@@ -3,7 +3,8 @@ MAKEFLAGS := --no-builtin-rules
 DEPS := $(wildcard deps/*)
 
 .PHONY: \
-	default \
+    default \
+    clean \
     $(DEPS) \
     deps \
     home \
@@ -63,6 +64,9 @@ pkgs_golang: list pkgs-golang.list
 #
 pkgs_ubuntu: list pkgs-ubuntu.list
 	sudo apt install $(shell ./list pkgs-ubuntu.list)
+
+pkgs_ubuntu_debfiles: list pkgs-ubuntu-debfiles.list
+	./install-debfiles pkgs-ubuntu-debfiles.list
 
 #
 # PIP
@@ -140,3 +144,7 @@ diff:
 	diff  $(HOME)/lib/login_variables.sh              home/lib/login_variables.sh              ||  true
 	diff  $(HOME)/lib/login_variables_dpi_high.sh     home/lib/login_variables_dpi_high.sh     ||  true
 	diff  $(HOME)/lib/login_variables_dpi_norm.sh     home/lib/login_variables_dpi_norm.sh     ||  true
+
+clean:
+	rm -rf ./debfiles
+	cd src && make clean

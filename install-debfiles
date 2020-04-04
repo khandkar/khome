@@ -1,0 +1,10 @@
+#! /bin/sh
+
+set -e
+
+file=$(readlink -e "$1")
+
+mkdir -p debfiles
+cd debfiles || exit 1
+../list "$file" | xargs -P 2 -I % wget -c '%'
+sudo apt install ./*.deb
