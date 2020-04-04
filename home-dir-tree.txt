@@ -28,64 +28,64 @@ new
 .local/mnt
 .local/opt
 .local/var
-arc
-arc/audio
-arc/doc
-arc/img
-arc/img/photo
-arc/sw
-arc/sw/bin
-arc/sw/src
-arc/video
-dld
-dld/audio
-dld/books
-dld/fonts
-dld/img
-dld/papers
-dld/sw
-dld/video
-exr
-frk
-frk/suckless
-prj
-prj/prv
-prj/pub
+arch
+arch/audio
+arch/doc
+arch/img
+arch/img/photo
+arch/sw
+arch/sw/bin
+arch/sw/src
+arch/video
+down
+down/audio
+down/books
+down/fonts
+down/img
+down/papers
+down/sw
+down/video
+exer
+fork
+fork/suckless
+proj
+proj/prv
+proj/pub
 sch
-wrk
+work
 x
 
 .local  even more-local /usr/local
-arc     archives
+arch    archives
 bin     binaries/executables
-dld     downloads
-exr     exercises
-frk     forks
-prj     projects
+down    downloads
+exer    exercises
+fork    forks
+proj    projects
 sch     school
-wrk     work
+work    work
 x       experiments
 
 map
 ---
-Archives            -->  arc
-Archives/Audio      -->  arc/audio
-Archives/Documents  -->  arc/doc
-Archives/Images     -->  arc/img
-Archives/Software   -->  arc/sw
-Archives/Videos     -->  arc/video
+Archives            -->  arch
+Archives/Audio      -->  arch/audio
+Archives/Documents  -->  arch/doc
+Archives/Images     -->  arch/img
+Archives/Software   -->  arch/sw
+Archives/Videos     -->  arch/video
 DONE                ~~>  doc/TODO.md
 Documents           -->  doc
-Downloads           -->  dld
-Exercises           -->  exr
+Downloads           -->  down
+Exercises           -->  exer
 Experiments         -->  x
-Forks               -->  frk
-Projects            -->  prj
-Projects/priv       -->  prj/prv
-Projects/pub        -->  prj/pub
+Forks               -->  fork
+Projects            -->  proj
+Projects/priv       -->  proj/prv
+Projects/pub        -->  proj/pub
 School              -->  sch
 TODO                ~~>  doc/TODO.md
-Work                -->  wrk
+Work                -->  work
 bin                 -->  .local/bin
 lib                 -->  .local/lib
 mnt                 -->  .local/mnt
