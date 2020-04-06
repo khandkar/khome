@@ -8,3 +8,6 @@ build: clockloop
 
 clean:
 	rm -f clockloop
+
+clockloop:
+	$(CC) $(LDLIBS) clockloop.c -o clockloop
