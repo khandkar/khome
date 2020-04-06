@@ -2,7 +2,7 @@
 coreutils
 dict
 encfs
-fzf
+golang
 graphviz
 htop
 macvim
