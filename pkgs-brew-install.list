@@ -4,11 +4,14 @@ dict
 encfs
 golang
 graphviz
+git-cola
 htop
+jq
 macvim
 mono
 neofetch
 nmap
+parallel
 ranger
 sxiv
 tig
