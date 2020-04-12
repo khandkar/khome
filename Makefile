@@ -9,6 +9,7 @@ DEPS := $(wildcard deps/*)
     deps \
     home \
     diff \
+    pull \
     mpdconf \
     pkgs_brew_cask_install \
     pkgs_brew_install \
@@ -130,6 +131,11 @@ diff:
 	find home -type f -print0 \
 	| sed -z 's/^home\///g' \
 	| xargs -0 -I% sh -c 'echo %; diff --color=always ~/% home/%'
+
+pull:
+	find home -type f -print0 \
+	| sed -z 's/^home\///g' \
+	| xargs -0 -I% sh -c 'diff -q ~/% home/% > /dev/null || cp ~/% home/%'
 
 clean:
 	rm -rf ./debfiles
