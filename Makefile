@@ -8,6 +8,7 @@ DEPS := $(wildcard deps/*)
     $(DEPS) \
     deps \
     home \
+    diff \
     mpdconf \
     pkgs_brew_cask_install \
     pkgs_brew_install \
