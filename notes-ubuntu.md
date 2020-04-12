@@ -14,3 +14,11 @@ Fonts
 -----
 
 https://wiki.ubuntu.com/Fonts
+
+
+Notification system
+-------------------
+
+### Disable
+
+    mv /usr/share/dbus-1/services/org.freedesktop.Notifications.service /usr/share/dbus-1/services/org.freedesktop.Notifications.service.disabled
