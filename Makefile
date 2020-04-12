@@ -1,5 +1,6 @@
 MAKEFLAGS := --no-builtin-rules
 
+DIFF := diff --color=always
 DEPS := $(wildcard deps/*)
 
 .PHONY: \
@@ -126,24 +127,24 @@ endef
 $(foreach d,$(DEPS),$(eval $(call GEN_DEP_RULE,$(d))))
 
 diff:
-	diff  $(HOME)/.Rprofile                           home/.Rprofile                           ||  true
-	diff  $(HOME)/.compton.conf                       home/.compton.conf                       ||  true
-	diff  $(HOME)/.config/dunst/dunstrc               home/.config/dunst/dunstrc               ||  true
-	diff  $(HOME)/.config/mimeapps.list               home/.config/mimeapps.list               ||  true
-	diff  $(HOME)/.config/neofetch/config.conf        home/.config/neofetch/config.conf        ||  true
-	diff  $(HOME)/.config/ranger/rc.conf              home/.config/ranger/rc.conf              ||  true
-	diff  $(HOME)/.config/screengrab/screengrab.conf  home/.config/screengrab/screengrab.conf  ||  true
-	diff  $(HOME)/.fonts.conf                         home/.fonts.conf                         ||  true
-	diff  $(HOME)/.mpdconf                            home/.mpdconf                            ||  true
-	diff  $(HOME)/.newsboat/config                    home/.newsboat/config                    ||  true
-	diff  $(HOME)/.profile                            home/.profile                            ||  true
-	diff  $(HOME)/.tmux.conf                          home/.tmux.conf                          ||  true
-	diff  $(HOME)/.xbindkeysrc                        home/.xbindkeysrc                        ||  true
-	diff  $(HOME)/lib/login_aliases.sh                home/lib/login_aliases.sh                ||  true
-	diff  $(HOME)/lib/login_functions.sh              home/lib/login_functions.sh              ||  true
-	diff  $(HOME)/lib/login_variables.sh              home/lib/login_variables.sh              ||  true
-	diff  $(HOME)/lib/login_variables_dpi_high.sh     home/lib/login_variables_dpi_high.sh     ||  true
-	diff  $(HOME)/lib/login_variables_dpi_norm.sh     home/lib/login_variables_dpi_norm.sh     ||  true
+	$(DIFF) $(HOME)/.Rprofile                           home/.Rprofile                           ||  true
+	$(DIFF) $(HOME)/.compton.conf                       home/.compton.conf                       ||  true
+	$(DIFF) $(HOME)/.config/dunst/dunstrc               home/.config/dunst/dunstrc               ||  true
+	$(DIFF) $(HOME)/.config/mimeapps.list               home/.config/mimeapps.list               ||  true
+	$(DIFF) $(HOME)/.config/neofetch/config.conf        home/.config/neofetch/config.conf        ||  true
+	$(DIFF) $(HOME)/.config/ranger/rc.conf              home/.config/ranger/rc.conf              ||  true
+	$(DIFF) $(HOME)/.config/screengrab/screengrab.conf  home/.config/screengrab/screengrab.conf  ||  true
+	$(DIFF) $(HOME)/.fonts.conf                         home/.fonts.conf                         ||  true
+	$(DIFF) $(HOME)/.mpdconf                            home/.mpdconf                            ||  true
+	$(DIFF) $(HOME)/.newsboat/config                    home/.newsboat/config                    ||  true
+	$(DIFF) $(HOME)/.profile                            home/.profile                            ||  true
+	$(DIFF) $(HOME)/.tmux.conf                          home/.tmux.conf                          ||  true
+	$(DIFF) $(HOME)/.xbindkeysrc                        home/.xbindkeysrc                        ||  true
+	$(DIFF) $(HOME)/lib/login_aliases.sh                home/lib/login_aliases.sh                ||  true
+	$(DIFF) $(HOME)/lib/login_functions.sh              home/lib/login_functions.sh              ||  true
+	$(DIFF) $(HOME)/lib/login_variables.sh              home/lib/login_variables.sh              ||  true
+	$(DIFF) $(HOME)/lib/login_variables_dpi_high.sh     home/lib/login_variables_dpi_high.sh     ||  true
+	$(DIFF) $(HOME)/lib/login_variables_dpi_norm.sh     home/lib/login_variables_dpi_norm.sh     ||  true
 
 clean:
 	rm -rf ./debfiles
