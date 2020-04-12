@@ -1,6 +1,6 @@
 [Added Associations]
 video/webm=mpv.desktop;
-image/png=eom.desktop;
+image/png=eom.desktop;sxiv.desktop;
 image/jpeg=eom.desktop;sxiv.desktop;
 application/pdf=atril.desktop;
 text/plain=gvim.desktop;
@@ -18,3 +18,4 @@ video/quicktime=mpv.desktop;
 text/plain=gvim.desktop
 image/jpeg=sxiv.desktop
 application/illustrator=gimp.desktop
+image/png=sxiv.desktop
