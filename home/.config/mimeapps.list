@@ -1,7 +1,7 @@
 [Added Associations]
 video/webm=mpv.desktop;
 image/png=eom.desktop;
-image/jpeg=eom.desktop;
+image/jpeg=eom.desktop;sxiv.desktop;
 application/pdf=atril.desktop;
 text/plain=gvim.desktop;
 text/x-ocaml=gvim.desktop;
@@ -16,5 +16,5 @@ video/quicktime=mpv.desktop;
 
 [Default Applications]
 text/plain=gvim.desktop
-image/jpeg=eog.desktop
+image/jpeg=sxiv.desktop
 application/illustrator=gimp.desktop
