@@ -1,6 +1,5 @@
 MAKEFLAGS := --no-builtin-rules
 
-DIFF := diff --color=always
 DEPS := $(wildcard deps/*)
 
 .PHONY: \
@@ -127,24 +126,9 @@ endef
 $(foreach d,$(DEPS),$(eval $(call GEN_DEP_RULE,$(d))))
 
 diff:
-	$(DIFF) $(HOME)/.Rprofile                           home/.Rprofile                           ||  true
-	$(DIFF) $(HOME)/.compton.conf                       home/.compton.conf                       ||  true
-	$(DIFF) $(HOME)/.config/dunst/dunstrc               home/.config/dunst/dunstrc               ||  true
-	$(DIFF) $(HOME)/.config/mimeapps.list               home/.config/mimeapps.list               ||  true
-	$(DIFF) $(HOME)/.config/neofetch/config.conf        home/.config/neofetch/config.conf        ||  true
-	$(DIFF) $(HOME)/.config/ranger/rc.conf              home/.config/ranger/rc.conf              ||  true
-	$(DIFF) $(HOME)/.config/screengrab/screengrab.conf  home/.config/screengrab/screengrab.conf  ||  true
-	$(DIFF) $(HOME)/.fonts.conf                         home/.fonts.conf                         ||  true
-	$(DIFF) $(HOME)/.mpdconf                            home/.mpdconf                            ||  true
-	$(DIFF) $(HOME)/.newsboat/config                    home/.newsboat/config                    ||  true
-	$(DIFF) $(HOME)/.profile                            home/.profile                            ||  true
-	$(DIFF) $(HOME)/.tmux.conf                          home/.tmux.conf                          ||  true
-	$(DIFF) $(HOME)/.xbindkeysrc                        home/.xbindkeysrc                        ||  true
-	$(DIFF) $(HOME)/lib/login_aliases.sh                home/lib/login_aliases.sh                ||  true
-	$(DIFF) $(HOME)/lib/login_functions.sh              home/lib/login_functions.sh              ||  true
-	$(DIFF) $(HOME)/lib/login_variables.sh              home/lib/login_variables.sh              ||  true
-	$(DIFF) $(HOME)/lib/login_variables_dpi_high.sh     home/lib/login_variables_dpi_high.sh     ||  true
-	$(DIFF) $(HOME)/lib/login_variables_dpi_norm.sh     home/lib/login_variables_dpi_norm.sh     ||  true
+	find home -type f -print0 \
+	| sed -z 's/^home\///g' \
+	| xargs -0 -I% sh -c 'echo %; diff --color=always ~/% home/%'
 
 clean:
 	rm -rf ./debfiles
