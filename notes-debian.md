@@ -3,9 +3,15 @@ Multiarch
 
 https://wiki.debian.org/Multiarch/HOWTO
 
+### add
 	dpkg --add-architecture i386
 	apt update
 	apt install $PKG_NAME:i386
+
+### remove
+        apt remove $(dpkg --get-selections | awk '/i386/ {print $1}' | xargs)
+        dpkg --remove-architecture i386
+        apt update
 
 Backports
 ---------
