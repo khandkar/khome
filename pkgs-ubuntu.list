@@ -305,3 +305,7 @@ ifuse  # Mount iPhone
 valgrind
 
 cargo
+
+# TeX / LaTeX
+texlive-full
+texinfo
