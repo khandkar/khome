@@ -313,3 +313,7 @@ texinfo
 # scons build systems, to build DOOM-3
 scons
 scons-doc
+
+# tool for analyzing the complexity of C program functions
+complexity
+complexity-doc
