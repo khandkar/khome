@@ -309,3 +309,7 @@ cargo
 # TeX / LaTeX
 texlive-full
 texinfo
+
+# scons build systems, to build DOOM-3
+scons
+scons-doc
