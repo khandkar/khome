@@ -8,9 +8,10 @@ git-cola
 htop
 jq
 macvim
-mono
+#mono
 neofetch
 nmap
+nnn
 parallel
 ranger
 sxiv
