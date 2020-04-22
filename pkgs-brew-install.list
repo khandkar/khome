@@ -1,6 +1,11 @@
 #
+
+# GNU versions of basic tools
 coreutils
+diffutils
 grep
+gnu-sed
+
 dict
 encfs
 golang

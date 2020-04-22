@@ -2,6 +2,14 @@ MAKEFLAGS := --no-builtin-rules
 
 DEPS := $(wildcard deps/*)
 
+ifeq ($(shell uname),Darwin)
+	SED := gsed
+	DIFF := $(shell gls -t1 /usr/local/Cellar/diffutils/*/bin/diff | head -1)
+else
+	SED  := sed
+	DIFF := diff
+endif
+
 .PHONY: \
     default \
     clean \
@@ -129,13 +137,13 @@ $(foreach d,$(DEPS),$(eval $(call GEN_DEP_RULE,$(d))))
 
 diff:
 	find home -type f -print0 \
-	| sed -z 's/^home\///g' \
-	| xargs -0 -I% sh -c 'echo %; diff --color=always ~/% home/%'
+	| $(SED) -z 's/^home\///g' \
+	| xargs -0 -I% sh -c 'echo %; $(DIFF) --color=always ~/% home/%'
 
 pull:
 	find home -type f -print0 \
-	| sed -z 's/^home\///g' \
-	| xargs -0 -I% sh -c 'diff -q ~/% home/% > /dev/null || cp ~/% home/%'
+	| $(SED) -z 's/^home\///g' \
+	| xargs -0 -I% sh -c '$(DIFF) -q ~/% home/% > /dev/null || cp ~/% home/%'
 
 clean:
 	rm -rf ./debfiles
