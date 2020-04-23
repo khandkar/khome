@@ -137,7 +137,7 @@
     Mod4 + e
 
 # Edit specific files
-"gvim ~/TODO.md"
+"gvim ~/Documents/TODO.md"
     Mod4 + t
 "gvim ~/Documents/ideas.md"
     Mod4 + i
