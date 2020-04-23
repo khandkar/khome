@@ -2,7 +2,7 @@
 video/webm=mpv.desktop;
 image/png=eom.desktop;sxiv.desktop;
 image/jpeg=eom.desktop;sxiv.desktop;
-application/pdf=atril.desktop;
+application/pdf=zathura-pdf-poppler.desktop;mupdf.desktop;atril.desktop;
 text/plain=gvim.desktop;
 text/x-ocaml=gvim.desktop;
 application/octet-stream=gvim.desktop;
@@ -19,3 +19,4 @@ text/plain=gvim.desktop
 image/jpeg=sxiv.desktop
 application/illustrator=gimp.desktop
 image/png=sxiv.desktop
+application/pdf=mupdf.desktop
