@@ -17,5 +17,8 @@ mkdir -p "$NQDIR"
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$HOME/.dotnet
 
+# Rust / cargo
+export PATH=$PATH:$HOME/.cargo/bin
+
 # DPI
 . "$HOME/lib/login_variables_dpi.sh"

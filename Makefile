@@ -21,6 +21,7 @@ endif
     mpdconf \
     pkgs_brew_cask_install \
     pkgs_brew_install \
+    pkgs_cargo \
     pkgs_deb_install \
     pkgs_deb_purge \
     pkgs_debian \
@@ -83,6 +84,13 @@ pkgs_ubuntu_debfiles: list pkgs-ubuntu-debfiles.list
 #
 pkgs_pip:
 	sudo pip3 install $(shell ./list pkgs-pip.list)
+
+#
+# Rust (cargo)
+#
+
+pkgs_cargo: list pkgs-cargo.list
+	cargo install $(shell ./list pkgs-cargo.list)
 
 #
 # Homebrew/Mac
