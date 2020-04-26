@@ -327,7 +327,7 @@ weather() {
         '') _weather_location="$WEATHER_LOCATION";;
          *) _weather_location="$1"
     esac
-    curl "http://wttr.in/$_weather_location"
+    curl "http://wttr.in/$_weather_location?format=v2"
 }
 
 bt_devs_paired() {
