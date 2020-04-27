@@ -3,6 +3,7 @@
 # GNU versions of basic tools
 coreutils
 diffutils
+gawk
 grep
 gnu-sed
 
