@@ -26,7 +26,8 @@ endif
     pkgs_deb_purge \
     pkgs_debian \
     pkgs_mac \
-    pkgs_pip \
+    pkgs_pip_install \
+    pkgs_pip_upgrade \
     pkgs_snap_classic \
     pkgs_snap_strict
 
@@ -82,8 +83,11 @@ pkgs_ubuntu_debfiles: list pkgs-ubuntu-debfiles.list
 #
 # PIP
 #
-pkgs_pip:
-	sudo pip3 install $(shell ./list pkgs-pip.list)
+pkgs_pip_install:
+	pip3 install --user $(shell ./list pkgs-pip.list)
+
+pkgs_pip_upgrade:
+	pip3 install --user --upgrade $(shell ./list pkgs-pip.list)
 
 #
 # Rust (cargo)
