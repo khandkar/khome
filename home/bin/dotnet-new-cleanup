@@ -1,0 +1,50 @@
+#! /bin/sh
+
+BOM='^\xef\xbb\xbf'
+
+case "`uname`" in
+    Darwin)
+        _sed=gsed;
+        _grep=ggrep;;
+    *)
+        _sed=sed;
+        _grep=grep;;
+esac
+
+case "$1" in
+    '') _dir=.;;
+     *) _dir="$1";;
+esac
+
+_find() {
+    _pattern="$1"
+    LC_ALL=C "$_grep" \
+        --color=never \
+        -rIcP \
+        --exclude-dir=.git \
+        "$_pattern" "$_dir" \
+    | awk -F: '$2 {print $1}'
+}
+
+_delete() {
+    _pattern="$1"
+    while read _file
+    do
+        tmp="`mktemp`"
+        LC_ALL=C "$_sed" "s/$_pattern//" "$_file" > "$tmp"
+        mv "$tmp" "$_file"
+    done
+}
+
+
+echo 'BOM:'
+echo '----'
+_find "$BOM"
+_find "$BOM" | _delete "$BOM"
+
+echo ''
+
+echo 'Trailing carriage return:'
+echo '-------------------------'
+_find '\r'
+_find '\r' | _delete '\r'
