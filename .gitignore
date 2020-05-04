@@ -1,3 +1,8 @@
+#
+
 bin/
+# TODO: Special-case negation feels kludgie - think of something cleaner.
+!home/bin
+
 deps/*/data
 debfiles/
