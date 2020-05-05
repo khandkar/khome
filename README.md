@@ -95,6 +95,19 @@ Software
 
 - Desktop search:
     - [doodle](https://grothoff.org/christian/doodle/)
+- Email
+    - IMAP
+        - [imapsync](https://imapsync.lamiral.info/)
+        - [isync/mbsync](http://isync.sourceforge.net/)
+        - [offlineimap](http://offlineimap.org/)
+    - Maildir
+        - [syncmaildir](ttp://syncmaildir.sourceforge.net)
+- Wayland (if I ever decide to use it)
+    - notifications
+        - https://github.com/emersion/mako
+    - window manager:
+        - https://swaywm.org/
+        - https://github.com/swaywm/sway
 
 Reading list
 ------------
