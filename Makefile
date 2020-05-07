@@ -49,6 +49,7 @@ home: mpdconf compiled
 	@cp       home/.Rprofile     $(HOME)/
 	@cp       home/.tmux.conf    $(HOME)/
 	@cp       home/.xbindkeysrc  $(HOME)/
+	@cp  -Rp  home/.Mathematica/ $(HOME)/
 
 mpdconf:
 	@mkdir -p ~/Archives/Audio
