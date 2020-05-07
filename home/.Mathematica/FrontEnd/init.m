@@ -1,5 +1,5 @@
 SetOptions[$FrontEnd, 
-NotebookBrowseDirectory->"/home/siraaj/Documents/Wolfram Mathematica",
+NotebookBrowseDirectory->"~/Projects/priv/mathematica-notebooks",
 NotebookPath->{
   FrontEnd`FileName[{$UserBaseDirectory, "Autoload", 
     Blank[], "FrontEnd", "Palettes"}], 
