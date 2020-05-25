@@ -36,15 +36,21 @@ _delete() {
     done
 }
 
-
 echo 'BOM:'
 echo '----'
 _find "$BOM"
-_find "$BOM" | _delete "$BOM"
 
 echo ''
 
 echo 'Trailing carriage return:'
 echo '-------------------------'
 _find '\r'
-_find '\r' | _delete '\r'
+
+case "$2" in
+    -delete)
+        _find '\r'   | _delete '\r'
+        _find "$BOM" | _delete "$BOM"
+         ;;
+     *)
+         :;;
+esac
