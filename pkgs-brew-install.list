@@ -9,7 +9,7 @@ gnu-sed
 
 dict
 encfs
-golang
+go
 graphviz
 git-cola
 htop
