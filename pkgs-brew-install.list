@@ -23,6 +23,7 @@ nnn
 parallel
 r
 ranger
+shellcheck
 sox
 sxiv
 tig
