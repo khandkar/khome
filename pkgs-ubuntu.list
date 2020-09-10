@@ -321,3 +321,8 @@ scons-doc
 # tool for analyzing the complexity of C program functions
 complexity
 complexity-doc
+
+# wine
+winetricks
+wine32
+wine64
