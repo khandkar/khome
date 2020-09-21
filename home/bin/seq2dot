@@ -43,7 +43,7 @@ END {
         dst = sd[2]
         m = nlinks[src]
         n = nlinks_to[src, dst]
-        penwidth = num_scale(n, m, 1, 9)
+        penwidth = num_scale(n, m, 1, 5)
         color = sprintf("/orrd9/%d", num_scale(n, m, 2, 9))
         label = sprintf("%s %.2f%%", src, (n / m) * 100)
         printf \
