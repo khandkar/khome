@@ -4,17 +4,39 @@
 # highlighting frequencies of pairings.
 #
 
-BEGIN {print "digraph {"}
-
 {
-    prev = prev ? prev : "--"
     curr = $0
+}
+
+NR == 1 {
+    init = curr
+}
+
+NR > 1 {
     ++nlinks[prev]
     ++nlinks_to[prev, curr]
+}
+
+{
     prev = curr
 }
 
 END {
+    final = curr
+    print "digraph {"
+    if (init == final) {
+        printf \
+            "\"%s\" [penwidth=10, style=filled, fillcolor=tomato    , fontcolor=white, color=yellowgreen];\n", \
+                init
+    } else {
+        printf \
+            "\"%s\" [penwidth=0, style=filled, fillcolor=yellowgreen, fontcolor=white];\n", \
+            init
+        printf \
+            "\"%s\" [penwidth=0, style=filled, fillcolor=tomato     , fontcolor=white];\n", \
+            final
+    }
+
     for (src_dst in nlinks_to) {
         split(src_dst, sd, SUBSEP);
         src = sd[1]
