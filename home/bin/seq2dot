@@ -8,7 +8,7 @@ BEGIN {print "digraph {"}
 
 {
     prev = prev ? prev : "--"
-    curr = $1
+    curr = $0
     ++nlinks[prev]
     ++nlinks_to[prev, curr]
     prev = curr
