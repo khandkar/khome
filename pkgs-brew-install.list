@@ -9,7 +9,9 @@ gnu-sed
 
 bat
 dict
+dos2unix
 encfs
+gh
 go
 graphviz
 git-cola
