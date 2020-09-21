@@ -1,0 +1,44 @@
+#! /usr/bin/awk -f
+#
+# Graph a sequence of lines as prev->next relationships,
+# highlighting frequencies of pairings.
+#
+
+BEGIN {print "digraph {"}
+
+{
+    prev = prev ? prev : "--"
+    curr = $1
+    ++nlinks[prev]
+    ++nlinks_to[prev, curr]
+    prev = curr
+}
+
+END {
+    for (src_dst in nlinks_to) {
+        split(src_dst, sd, SUBSEP);
+        src = sd[1]
+        dst = sd[2]
+        m = nlinks[src]
+        n = nlinks_to[src, dst]
+        penwidth = num_scale(n, m, 1, 9)
+        color = sprintf("/orrd9/%d", num_scale(n, m, 2, 9))
+        label = sprintf("%s %.2f%%", src, (n / m) * 100)
+        printf \
+            "\"%s\" -> \"%s\" \
+                [ label=\"%s\"\
+                , fontname=monospace \
+                , fontsize=8 \
+                , penwidth=%d \
+                , color=\"%s\" \
+                , dir=both \
+                , arrowtail=odot \
+                ];\n", \
+            src, dst, label, penwidth, color;
+    }
+    print "}"
+}
+
+function num_scale(src_cur, src_max, dst_min, dst_max) {
+    return dst_min + ((src_cur * (dst_max - dst_min)) / src_max)
+}
