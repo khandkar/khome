@@ -79,6 +79,7 @@ exfat-utils  # exFAT filesystem support
 linux-doc    # Kernel docs. Found it with: apt-file search power_supply_class.txt
 locales-all
 figlet
+gimp
 
 # Screenshoting tools
 screengrab
