@@ -18,7 +18,7 @@ DOTNET_ROOT_path=$(which dotnet)
 DOTNET_ROOT_realpath=$(realpath "$DOTNET_ROOT_path")
 DOTNET_ROOT_dirname=$(dirname "$DOTNET_ROOT_realpath")
 export DOTNET_ROOT="$DOTNET_ROOT_dirname"
-export PATH=$PATH:$HOME/.dotnet
+export PATH=$PATH:$HOME/.dotnet/tools
 
 # Rust / cargo
 export PATH=$PATH:$HOME/.cargo/bin
