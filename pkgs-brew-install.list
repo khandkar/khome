@@ -12,6 +12,8 @@ dict
 dos2unix
 encfs
 gh
+gnuplot
+feedgnuplot
 go
 graphviz
 git-cola
