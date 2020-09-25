@@ -14,7 +14,10 @@ export NQDIR="$HOME/var/run/nq"
 mkdir -p "$NQDIR"
 
 # .Net Core
-export DOTNET_ROOT=$HOME/.dotnet
+DOTNET_ROOT_path=$(which dotnet)
+DOTNET_ROOT_realpath=$(realpath "$DOTNET_ROOT_path")
+DOTNET_ROOT_dirname=$(dirname "$DOTNET_ROOT_realpath")
+export DOTNET_ROOT="$DOTNET_ROOT_dirname"
 export PATH=$PATH:$HOME/.dotnet
 
 # Rust / cargo
