@@ -80,6 +80,7 @@ linux-doc    # Kernel docs. Found it with: apt-file search power_supply_class.tx
 locales-all
 figlet
 gimp
+dos2unix
 
 # Screenshoting tools
 screengrab
