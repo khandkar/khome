@@ -139,7 +139,7 @@
 # Edit specific files
 "cd ~/Documents/TODO && gvim -c NERDTreeFind TODO.md"
     Mod4 + t
-"gvim ~/Documents/ideas.md"
+"cd ~/Documents/ideas && gvim ideas.md"
     Mod4 + i
 "cd ~/Documents/drafts && gvim drafts.md"
     Mod4 + d
