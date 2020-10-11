@@ -9,3 +9,4 @@
 - [ ] Track oh-my-zsh install recipe as dep
 - [ ] fzf versions of dmenu-using multimedia launchers (for Mac compatibility)
 - [ ] Update bin location from ~/bin to /usr/local/bin for suckless tools (in DPI config scripts)
+- [ ] Unify package lists as an SSV file - row per pkg, column per platform
