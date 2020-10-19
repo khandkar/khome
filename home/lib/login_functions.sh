@@ -294,9 +294,11 @@ $(date '+%F %A')
 Morning report
 --------------
 
-### Previous
+### Prev
 
-### Current
+### Curr
+
+### Next
 
 ### Blockers
 
