@@ -45,11 +45,11 @@ home: mpdconf compiled
 	| xargs -0 -I% cp -Rp % ~
 
 mpdconf:
-	@mkdir -p ~/Archives/Audio
-	@mkdir -p ~/var/lib/mpd/playlists
-	@mkdir -p ~/var/log/mpd
-	@mkdir -p ~/var/run/mpd
-	@cp home/.mpdconf $(HOME)/
+	mkdir -p ~/Archives/Audio
+	mkdir -p ~/var/lib/mpd/playlists
+	mkdir -p ~/var/log/mpd
+	mkdir -p ~/var/run/mpd
+	cp home/.mpdconf $(HOME)/
 
 compiled:
 	mkdir -p bin
@@ -57,7 +57,7 @@ compiled:
 	mv src/clockloop bin/
 
 font_cache:
-	@fc-cache -fv
+	fc-cache -fv
 
 #
 # Golang
