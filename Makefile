@@ -38,7 +38,7 @@ default:
 	@exit 1
 
 home: mpdconf compiled
-	@cp  -Rp       bin           $(HOME)/
+	cp -Rp bin $(HOME)/
 	# Limit depth because directories are copied recursively:
 	find home -maxdepth 1 -print0 \
 	| grep -zv '^home$$' \
