@@ -39,17 +39,10 @@ default:
 
 home: mpdconf compiled
 	@cp  -Rp       bin           $(HOME)/
-	@cp  -Rp  home/bin           $(HOME)/
-	@cp  -Rp  home/lib           $(HOME)/
-	@cp       home/.compton.conf $(HOME)/
-	@cp  -Rp  home/.config/      $(HOME)/
-	@cp  -Rp  home/.newsboat/    $(HOME)/
-	@cp       home/.profile      $(HOME)/
-	@cp       home/.fonts.conf   $(HOME)/
-	@cp       home/.Rprofile     $(HOME)/
-	@cp       home/.tmux.conf    $(HOME)/
-	@cp       home/.xbindkeysrc  $(HOME)/
-	@cp  -Rp  home/.Mathematica/ $(HOME)/
+	# Limit depth because directories are copied recursively:
+	find home -maxdepth 1 -print0 \
+	| grep -zv '^home$$' \
+	| xargs -0 -I% cp -Rp % ~
 
 mpdconf:
 	@mkdir -p ~/Archives/Audio
