@@ -6,7 +6,10 @@ htop
 zsh
 zsh-syntax-highlighting
 tig
+cmake        # added to build neovim
+cmake-doc
 make
+libtool-bin  # added to build neovim
 apt-file
 jq
 curl
