@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# https://wiki.archlinux.org/index.php/NetworkManager#nm-applet
+
+nm-applet    2>&1 > /dev/null &
+stalonetray  2>&1 > /dev/null
+
+# TODO: trap keyboard interrupt
+killall nm-applet
