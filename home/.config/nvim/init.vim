@@ -5,3 +5,4 @@ set background=dark
 colorscheme zenburn
 let &colorcolumn=join(range(80,80),",")
 match  ErrorMsg '\s\+$'  " Trailing whitespace
+set termguicolors
