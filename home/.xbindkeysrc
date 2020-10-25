@@ -145,6 +145,8 @@
     Mod4 + d
 "cd ~/Documents/bookmarks && gvim bookmarks.md"
     Mod4 + b
+"cd ~/Documents/quotations && gvim quotations.md"
+    Mod4 + q
 
 # File browser
 "pcmanfm"
