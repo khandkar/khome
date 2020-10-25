@@ -84,7 +84,7 @@ locales-all
 figlet
 gimp
 dos2unix
-xsel
+xsel  # Pipe to/from system clipboard
 
 # Screenshoting tools
 screengrab
