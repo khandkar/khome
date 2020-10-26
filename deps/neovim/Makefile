@@ -1,3 +1,9 @@
+ifeq ($(shell uname),Darwin)
+	DEPS := brew install ninja libtool automake cmake pkg-config gettext
+else
+	DEPS := sudo apt install cmake libtool-bin
+endif
+
 .PHONY: all
 all: deps
 	$(MAKE) clone
@@ -5,14 +11,12 @@ all: deps
 
 .PHONY: deps
 deps:
-	sudo apt install \
-		cmake \
-		libtool-bin
+	$(DEPS)
 
 .PHONY: clone
 clone:
 	mkdir -p data
-	cd data && git clone https://github.com/neovim/neovim.git
+	cd data && git clone https://github.com/neovim/neovim.git || true
 
 .PHONY: build
 build:
