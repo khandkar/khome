@@ -1,3 +1,16 @@
+Package versions
+----------------
+
+### see available
+
+    apt policy dotnet-sdk-3.1 # (since Buster)
+    apt-cache policy dotnet-sdk-3.1
+
+### install specific
+
+    apt install dotnet-sdk-3.1=3.1.100-1
+
+
 Multiarch
 ---------
 
