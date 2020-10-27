@@ -10,4 +10,4 @@ sudo apt install ./data/"$PKG"
 sudo apt update
 sudo apt install apt-transport-https
 sudo apt update
-sudo apt install dotnet-sdk-3.1
+sudo apt install dotnet-sdk-3.1=3.1.100-1
