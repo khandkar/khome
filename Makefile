@@ -3,9 +3,11 @@ MAKEFLAGS := --no-builtin-rules
 DEPS := $(wildcard deps/*)
 
 ifeq ($(shell uname),Darwin)
+	GREP := ggrep
 	SED := gsed
 	DIFF := $(shell gls -t1 /usr/local/Cellar/diffutils/*/bin/diff | head -1)
 else
+	GREP := grep
 	SED  := sed
 	DIFF := diff
 endif
@@ -41,7 +43,7 @@ home: mpdconf compiled
 	cp -Rp bin $(HOME)/
 	# Limit depth because directories are copied recursively:
 	find home -maxdepth 1 -print0 \
-	| grep -zv '^home$$' \
+	| $(GREP) -zv '^home$$' \
 	| xargs -0 -I% cp -Rp % ~
 
 mpdconf:
