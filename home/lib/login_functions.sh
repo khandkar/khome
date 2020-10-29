@@ -244,14 +244,14 @@ yt() {
     local _yt_dir
 
     _yt_uri="$1"
-    _yt_id=$(youtube-dl --get-id "$_yt_uri")
-    _yt_title=$(youtube-dl --get-title "$_yt_uri")
+    _yt_id=$(youtube-dlc --get-id "$_yt_uri")
+    _yt_title=$(youtube-dlc --get-title "$_yt_uri")
     _yt_dir="${DIR_YOUTUBE}/individual-videos/${_yt_title}--${_yt_id}"
 
     mkdir -p "$_yt_dir"
     cd "$_yt_dir" || kill -INT $$
     echo "$_yt_uri" > 'uri'
-    youtube-dl -c --write-description --write-info-json "$_yt_uri"
+    youtube-dlc -c --write-description --write-info-json "$_yt_uri"
 }
 
 gh_fetch_repos() {
