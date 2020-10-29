@@ -85,6 +85,7 @@ figlet
 gimp
 dos2unix
 xsel  # Pipe to/from system clipboard
+streamripper
 
 # Screenshoting tools
 screengrab
