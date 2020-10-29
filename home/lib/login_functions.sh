@@ -237,21 +237,29 @@ howto() {
     cat "$(find  ~/Archives/Documents/HOWTOs -mindepth 1 -maxdepth 1 | sort | fzf)"
 }
 
-yt() {
-    local _yt_uri
-    local _yt_id
-    local _yt_title
-    local _yt_dir
+_yt() {
+    local -r base_dir="$1"
+    local -r opts="$2"
+    local -r uri="$3"
 
-    _yt_uri="$1"
-    _yt_id=$(youtube-dlc --get-id "$_yt_uri")
-    _yt_title=$(youtube-dlc --get-title "$_yt_uri")
-    _yt_dir="${DIR_YOUTUBE}/individual-videos/${_yt_title}--${_yt_id}"
+    local -r id=$(youtube-dlc --get-id "$uri")
+    local -r title=$(youtube-dlc --get-title "$uri" | sed 's/[^A-Za-z0-9._-]/_/g')
+    local -r dir="${base_dir}/${title}--${id}"
 
-    mkdir -p "$_yt_dir"
-    cd "$_yt_dir" || kill -INT $$
-    echo "$_yt_uri" > 'uri'
-    youtube-dlc -c --write-description --write-info-json "$_yt_uri"
+    mkdir -p "$dir"
+    cd "$dir" || kill -INT $$
+    echo "$uri" > 'uri'
+    youtube-dlc $opts -c --write-description --write-info-json "$uri"
+}
+
+yt_audio() {
+    local -r uri="$1"
+    _yt "${DIR_YOUTUBE_AUDIO}/individual" '-f 140' "$uri"
+}
+
+yt_video() {
+    local -r uri="$1"
+    _yt "${DIR_YOUTUBE_VIDEO}/individual" "$uri"
 }
 
 gh_fetch_repos() {
