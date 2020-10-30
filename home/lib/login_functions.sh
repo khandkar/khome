@@ -437,6 +437,49 @@ motd() {
         ;;
     esac
 
+    echo
+
+    (ifconfig; iwconfig) 2> /dev/null \
+    | awk '
+        /^[^ ]/ {
+            device = $1
+            sub(":$", "", device)
+            if ($4 ~ "ESSID:") {
+                _essid = $4
+                sub("^ESSID:\"", "", _essid)
+                sub("\"$", "", _essid)
+                essid[device] = _essid
+            }
+            next
+        }
+
+        /^ / && $1 == "inet" {
+            address[device] = $2
+            next
+        }
+
+        /^ +Link Quality=[0-9]+\/[0-9]+ +Signal level=/ {
+            split($2, lq_parts_eq, "=")
+            split(lq_parts_eq[2], lq_parts_slash, "/")
+            cur = lq_parts_slash[1]
+            max = lq_parts_slash[2]
+            link[device] = cur / max * 100
+            next
+        }
+
+        END {
+            for (device in address)
+                if (device != "lo") {
+                    l = link[device]
+                    e = essid[device]
+                    l = l ? l : "--"
+                    e = e ? e : "--"
+                    print device, address[device], e, l
+                }
+        }
+        ' \
+    | column -t
+
     #echo
     # TODO: netstat summary
     # WARN: ensure: $USER ALL=(ALL) NOPASSWD:/bin/netstat
