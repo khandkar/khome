@@ -1,6 +1,6 @@
 . $HOME/lib/login_variables.private.sh  # Personal data variables
 
-unalias d  # Defined by oh-my-zsh, but I want it for dict/fzf function.
+unalias d 2> /dev/null || true  # Defined by oh-my-zsh, but I want it for dict/fzf function.
 
 for file in $HOME/lib/login_*.sh
 do
@@ -16,3 +16,5 @@ fi
 
 # https://rustup.rs/
 export PATH="$HOME/.cargo/bin:$PATH"
+
+motd

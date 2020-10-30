@@ -364,3 +364,81 @@ run() {
     notify-send -u "$urgency" "Job done: $code" "$(cat $stderr)"
     rm "$stderr"
 }
+
+bar_gauge() {
+    local -r width="$1"
+
+    awk -v width="$width" '
+        {
+            used  = $1
+            total = $2
+
+            u = num_scale(used, total, 1, width)
+
+            printf "["
+            for (i=1; i<=width; i++) {
+                c = i <= u ? "|" : " "
+                printf "%c", c
+            }
+            printf "]\n"
+        }
+
+        function num_scale(src_cur, src_max, dst_min, dst_max) {
+            return dst_min + ((src_cur * (dst_max - dst_min)) / src_max)
+        }
+    '
+}
+
+motd() {
+    uname -srvmo
+    hostname | figlet
+    uptime
+
+    echo
+
+    printf 'mem  '
+    free \
+    | awk '$1 == "Mem:" {total=$2; used=$3; print used, total}' \
+    | bar_gauge 73
+
+    printf 'disk '
+    df ~ \
+    | awk 'NR == 2 {used=$3; avail=$4; total=used+avail; print used, total}' \
+    | bar_gauge 73
+
+    case "$(uname)" in
+        'Linux')
+            printf 'batt '
+            upower --dump \
+            | awk '
+                /^Device:[ \t]+/ {
+                    device["path"] = $2
+                    next
+                }
+
+                /  battery/ && device["path"] {
+                    device["is_battery"] = 1
+                    next
+                }
+
+                /    percentage:/ && device["is_battery"] {
+                    device["battery_percentage"] = $2
+                    sub("%$", "", device["battery_percentage"])
+                    next
+                }
+
+                /^$/ {
+                    if (device["is_battery"] && device["path"] == "/org/freedesktop/UPower/devices/DisplayDevice")
+                        print device["battery_percentage"], 100
+                    delete device
+                }
+            ' \
+            | bar_gauge 73
+        ;;
+    esac
+
+    #echo
+    # TODO: netstat summary
+    # WARN: ensure: $USER ALL=(ALL) NOPASSWD:/bin/netstat
+    #sudo -n netstat -tulpn | awk '/^udp/ && !first++ {printf "\n"} 1'
+}
