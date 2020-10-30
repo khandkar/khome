@@ -399,6 +399,10 @@ motd() {
 
     echo
 
+    printf 'tmux sessions: %d\n' "$(tmux ls | wc -l)"
+
+    echo
+
     printf 'mem  '
     free \
     | awk '$1 == "Mem:" {total=$2; used=$3; print used, total}' \
