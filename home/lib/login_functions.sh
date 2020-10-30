@@ -267,9 +267,10 @@ gh_fetch_repos() {
 }
 
 gh_clone() {
-    gh_user_type="$1"
-    gh_user_name="$2"
-    gh_dir="${DIR_GITHUB}/${gh_user_name}"
+    local -r gh_user_type="$1"
+    local -r gh_user_name="$2"
+
+    local -r gh_dir="${DIR_GITHUB}/${gh_user_name}"
     mkdir -p "$gh_dir"
     cd "$gh_dir" || kill -INT $$
     gh_fetch_repos "$gh_user_type" "$gh_user_name" \
@@ -317,7 +318,7 @@ EOF
 
 work_log() {
     mkdir -p "$DIR_WORK_LOG"
-    file_work_log_today="${DIR_WORK_LOG}/$(date +%F).md"
+    local -r file_work_log_today="${DIR_WORK_LOG}/$(date +%F).md"
     if [ ! -f "$file_work_log_today" ]
     then
         work_log_template > "$file_work_log_today"
@@ -353,10 +354,12 @@ bt_devs() {
 }
 
 run() {
-    stderr="$(mktemp)"
+    local -r stderr="$(mktemp)"
+
+    local code urgency
+
     $@ 2> >(tee "$stderr")
     code="$?"
-    urgency=''
     case "$code" in
         0) urgency='normal';;
         *) urgency='critical'
