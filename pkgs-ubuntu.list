@@ -182,6 +182,8 @@ xapian-tools  # search with quest
 # To connect to headphones:
 pulseaudio-module-bluetooth
 
+pavucontrol
+
 # dwm build
 libx11-dev
 libxft-dev
