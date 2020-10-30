@@ -21,6 +21,7 @@ Hardware
 - Keyboard:
     - DREVO Tyrfing V2
 - Mice:
+    - Kensington SlimBlade Trackball
     - PICTEC GEPC034AB
     - Apple Mighty Mouse USB (A1152)
 
@@ -30,6 +31,8 @@ Software
 
 - OS:
     - Debian GNU/Linux 10 (Buster)
+    - Ubuntu 18.04
+    - Mac OS X 14
 - Dictionary:
     - `dict`
 - File browsing:
