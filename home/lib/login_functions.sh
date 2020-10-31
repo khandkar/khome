@@ -380,8 +380,8 @@ bar_gauge() {
 
             printf "["
             for (i=1; i<=width; i++) {
-                c = i <= u ? "|" : " "
-                printf "%c", c
+                c = i <= u ? "|" : "-"
+                printf "%s", c
             }
             printf "]\n"
         }
