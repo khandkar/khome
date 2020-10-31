@@ -520,7 +520,7 @@ motd() {
 
     echo "${indent_unit}servers:"
     # WARN: ensure: $USER ALL=(ALL) NOPASSWD:/bin/netstat
-    sudo netstat -tlnp \
+    sudo -n netstat -tlnp \
     | awk 'NR > 2 {print $7}' \
     | awk -F/ '{print $2}' \
     | sort -u \
