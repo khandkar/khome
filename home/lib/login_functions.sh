@@ -399,7 +399,7 @@ motd() {
 
     echo
 
-    printf 'tmux sessions: %d\n' "$(tmux ls | wc -l)"
+    printf 'tmux sessions: %d\n' "$(tmux ls 2> /dev/null | wc -l)"
 
     echo
 
