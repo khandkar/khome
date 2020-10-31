@@ -522,7 +522,9 @@ motd() {
     # WARN: ensure: $USER ALL=(ALL) NOPASSWD:/bin/netstat
     sudo netstat -tlnp \
     | awk 'NR > 2 {print $7}' \
-    | awk -F/ '{printf "%s%s", sep, $2; sep = " "} END {printf "\n"}' \
+    | awk -F/ '{print $2}' \
+    | sort -u \
+    | xargs \
     | column -t \
     | indent "${indent_unit}${indent_unit}"
 }
