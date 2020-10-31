@@ -479,7 +479,7 @@ motd() {
                 if (device != "lo") {
                     l = link[device]
                     e = essid[device]
-                    l = l ? l : "--"
+                    l = l ? sprintf("%.0f%%", l) : "--"
                     e = e ? e : "--"
                     print device, address[device], e, l
                 }
