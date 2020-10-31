@@ -392,26 +392,26 @@ bar_gauge() {
     '
 }
 
-motd() {
-    uname -srvmo
-    hostname | figlet
-    uptime
+motd_mem() {
+    local -r bar_width="$1"
 
-    echo
-
-    printf 'tmux sessions: %d\n' "$(tmux ls 2> /dev/null | wc -l)"
-
-    echo
-
-    printf 'mem  '
+    printf 'mem '
     free \
     | awk '$1 == "Mem:" {total=$2; used=$3; print used, total}' \
-    | bar_gauge 73
+    | bar_gauge "$bar_width"
+}
+
+motd_disk() {
+    local -r bar_width="$1"
 
     printf 'disk '
     df ~ \
     | awk 'NR == 2 {used=$3; avail=$4; total=used+avail; print used, total}' \
-    | bar_gauge 73
+    | bar_gauge "$bar_width"
+}
+
+motd_batt() {
+    local -r bar_width="$1"
 
     case "$(uname)" in
         'Linux')
@@ -440,12 +440,42 @@ motd() {
                     delete device
                 }
             ' \
-            | bar_gauge 73
+            | bar_gauge "$bar_width"
         ;;
     esac
+}
+
+indent() {
+    awk -v unit="$1" '{printf "%s%s\n", unit, $0}'
+}
+
+motd() {
+    local -r bar_width='60'
+    local -r indent_unit='    '
+
+    uname -srvmo
+    hostname | figlet
+    uptime
 
     echo
 
+    printf 'tmux sessions: %d\n' "$(tmux ls 2> /dev/null | wc -l)"
+
+    echo
+
+    echo 'Resources'
+    (
+        motd_mem "$bar_width"
+        motd_disk "$bar_width"
+        motd_batt "$bar_width"
+    ) \
+    | column -t \
+    | indent "$indent_unit"
+
+    echo
+
+    echo 'Network'
+    echo "${indent_unit}interfaces:"
     (ifconfig; iwconfig) 2> /dev/null \
     | awk '
         /^[^ ]/ {
@@ -485,10 +515,14 @@ motd() {
                 }
         }
         ' \
-    | column -t
+    | column -t \
+    | indent "${indent_unit}${indent_unit}"
 
-    #echo
-    # TODO: netstat summary
+    echo "${indent_unit}servers:"
     # WARN: ensure: $USER ALL=(ALL) NOPASSWD:/bin/netstat
-    #sudo -n netstat -tulpn | awk '/^udp/ && !first++ {printf "\n"} 1'
+    sudo netstat -tlnp \
+    | awk 'NR > 2 {print $7}' \
+    | awk -F/ '{printf "%s%s", sep, $2; sep = " "} END {printf "\n"}' \
+    | column -t \
+    | indent "${indent_unit}${indent_unit}"
 }
