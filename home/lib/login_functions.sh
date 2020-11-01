@@ -447,7 +447,7 @@ motd() {
 
     echo
 
-    printf 'tmux: sessions %d, clients: %d\n' \
+    printf 'tmux: sessions %d, clients %d\n' \
         "$(tmux list-sessions 2> /dev/null | wc -l)" \
         "$(tmux list-clients  2> /dev/null | wc -l)"
 
