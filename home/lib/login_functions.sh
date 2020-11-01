@@ -542,7 +542,12 @@ motd() {
     echo
 
     echo 'Loggers'
-    awk '{split($5, prog, "["); print prog[1]}' /var/log/syslog \
+    awk '
+        {
+            split($5, prog, "[")
+            sub(":$", "", prog[1]) # if there were no [], than : will is left behind
+            print prog[1]
+        }' /var/log/syslog \
     | awk '
         {
             n = split($1, path, "/")  # prog may be in path form
