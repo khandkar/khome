@@ -455,7 +455,7 @@ motd() {
     echo
 
     echo 'Network'
-    echo "${indent_unit}interfaces:"
+    echo "${indent_unit}if"
     (ifconfig; iwconfig) 2> /dev/null \
     | awk '
         /^[^ ]/ {
@@ -499,12 +499,32 @@ motd() {
     | indent "${indent_unit}${indent_unit}"
 
     # WARN: ensure: $USER ALL=(ALL) NOPASSWD:/bin/netstat
-    echo "${indent_unit}TCP servers"
+
+    echo "${indent_unit}-->"
+
+    printf '%sUDP: ' "${indent_unit}${indent_unit}"
+    sudo -n netstat -ulnp \
+    | awk 'NR > 2 {print $6}' \
+    | awk -F/ '{print $2}' \
+    | sort -u \
+    | xargs \
+    | column -t
+
+    printf '%sTCP: ' "${indent_unit}${indent_unit}"
     sudo -n netstat -tlnp \
     | awk 'NR > 2 {print $7}' \
     | awk -F/ '{print $2}' \
     | sort -u \
     | xargs \
-    | column -t \
-    | indent "${indent_unit}${indent_unit}"
+    | column -t
+
+    echo "${indent_unit}<->"
+
+    printf '%sTCP: ' "${indent_unit}${indent_unit}"
+    sudo -n netstat -tnp \
+    | awk 'NR > 2 && $6 == "ESTABLISHED" {print $7}' \
+    | awk -F/ '{print $2}' \
+    | sort -u \
+    | xargs \
+    | column -t
 }
