@@ -373,12 +373,13 @@ bar_gauge() {
 
     awk -v width="$width" '
         {
-            used  = $1
-            total = $2
+            cur = $1
+            max = $2
+            lab = $3
 
-            u = num_scale(used, total, 1, width)
+            u = num_scale(cur, max, 1, width)
 
-            printf "["
+            printf "%s%s[", lab, lab ? " " : ""
             for (i=1; i<=width; i++) {
                 c = i <= u ? "|" : "-"
                 printf "%s", c
@@ -392,30 +393,9 @@ bar_gauge() {
     '
 }
 
-motd_mem() {
-    local -r bar_width="$1"
-
-    printf 'mem '
-    free \
-    | awk '$1 == "Mem:" {total=$2; used=$3; print used, total}' \
-    | bar_gauge "$bar_width"
-}
-
-motd_disk() {
-    local -r bar_width="$1"
-
-    printf 'disk '
-    df ~ \
-    | awk 'NR == 2 {used=$3; avail=$4; total=used+avail; print used, total}' \
-    | bar_gauge "$bar_width"
-}
-
 motd_batt() {
-    local -r bar_width="$1"
-
     case "$(uname)" in
         'Linux')
-            printf 'batt '
             upower --dump \
             | awk '
                 /^Device:[ \t]+/ {
@@ -436,11 +416,10 @@ motd_batt() {
 
                 /^$/ {
                     if (device["is_battery"] && device["path"] == "/org/freedesktop/UPower/devices/DisplayDevice")
-                        print device["battery_percentage"], 100
+                        print device["battery_percentage"], 100, "batt"
                     delete device
                 }
-            ' \
-            | bar_gauge "$bar_width"
+            '
         ;;
     esac
 }
@@ -465,10 +444,11 @@ motd() {
 
     echo 'Resources'
     (
-        motd_mem "$bar_width"
-        motd_disk "$bar_width"
-        motd_batt "$bar_width"
+        free | awk '$1 == "Mem:" {print $3, $2, "mem"}'
+        df ~ | awk 'NR == 2 {print $3, $3 + $4, "disk"}'
+        motd_batt
     ) \
+    | bar_gauge "$bar_width" \
     | column -t \
     | indent "$indent_unit"
 
@@ -518,8 +498,8 @@ motd() {
     | column -t \
     | indent "${indent_unit}${indent_unit}"
 
-    echo "${indent_unit}servers:"
     # WARN: ensure: $USER ALL=(ALL) NOPASSWD:/bin/netstat
+    echo "${indent_unit}TCP servers"
     sudo -n netstat -tlnp \
     | awk 'NR > 2 {print $7}' \
     | awk -F/ '{print $2}' \
