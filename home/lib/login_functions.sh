@@ -369,22 +369,31 @@ run() {
 }
 
 bar_gauge() {
-    local -r width="$1"
+    awk "$@" '
+        BEGIN {
+            ch_left  = ch_left  ? ch_left  : "["
+            ch_right = ch_right ? ch_right : "]"
+            ch_blank = ch_blank ? ch_blank : "-"
+            ch_used  = ch_used  ? ch_used  : "|"
+        }
 
-    awk -v width="$width" '
         {
             cur = $1
             max = $2
             lab = $3
 
-            u = num_scale(cur, max, 1, width)
+            cur_scaled = num_scale(cur, max, 1, width)
 
-            printf "%s%s[", lab, lab ? " " : ""
+            printf \
+                "%s%s%s", \
+                lab ? lab         " " : "", \
+                num ? cur "/" max " " : "", \
+                ch_left
             for (i=1; i<=width; i++) {
-                c = i <= u ? "|" : "-"
+                c = i <= cur_scaled ? ch_used : ch_blank
                 printf "%s", c
             }
-            printf "]\n"
+            printf "%s\n", ch_right
         }
 
         function num_scale(src_cur, src_max, dst_min, dst_max) {
@@ -448,7 +457,7 @@ motd() {
         df ~ | awk 'NR == 2 {print $3, $3 + $4, "disk"}'
         motd_batt
     ) \
-    | bar_gauge "$bar_width" \
+    | bar_gauge -v width="$bar_width" \
     | column -t \
     | indent "$indent_unit"
 
@@ -527,4 +536,25 @@ motd() {
     | sort -u \
     | xargs \
     | column -t
+
+    echo
+
+    echo 'Loggers'
+    awk '{split($5, prog, "["); print prog[1]}' /var/log/syslog \
+    | awk '
+        {
+            n = split($1, path, "/")  # prog may be in path form
+            prog = path[n]
+            total++
+            count[prog]++
+        }
+
+        END {
+            for (prog in count)
+                print count[prog], total, prog
+        }' \
+    | sort -n -k 1 -r \
+    | bar_gauge -v width=30 -v num=1 -v ch_left=' ' -v ch_right=' ' -v ch_blank=' ' \
+    | column -t \
+    | indent "${indent_unit}"
 }
