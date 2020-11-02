@@ -420,13 +420,12 @@ flat_top_5() {
             max  = $2
             name = $3
             pct  = cur / max * 100
-            printf "%s%s:%.2f%%", sep, name, pct
-            sep = " "
+            printf "%s%s %.2f%%", sep, name, pct
+            sep = ",  "
         }
 
         END {printf "\n"}
-        ' \
-    | column -t
+        '
 }
 
 motd_batt() {
@@ -473,13 +472,35 @@ motd() {
 
     echo
 
-    printf 'tmux: sessions %d, clients %d\n' \
+    echo 'accounting'
+
+    printf '%stmux\n%ssessions %d, clients %d\n' \
+        "$indent_unit" \
+        "${indent_unit}${indent_unit}" \
         "$(tmux list-sessions 2> /dev/null | wc -l)" \
         "$(tmux list-clients  2> /dev/null | wc -l)"
 
     echo
 
-    echo 'Resources'
+    printf '%sprocs by user\n' "${indent_unit}"
+    ps -eo user \
+    | awk '
+        NR > 1 {
+            count_by_user[$1]++
+            total++
+        }
+
+        END {
+            for (user in count_by_user)
+                print count_by_user[user], total, user
+        }
+        ' \
+    | flat_top_5 \
+    | indent "${indent_unit}${indent_unit}"
+
+    echo
+
+    echo 'resources'
     (
         free | awk '$1 == "Mem:" {print $3, $2, "mem"}'
         df ~ | awk 'NR == 2 {print $3, $3 + $4, "disk"}'
@@ -491,7 +512,29 @@ motd() {
 
     echo
 
-    echo 'Network'
+    printf '%smem by proc\n' "$indent_unit"
+    ps -eo rss,cmd \
+    | awk '
+        NR > 1 {
+            rss = $1
+            cmd = $2
+            n = split(cmd, path, "/")  # _may_ be a path
+            proc = path[n]
+            total += rss
+            by_proc[proc] = rss
+        }
+
+        END {
+            for (proc in by_proc)
+                print by_proc[proc], total, proc
+            }
+        ' \
+        | flat_top_5 \
+        | indent "${indent_unit}${indent_unit}"
+
+    echo
+
+    echo 'net'
     echo "${indent_unit}if"
     (ifconfig; iwconfig) 2> /dev/null \
     | awk '
@@ -564,24 +607,6 @@ motd() {
     | sort -u \
     | xargs \
     | column -t
-
-    echo
-
-    echo 'Process owners (top 5)'
-    ps -eo user \
-    | awk '
-        NR > 1 {
-            count_by_user[$1]++
-            total++
-        }
-
-        END {
-            for (user in count_by_user)
-                print count_by_user[user], total, user
-        }
-        ' \
-    | flat_top_5 \
-    | indent "${indent_unit}"
 }
 
 ssh_invalid_attempts_from() {
