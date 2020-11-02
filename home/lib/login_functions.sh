@@ -549,6 +549,26 @@ motd() {
 
     echo
 
+    echo 'Process owners'
+    ps -eo user \
+    | awk '
+        NR > 1 {
+            count_by_user[$1]++
+            total++
+        }
+
+        END {
+            for (user in count_by_user)
+                print count_by_user[user], total, user
+        }
+        ' \
+    | sort -n -k 1 -r \
+    | bar_gauge -v num=1 -v ch_left=' ' -v ch_right=' ' -v ch_blank=' ' \
+    | column -t \
+    | indent "${indent_unit}"
+
+    echo
+
     echo 'Loggers'
     awk '
         {
