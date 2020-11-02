@@ -389,9 +389,10 @@ bar_gauge() {
             cur_scaled = num_scale(cur, max, 1, width)
 
             printf \
-                "%s%s%s", \
+                "%s%s%s%s", \
                 lab ? lab         " " : "", \
                 num ? cur "/" max " " : "", \
+                pct ? sprintf("%3.0f%% ", cur / max * 100) : "", \
                 ch_left
             for (i=1; i<=width; i++) {
                 c = i <= cur_scaled ? ch_used : ch_blank
@@ -463,7 +464,7 @@ motd() {
         df ~ | awk 'NR == 2 {print $3, $3 + $4, "disk"}'
         motd_batt
     ) \
-    | bar_gauge -v width="$bar_width" \
+    | bar_gauge -v width="$bar_width" -v pct=1 \
     | column -t \
     | indent "$indent_unit"
 
