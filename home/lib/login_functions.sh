@@ -569,7 +569,7 @@ motd() {
 
     echo
 
-    echo 'Loggers'
+    echo 'Loggers (top 5)'
     awk '
         {
             split($5, prog, "[")
@@ -589,6 +589,7 @@ motd() {
                 print count[prog], total, prog
         }' \
     | sort -n -k 1 -r \
+    | head -5 \
     | bar_gauge -v width=30 -v num=1 -v ch_left=' ' -v ch_right=' ' -v ch_blank=' ' \
     | column -t \
     | indent "${indent_unit}"
