@@ -376,6 +376,7 @@ bar_gauge() {
     awk "$@" '
         BEGIN {
             # CLI options
+            width    = width    ? width    : 80
             ch_left  = ch_left  ? ch_left  : "["
             ch_right = ch_right ? ch_right : "]"
             ch_blank = ch_blank ? ch_blank : "-"
@@ -446,7 +447,6 @@ indent() {
 }
 
 motd() {
-    local -r bar_width='60'
     local -r indent_unit='    '
 
     uname -srvmo
@@ -467,7 +467,7 @@ motd() {
         df ~ | awk 'NR == 2 {print $3, $3 + $4, "disk"}'
         motd_batt
     ) \
-    | bar_gauge -v width="$bar_width" -v pct=1 \
+    | bar_gauge -v width=60 -v pct=1 \
     | column -t \
     | indent "$indent_unit"
 
