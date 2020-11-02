@@ -341,16 +341,20 @@ weather() {
     curl "http://wttr.in/$_weather_location?format=v2"
 }
 
+_bt_devs_infos() {
+    # grep's defintion of a line does not include \r, wile awk's does and
+    # which bluetoothctl outputs
+    awk '/^Device +/ {print $2}' \
+    | xargs -I% sh -c 'echo info % | bluetoothctl' \
+    | awk '/^Device |^\t/'
+}
+
 bt_devs_paired() {
-    bluetoothctl -- paired-devices \
-    | awk '{print $2}' \
-    | xargs bluetoothctl -- info
+    echo 'paired-devices' | bluetoothctl | _bt_devs_infos
 }
 
 bt_devs() {
-    bluetoothctl -- devices \
-    | awk '{print $2}' \
-    | xargs bluetoothctl -- info
+    echo 'devices' | bluetoothctl | _bt_devs_infos
 }
 
 run() {
