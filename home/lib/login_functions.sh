@@ -411,6 +411,24 @@ bar_gauge() {
     '
 }
 
+flat_top_5() {
+    sort -n -k 1 -r \
+    | head -5 \
+    | awk '
+        {
+            cur  = $1
+            max  = $2
+            name = $3
+            pct  = cur / max * 100
+            printf "%s%s:%.2f%%", sep, name, pct
+            sep = " "
+        }
+
+        END {printf "\n"}
+        ' \
+    | column -t
+}
+
 motd_batt() {
     case "$(uname)" in
         'Linux')
@@ -549,7 +567,7 @@ motd() {
 
     echo
 
-    echo 'Process owners'
+    echo 'Process owners (top 5)'
     ps -eo user \
     | awk '
         NR > 1 {
@@ -562,9 +580,7 @@ motd() {
                 print count_by_user[user], total, user
         }
         ' \
-    | sort -n -k 1 -r \
-    | bar_gauge -v num=1 -v ch_left=' ' -v ch_right=' ' -v ch_blank=' ' \
-    | column -t \
+    | flat_top_5 \
     | indent "${indent_unit}"
 
     echo
@@ -588,10 +604,7 @@ motd() {
             for (prog in count)
                 print count[prog], total, prog
         }' \
-    | sort -n -k 1 -r \
-    | head -5 \
-    | bar_gauge -v width=30 -v num=1 -v ch_left=' ' -v ch_right=' ' -v ch_blank=' ' \
-    | column -t \
+    | flat_top_5 \
     | indent "${indent_unit}"
 }
 
