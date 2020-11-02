@@ -521,7 +521,7 @@ motd() {
             n = split(cmd, path, "/")  # _may_ be a path
             proc = path[n]
             total += rss
-            by_proc[proc] = rss
+            by_proc[proc] += rss
         }
 
         END {
