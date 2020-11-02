@@ -375,10 +375,13 @@ run() {
 bar_gauge() {
     awk "$@" '
         BEGIN {
+            # CLI options
             ch_left  = ch_left  ? ch_left  : "["
             ch_right = ch_right ? ch_right : "]"
             ch_blank = ch_blank ? ch_blank : "-"
             ch_used  = ch_used  ? ch_used  : "|"
+            num      = num      ? 1        : 0
+            pct      = pct      ? 1        : 0
         }
 
         {
