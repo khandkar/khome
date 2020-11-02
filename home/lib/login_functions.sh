@@ -582,30 +582,6 @@ motd() {
         ' \
     | flat_top_5 \
     | indent "${indent_unit}"
-
-    echo
-
-    echo 'Loggers (top 5)'
-    awk '
-        {
-            split($5, prog, "[")
-            sub(":$", "", prog[1]) # if there were no [], than : will is left behind
-            print prog[1]
-        }' /var/log/syslog \
-    | awk '
-        {
-            n = split($1, path, "/")  # prog may be in path form
-            prog = path[n]
-            total++
-            count[prog]++
-        }
-
-        END {
-            for (prog in count)
-                print count[prog], total, prog
-        }' \
-    | flat_top_5 \
-    | indent "${indent_unit}"
 }
 
 ssh_invalid_attempts_from() {
@@ -627,5 +603,28 @@ ssh_invalid_attempts_from() {
         /var/log/auth.log.1 \
     | sort -n -k 1 \
     | bar_gauge -v width="$(stty size | awk '{print $2}')" -v num=1 -v ch_right=' ' -v ch_left=' ' -v ch_blank=' ' \
+    | column -t
+}
+
+loggers() {
+    awk '
+        {
+            split($5, prog, "[")
+            sub(":$", "", prog[1]) # if there were no [], than : will is left behind
+            print prog[1]
+        }' /var/log/syslog \
+    | awk '
+        {
+            n = split($1, path, "/")  # prog may be in path form
+            prog = path[n]
+            total++
+            count[prog]++
+        }
+
+        END {
+            for (prog in count)
+                print count[prog], total, prog
+        }' \
+    | bar_gauge -v num=1 -v ch_right=' ' -v ch_left=' ' -v ch_blank=' ' \
     | column -t
 }
