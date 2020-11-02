@@ -569,3 +569,25 @@ motd() {
     | column -t \
     | indent "${indent_unit}"
 }
+
+ssh_invalid_attempts_from() {
+    awk '
+        /: Invalid user/ && $5 ~ /^sshd/ {
+            u=$8
+            addr=$10 == "port" ? $9 : $10
+            max++
+            curr[addr]++
+        }
+
+        END {
+            for (addr in curr)
+                if ((c = curr[addr]) > 1)
+                    print c, max, addr
+        }
+        ' \
+        /var/log/auth.log \
+        /var/log/auth.log.1 \
+    | sort -n -k 1 \
+    | bar_gauge -v width=80 -v num=1 -v ch_right=' ' -v ch_left=' ' -v ch_blank=' ' \
+    | column -t
+}
