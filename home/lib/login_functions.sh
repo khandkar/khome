@@ -346,7 +346,7 @@ _bt_devs_infos() {
     # which bluetoothctl outputs
     awk '/^Device +/ {print $2}' \
     | xargs -I% sh -c 'echo info % | bluetoothctl' \
-    | awk '/^Device |^\t/'
+    | awk '/^Device |^\t[A-Z][A-Za-z0-9]+: /'
 }
 
 bt_devs_paired() {
