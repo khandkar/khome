@@ -2,3 +2,4 @@
 github.com/junegunn/fzf    # Fuzzy finder
 github.com/gokcehan/lf     # Pretty terminal file manager/browser
 github.com/schachmat/wego  # Weather app for the terminal
+github.com/cjbassi/gotop   # Another terminal based graphical activity monitor, inspired by gtop and vtop, this time written in Go!

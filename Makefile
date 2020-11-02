@@ -65,7 +65,7 @@ font_cache:
 # Golang
 #
 pkgs_golang: list pkgs-golang.list
-	go get $(shell ./list pkgs-golang.list)
+	go get -u $(shell ./list pkgs-golang.list)
 
 #
 # Ubuntu
