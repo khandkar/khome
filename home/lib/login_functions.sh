@@ -431,30 +431,33 @@ flat_top_5() {
 motd_batt() {
     case "$(uname)" in
         'Linux')
-            upower --dump \
-            | awk '
-                /^Device:[ \t]+/ {
-                    device["path"] = $2
-                    next
-                }
+            if which upower > /dev/null
+            then
+                upower --dump \
+                | awk '
+                    /^Device:[ \t]+/ {
+                        device["path"] = $2
+                        next
+                    }
 
-                /  battery/ && device["path"] {
-                    device["is_battery"] = 1
-                    next
-                }
+                    /  battery/ && device["path"] {
+                        device["is_battery"] = 1
+                        next
+                    }
 
-                /    percentage:/ && device["is_battery"] {
-                    device["battery_percentage"] = $2
-                    sub("%$", "", device["battery_percentage"])
-                    next
-                }
+                    /    percentage:/ && device["is_battery"] {
+                        device["battery_percentage"] = $2
+                        sub("%$", "", device["battery_percentage"])
+                        next
+                    }
 
-                /^$/ {
-                    if (device["is_battery"] && device["path"] == "/org/freedesktop/UPower/devices/DisplayDevice")
-                        print device["battery_percentage"], 100, "batt"
-                    delete device
-                }
-            '
+                    /^$/ {
+                        if (device["is_battery"] && device["path"] == "/org/freedesktop/UPower/devices/DisplayDevice")
+                            print device["battery_percentage"], 100, "batt"
+                        delete device
+                    }
+                '
+            fi
         ;;
     esac
 }
