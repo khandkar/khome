@@ -609,6 +609,8 @@ motd() {
     | sort -u \
     | xargs \
     | column -t
+
+    # TODO: iptables summary
 }
 
 ssh_invalid_attempts_from() {
