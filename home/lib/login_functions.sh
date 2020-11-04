@@ -654,6 +654,7 @@ loggers() {
             for (prog in count)
                 print count[prog], total, prog
         }' \
+    | sort -n -k 1 \
     | bar_gauge -v num=1 -v ch_right=' ' -v ch_left=' ' -v ch_blank=' ' \
     | column -t
 }
