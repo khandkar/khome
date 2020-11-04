@@ -155,3 +155,7 @@
 # Web browser
 "brave-browser"
     Mod4 + w
+
+# Calendar
+"notify_cal"
+    Mod4 + c
