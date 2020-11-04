@@ -641,7 +641,7 @@ loggers() {
             split($5, prog, "[")
             sub(":$", "", prog[1]) # if there were no [], than : will is left behind
             print prog[1]
-        }' /var/log/syslog \
+        }' /var/log/syslog /var/log/syslog.1 \
     | awk '
         {
             n = split($1, path, "/")  # prog may be in path form
