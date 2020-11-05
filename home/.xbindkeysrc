@@ -152,8 +152,8 @@
 "pcmanfm"
     Mod4 + f
 
-# Web browser
-"brave-browser"
+# Weather
+"notify_weather"
     Mod4 + w
 
 # Calendar
