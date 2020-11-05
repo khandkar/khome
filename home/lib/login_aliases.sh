@@ -12,6 +12,7 @@ alias tm='tmux'
 alias mans='man $(man -k . | sort | fzf -e | awk "{print \$1}")'
 alias twread='twtxt timeline --limit 1000 | less'
 alias todo='cd ~/Documents/TODO && vim -c NERDTreeFind TODO.md'
+alias work_todo="cd $DIR_WORK/docs/TODO && vim -c NERDTreeFind TODO.txt"
 alias drafts='cd ~/Documents/drafts && vim drafts.md'
 alias bookmarks='cd ~/Documents/bookmarks && vim bookmarks.md'
 alias ideas='cd ~/Documents/ideas && vim ideas.md'
