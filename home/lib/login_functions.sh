@@ -428,7 +428,7 @@ flat_top_5() {
         '
 }
 
-motd_batt() {
+status_batt() {
     case "$(uname)" in
         'Linux')
             if which upower > /dev/null
@@ -466,7 +466,7 @@ indent() {
     awk -v unit="$1" '{printf "%s%s\n", unit, $0}'
 }
 
-motd() {
+status() {
     local -r indent_unit='    '
 
     uname -srvmo
@@ -507,7 +507,7 @@ motd() {
     (
         free | awk '$1 == "Mem:" {print $3, $2, "mem"}'
         df ~ | awk 'NR == 2 {print $3, $3 + $4, "disk"}'
-        motd_batt
+        status_batt
     ) \
     | bar_gauge -v width=60 -v pct=1 \
     | column -t \

@@ -17,4 +17,4 @@ fi
 # https://rustup.rs/
 export PATH="$HOME/.cargo/bin:$PATH"
 
-motd
+status
