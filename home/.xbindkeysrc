@@ -159,3 +159,7 @@
 # Calendar
 "notify_cal"
     Mod4 + c
+
+# Status
+"notify_status"
+    Mod4 + s

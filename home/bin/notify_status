@@ -1,0 +1,10 @@
+#! /bin/bash
+
+# The status is a function which calls other functions which use variables...
+# load 'em all:
+for file in ~/lib/login_*.sh
+do
+    . "$file"
+done
+
+notify-send "$(status)" -u low
