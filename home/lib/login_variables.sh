@@ -25,5 +25,9 @@ export PATH=$PATH:$HOME/.dotnet/tools
 # Rust / cargo
 export PATH=$PATH:$HOME/.cargo/bin
 
+# Racket packages
+# WARN: ensure the version is correct
+export PATH=$PATH:$HOME/.racket/7.8/bin
+
 # DPI
 . "$HOME/lib/login_variables_dpi.sh"
