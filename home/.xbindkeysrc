@@ -137,7 +137,7 @@
     Mod4 + e
 
 # Edit specific files
-"cd ~/Documents/TODO && gvim -c NERDTreeFind TODO.md"
+"cd ~/Documents/TODO && gvim TODO.md"
     Mod4 + t
 "cd ~/Documents/ideas && gvim ideas.md"
     Mod4 + i
