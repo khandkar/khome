@@ -163,3 +163,6 @@
 # Status
 "notify_status"
     Mod4 + s
+
+"notify_time-in-zones"
+    Mod4 + z

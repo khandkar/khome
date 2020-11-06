@@ -1,0 +1,12 @@
+#! /bin/bash
+
+set -e
+
+ZONES='US/Eastern Europe/Rome Poland NZ'
+
+for tz in $ZONES
+do
+    printf '%s ' "$tz"
+    TZ="$tz" date '+%a %b %d %H:%M:%S'
+done \
+| column -t
