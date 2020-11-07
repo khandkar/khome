@@ -239,8 +239,8 @@ howto() {
 
 _yt() {
     local -r base_dir="$1"
-    local -r opts="$2"
-    local -r uri="$3"
+    local -r uri="$2"
+    local -r opts="$3"
 
     local -r id=$(youtube-dlc --get-id "$uri")
     local -r title=$(youtube-dlc --get-title "$uri" | sed 's/[^A-Za-z0-9._-]/_/g')
@@ -254,7 +254,7 @@ _yt() {
 
 yt_audio() {
     local -r uri="$1"
-    _yt "${DIR_YOUTUBE_AUDIO}/individual" '-f 140' "$uri"
+    _yt "${DIR_YOUTUBE_AUDIO}/individual" "$uri" '-f 140'
 }
 
 yt_video() {
