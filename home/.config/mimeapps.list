@@ -13,6 +13,7 @@ x-scheme-handler/trash=caja.desktop
 inode/symlink=caja.desktop;
 application/illustrator=gimp.desktop;
 video/quicktime=mpv.desktop;
+text/x-scheme=gvim.desktop;
 
 [Default Applications]
 text/plain=gvim.desktop
@@ -20,3 +21,8 @@ image/jpeg=sxiv.desktop
 application/illustrator=gimp.desktop
 image/png=sxiv.desktop
 application/pdf=mupdf.desktop
+text/html=brave-browser.desktop
+x-scheme-handler/http=brave-browser.desktop
+x-scheme-handler/https=brave-browser.desktop
+x-scheme-handler/about=brave-browser.desktop
+x-scheme-handler/unknown=brave-browser.desktop
