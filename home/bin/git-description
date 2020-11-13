@@ -7,7 +7,7 @@ cmd="$1"
 remote="$2"
 
 usage() {
-    printf "Usage: %s [push|pull] REMOTE\n" "$exe"
+    printf "Usage: %s (push|pull) REMOTE\n" "$exe"
     exit 1
 }
 
@@ -21,11 +21,12 @@ case "$remote" in
     *) ;;
 esac
 
+file='description'
 remote_url=$(git remote get-url "$remote")
-remote_file="${remote_url}/description"
-local_file='.git/description'
+remote_path="${remote_url}/${file}"
+local_path=".git/${file}"
 
 case "$cmd" in
-    push) scp "$local_file" "$remote_file";;
-    pull) scp "$remote_file" "$local_file";;
+    push) scp "$local_path" "$remote_path";;
+    pull) scp "$remote_path" "$local_path";;
 esac
