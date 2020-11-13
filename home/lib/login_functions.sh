@@ -584,21 +584,36 @@ status() {
 
     echo "${indent_unit}-->"
 
-    printf '%sUDP: ' "${indent_unit}${indent_unit}"
-    sudo -n netstat -ulnp \
-    | awk 'NR > 2 {print $6}' \
-    | awk -F/ '{print $2}' \
-    | sort -u \
-    | xargs \
-    | column -t
+    sudo -n netstat -tulnp \
+    | awk -v indent="${indent_unit}${indent_unit}" '
+        NR > 2 && ((/^tcp/ && proc = $7) || (/^udp/ && proc = $6)) {
+	    protocol = $1
+	    addr = $4
+	    port = a[split(addr, a, ":")]
+	    name = p[split(proc, p, "/")]
+	    names[name] = 1
+	    protocols[protocol] = 1
+	    if (!seen[protocol, name, port]++)
+		ports[protocol, name, ++seen[protocol, name]] = port
+	}
 
-    printf '%sTCP: ' "${indent_unit}${indent_unit}"
-    sudo -n netstat -tlnp \
-    | awk 'NR > 2 {print $7}' \
-    | awk -F/ '{print $2}' \
-    | sort -u \
-    | xargs \
-    | column -t
+	END {
+	    for (protocol in protocols) {
+		printf "%s%s\t", indent, toupper(protocol)
+		for (name in names) {
+		    if (n = seen[protocol, name]) {
+			sep = ""
+			printf "%s:", name
+			for (i = 1; i <= n; i++) {
+			    printf "%s%d", sep, ports[protocol, name, i]
+			    sep = ","
+			}
+			printf "  "
+		    }
+		}
+		printf "\n"
+	    }
+	}'
 
     echo "${indent_unit}<->"
 
