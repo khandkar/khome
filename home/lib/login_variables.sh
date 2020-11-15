@@ -29,5 +29,8 @@ export PATH=$PATH:$HOME/.cargo/bin
 # WARN: ensure the version is correct
 export PATH=$PATH:$HOME/.racket/7.8/bin
 
+# Gambit Scheme
+export PATH=$PATH:/usr/local/Gambit/bin
+
 # DPI
 . "$HOME/lib/login_variables_dpi.sh"

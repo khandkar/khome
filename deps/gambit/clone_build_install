@@ -1,0 +1,11 @@
+#! /bin/sh
+
+mkdir -p data
+cd data
+git clone https://github.com/feeley/gambit.git
+cd gambit
+./configure        # add options as required, for example CC=gcc-7
+make
+make check
+make modules       # compile the builtin modules (optional)
+make install
