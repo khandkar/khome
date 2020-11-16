@@ -1,0 +1,10 @@
+#! /bin/sh
+
+sudo apt install libssl-dev zlib1g-dev libsqlite3-dev
+mkdir -p data
+cd data
+git clone https://github.com/vyzo/gerbil.git || true
+cd gerbil/src
+./configure --prefix=/usr/local
+./build.sh
+./install
