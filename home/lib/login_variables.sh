@@ -27,7 +27,7 @@ export PATH=$PATH:$HOME/.cargo/bin
 
 # Racket packages
 # WARN: ensure the version is correct
-export PATH=$PATH:$HOME/.racket/7.8/bin
+export PATH=$PATH:$HOME/.racket/7.9/bin
 
 # Gambit Scheme
 export PATH=$PATH:/usr/local/Gambit/bin
