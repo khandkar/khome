@@ -149,8 +149,7 @@ tdu() {
             sub("^" $1 "\t+", "", path)
             gb = size / 1024 / 1024
             printf("%f\t%s\n", gb, path)
-        }' \
-    | cut -c 1-115
+        }'
 }
 
 # Top Disk-Using Files
