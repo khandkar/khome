@@ -137,15 +137,15 @@
     Mod4 + e
 
 # Edit specific files
-"cd ~/Documents/TODO && gvim TODO.md"
+"cd ~/doc/TODO && gvim TODO.md"
     Mod4 + t
-"cd ~/Documents/ideas && gvim ideas.md"
+"cd ~/doc/ideas && gvim ideas.md"
     Mod4 + i
-"cd ~/Documents/drafts && gvim drafts.md"
+"cd ~/doc/drafts && gvim drafts.md"
     Mod4 + d
-"cd ~/Documents/bookmarks && gvim bookmarks.md"
+"cd ~/doc/bookmarks && gvim bookmarks.md"
     Mod4 + b
-"cd ~/Documents/quotations && gvim quotations.md"
+"cd ~/doc/quotations && gvim quotations.md"
     Mod4 + q
 
 # File browser

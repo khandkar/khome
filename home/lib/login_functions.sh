@@ -233,7 +233,7 @@ hump() {
 }
 
 howto() {
-    cat "$(find  ~/Archives/Documents/HOWTOs -mindepth 1 -maxdepth 1 | sort | fzf)"
+    cat "$(find  ~/arc/doc/HOWTOs -mindepth 1 -maxdepth 1 | sort | fzf)"
 }
 
 _yt() {

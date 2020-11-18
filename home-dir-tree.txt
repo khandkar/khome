@@ -28,24 +28,24 @@ new
 .local/mnt
 .local/opt
 .local/var
-arch
-arch/audio
-arch/doc
-arch/img
-arch/img/photo
-arch/sw
-arch/sw/bin
-arch/sw/src
-arch/video
+arc
+arc/aud
+arc/doc
+arc/img
+arc/img/photo
+arc/soft
+arc/soft/bin
+arc/soft/src
+arc/vid
 down
-down/audio
+down/aud
 down/books
 down/fonts
 down/img
 down/papers
-down/sw
-down/video
-exer
+down/soft
+down/vid
+ex
 fork
 fork/suckless
 proj
@@ -56,10 +56,10 @@ work
 x
 
 .local  even more-local /usr/local
-arch    archives
+arc     archives
 bin     binaries/executables
 down    downloads
-exer    exercises
+ex      exercises
 fork    forks
 proj    projects
 sch     school
@@ -68,23 +68,23 @@ x       experiments
 
 map
 ---
-Archives            -->  arch
-Archives/Audio      -->  arch/audio
-Archives/Documents  -->  arch/doc
-Archives/Images     -->  arch/img
-Archives/Software   -->  arch/sw
-Archives/Videos     -->  arch/video
-DONE                ~~>  doc/TODO.md
+Archives            -->  arc
+Archives/Audio      -->  arc/aud
+Archives/Documents  -->  arc/doc
+Archives/Images     -->  arc/img
+Archives/Software   -->  arc/soft
+Archives/Videos     -->  arc/vid
+DONE                ~~>  doc/TODO/
 Documents           -->  doc
-Downloads           -->  down
-Exercises           -->  exer
+Downloads           -->  tmp/dl  # TODO Not .local/tml/dl ?
+Exercises           -->  ex
 Experiments         -->  x
 Forks               -->  fork
 Projects            -->  proj
 Projects/priv       -->  proj/prv
 Projects/pub        -->  proj/pub
 School              -->  sch
-TODO                ~~>  doc/TODO.md
+TODO                ~~>  doc/TODO/
 Work                -->  work
 bin                 -->  .local/bin
 lib                 -->  .local/lib
