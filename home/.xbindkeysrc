@@ -141,7 +141,7 @@
     Mod4 + t
 "cd ~/doc/ideas && gvim ideas.md"
     Mod4 + i
-"cd ~/doc/drafts && gvim drafts.md"
+"cd ~/doc/drafts && drafts_prepend && gvim drafts.md"
     Mod4 + d
 "cd ~/doc/bookmarks && gvim bookmarks.md"
     Mod4 + b
