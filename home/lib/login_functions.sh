@@ -427,6 +427,10 @@ flat_top_5() {
         '
 }
 
+internet_addr() {
+    curl --silent --show-error --max-time "${1:=1}" 'https://api.ipify.org' 2>&1
+}
+
 status_batt() {
     case "$(uname)" in
         'Linux')
@@ -536,6 +540,8 @@ status() {
     echo
 
     echo 'net'
+    echo "${indent_unit}internet"
+    echo "${indent_unit}${indent_unit}$(internet_addr 0.5)"
     echo "${indent_unit}if"
     (ifconfig; iwconfig) 2> /dev/null \
     | awk '
