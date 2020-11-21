@@ -1,6 +1,8 @@
 export PATH=$HOME/bin:$HOME/.local/bin:$HOME/go/bin:/snap/bin:/sbin:/usr/sbin:$PATH
 export EDITOR=vim
 export VISUAL=$EDITOR
+
+### DIRs ###
 export DIR_GITHUB="${HOME}/arc/soft/src/repos/remote/github.com"
 export DIR_AUDIO="${HOME}/arc/aud"
 export DIR_VIDEO="${HOME}/arc/vid"
@@ -9,11 +11,14 @@ export DIR_YOUTUBE_AUDIO="${DIR_AUDIO}/youtube.com"
 export DIR_NOTES="$HOME/doc/notes"
 export DIR_LOG="$HOME/var/log"
 export DIR_LOG_MPD="$DIR_LOG/mpd"
+export DIR_NQ="$HOME/var/run/nq"
+
+# ensure all DIRs exist:
+env | grep ^DIR_ | awk -F= '{print $2}' | xargs -I% mkdir -p '%'
+
+### FILEs ###
 export FILE_LOG_MPD="$DIR_LOG_MPD/mpd.log"
 export FILE_VIDEO_CATALOG="$DIR_VIDEO/catalog"
-
-export NQDIR="$HOME/var/run/nq"
-mkdir -p "$NQDIR"
 
 # .Net Core
 #DOTNET_ROOT_path=$(which dotnet)
