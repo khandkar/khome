@@ -14,6 +14,7 @@ alias twread='twtxt timeline --limit 1000 | less'
 alias todo='cd ~/doc/TODO && vim TODO.md'
 alias work_todo="cd $DIR_WORK/docs/TODO && vim -c NERDTreeFind TODO.txt"
 alias drafts='cd ~/doc/drafts && drafts_prepend && vim drafts.md'
+alias notes='cd ~/doc/notes && notes_prepend && vim notes.md'
 alias bookmarks='cd ~/doc/bookmarks && vim bookmarks.md'
 alias ideas='cd ~/doc/ideas && vim ideas.md'
 alias quotes='cd ~/doc/quotations && vim quotations.md'

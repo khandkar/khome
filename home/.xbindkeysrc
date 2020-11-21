@@ -120,7 +120,7 @@
 "st -e htop"
     Mod4 + h
 "st -e ncmpcpp"
-    Mod4 + n
+    Mod4 + m
 "st -e ranger"
     Mod4 + r
 
@@ -143,6 +143,8 @@
     Mod4 + i
 "cd ~/doc/drafts && drafts_prepend && gvim drafts.md"
     Mod4 + d
+"cd ~/doc/notes && notes_prepend && gvim notes.md"
+    Mod4 + n
 "cd ~/doc/bookmarks && gvim bookmarks.md"
     Mod4 + b
 "cd ~/doc/quotations && gvim quotations.md"
