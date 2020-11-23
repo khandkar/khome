@@ -43,6 +43,7 @@ mpv
 whois
 mono-complete
 tlp  # Laptop power management tools
+powertop
 erlang
 elixir
 openconnect  # VPN cllient compatible with Cisco's AnyConnect
