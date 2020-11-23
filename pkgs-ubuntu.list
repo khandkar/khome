@@ -106,8 +106,9 @@ graphicsmagick-imagemagick-compat  # provides /usr/bin/convert
 
 cvs
 
-# Emacs
-emacs-nox
+# Emacs build deps
+libgif-dev
+libtiff-dev
 
 # Vim
 vim
