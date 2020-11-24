@@ -133,7 +133,7 @@
     Mod4 + v
 
 # Editor
-"emacs"
+"gvim"
     Mod4 + e
 
 # Edit specific files
