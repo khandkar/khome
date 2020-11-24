@@ -1,3 +1,6 @@
+alias g=git
+alias e=emacs
+alias v=vim
 alias c='ncal -Mb'  # -M : start week with Monday, -b : use old format (like in cal)
 alias h='history | fzf -e'
 alias   l='ls -lFhv --group-directories-first --color=auto'
