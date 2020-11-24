@@ -3,7 +3,7 @@ export EDITOR=vim
 export VISUAL=$EDITOR
 
 ### DIRs ###
-export DIR_GITHUB="${HOME}/arc/soft/src/repos/remote/github.com"
+export DIR_GITHUB="${HOME}/arc/sw/src/repos/remote/github.com"
 export DIR_AUDIO="${HOME}/arc/aud"
 export DIR_VIDEO="${HOME}/arc/vid"
 export DIR_YOUTUBE_VIDEO="${DIR_VIDEO}/web/youtube.com"
