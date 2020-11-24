@@ -1,5 +1,5 @@
 alias g=git
-alias e=emacs
+alias e='emacs -nw'
 alias v=vim
 alias c='ncal -Mb'  # -M : start week with Monday, -b : use old format (like in cal)
 alias h='history | fzf -e'
