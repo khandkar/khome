@@ -33,18 +33,18 @@ arc/aud
 arc/doc
 arc/img
 arc/img/photo
-arc/soft
-arc/soft/bin
-arc/soft/src
+arc/sw
+arc/sw/bin
+arc/sw/src
 arc/vid
-down
-down/aud
-down/books
-down/fonts
-down/img
-down/papers
-down/soft
-down/vid
+dl
+dl/aud
+dl/books
+dl/fonts
+dl/img
+dl/papers
+dl/sw
+dl/vid
 ex
 fork
 fork/suckless
@@ -58,7 +58,7 @@ x
 .local  even more-local /usr/local
 arc     archives
 bin     binaries/executables
-down    downloads
+dl      downloads
 ex      exercises
 fork    forks
 proj    projects
@@ -72,7 +72,7 @@ Archives            -->  arc
 Archives/Audio      -->  arc/aud
 Archives/Documents  -->  arc/doc
 Archives/Images     -->  arc/img
-Archives/Software   -->  arc/soft
+Archives/Software   -->  arc/sw
 Archives/Videos     -->  arc/vid
 DONE                ~~>  doc/TODO/
 Documents           -->  doc
