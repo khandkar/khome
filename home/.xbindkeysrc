@@ -132,9 +132,11 @@
 "video-catalog-play"
     Mod4 + v
 
-# Editor
+# Editors
 "gvim"
     Mod4 + e
+"emacs"
+    Mod4 + Shift + e
 
 # Edit specific files
 "cd ~/doc/TODO && emacs TODO.md"
