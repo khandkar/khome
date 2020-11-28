@@ -39,3 +39,6 @@ export PATH=$PATH:/usr/local/Gambit/bin
 
 # DPI
 . "$HOME/lib/login_variables_dpi.sh"
+
+# Doom
+export PATH=$PATH:$HOME/.emacs.d/bin
