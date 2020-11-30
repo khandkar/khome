@@ -21,3 +21,4 @@ alias notes='cd ~/doc/notes && notes_prepend && vim notes.md'
 alias bookmarks='cd ~/doc/bookmarks && vim bookmarks.md'
 alias ideas='cd ~/doc/ideas && vim ideas.md'
 alias quotes='cd ~/doc/quotations && vim quotations.md'
+alias bitcoin='nc ticker.bitcointicker.co 10080'  # https://github.com/chubin/awesome-console-services#Money
