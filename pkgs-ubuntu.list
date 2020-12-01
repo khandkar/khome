@@ -348,3 +348,13 @@ remind
 # > .
 # > Reminders can be created by the remind scripting language or by using
 # > the graphical frontend package "tkremind".
+
+mcron
+# From package info:
+# > Homepage: http://www.gnu.org/software/mcron
+# > Description: Guile-based program for running jobs at regular times
+# >  The GNU package mcron (Mellor's cron) can be a 100% compatible replacement for
+# >  Vixie cron (though the Debian package is not configured this way). It is
+# >  written in pure Guile, and allows configuration files to be written in scheme
+# >  (as well as Vixie's original format) for infinite flexibility in specifying
+# >  when jobs should be run.
