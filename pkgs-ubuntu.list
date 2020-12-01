@@ -152,8 +152,8 @@ subversion-tools
 
 
 # Guile
-guile-2.0
-guile-2.0-doc
+guile-2.2
+guile-2.2-doc
 
 # Chez Scheme
 chezscheme
