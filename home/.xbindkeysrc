@@ -139,17 +139,17 @@
     Mod4 + Shift + e
 
 # Edit specific files
-"cd ~/doc/TODO && emacs TODO.md"
+"cd ~/doc/TODO && gvim TODO.md"
     Mod4 + t
-"cd ~/doc/ideas && emacs ideas.md"
+"cd ~/doc/ideas && gvim ideas.md"
     Mod4 + i
-"cd ~/doc/drafts && drafts_prepend && emacs drafts.md"
+"cd ~/doc/drafts && drafts_prepend && gvim drafts.md"
     Mod4 + d
-"cd ~/doc/notes && notes_prepend && emacs notes.md"
+"cd ~/doc/notes && notes_prepend && gvim notes.md"
     Mod4 + n
-"cd ~/doc/bookmarks && emacs bookmarks.md"
+"cd ~/doc/bookmarks && gvim bookmarks.md"
     Mod4 + b
-"cd ~/doc/quotations && emacs quotations.md"
+"cd ~/doc/quotations && gvim quotations.md"
     Mod4 + q
 
 # File browser
