@@ -1,3 +1,4 @@
+# https://specifications.freedesktop.org/mime-apps-spec/mime-apps-spec-1.0.1.html
 [Added Associations]
 video/webm=mpv.desktop;
 image/png=eom.desktop;sxiv.desktop;
