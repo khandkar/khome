@@ -6,8 +6,11 @@ htop
 zsh
 zsh-syntax-highlighting
 tig
-cmake        # added to build neovim
-cmake-doc
+
+# Use src recipe to install cmake
+#cmake        # added to build neovim
+#cmake-doc
+
 make
 libtool-bin  # added to build neovim
 apt-file
