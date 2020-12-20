@@ -44,7 +44,8 @@ whois
 mono-complete
 tlp  # Laptop power management tools
 powertop
-erlang
+wx3.0-i18n  # for building erlang recipe
+#erlang  # see deps recipe
 elixir
 openconnect  # VPN cllient compatible with Cisco's AnyConnect
 graphviz
