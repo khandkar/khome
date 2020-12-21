@@ -7,6 +7,9 @@ zsh
 zsh-syntax-highlighting
 tig
 
+bison
+flex
+
 # Use src recipe to install cmake
 #cmake        # added to build neovim
 #cmake-doc
