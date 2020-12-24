@@ -132,6 +132,9 @@ caja-open-terminal
 #------------------------------------------------------------------------------
 git
 
+# Email
+git-email
+
 # Large File Support
 git-lfs
 
