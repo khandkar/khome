@@ -224,8 +224,9 @@ man() {
     command man "$@"
 }
 
-experiment() {
-    cd "$(~/bin/experiment $@)" || kill -INT $$
+# new experiment
+x() {
+    cd "$(~/bin/x $@)" || kill -INT $$
 }
 
 hump() {
