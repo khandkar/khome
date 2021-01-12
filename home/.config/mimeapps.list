@@ -15,10 +15,11 @@ inode/symlink=caja.desktop;
 application/illustrator=gimp.desktop;
 video/quicktime=mpv.desktop;
 text/x-scheme=gvim.desktop;
+text/csv=vim.desktop;
 
 [Default Applications]
 text/plain=gvim.desktop
-image/jpeg=sxiv.desktop
+image/jpeg=eom.desktop
 application/illustrator=gimp.desktop
 image/png=sxiv.desktop
 application/pdf=mupdf.desktop
