@@ -539,10 +539,20 @@ status() {
 
     echo
 
+    printf '%sthermal\n' "$indent_unit"
+    for _dir in /sys/class/thermal/thermal_zone*
+    do
+        printf '%s %.2f C\n' \
+            $(cat "$_dir"/type) \
+            $(( $(cat "$_dir"/temp) / 1000 ))
+    done \
+    | column -t \
+    | indent "${indent_unit}${indent_unit}"
+
+    echo 'net'
     local -r internet_addr=$(internet_addr 0.5)
     local -r internet_ptr=$(host -W 1 "$internet_addr" | awk 'NR == 1 {print $NF}' )
 
-    echo 'net'
     echo "${indent_unit}internet"
     echo "${indent_unit}${indent_unit}$internet_addr  $internet_ptr"
     echo "${indent_unit}if"
