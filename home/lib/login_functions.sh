@@ -263,7 +263,10 @@ yt_video() {
 }
 
 gh_fetch_repos() {
-    curl "https://api.github.com/$1/$2/repos?page=1&per_page=10000"
+    local -r user_type="$1"
+    local -r user_name="$2"
+
+    curl "https://api.github.com/$user_type/$user_name/repos?page=1&per_page=10000"
 }
 
 gh_clone() {
