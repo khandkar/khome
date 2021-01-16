@@ -154,6 +154,10 @@ gitmagic
 gitweb
 lighttpd  # Was needed by 'git instaweb'
 highlight  # Syntax highlighter which can be used by gitweb.
+
+# to build git from source
+asciidoc
+libcurl4-openssl-dev
 #------------------------------------------------------------------------------
 
 # subversion
