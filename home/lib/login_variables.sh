@@ -44,4 +44,4 @@ export PATH=$PATH:/usr/local/Gambit/bin
 export PATH=$PATH:$HOME/.emacs.d/bin
 
 # Ruby
-export "$HOME/.gem/ruby/2.5.0/bin"
+export PATH="$PATH":"$HOME"/.gem/ruby/2.5.0/bin
