@@ -42,3 +42,6 @@ export PATH=$PATH:/usr/local/Gambit/bin
 
 # Doom
 export PATH=$PATH:$HOME/.emacs.d/bin
+
+# Ruby
+export "$HOME/.gem/ruby/2.5.0/bin"
