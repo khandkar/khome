@@ -1,2 +1,11 @@
 ; Format explained at https://github.com/ds26gte/neoscmindent/blob/master/README.adoc
-((module module+) 0)
+
+(0
+ let
+ let*
+ match
+ match-let
+ module
+ module+
+ unless
+ when)
