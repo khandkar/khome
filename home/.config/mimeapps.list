@@ -16,6 +16,7 @@ application/illustrator=gimp.desktop;
 video/quicktime=mpv.desktop;
 text/x-scheme=gvim.desktop;
 text/csv=vim.desktop;
+audio/x-m4a=vlc.desktop;mpv.desktop;
 
 [Default Applications]
 text/plain=gvim.desktop
