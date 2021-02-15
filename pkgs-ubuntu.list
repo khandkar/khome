@@ -374,3 +374,9 @@ mcron
 # >  written in pure Guile, and allows configuration files to be written in scheme
 # >  (as well as Vixie's original format) for infinite flexibility in specifying
 # >  when jobs should be run.
+
+dstat
+# From package info:
+# > Dstat is a versatile replacement for vmstat, iostat and ifstat. Dstat
+# > overcomes some of the limitations of these programs and adds some
+# > extra features.
