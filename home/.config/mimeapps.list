@@ -3,7 +3,7 @@
 video/webm=mpv.desktop;
 image/png=eom.desktop;sxiv.desktop;
 image/jpeg=eom.desktop;sxiv.desktop;
-application/pdf=zathura-pdf-poppler.desktop;mupdf.desktop;atril.desktop;
+application/pdf=atril.desktop;zathura-pdf-poppler.desktop;mupdf.desktop;
 text/plain=gvim.desktop;
 text/x-ocaml=gvim.desktop;
 application/octet-stream=gvim.desktop;
