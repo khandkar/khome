@@ -140,16 +140,29 @@ top_commands() {
 # TODO: Consider using numfmt instead of awk
 tdu() {
     du "$1" \
-    | sort -n -k 1 \
-    | tail -50 \
     | awk '
         {
             size = $1
             path = $0
             sub("^" $1 "\t+", "", path)
-            gb = size / 1024 / 1024
-            printf("%f\t%s\n", gb, path)
-        }'
+            paths[path] = size
+            if (size > max)
+                max = size
+        }
+
+        END {
+            for (path in paths) {
+                size = paths[path]
+                pct = 100 * (size / max)
+                gb = size / 1024 / 1024
+                printf("%6.2f %3d%% %s\n", gb, pct, path)
+            }
+        }
+    ' \
+    | sort -r -n -k 1 \
+    | head -50 \
+    | tac
+    # A slight optimization: head can exit before traversing the full input.
 }
 
 # Top Disk-Using Files
