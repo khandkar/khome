@@ -4,6 +4,7 @@
  let
  let*
  match
+ match-define
  match-let
  module
  module+
