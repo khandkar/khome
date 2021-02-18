@@ -10,9 +10,9 @@ ln -sf ~/.config/qutebrowser/config_for_dpi_high.py ~/.config/qutebrowser/config
 ln -sf ~/bin/dunst_dpi_high ~/bin/dunst_dpi
 
 # st
-ln -sf ~/bin/st_dpi_high ~/bin/st
+ln -sf /usr/local/bin/st_dpi_high /usr/local/bin/st
 
 # dwm
-ln -sf ~/bin/dwm_dpi_high ~/bin/dwm
+ln -sf /usr/local/bin/dwm_dpi_high /usr/local/bin/dwm
 
 ln -sf ~/lib/login_variables_dpi_high.sh ~/lib/login_variables_dpi.sh
