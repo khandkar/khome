@@ -1,6 +1,9 @@
 #! /bin/sh
 
-# qutebrowser
+# www browser
+ln -sf ~/bin/www_dpi_high ~/bin/www
+
+# qutebrowser specifically
 ln -sf ~/.config/qutebrowser/config_for_dpi_high.py ~/.config/qutebrowser/config_for_dpi.py
 
 # dunst

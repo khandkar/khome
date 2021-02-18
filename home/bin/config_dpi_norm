@@ -1,5 +1,8 @@
 #! /bin/sh
 
+# www browser
+ln -sf ~/bin/www_dpi_mid ~/bin/www
+
 # qutebrowser
 ln -sf ~/.config/qutebrowser/config_for_dpi_normal.py ~/.config/qutebrowser/config_for_dpi.py
 
