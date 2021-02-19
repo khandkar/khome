@@ -47,7 +47,7 @@ home: mpdconf compiled
 	| xargs -0 -I% cp -Rp % ~
 
 mpdconf:
-	mkdir -p ~/Archives/Audio
+	mkdir -p ~/arc/aud
 	mkdir -p ~/var/lib/mpd/playlists
 	mkdir -p ~/var/log/mpd
 	mkdir -p ~/var/run/mpd
