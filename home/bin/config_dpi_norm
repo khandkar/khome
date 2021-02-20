@@ -10,9 +10,9 @@ ln -sf ~/.config/qutebrowser/config_for_dpi_normal.py ~/.config/qutebrowser/conf
 ln -sf ~/bin/dunst_dpi_norm ~/bin/dunst_dpi
 
 # st
-ln -sf ~/bin/st_dpi_norm ~/bin/st
+ln -sf /usr/local/bin/st_dpi_norm /usr/local/bin/st
 
 # dwm
-ln -sf ~/bin/dwm_dpi_norm ~/bin/dwm
+ln -sf /usr/local/bin/dwm_dpi_norm /usr/local/bin/dwm
 
 ln -sf ~/lib/login_variables_dpi_norm.sh ~/lib/login_variables_dpi.sh
