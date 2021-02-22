@@ -110,7 +110,7 @@
 # ------------------------
 # Screenshot
 # ------------------------
-"screengrab -r"
+"scrot --select --freeze 'screen--%Y-%m-%d--%H-%M-%S.png' -e 'mv $f ~/arc/img/Screenshots/'"
     Print
 
 # ----------------

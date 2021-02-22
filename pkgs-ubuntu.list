@@ -98,7 +98,7 @@ streamripper
 moreutils  # chronic combine errno ifdata ifne isutf8 lckdo mispipe parallel pee sponge ts vidir vipe zrun
 
 # Screenshoting tools
-screengrab
+scrot
 maim
 
 # "modern" ls alternative: uses colours to distinguish file types and metadata;
