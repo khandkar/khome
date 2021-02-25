@@ -567,11 +567,11 @@ status() {
     | indent "${indent_unit}${indent_unit}"
 
     echo 'net'
-    local -r internet_addr=$(internet_addr 0.5)
-    local -r internet_ptr=$(host -W 1 "$internet_addr" | awk 'NR == 1 {print $NF}' )
+    #local -r internet_addr=$(internet_addr 0.5)
+    #local -r internet_ptr=$(host -W 1 "$internet_addr" | awk 'NR == 1 {print $NF}' )
 
-    echo "${indent_unit}internet"
-    echo "${indent_unit}${indent_unit}$internet_addr  $internet_ptr"
+    #echo "${indent_unit}internet"
+    #echo "${indent_unit}${indent_unit}$internet_addr  $internet_ptr"
     echo "${indent_unit}if"
     (ifconfig; iwconfig) 2> /dev/null \
     | awk '
