@@ -80,10 +80,10 @@ pkgs_ubuntu_debfiles: list pkgs-ubuntu-debfiles.list
 # PIP
 #
 pkgs_pip_install:
-	pip3 install --user $(shell ./list pkgs-pip.list)
+	pip install --user $(shell ./list pkgs-pip.list)
 
 pkgs_pip_upgrade:
-	pip3 install --user --upgrade $(shell ./list pkgs-pip.list)
+	pip install --user --upgrade $(shell ./list pkgs-pip.list)
 
 #
 # Rust (cargo)
