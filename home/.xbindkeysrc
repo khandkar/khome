@@ -80,31 +80,31 @@
 # --------------------
 # Transparency adjust
 # --------------------
-"compton-trans 40"
+"picom-trans 40"
     Mod4 + 4
-"compton-trans 45"
+"picom-trans 45"
     Mod4 + Shift + 4
-"compton-trans 50"
+"picom-trans 50"
     Mod4 + 5
-"compton-trans 55"
+"picom-trans 55"
     Mod4 + Shift + 5
-"compton-trans 60"
+"picom-trans 60"
     Mod4 + 6
-"compton-trans 65"
+"picom-trans 65"
     Mod4 + Shift + 6
-"compton-trans 70"
+"picom-trans 70"
     Mod4 + 7
-"compton-trans 75"
+"picom-trans 75"
     Mod4 + Shift + 7
-"compton-trans 80"
+"picom-trans 80"
     Mod4 + 8
-"compton-trans 85"
+"picom-trans 85"
     Mod4 + Shift + 8
-"compton-trans 90"
+"picom-trans 90"
     Mod4 + 9
-"compton-trans 95"
+"picom-trans 95"
     Mod4 + Shift + 9
-"compton-trans 100"
+"picom-trans 100"
     Mod4 + 0
 
 # ------------------------
