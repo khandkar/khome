@@ -69,13 +69,12 @@
     # screen width minus the width defined in within the geometry option.
 
     # 3840x2160
-    #geometry = "600x80-0+60"
-    #font = Terminus 24
+    geometry = "0x10-5+35"
+    font = Iosevka 10
 
     # 3440x1440
     #geometry = "400x80-0+30"
-    geometry = "0x10-10+30"
-    font = Iosevka Fixed SS09 Extended 12
+    #font = Iosevka Fixed SS09 Extended 12
 
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
