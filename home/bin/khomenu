@@ -4,9 +4,9 @@ set -e
 
 # TODO: Get theme-appropriate font and colors from some central config file.
 
-FONT_NAME='terminus'
-FONT_SIZE=14
-FONT="$FONT_NAME:pixelsize=$FONT_SIZE:antialias=false:autohint=true"
+FONT_NAME='Iosevka'
+FONT_SIZE=20
+FONT="$FONT_NAME:pixelsize=$FONT_SIZE:antialias=true:autohint=true"
 BG_NORM='#3a3a3a'
 FG_NORM='#dcdccc'
 BG_SELECTED="$BG_NORM"
