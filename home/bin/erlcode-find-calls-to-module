@@ -1,0 +1,46 @@
+#! /bin/bash
+
+target_module="$1"
+shift
+dirs=$@
+
+find $dirs -type f -name '*.erl' -exec grep -Hn "\<$target_module\>:" '{}' \; \
+| sed 's/%.*$//g' \
+| awk -F "${target_module}:" -v target_module="$target_module" '
+    $1 && $2 {
+        caller_module_file = $1
+        sub(":.*$", "", caller_module_file)
+
+        called_function = $2
+        sub("\\(.*$", "", called_function)
+
+        if (called_function ~ /^[a-z][a-zA-Z_0-9]+$/) {
+            Calls[called_function]++
+            Calls_from[caller_module_file, called_function]++
+            Caller_modules[caller_module_file]++
+        } else {
+            printf \
+                "[WARN] skipped an invalid erlang function name. File: \"%s\", function: \"%s\", original line: \"%s\"\n", \
+                caller_module_file, called_function, $0 \
+                > "/dev/stderr"
+        }
+    }
+
+    END {
+        indent = "    "
+        for (caller_module_file in Caller_modules) {
+            print caller_module_file;
+            for (cf in Calls_from) {
+                split(cf, call, SUBSEP);
+                if (call[1] == caller_module_file)
+                    printf "%s%s\n", indent, call[2] | "sort";
+            }
+            close("sort")
+        }
+
+        print ""
+        printf "Inferred API of %s:\n", target_module
+        for (called_function in Calls)
+            printf "%s%s\n", indent, called_function | "sort"
+        close("sort")
+    }'
