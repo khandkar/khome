@@ -334,7 +334,7 @@ EOF
 
 work_log() {
     mkdir -p "$DIR_WORK_LOG"
-    local -r file_work_log_today="${DIR_WORK_LOG}/$(date +%F).md"
+    local -r file_work_log_today="${DIR_WORK_LOG}/daily-$(date +%F).md"
     if [ ! -f "$file_work_log_today" ]
     then
         work_log_template > "$file_work_log_today"
