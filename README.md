@@ -8,28 +8,36 @@ Environment.
 
 Hardware
 --------
+- Desktop:
+  - "citadel" (custom build):
+    - board: X570 AORUS PRO WIFI
+    - CPU: AMD Ryzen 9 5950X
+    - GPU: NVIDIA GeForce GT 1030
+    - memory: 32 GB (2 x 16 GB) Crucial Ballistix RGB DDR4 3600
+    - storage: 1TB Samsung 970 EVO SSD - M.2 NVMe
+    - power: SeaSonic FOCUS Plus 850W
 - Laptops:
-    - Dell XPS 13 9300 Developer Edition
-    - ASUS L203M
+    - "zondaii" (Dell XPS 13 9300 Developer Edition)
+    - "gnush" (ASUS L203M)
     - Purism Librem 15 v4
     - ThinkPad T400
     - ThinkPad T420s
     - ThinkPad T570
 - Monitors:
-    - Asus ROG PG348Q 34" 3440 x 1440
-    - Dell 1920x1080
-- Keyboard:
+    - Dell Ultrasharp U2718Q 27" 3840x2160 @ 60.00Hz
+- Keyboards:
+    - Leopold FC750R
     - DREVO Tyrfing V2
 - Mice:
     - Kensington SlimBlade Trackball
     - PICTEC GEPC034AB
-    - Apple Mighty Mouse USB (A1152)
 
 
 Software
 --------
 
 - OS:
+    - Void Linux
     - Debian GNU/Linux 10 (Buster)
     - Ubuntu 18.04
     - Mac OS X 14
