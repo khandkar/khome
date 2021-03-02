@@ -1,0 +1,25 @@
+--- pkgs-void.list	2021-03-02 18:10:25.351410908 -0500
++++ pkgs-void.list	2021-03-02 10:06:54.335009538 -0500
+@@ -1,3 +1,4 @@
++#
+ GraphicsMagick
+ R
+ Signal-Desktop
+@@ -82,7 +83,7 @@
+ patch
+ pcmanfm
+ pfetch
+-picom
++picom  # Replaces compton.
+ pkg-config
+ python3-devel
+ python3-pip
+@@ -123,7 +124,7 @@
+ xrandr
+ xscreensaver
+ xtools
+-xwininfo
++xwininfo  # Needed for picom-trans to work, but isn't a dep of picom.
+ zathura
+ zathura-djvu
+ zathura-pdf-mupdf

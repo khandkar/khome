@@ -21,6 +21,8 @@ endif
     diff \
     pull \
     mpdconf \
+    pkgs_void \
+    pkgs_void_update \
     pkgs_brew_cask_install \
     pkgs_brew_install \
     pkgs_cargo \
@@ -60,6 +62,17 @@ compiled:
 
 font_cache:
 	fc-cache -fv
+
+#
+# Void Linux
+#
+
+pkgs_void:
+	sudo xbps-install $(shell ./list pkgs-void.list)
+
+pkgs_void_update:
+	xbps-query -m | awk -F - '{sub("-" $$NF "$$", ""); print}' | sort -u > pkgs-void.list
+	patch pkgs-void.list pkgs-void.list.comments.patch
 
 #
 # Golang
