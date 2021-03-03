@@ -57,6 +57,7 @@ libXinerama-devel
 libressl-devel
 libsodium-devel
 libtool
+lm_sensors
 lvm2
 lxdm
 make
@@ -113,6 +114,7 @@ tree
 udisks2
 unixodbc-devel
 vim
+vlc
 void-repo-nonfree
 vscode
 wget
