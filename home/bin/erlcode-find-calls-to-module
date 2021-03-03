@@ -19,11 +19,8 @@ find $dirs -type f -name '*.erl' -exec grep -Hn "\<$target_module\>:" '{}' \; \
         sub("\\(.*$", "", called_function)
 
         if (called_function ~ /^[a-z][a-zA-Z_0-9]+$/) {
-            # Gather full API of the target_module
-            Calls[called_function]++
-
-            # Gather target call sites
             if (called_function ~ target_fun_regex) {
+                Calls[called_function]++
                 Calls_from[caller_module_file, called_function]++
                 Caller_modules[caller_module_file]++
             }
@@ -37,18 +34,19 @@ find $dirs -type f -name '*.erl' -exec grep -Hn "\<$target_module\>:" '{}' \; \
 
     END {
         indent = "    "
+
+        print "group-by-caller"
         for (caller_module_file in Caller_modules) {
-            print caller_module_file;
+            printf "%s%s\n", indent, caller_module_file;
             for (cf in Calls_from) {
                 split(cf, call, SUBSEP);
                 if (call[1] == caller_module_file)
-                    printf "%s%s\n", indent, call[2] | "sort";
+                    printf "%s%s\n", indent indent, call[2] | "sort";
             }
             close("sort")
         }
 
-        print ""
-        printf "Inferred API of %s:\n", target_module
+        print "all"
         for (called_function in Calls)
             printf "%s%s\n", indent, called_function | "sort"
         close("sort")
