@@ -41,13 +41,13 @@ find $dirs -type f -name '*.erl' -exec grep -Hn "\<$target_module\>:" '{}' \; \
             for (cf in Calls_from) {
                 split(cf, call, SUBSEP);
                 if (call[1] == caller_module_file)
-                    printf "%s%s\n", indent indent, call[2] | "sort";
+                    printf "%s%s %d\n", indent indent, call[2], Calls_from[cf] | "sort";
             }
             close("sort")
         }
 
         print "all"
         for (called_function in Calls)
-            printf "%s%s\n", indent, called_function | "sort"
+            printf "%s%s %d\n", indent, called_function, Calls[called_function] | "sort"
         close("sort")
     }'
