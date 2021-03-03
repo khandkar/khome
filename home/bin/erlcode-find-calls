@@ -38,16 +38,18 @@ find $dirs -type f -name '*.erl' -exec grep -Hn "\<$target_module\>:" '{}' \; \
         print "group-by-caller"
         for (caller_module_file in Caller_modules) {
             printf "%s%s\n", indent, caller_module_file;
+            sort = "sort -n -k 2 -r | column -t | sed \"s/^/" indent indent "/\""
             for (cf in Calls_from) {
                 split(cf, call, SUBSEP);
                 if (call[1] == caller_module_file)
-                    printf "%s%s %d\n", indent indent, call[2], Calls_from[cf] | "sort";
+                    printf "%s %d\n",  call[2], Calls_from[cf] | sort;
             }
-            close("sort")
+            close(sort)
         }
 
         print "all"
+        sort = "sort -n -k 2 -r | column -t | sed \"s/^/" indent "/\""
         for (called_function in Calls)
-            printf "%s%s %d\n", indent, called_function, Calls[called_function] | "sort"
-        close("sort")
+            printf "%s %d\n", called_function, Calls[called_function] | sort
+        close(sort)
     }'
