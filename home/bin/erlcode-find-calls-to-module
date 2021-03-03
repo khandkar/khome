@@ -1,12 +1,16 @@
 #! /bin/bash
 
 target_module="$1"
-shift
+target_fun_regex="$2"
+shift 2
 dirs=$@
 
 find $dirs -type f -name '*.erl' -exec grep -Hn "\<$target_module\>:" '{}' \; \
 | sed 's/%.*$//g' \
-| awk -F "${target_module}:" -v target_module="$target_module" '
+| awk \
+    -F "${target_module}:" \
+    -v target_module="$target_module" \
+    -v target_fun_regex="$target_fun_regex" '
     $1 && $2 {
         caller_module_file = $1
         sub(":.*$", "", caller_module_file)
@@ -32,7 +36,7 @@ find $dirs -type f -name '*.erl' -exec grep -Hn "\<$target_module\>:" '{}' \; \
             print caller_module_file;
             for (cf in Calls_from) {
                 split(cf, call, SUBSEP);
-                if (call[1] == caller_module_file)
+                if (call[1] == caller_module_file && call[2] ~ target_fun_regex)
                     printf "%s%s\n", indent, call[2] | "sort";
             }
             close("sort")
