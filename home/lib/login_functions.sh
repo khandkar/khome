@@ -556,14 +556,29 @@ status() {
 
     echo
 
+    local _dir temp_input label_file label
+
     printf '%sthermal\n' "$indent_unit"
-    for _dir in /sys/class/thermal/thermal_zone*
-    do
-        printf '%s %.2f C\n' \
-            $(cat "$_dir"/type) \
-            $(( $(cat "$_dir"/temp) / 1000 ))
+    for _dir in /sys/class/hwmon/hwmon*; do
+        cat "$_dir"/name
+        find "$_dir"/ -name 'temp*_input' \
+            | while read -r temp_input; do
+                label_file=${temp_input//_input/_label}
+                if [ -f "$label_file" ]; then
+                    label=$(< "$label_file")
+                else
+                    label=''
+                fi
+                awk -v label="$label" '{
+                        if (label)
+                            label = sprintf(" (%s)", label)
+                            printf("%.2f°C%s\n", $1 / 1000, label)
+                    }' \
+                    "$temp_input"
+            done \
+            | sort \
+            | indent "$indent_unit"
     done \
-    | column -t \
     | indent "${indent_unit}${indent_unit}"
 
     echo 'net'
