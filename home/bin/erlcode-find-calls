@@ -1,15 +1,58 @@
 #! /bin/bash
 
+declare -A opts=(
+    ['--fun']=''
+    ['--out']='report' # report | edges | graph
+)
+
+while :
+do
+    case "$1" in
+        --)
+            shift
+            break
+            ;;
+        --*)
+            key="$1"
+            val="$2"
+            if [ -v opts["$key"] ]
+            then
+                if [ "$val" != "" ]
+                then
+                    opts["$key"]="$val"
+                    shift
+                    shift
+                else
+                    echo "Option $key requires an argument" >&2
+                    exit 1
+                fi
+            else
+                echo "Unknown option: $key" >&2
+                exit 1
+            fi
+            ;;
+        *)
+            break
+    esac
+done
+
 target_module="$1"
-target_fun_regex="$2"
-shift 2
+shift
+target_fun_regex="${opts['--fun']}"
+output_type="${opts['--out']}"
 dirs=$@
+
+printf '[DEBUG] target_module    : "%s"\n' "$target_module" >&2
+printf '[DEBUG] target_fun_regex : "%s"\n' "$target_fun_regex" >&2
+printf '[DEBUG] dirs             : "%s"\n' "$dirs" >&2
+printf '[DEBUG] output_type      : "%s"\n' "$output_type" >&2
 
 find $dirs -type f -name '*.erl' -exec grep -Hn "\<$target_module\>:" '{}' \; \
 | sed 's/%.*$//g' \
 | awk \
     -F "${target_module}:" \
     -v target_module="$target_module" \
+    -v output_type="$output_type" \
     -v target_fun_regex="$target_fun_regex" '
     $1 && $2 {
         caller_module_file = $1
@@ -33,8 +76,43 @@ find $dirs -type f -name '*.erl' -exec grep -Hn "\<$target_module\>:" '{}' \; \
     }
 
     END {
-        indent = "    "
+        if (output_type == "report") {
+            report()
+        } else if (output_type == "edges") {
+            edges()
+        } else if (output_type == "graph") {
+            printf "digraph {\n"
+            vertices() # Vertices must be printed before edges, else records arent recognized.
+            edges()
+            printf "}\n"
+        } else {
+            printf "[ERROR] Unknown output type: \"%s\"\n", output_type > "/dev/stderr"
+        }
+    }
 
+    function vertices() {
+        printf "node [shape=record];\n"
+        printf "%s [label=\"", target_module;
+        sep = ""
+        for (called_fun in Calls) {
+            printf "%s<%s> %s", sep, called_fun, called_fun
+            sep = " | "
+        }
+        printf "\"];\n"
+    }
+
+    function edges() {
+        for (cf in Calls_from) {
+            split(cf, call, SUBSEP)
+            caller_mod = call[1]
+            called_mod = target_module
+            called_fun = call[2]
+            printf("\"%s\" -> %s:%s\n",  caller_mod, called_mod, called_fun)
+        }
+    }
+
+    function report() {
+        indent = "    "
         print "group-by-caller"
         for (caller_module_file in Caller_modules) {
             printf "%s%s\n", indent, caller_module_file;
