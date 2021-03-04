@@ -730,7 +730,7 @@ ssh_invalid_by_day() {
         ' \
         /var/log/auth.log \
         /var/log/auth.log.1 \
-    | sort -n -k 1 \
+    | sort -k 3 \
     | bar_gauge -v width="$(stty size | awk '{print $2}')" -v num=1 -v ch_right=' ' -v ch_left=' ' -v ch_blank=' ' \
     | column -t
 }
