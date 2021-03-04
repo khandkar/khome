@@ -678,19 +678,75 @@ status() {
     # TODO: iptables summary
 }
 
-ssh_invalid_attempts_from() {
+ssh_invalid_by_addr() {
     awk '
         /: Invalid user/ && $5 ~ /^sshd/ {
-            u=$8
             addr=$10 == "port" ? $9 : $10
             max++
-            curr[addr]++
+            by_addr[addr]++
         }
 
         END {
-            for (addr in curr)
-                if ((c = curr[addr]) > 1)
-                    print c, max, addr
+            for (addr in by_addr)
+                if ((c = by_addr[addr]) > 1)
+                    printf "%d %d %s\n", c, max, addr
+        }
+        ' \
+        /var/log/auth.log \
+        /var/log/auth.log.1 \
+    | sort -n -k 1 \
+    | bar_gauge -v width="$(stty size | awk '{print $2}')" -v num=1 -v ch_right=' ' -v ch_left=' ' -v ch_blank=' ' \
+    | column -t
+}
+
+ssh_invalid_by_day() {
+    awk '
+	BEGIN {
+	    m["Jan"] = "01"
+	    m["Feb"] = "02"
+	    m["Mar"] = "03"
+	    m["Apr"] = "04"
+	    m["May"] = "05"
+	    m["Jun"] = "06"
+	    m["Jul"] = "07"
+	    m["Aug"] = "08"
+	    m["Sep"] = "09"
+	    m["Oct"] = "10"
+	    m["Nov"] = "11"
+	    m["Dec"] = "12"
+	}
+
+	/: Invalid user/ && $5 ~ /^sshd/ {
+	    day = m[$1] "-" $2
+	    max++
+	    by_day[day]++
+	}
+
+	END {
+	    for (day in by_day)
+		if ((c = by_day[day]) > 1)
+		    printf "%d %d %s\n", c, max, day
+	}
+        ' \
+        /var/log/auth.log \
+        /var/log/auth.log.1 \
+    | sort -n -k 1 \
+    | bar_gauge -v width="$(stty size | awk '{print $2}')" -v num=1 -v ch_right=' ' -v ch_left=' ' -v ch_blank=' ' \
+    | column -t
+}
+
+ssh_invalid_by_user() {
+    awk '
+        /: Invalid user/ && $5 ~ /^sshd/ {
+            user=$8
+            max++
+            by_user[user]++
+        }
+
+        END {
+            for (user in by_user)
+                if ((c = by_user[user]) > 1)
+                    printf "%d %d %s\n", c, max, user
         }
         ' \
         /var/log/auth.log \
