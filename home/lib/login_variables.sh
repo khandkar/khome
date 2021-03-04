@@ -1,4 +1,3 @@
-export PATH=$HOME/bin:$HOME/.local/bin:$HOME/go/bin:/snap/bin:/sbin:/usr/sbin:$PATH
 export EDITOR=vim
 export VISUAL=$EDITOR
 
@@ -45,3 +44,8 @@ export PATH=$PATH:$HOME/.emacs.d/bin
 
 # Ruby
 export PATH="$PATH":"$HOME"/.gem/ruby/2.5.0/bin
+
+# Go
+export GOPATH=$HOME/.go
+
+export PATH=$HOME/bin:$HOME/.local/bin:$GOPATH/bin:/snap/bin:/sbin:/usr/sbin:$PATH
