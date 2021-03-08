@@ -3,6 +3,7 @@
 set -e
 
 ZONES='
+    US/Pacific
     US/Eastern
     Europe/Rome
     Poland
