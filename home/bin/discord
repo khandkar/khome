@@ -1,0 +1,3 @@
+#! /bin/sh
+
+exec flatpak run --filesystem=~/arc/img/Screenshots --filesystem=~/dl com.discordapp.Discord
