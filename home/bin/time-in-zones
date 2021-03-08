@@ -2,7 +2,12 @@
 
 set -e
 
-ZONES='US/Eastern Europe/Rome Poland NZ'
+ZONES='
+    US/Eastern
+    Europe/Rome
+    Poland
+    NZ
+'
 
 for tz in $ZONES
 do
