@@ -1,3 +1,3 @@
 #! /bin/sh
 
-notify-send "$(ncal -M)" -u low
+notify-send "$(cal -m)" -u low
