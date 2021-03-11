@@ -4,7 +4,7 @@ R
 Signal-Desktop
 alsa-plugins-pulseaudio
 apache-fop
-ario
+ario  # GUI (GTK) MPD client
 aspell-en
 aspell-ru
 autoconf
@@ -31,7 +31,7 @@ dmenu
 docker
 docker-compose
 dunst
-element-desktop
+element-desktop  # Matrix.org client, replaces Riot
 encfs
 extra-cmake-modules
 feh
@@ -63,14 +63,14 @@ jq
 libX11-devel
 libXft-devel
 libXinerama-devel
-libcrypto46
+libcrypto46  # Erlang didn't work without it
 libreoffice
 libsodium-devel
 libtool
 lm_sensors
 lvm2
 lxdm
-mDNSResponder
+mDNSResponder  # Bonjour
 make
 man-pages-devel
 mate
@@ -82,12 +82,12 @@ mpc
 mpd
 mpv
 mupdf
-nawk
+nawk  # The one, true implementation of AWK
 ncmpc
 ncmpcpp
 ncurses-devel
 neofetch
-net-tools
+net-tools  # ifconfig et al
 netbsd-wtf
 network-manager-applet
 nmap
@@ -130,7 +130,7 @@ tig
 tmux
 tree
 udisks2
-ueberzug
+ueberzug  # For drawing images on terminals. Something built from src needed it.
 unixodbc-devel
 vim
 vlc

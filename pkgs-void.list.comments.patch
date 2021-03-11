@@ -1,11 +1,59 @@
---- pkgs-void.list	2021-03-06 15:39:19.227168042 -0500
-+++ pkgs-void.list	2021-03-06 15:37:14.082174938 -0500
-@@ -1,3 +1,4 @@
+--- pkgs-void.list	2021-03-11 05:14:06.217196387 -0500
++++ pkgs-void.list	2021-03-11 05:13:00.283192775 -0500
+@@ -1,9 +1,10 @@
 +#
  GraphicsMagick
  R
  Signal-Desktop
-@@ -91,9 +92,9 @@
+ alsa-plugins-pulseaudio
+ apache-fop
+-ario
++ario  # GUI (GTK) MPD client
+ aspell-en
+ aspell-ru
+ autoconf
+@@ -30,7 +31,7 @@
+ docker
+ docker-compose
+ dunst
+-element-desktop
++element-desktop  # Matrix.org client, replaces Riot
+ encfs
+ extra-cmake-modules
+ feh
+@@ -62,14 +63,14 @@
+ libX11-devel
+ libXft-devel
+ libXinerama-devel
+-libcrypto46
++libcrypto46  # Erlang didn't work without it
+ libreoffice
+ libsodium-devel
+ libtool
+ lm_sensors
+ lvm2
+ lxdm
+-mDNSResponder
++mDNSResponder  # Bonjour
+ make
+ man-pages-devel
+ mate
+@@ -81,12 +82,12 @@
+ mpd
+ mpv
+ mupdf
+-nawk
++nawk  # The one, true implementation of AWK
+ ncmpc
+ ncmpcpp
+ ncurses-devel
+ neofetch
+-net-tools
++net-tools  # ifconfig et al
+ netbsd-wtf
+ network-manager-applet
+ nmap
+@@ -98,9 +99,9 @@
  parallel
  patch
  pcmanfm
@@ -17,7 +65,16 @@
  pidgin
  pkg-config
  python3-devel
-@@ -144,7 +145,7 @@
+@@ -129,7 +130,7 @@
+ tmux
+ tree
+ udisks2
+-ueberzug
++ueberzug  # For drawing images on terminals. Something built from src needed it.
+ unixodbc-devel
+ vim
+ vlc
+@@ -151,7 +152,7 @@
  xrandr
  xscreensaver
  xtools
