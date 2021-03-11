@@ -4,6 +4,7 @@ R
 Signal-Desktop
 alsa-plugins-pulseaudio
 apache-fop
+ario
 aspell-en
 aspell-ru
 autoconf
@@ -16,6 +17,8 @@ bluez
 bottom
 cheese
 cmake
+collectd
+collectd-utils
 cronie
 cryptsetup
 cups
@@ -26,8 +29,11 @@ dict
 dictd
 dmenu
 docker
+docker-compose
 dunst
+element-desktop
 encfs
+extra-cmake-modules
 feh
 figlet
 firefox
@@ -57,13 +63,14 @@ jq
 libX11-devel
 libXft-devel
 libXinerama-devel
+libcrypto46
 libreoffice
-libressl-devel
 libsodium-devel
 libtool
 lm_sensors
 lvm2
 lxdm
+mDNSResponder
 make
 man-pages-devel
 mate
