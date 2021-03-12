@@ -47,6 +47,7 @@ home: mpdconf compiled
 	find home -maxdepth 1 -print0 \
 	| $(GREP) -zv '^home$$' \
 	| xargs -0 -I% cp -Rp % ~
+	xdg-user-dirs-update
 
 mpdconf:
 	mkdir -p ~/arc/aud
