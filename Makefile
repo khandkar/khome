@@ -159,7 +159,7 @@ $(foreach d,$(DEPS),$(eval $(call GEN_DEP_RULE,$(d))))
 diff:
 	find home -type f -print0 \
 	| $(SED) -z 's/^home\///g' \
-	| xargs -0 -I% sh -c 'echo %; $(DIFF) --color=always ~/% home/%'
+	| xargs -0 -I% sh -c 'echo %; $(DIFF) --color=auto ~/% home/%'
 
 pull:
 	find home -type f -print0 \
