@@ -1,5 +1,6 @@
 #
 GraphicsMagick
+MultiMC
 R
 Signal-Desktop
 alsa-plugins-pulseaudio
@@ -18,7 +19,6 @@ bottom
 cheese
 cmake
 collectd
-collectd-utils
 cronie
 cryptsetup
 cups
@@ -59,11 +59,11 @@ gvim
 hsetroot
 htop
 i3lock
+icu-devel
 jq
 libX11-devel
 libXft-devel
 libXinerama-devel
-libcrypto46  # Erlang didn't work without it
 libreoffice
 libsodium-devel
 libtool
@@ -106,6 +106,7 @@ pidgin
 pkg-config
 python3-devel
 python3-pip
+qutebrowser
 racket
 racket-doc
 ripgrep
@@ -120,6 +121,7 @@ socklog
 socklog-void
 sox
 speedtest-cli
+strace
 streamripper
 sxiv
 sysstat
@@ -132,6 +134,7 @@ tree
 udisks2
 ueberzug  # For drawing images on terminals. Something built from src needed it.
 unixodbc-devel
+unzip
 vim
 vlc
 void-repo-nonfree
@@ -143,6 +146,7 @@ words-en
 words-ru
 xauth
 xbindkeys
+xdg-user-dirs
 xinput
 xkcdpass
 xorg-input-drivers

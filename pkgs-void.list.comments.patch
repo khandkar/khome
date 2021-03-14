@@ -1,8 +1,9 @@
---- pkgs-void.list	2021-03-11 05:14:06.217196387 -0500
-+++ pkgs-void.list	2021-03-11 05:13:00.283192775 -0500
-@@ -1,9 +1,10 @@
+--- pkgs-void.list	2021-03-14 09:27:42.795179658 -0400
++++ pkgs-void.list	2021-03-14 09:22:20.202107907 -0400
+@@ -1,10 +1,11 @@
 +#
  GraphicsMagick
+ MultiMC
  R
  Signal-Desktop
  alsa-plugins-pulseaudio
@@ -21,15 +22,7 @@
  encfs
  extra-cmake-modules
  feh
-@@ -62,14 +63,14 @@
- libX11-devel
- libXft-devel
- libXinerama-devel
--libcrypto46
-+libcrypto46  # Erlang didn't work without it
- libreoffice
- libsodium-devel
- libtool
+@@ -69,7 +70,7 @@
  lm_sensors
  lvm2
  lxdm
@@ -65,16 +58,16 @@
  pidgin
  pkg-config
  python3-devel
-@@ -129,7 +130,7 @@
+@@ -131,7 +132,7 @@
  tmux
  tree
  udisks2
 -ueberzug
 +ueberzug  # For drawing images on terminals. Something built from src needed it.
  unixodbc-devel
+ unzip
  vim
- vlc
-@@ -151,7 +152,7 @@
+@@ -155,7 +156,7 @@
  xrandr
  xscreensaver
  xtools
