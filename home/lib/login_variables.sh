@@ -30,8 +30,8 @@ export PATH=$PATH:$HOME/.dotnet/tools
 export PATH=$PATH:$HOME/.cargo/bin
 
 # Racket packages
-# WARN: ensure the version is correct
-export PATH=$PATH:$HOME/.racket/7.9/bin
+RACKET_VERSION=$(racket --version | awk '{for (i=1; i<=NF; i++) {if ($i ~ /^v[0-9]+\.[0-9]+/) {sub("^v", "", $i); print $i; exit 0}}}')
+export PATH=$PATH:$HOME/.racket/"$RACKET_VERSION"/bin
 
 # Gambit Scheme
 export PATH=$PATH:/usr/local/Gambit/bin
