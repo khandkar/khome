@@ -1,3 +1,5 @@
+- [x] Replace comments patch with an AWK script which replaces uncommented
+  file-A.$1 with file-B.$0 where file-A.$1 = file-B.$1
 - [ ] Track components which have their own repos. How? Submodules? What else?
     - [ ] [khatus](https://github.com/khandkar/khatus)
     - [ ] [dwm](https://github.com/khandkar/dwm)

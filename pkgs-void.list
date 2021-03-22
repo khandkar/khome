@@ -5,7 +5,7 @@ R
 Signal-Desktop
 alsa-plugins-pulseaudio
 apache-fop
-ario  # GUI (GTK) MPD client
+ario                    # GUI (GTK) MPD client
 aspell-en
 aspell-ru
 autoconf
@@ -31,7 +31,7 @@ dmenu
 docker
 docker-compose
 dunst
-element-desktop  # Matrix.org client, replaces Riot
+element-desktop         # Matrix.org client, replaces Riot
 encfs
 extra-cmake-modules
 feh
@@ -70,7 +70,7 @@ libtool
 lm_sensors
 lvm2
 lxdm
-mDNSResponder  # Bonjour
+mDNSResponder           # Bonjour
 make
 man-pages-devel
 mate
@@ -82,12 +82,12 @@ mpc
 mpd
 mpv
 mupdf
-nawk  # The one, true implementation of AWK
+nawk                    # The one, true implementation of AWK
 ncmpc
 ncmpcpp
 ncurses-devel
 neofetch
-net-tools  # ifconfig et al
+net-tools               # ifconfig et al
 netbsd-wtf
 network-manager-applet
 nmap
@@ -101,7 +101,7 @@ patch
 pcmanfm
 perl-List-MoreUtils-XS  # Dependency of feedgnuplot, which isn't in Void repos.
 pfetch
-picom  # Replaces compton.
+picom                   # Replaces compton.
 pidgin
 pkg-config
 python3-devel
@@ -132,7 +132,7 @@ tig
 tmux
 tree
 udisks2
-ueberzug  # For drawing images on terminals. Something built from src needed it.
+ueberzug                # For drawing images on terminals. Something built from src needed it.
 unixodbc-devel
 unzip
 vim
@@ -156,7 +156,7 @@ xprop
 xrandr
 xscreensaver
 xtools
-xwininfo  # Needed for picom-trans to work, but isn't a dep of picom.
+xwininfo                # Needed for picom-trans to work, but isn't a dep of picom.
 youtube-dl
 zathura
 zathura-djvu

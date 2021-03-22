@@ -1,0 +1,13 @@
+#! /usr/bin/awk -f
+
+FILENAME ~ /\.comments$/ {
+    commented[$1] = $0
+    next
+}
+
+commented[$1] {
+    print commented[$1]
+    next
+}
+
+1

@@ -73,7 +73,7 @@ pkgs_void:
 
 pkgs_void_update:
 	xbps-query -m | awk -F - '{sub("-" $$NF "$$", ""); print}' | sort -u > pkgs-void.list
-	patch pkgs-void.list pkgs-void.list.comments.patch
+	(echo '#'; ./patch-comments pkgs-void.list.comments pkgs-void.list) | sponge pkgs-void.list
 
 #
 # Golang
