@@ -222,6 +222,7 @@ rsync
 run-parts-dbg
 runit-iptables
 rustup
+sacc                    # gopher client
 scrot
 sct
 setxkbmap
