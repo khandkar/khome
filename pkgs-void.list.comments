@@ -3,6 +3,7 @@ element-desktop         # Matrix.org client, replaces Riot
 mDNSResponder           # Bonjour
 nawk                    # The one, true implementation of AWK
 net-tools               # ifconfig et al
+onefetch                # Like neofetch, but for git repos.
 perl-List-MoreUtils-XS  # Dependency of feedgnuplot, which isn't in Void repos.
 picom                   # Replaces compton.
 sacc                    # gopher client

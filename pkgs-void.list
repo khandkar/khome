@@ -28,6 +28,7 @@ cronie
 cryptsetup
 cups
 curl
+dbus-devel
 dbus-libs-dbg
 dejavu-fonts-ttf
 device-mapper-dbg
@@ -41,6 +42,7 @@ docker-compose
 dunst
 e2fsprogs-libs-dbg
 element-desktop         # Matrix.org client, replaces Riot
+elinks
 encfs
 eudev-libudev-dbg
 expat-dbg
@@ -123,6 +125,7 @@ libidn2-dbg
 libldap-dbg
 liblzma-dbg
 libmariadbclient-dbg
+libmd-devel
 libmnl-dbg
 libmount-dbg
 libnet-snmp-dbg
@@ -168,12 +171,14 @@ man-pages-devel
 mate
 mate-extra
 mdadm
+mediainfo
 mit-krb5-libs-dbg
 mkfontscale-dbg
 mlocate
 moreutils
 mpc
 mpd
+mpeg4ip
 mpv
 mupdf
 nawk                    # The one, true implementation of AWK
@@ -190,6 +195,7 @@ nghttp2-dbg
 nmap
 nodejs-lts
 nvidia
+onefetch                # Like neofetch, but for git repos.
 openbsd-netcat
 openntpd
 openssh
@@ -247,6 +253,7 @@ tree
 udisks2
 ueberzug                # For drawing images on terminals. Something built from src needed it.
 unixodbc-devel
+unrar
 unzip
 vim
 vlc
