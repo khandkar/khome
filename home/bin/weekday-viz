@@ -1,0 +1,15 @@
+#! /bin/sh
+
+awk -v dow="$(date '+%u')" '
+    BEGIN {
+        viz[1] = "M---- --"
+        viz[2] = "-T--- --"
+        viz[3] = "--W-- --"
+        viz[4] = "---T- --"
+        viz[5] = "----F --"
+        viz[6] = "----- S-"
+        viz[7] = "----- -S"
+
+	print viz[dow]
+    }
+'
