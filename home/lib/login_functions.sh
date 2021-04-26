@@ -256,7 +256,7 @@ _yt() {
     local -r opts="$3"
 
     local -r id=$(youtube-dlc --get-id "$uri")
-    local -r title=$(youtube-dlc --get-title "$uri" | sed 's/[^A-Za-z0-9._-]/_/g')
+    local -r title=$(youtube-dlc --get-title "$uri" | sed 's/[^А-Яа-яA-Za-z0-9._-]/_/g')
     local -r dir="${base_dir}/${title}--${id}"
 
     mkdir -p "$dir"
