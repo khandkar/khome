@@ -7,7 +7,7 @@ case "$1"
         seconds="$1"
 esac
 
-$HOME/bin/snore "$seconds"
+snore "$seconds"
 
 printf "!!! TIMES UP !!!\n"
 
