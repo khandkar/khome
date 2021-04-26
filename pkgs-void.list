@@ -91,6 +91,7 @@ iptables-dbg
 jansson-dbg
 jq
 less-dbg
+lftp
 libX11-dbg
 libX11-devel
 libXau-dbg
