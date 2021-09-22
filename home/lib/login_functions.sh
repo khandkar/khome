@@ -667,7 +667,7 @@ status() {
 
     echo "${indent_unit}<->"
 
-    printf '%sTCP: ' "${indent_unit}${indent_unit}"
+    printf '%sTCP\t' "${indent_unit}${indent_unit}"
     sudo -n netstat -tnp \
     | awk 'NR > 2 && $6 == "ESTABLISHED" {print $7}' \
     | awk '{sub("^[0-9]+/", ""); print}' \
