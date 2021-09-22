@@ -670,7 +670,7 @@ status() {
     printf '%sTCP: ' "${indent_unit}${indent_unit}"
     sudo -n netstat -tnp \
     | awk 'NR > 2 && $6 == "ESTABLISHED" {print $7}' \
-    | awk -F/ '{print $2}' \
+    | awk '{sub("^[0-9]+/", ""); print}' \
     | sort -u \
     | xargs \
     | column -t
