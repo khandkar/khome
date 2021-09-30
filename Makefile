@@ -20,7 +20,8 @@ endif
     home \
     diff \
     pull \
-    mpdconf \
+    push \
+    mpdconf_dirs \
     pkgs_void \
     pkgs_void_update \
     pkgs_brew_cask_install \
@@ -41,20 +42,16 @@ default:
 	@echo '================================================================================'
 	@exit 1
 
-home: mpdconf compiled
+home: compiled | mpdconf_dirs
 	cp -Rp bin $(HOME)/
-	# Limit depth because directories are copied recursively:
-	find home -maxdepth 1 -print0 \
-	| $(GREP) -zv '^home$$' \
-	| xargs -0 -I% cp -Rp % ~
+	$(MAKE) push
 	xdg-user-dirs-update
 
-mpdconf:
+mpdconf_dirs:
 	mkdir -p ~/arc/aud
 	mkdir -p ~/var/lib/mpd/playlists
 	mkdir -p ~/var/log/mpd
 	mkdir -p ~/var/run/mpd
-	cp home/.mpdconf $(HOME)/
 
 compiled:
 	mkdir -p bin
@@ -166,6 +163,12 @@ pull:
 	find home -type f -print0 \
 	| $(SED) -z 's/^home\///g' \
 	| xargs -0 -I% sh -c '$(DIFF) -q ~/% home/% > /dev/null || cp ~/% home/%'
+
+push:
+	# Limit depth because directories are copied recursively:
+	find home -maxdepth 1 -print0 \
+	| $(GREP) -zv '^home$$' \
+	| xargs -0 -I% cp -Rp % ~
 
 clean:
 	rm -rf ./debfiles
