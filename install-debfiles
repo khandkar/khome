@@ -6,5 +6,5 @@ file=$(readlink -e "$1")
 
 mkdir -p debfiles
 cd debfiles || exit 1
-../list "$file" | xargs -P 2 -I % wget -c '%'
+for uri in $(../list "$file"); do printf '%s\n' "$uri"; done | xargs -P 2 -I % wget -c '%'
 sudo apt install ./*.deb
