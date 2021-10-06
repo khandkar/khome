@@ -536,13 +536,11 @@ status() {
     echo
 
     printf '%smem by proc\n' "$indent_unit"
-    ps -eo rss,cmd \
+    ps -eo rss,comm \
     | awk -v total="$(free | awk '$1 == "Mem:" {print $2; exit}')" '
         NR > 1 {
             rss = $1
-            cmd = $2
-            n = split(cmd, path, "/")  # _may_ be a path
-            proc = path[n]
+            proc = $2
             by_proc[proc] += rss
         }
 
