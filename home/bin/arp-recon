@@ -1,0 +1,151 @@
+#! /bin/bash
+
+set -e
+#set -u  # Error on unset var
+set -o pipefail
+
+# commands:
+# - log (to stdout or file):
+#       run arp-scan and convert output to our log format
+#       - options
+#           - interval
+#           - file
+# - status (from stdin or file):
+#       read log and report
+#           - seen devices, sorted by last-seen
+#           - ip changes?
+#       - options
+#           - file
+#
+# TODO
+# - [ ] Gather more info on each device. How? nmap?
+# ...
+#
+
+_debug=''
+
+_log() {
+    local -r level="$1"; shift
+    local -r fmt="$1\n"; shift
+    local -r args="$*"
+
+    printf '%s [%s] ' "$(date '+%Y-%m-%d %H:%M:%S')" "$level" >&2
+    printf "$fmt" $args >&2
+}
+
+error() {
+    _log 'error' "$@"
+}
+
+debug() {
+    if [[ -n "$_debug" ]]; then
+        _log 'debug' "$@"
+    fi
+}
+
+log() {
+    local -r interval="$1"
+    local -r log_file="$2"
+
+    while :; do
+        debug '(>) scan'
+        sudo arp-scan --localnet;
+        debug '(.) scan'
+        sleep "$interval";
+    done \
+    | stdbuf -o L awk '
+        /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/ {
+            ip = $1
+            mac = $2
+            print mac, ip
+        }' \
+    | ts '%.s' \
+    >> "$log_file"
+}
+
+status() {
+    local -r log_file="$1"
+
+    (
+        echo 'mac ip last first freq dist'
+        echo '--- -- ---- ----- ---- ----'
+        sort -n -k 1 "$log_file" \
+        | awk -v now="$(date '+%s')" \
+            '
+                {
+                    ts = $1
+                    mac = $2
+                    ip = $3
+
+                    freq[mac, ip]++
+                    if (!seen_last[mac, ip]  || ts > seen_last[mac, ip] ) seen_last[mac, ip]  = ts
+                    if (!seen_first[mac, ip] || ts < seen_first[mac, ip]) seen_first[mac, ip] = ts
+                }
+
+                END {
+                    for (key in freq) {
+                        split(key, macip, SUBSEP)
+                        mac = macip[1]
+                        ip  = macip[2]
+                        last = now - seen_last[mac, ip]
+                        first = now - seen_first[mac, ip]
+                        dist = 100 * (freq[mac, ip] / NR)
+                        print \
+                            mac, \
+                            ip, \
+                            sprintf("%d", last), \
+                            sprintf("%d", first), \
+                            freq[mac, ip], \
+                            sprintf("%d", dist)
+                    }
+                }
+            ' \
+        | sort -n -k 3 \
+    ) \
+    | column -t
+}
+
+main() {
+    local cmd
+    local interval
+    local log_file
+
+    case "$1" in
+        '-d')
+            _debug='yes'
+            shift
+            ;;
+    esac
+    cmd="$1"
+    case "$cmd" in
+        'log')
+            interval=60
+            log_file='/dev/stdout'
+
+            if [[ -n "$2" ]]; then
+                interval="$2"
+                if [[ -n "$3" ]]; then
+                    log_file="$3"
+                fi
+            fi
+            debug '(>) log | interval:"%s" log_file:"%s"' "$interval" "$log_file"
+            log "$interval" "$log_file"
+            debug '(.) log | interval:"%s" log_file:"%s"' "$interval" "$log_file"
+            ;;
+        'status')
+            log_file='/dev/stdin'
+            if [[ -n "$2" ]]; then
+                log_file="$2"
+            fi
+            debug '(>) status | log_file:"%s"' "$log_file"
+            status "$log_file"
+            debug '(.) status | log_file:"%s"' "$log_file"
+            ;;
+        *)
+            error 'Unknown command: "%s"' "$cmd"
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"
