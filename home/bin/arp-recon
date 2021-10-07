@@ -49,7 +49,9 @@ log() {
 
     while :; do
         debug '(>) scan'
-        sudo arp-scan --localnet;
+        if ! sudo arp-scan --localnet; then
+            error 'scan failed'
+        fi
         debug '(.) scan'
         sleep "$interval";
     done \
