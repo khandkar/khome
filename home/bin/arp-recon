@@ -44,16 +44,22 @@ debug() {
 }
 
 log() {
-    local -r interval="$1"
+    local -r interval_init="$1"
     local -r log_file="$2"
+    local    interval_curr="$interval_init"
 
     while :; do
         debug '(>) scan'
-        if ! sudo arp-scan --localnet; then
-            error 'scan failed'
+        if sudo arp-scan --localnet; then
+            debug '(.) scan ok'
+            interval_curr="$interval_init"
+        else
+            error '(.) scan failure'
+            interval_curr=$(( interval_curr * 2 ))
         fi
-        debug '(.) scan'
-        sleep "$interval";
+        debug '(>) sleep for %d seconds' "$interval_curr"
+        sleep "$interval_curr";
+        debug '(.) sleep'
     done \
     | stdbuf -o L awk '
         /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/ {
