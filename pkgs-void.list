@@ -25,8 +25,6 @@ cheese
 chromium
 clang
 cmake
-collectd
-collectd-dbg
 cronie
 cryptsetup
 cups
@@ -72,7 +70,6 @@ gdbm-dbg
 gettext-devel-tools
 gimp
 git-all
-glib-dbg
 glibc-dbg
 glu-devel
 gmp-dbg
