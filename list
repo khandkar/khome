@@ -1,15 +1,22 @@
 #! /usr/bin/awk -f
 
+BEGIN {
+    sep = sep ? sep : " "
+    end = end ? end : ""
+}
+
 ! /^\#/ && ! /^$/ {
     xs[$1]++
 }
 
 END {
+    _sep = ""
     for (x in xs) {
         if (xs[x] > 1) {
             printf ">>> [WARNING] : '%s' was listed %d times.\n", x, xs[x] > "/dev/stderr"
         }
-        printf("%s%s", sep, x)
-        sep = " "
+        printf("%s%s", _sep, x)
+        _sep = sep
     }
+    printf "%s", end
 }
