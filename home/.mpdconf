@@ -37,7 +37,7 @@ audio_output {
 }
 
 filesystem_charset      "UTF-8"
-id3v1_encoding          "UTF-8"
+#id3v1_encoding          "UTF-8"
 
 decoder {
     plugin "flac"
