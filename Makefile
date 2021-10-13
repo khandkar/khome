@@ -1,4 +1,5 @@
 MAKEFLAGS := --no-builtin-rules
+SHELL     := /bin/bash
 
 DEPS := $(wildcard deps/*)
 
@@ -69,7 +70,7 @@ pkgs_void:
 	sudo xbps-install $(shell ./list pkgs-void.list)
 
 pkgs_void_update:
-	xbps-query -m | awk -F - '{sub("-" $$NF "$$", ""); print}' | sort -u > pkgs-void.list
+	xbps-query -m | awk -F - '{sub("-" $$NF "$$", ""); print}' | sort -u | grep -vf <(./list -v sep='\n' -v end='\n' pkgs-void-src.list) > pkgs-void.list
 	(echo '#'; ./patch-comments pkgs-void.list.comments pkgs-void.list) | sponge pkgs-void.list
 
 #
