@@ -172,3 +172,7 @@
 
 "notify_time-in-zones"
     Mod4 + z
+
+# MPD
+"notify_mpc"
+    Mod4 + Shift + m
