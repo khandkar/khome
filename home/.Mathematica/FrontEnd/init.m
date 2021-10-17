@@ -1,5 +1,5 @@
 SetOptions[$FrontEnd, 
-NotebookBrowseDirectory->"~/Projects/priv/mathematica-notebooks",
+NotebookBrowseDirectory->"~/proj/priv/mathematica-notebooks",
 NotebookPath->{
   FrontEnd`FileName[{$UserBaseDirectory, "Autoload", 
     Blank[], "FrontEnd", "Palettes"}], 
