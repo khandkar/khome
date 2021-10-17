@@ -4,7 +4,7 @@ set -e
 
 PATH="/sbin:$PATH"
 
-DIR_CFG="/home/siraaj/etc/mypeetables"
+DIR_CFG="$HOME/etc/mypeetables"
 FILE_HOSTS_BLACKLIST="$DIR_CFG/hosts_blacklist"
 FILE_PORTS_OPEN="$DIR_CFG/ports_open"
 
