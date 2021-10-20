@@ -52,18 +52,18 @@
     XF86AudioPlay
 "mpc stop"
     XF86AudioStop
-"mpc prev"
+"mpc prev && notify_mpc"
     XF86AudioPrev
-"mpc next"
+"mpc next && notify_mpc"
     XF86AudioNext
 # Otherwise use combinations:
 "mpc toggle"
     Mod4 + Down
 "mpc stop"
     Mod4 + Up
-"mpc prev"
+"mpc prev && notify_mpc"
     Mod4 + Left
-"mpc next"
+"mpc next && notify_mpc"
     Mod4 + Right
 
 ## cmus-remote
