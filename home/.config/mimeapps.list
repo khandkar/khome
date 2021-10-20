@@ -91,3 +91,4 @@ application/xhtml+xml=userapp-Firefox-FY7R00.desktop
 application/x-extension-xhtml=userapp-Firefox-FY7R00.desktop
 application/x-extension-xht=userapp-Firefox-FY7R00.desktop
 audio/vnd.audible.aax=vlc.desktop
+x-scheme-handler/signalcaptcha=signal.desktop
