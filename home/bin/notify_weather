@@ -1,3 +1,3 @@
 #! /bin/bash
 
-notify-send "$(< ~/.pista-out/weather-summary)" -u low
+notify-send 'weather summary' "$(< ~/.pista-out/weather-summary)" -u low
