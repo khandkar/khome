@@ -2,16 +2,17 @@
 
 set -e
 
-ZONES='
+declare -a ZONES=(
     US/Pacific
     US/Eastern
-    Europe/Rome
+    Europe/Moscow
+    #Europe/Rome
     Poland
     Asia/Calcutta
     NZ
-'
+)
 
-for tz in $ZONES
+for tz in ${ZONES[*]}
 do
     printf '%s ' "$tz"
     TZ="$tz" date '+%a %b %d %H:%M:%S'
