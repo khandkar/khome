@@ -2,7 +2,7 @@ alias s=status
 alias g=git
 alias e='emacs -nw'
 alias v=vim
-alias c='ncal -Mb'  # -M : start week with Monday, -b : use old format (like in cal)
+alias c='cal -vm3'  # -v: vertical, -m: start week with Monday, -3: show 3 months (prev, curr, next)
 alias h='history | fzf -e'
 alias   l='ls -lFhv --group-directories-first --color=auto'
 alias  ll='l -a'
