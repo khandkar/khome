@@ -1,3 +1,4 @@
+alias s=status
 alias g=git
 alias e='emacs -nw'
 alias v=vim
