@@ -3,11 +3,14 @@
 (0
  let
  let*
+ let/cc
+ let-values
  match
  match*
  match-define
  match-let
  module
  module+
+ parameterize
  unless
  when)
