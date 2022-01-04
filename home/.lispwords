@@ -1,6 +1,7 @@
 ; Format explained at https://github.com/ds26gte/neoscmindent/blob/master/README.adoc
 
 (0
+ case
  let
  let*
  let/cc
