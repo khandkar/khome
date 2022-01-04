@@ -1,4 +1,3 @@
-# https://specifications.freedesktop.org/mime-apps-spec/mime-apps-spec-1.0.1.html
 [Added Associations]
 application/illustrator=gimp.desktop;
 application/octet-stream=gvim.desktop;

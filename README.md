@@ -120,6 +120,10 @@ Software
         - https://swaywm.org/
         - https://github.com/swaywm/sway
 
+Reference
+---------
+- https://specifications.freedesktop.org/mime-apps-spec/mime-apps-spec-1.0.1.html
+
 Reading list
 ------------
 - https://wiki.archlinux.org/index.php/Xinit
