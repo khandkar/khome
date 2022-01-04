@@ -2,15 +2,15 @@
 
 set -e;
 
-name="$1";
+name=$(echo "$@" | sed 's/\s\+/-/g');
 
 if [ "$name" != "" ];
 then
-    timestamp=`date +'%F--%H-%M--%S'`;
+    timestamp=$(date +'%F--%H-%M--%S');
     directory="$HOME/x/$timestamp--$name";
     mkdir -p "$directory";
     cd "$directory";
-    echo "# $name\n" > README.md;
+    printf '# %s\n' "$name" > README;
     git init >&2
     git add . >&2
     git commit -m 'Initial commit' >&2
