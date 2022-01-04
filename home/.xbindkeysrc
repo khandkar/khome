@@ -176,3 +176,11 @@
 # MPD
 "notify_mpc"
     Mod4 + Shift + m
+
+# dunst
+"dunstctl close"
+    control + space
+"dunstctl close-all"
+    control + shift + space
+"dunstctl history-pop"
+    control + grave
