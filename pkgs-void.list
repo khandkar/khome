@@ -6,13 +6,18 @@ R
 Signal-Desktop
 alsa-plugins-pulseaudio
 apache-fop
+arandr
 ario                    # GUI (GTK) MPD client
+arp-scan
 aspell-en
 aspell-ru
+auto-auto-complete
 autoconf
 automake
+avahi
 aws-cli
 base-system
+bash-completion
 bat
 bind-utils
 bison
@@ -22,9 +27,11 @@ bzip2-dbg
 c-ares-dbg
 cairo-dbg
 cheese
+chez-scheme
 chromium
 clang
 cmake
+corecollector
 cronie
 cryptsetup
 cups
@@ -41,6 +48,7 @@ dnsmasq-dbg
 docker
 docker-compose
 doxygen
+dropbox
 dunst
 e2fsprogs-libs-dbg
 element-desktop         # Matrix.org client, replaces Riot
@@ -56,10 +64,13 @@ feh
 figlet
 firefox
 flex
+font-adobe-source-code-pro-2.038R~ro+1.058R~it+1.018R~VAR_1
 font-iosevka
 font-misc-misc
 font-util-dbg
 fontconfig-dbg
+fonts-croscore-ttf
+fonts-droid-ttf
 freetype-dbg
 fribidi-dbg
 fswatch
@@ -67,6 +78,7 @@ fuse-dbg
 gcc
 gdb
 gdbm-dbg
+gdbm-devel
 gettext-devel-tools
 gimp
 git-all
@@ -77,6 +89,7 @@ gmp-devel
 gnome-keyring
 gnuplot
 gnutls-dbg
+google-fonts-ttf
 gparted
 gpick
 graphite-dbg
@@ -89,9 +102,11 @@ gvfs-smb
 gvim
 hsetroot
 htop
+httpie
 i3lock
 icu-devel
 icu-libs-dbg
+inetutils
 iptables-dbg
 jansson-dbg
 jq
@@ -176,9 +191,11 @@ lzo-dbg
 mDNSResponder           # Bonjour
 make
 man-pages-devel
+masscan
 mate
 mate-extra
 mdadm
+mdns-scan
 mediainfo
 mit-krb5-libs-dbg
 mkfontscale-dbg
@@ -203,6 +220,7 @@ nettle-dbg
 network-manager-applet
 nghttp2-dbg
 nmap
+nnn
 nodejs
 ntfs-3g
 nvidia
@@ -228,6 +246,9 @@ perl-dbg
 pfetch
 picom                   # Replaces compton.
 pidgin
+pidgin-gpg
+pidgin-libnotify
+pidgin-otr
 pixman-dbg
 pkg-config
 python3-dbg
@@ -238,6 +259,7 @@ racket
 racket-doc
 ripgrep
 rrdtool-dbg
+rsstail
 rsync
 run-parts-dbg
 runit-iptables
@@ -263,12 +285,16 @@ system-config-printer
 tealdeer
 terminus-font
 texinfo
+texlive
+texlive-fontsextra
+texlive-latexextra
 thunderbird
 tig
 tmux
 tree
 udisks2
 ueberzug                # For drawing images on terminals. Something built from src needed it.
+units
 unixodbc-devel
 unrar
 unzip
@@ -295,6 +321,7 @@ xorg-video-drivers
 xprop
 xrandr
 xscreensaver
+xsel
 xsv                     # CLI CSV tool
 xtools
 xwininfo                # Needed for picom-trans to work, but isn't a dep of picom.
@@ -304,6 +331,7 @@ zathura
 zathura-djvu
 zathura-pdf-mupdf
 zeal
+zip
 zlib-dbg
 zsh
 zsh-completions
