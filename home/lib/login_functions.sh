@@ -2,7 +2,19 @@
 
 ## ws: web search
 ws() {
-    firefox --search "$*"
+    local line search_string0 search_string
+
+    search_string0="$*"
+    case "$search_string0" in
+        '')
+            while read -r line; do
+                search_string="${search_string} ${line}"
+            done;;
+         *)
+            search_string="$search_string0";;
+    esac
+
+    firefox --search "$search_string"
 }
 
 d() {
