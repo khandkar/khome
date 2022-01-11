@@ -1,5 +1,10 @@
 #
 
+## ws: web search
+ws() {
+    firefox --search "$*"
+}
+
 d() {
     local -r word=$(fzf < /usr/share/dict/words)
     dict "$word"
