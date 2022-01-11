@@ -1,6 +1,7 @@
 #
 
-## ws: web search
+## web search
+## ws : string -> unit
 ws() {
     local line search_string0 search_string
 
@@ -17,11 +18,15 @@ ws() {
     firefox --search "$search_string"
 }
 
+
+## dictionary
+## d : string -> string list
 d() {
     local -r word=$(fzf < /usr/share/dict/words)
     dict "$word"
 }
 
+## shell_activity_report : (mon | dow) -> string list
 shell_activity_report() {
     # TODO: optional concrete number output
     # TODO: optional combinations of granularities: hour, weekday, month, year
@@ -119,6 +124,7 @@ shell_activity_report() {
         }'
 }
 
+## top_commands : unit -> (command:string * count:number * bar:string) list
 top_commands() {
     history \
     | awk '
@@ -153,10 +159,13 @@ top_commands() {
     | column -t
 }
 
-# Top Disk-Using directories
-# TODO: Consider using numfmt instead of awk
+## Top Disk-Using directories
+## TODO: Consider using numfmt instead of awk
+## tdu : path-string -> (size:number * directory:path-string) list
 tdu() {
-    du "$1" \
+    local -r root_path="$1"
+
+    du "$root_path" \
     | awk '
         {
             size = $1
@@ -182,9 +191,10 @@ tdu() {
     # A slight optimization: head can exit before traversing the full input.
 }
 
-# Top Disk-Using Files
+## Top Disk-Using Files
+## tduf : path-string list -> (size:number * file:path-string) list
 tduf() {
-    find "$1" -type f -printf '%s\t%p\0' \
+    find "$@" -type f -printf '%s\t%p\0' \
     | sort -z -n -k 1 \
     | tail -z -n 50 \
     | gawk -v RS='\0' '
@@ -198,13 +208,12 @@ tduf() {
 }
 
 # Most-recently modified file system objects
+## recent : ?(path-string list) -> path-string list
 recent() {
     # NOTES:
-    # - intentionally not quoting the parameters, so that some can be ignored
-    #   if not passed, rather than be passed to find as an empty string;
     # - %T+ is a GNU extension;
     # - gawk is able to split records on \0, while awk cannot.
-    find $@ -printf '%T@ %T+ %p\0' \
+    find "$@" -printf '%T@ %T+ %p\0' \
     | tee >(gawk -v RS='\0' 'END { printf("[INFO] Total found: %d\n", NR); }') \
     | sort -z -k 1 -n -r \
     | head -n "$(stty size | awk 'NR == 1 {print $1 - 5}')" -z \
@@ -217,23 +226,28 @@ recent() {
         }'
 }
 
+## recent_dirs : ?(path-string list) -> path-string list
 recent_dirs() {
-    recent "$1" -type d
+    recent "$@" -type d
 }
 
+## recent_files : ?(path-string list) -> path-string list
 recent_files() {
-    recent "$1" -type f
+    recent "$@" -type f
 }
 
+## pa_def_sink : unit -> string
 pa_def_sink() {
     pactl info | awk '/^Default Sink:/ {print $3}'
 }
 
+## void_pkgs : ?(string) -> json
 void_pkgs() {
     curl "https://xq-api.voidlinux.org/v1/query/x86_64?q=$1" | jq '.data'
 }
 
-# Colorful man
+## Colorful man
+## man : string -> string
 man() {
     # mb: begin blink
     # md: begin bold
@@ -254,15 +268,20 @@ man() {
     command man "$@"
 }
 
-# new experiment
+## new experiment
+## x : string list -> unit
 x() {
     cd "$(~/bin/x $@)" || kill -INT $$
 }
 
+## ocaml repl
+## hump : unit -> unit
 hump() {
     ledit -l "$(stty size | awk '{print $2}')" ocaml $@
 }
 
+## search howtos
+## howto : unit -> string
 howto() {
     cat "$(find  ~/arc/doc/HOWTOs -mindepth 1 -maxdepth 1 | sort | fzf)"
 }
