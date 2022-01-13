@@ -1,0 +1,26 @@
+#! /bin/bash
+
+set -e
+
+
+launch_common() {
+    xbindkeys
+    xscreensaver &
+    mpd --kill || true
+    mpd
+    for script in ~/.xlaunch.d/*; do
+        "$script"
+    done
+}
+
+launch_specialized() {
+    # XXX dunst lazily started by dbus
+    for script in ~/.xlaunch.d."$(hostname)"/*; do
+        "$script"
+    done
+}
+
+launch_common
+launch_specialized
+
+exec dwm
