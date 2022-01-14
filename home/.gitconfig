@@ -1,0 +1,17 @@
+[user]
+        name = Siraaj Khandkar
+        email = siraaj@khandkar.net
+[core]
+        editor = /usr/bin/vim
+        excludesfile = ~/.gitignore_global
+[color]
+        ui = true
+[cola]
+	spellcheck = false
+[init]
+	defaultBranch = master
+#[filter "lfs"]
+#	required = true
+#	clean = git-lfs clean -- %f
+#	smudge = git-lfs smudge -- %f
+#	process = git-lfs filter-process

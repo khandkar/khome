@@ -1,0 +1,29 @@
+## temporary alchemy
+# Private notes
+_notes.md
+_notes/
+
+# Temporary storage
+_tmp/
+_wip/
+
+## misc
+# Mac filesystem metadata
+.DS_Store
+
+# git-analysis
+.git-analysis/
+
+## editors
+# Vim
+*.swp
+*.swo
+
+# Emacs
+\#*#
+
+# Visual Studio Code
+.vscode/
+
+# F# plugin for VS Code
+.ionide/
