@@ -11,6 +11,7 @@ export DIR_NOTES="$HOME/doc/notes"
 export DIR_LOG="$HOME/var/log"
 export DIR_LOG_MPD="$DIR_LOG/mpd"
 export DIR_NQ="$HOME/var/run/nq"
+export DIR_WALLPAPERS="$HOME/arc/img/Wallpapers"
 
 # ensure all DIRs exist:
 env | grep ^DIR_ | awk -F= '{print $2}' | xargs -I% mkdir -p '%'

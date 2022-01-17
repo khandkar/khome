@@ -1,0 +1,7 @@
+#! /usr/bin/awk -f
+
+BEGIN {srand()}
+
+{lines[n++] = $0}
+
+END {print lines[int(n * rand())]}
