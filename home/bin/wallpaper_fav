@@ -1,0 +1,8 @@
+#! /bin/sh
+
+set -e
+
+FAVS_FILE=~/fav-wallpapers.txt
+
+awk 'NR == 2 {sub("^" $1 " +" $2 " +" $3 " +", ""); print}' ~/.fehbg | xargs sha256sum >> "$FAVS_FILE"
+sort -u "$FAVS_FILE" | sponge "$FAVS_FILE"
