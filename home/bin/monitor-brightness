@@ -1,0 +1,33 @@
+#! /bin/bash
+
+error() {
+    printf 'Error: %s\n' "$1" >&2
+    exit 1
+}
+
+_get() {
+    sudo ddcutil getvcp 10 | grep -o ' current value = \+[0-9]\+' | awk '{print $4}'
+}
+
+_set() {
+    sudo ddcutil setvcp 10 "$1"
+}
+
+cmd="$1"
+arg="$2"
+
+case "$cmd" in
+    '') _get;;
+    get) _get;;
+    set)
+        case "$arg" in
+            '') error 'expected a numeric argument between 0 and 100, given nothing!';;
+            *)
+                if [[ "$arg" =~ ^[0-9]+$ && "$arg" -gt -1 && "$arg" -lt 101 ]]; then
+                    _set "$arg"
+                else
+                    error "expected a numeric argument between 0 and 100, but given '$arg'"
+                fi
+        esac;;
+    *) error "unrecognized command: $cmd. Expect either get or set."
+esac
