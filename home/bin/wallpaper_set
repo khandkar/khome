@@ -1,0 +1,7 @@
+#! /bin/sh
+
+set -e
+
+FAVS_FILE=~/fav-wallpapers.txt  # TODO Centralize in lib/vars
+
+khomenu -l 50 < "$FAVS_FILE" | awk '{sub("^" $1 " +", ""); print}' | xargs -I% feh --bg-scale '%'
