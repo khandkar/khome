@@ -1,7 +1,9 @@
-#! /bin/sh
+#! /bin/bash
 
-set -e
+set -euo pipefail
 
-FAVS_FILE=~/fav-wallpapers.txt  # TODO Centralize in lib/vars
+WALL_FILE=~/wallpaper.txt
+FAVS_FILE=~/wallpaper_favs.txt  # TODO Centralize in lib/vars
 
-khomenu -l 50 < "$FAVS_FILE" | awk '{sub("^" $1 " +", ""); print}' | xargs -I% feh --bg-scale '%'
+khomenu -l 50 < "$FAVS_FILE" | awk '{sub("^" $1 " +", ""); print}' > "$WALL_FILE"
+~/.xlaunch.d/background
