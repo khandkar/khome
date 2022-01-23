@@ -19,6 +19,8 @@ env | grep ^DIR_ | awk -F= '{print $2}' | xargs -I% mkdir -p '%'
 ### FILEs ###
 export FILE_LOG_MPD="$DIR_LOG_MPD/mpd.log"
 export FILE_VIDEO_CATALOG="$DIR_VIDEO/catalog"
+export FILE_WALLPAPER_CURR="$HOME/wallpaper_curr.txt"
+export FILE_WALLPAPER_FAVS="$HOME/wallpaper_favs.txt"
 
 # .Net Core
 #DOTNET_ROOT_path=$(which dotnet)

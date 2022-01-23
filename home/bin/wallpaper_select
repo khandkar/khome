@@ -2,8 +2,5 @@
 
 set -euo pipefail
 
-WALL_FILE=~/wallpaper.txt
-FAVS_FILE=~/wallpaper_favs.txt  # TODO Centralize in lib/vars
-
-sort -k 2 "$FAVS_FILE" | khomenu -l 50 | awk '{sub("^" $1 " +", ""); print}' > "$WALL_FILE"
+sort -k 2 "$FILE_WALLPAPER_FAVS" | khomenu -l 50 | awk '{sub("^" $1 " +", ""); print}' > "$FILE_WALLPAPER_CURR"
 ~/.xlaunch.d/background

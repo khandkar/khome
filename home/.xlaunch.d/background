@@ -2,10 +2,8 @@
 
 set -e
 
-WALL_FILE=~/wallpaper.txt
-
 BG_COLOR='#b2b2a0'
-BG_IMAGE=$(< "$WALL_FILE")
+BG_IMAGE=$(< "$FILE_WALLPAPER_CURR")
 
 #xsetroot -solid "$BG_COLOR"
 hsetroot -solid "$BG_COLOR"   # Because xsetroot is incompatible with compton.
