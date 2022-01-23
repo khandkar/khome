@@ -20,12 +20,10 @@ read_command() {
     esac
 }
 
-paths_find() {
-    local -r root_dir="$1"
+paths_set() {
     local path
 
-    IFS=$'\n'
-    for path in $(find "$root_dir" -type f)
+    while read -r path
     do
         if file "$path" | grep 'image data' > /dev/null
         then
@@ -35,8 +33,15 @@ paths_find() {
             paths["$(( n - 1 ))"]="$path"
         fi
     done
-    unset IFS
     printf '\n' >&2
+}
+
+paths_set_from_dir_find() {
+    paths_set < <(find "$1" -type f)
+}
+
+paths_set_from_favs() {
+    paths_set < <(sort -k 2 "$FILE_WALLPAPER_FAVS" | awk '{sub("^" $1 " +", ""); print}')
 }
 
 set_wallpaper() {
@@ -77,14 +82,17 @@ paths_preview() {
 }
 
 main() {
-    local root_dir
-
     case "$1" in
-        '') root_dir="$DIR_WALLPAPERS";;
-        *) root_dir="$1";;
+        f | fav) paths_set_from_favs;;
+        d | dir) paths_set_from_dir_find "$2";;
+        a | all) paths_set_from_dir_find "$DIR_WALLPAPERS";;
+        '')
+            paths_set_from_dir_find "$DIR_WALLPAPERS";;
+        *)
+            printf 'Error: unknown source "%s"\n' "$1" >&2
+            exit 1;;
     esac
 
-    paths_find "$root_dir"
     paths_preview
 }
 
