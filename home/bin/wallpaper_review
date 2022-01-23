@@ -70,6 +70,7 @@ paths_preview() {
 
         case "$(read_command)" in
             CMD_QUIT)
+                feh --bg-scale "$(< "$FILE_WALLPAPER_CURR")"
                 exit 0;;
             CMD_MOVE_BACK)
                 (( i = i == 0 ? (n - 1) : i - 1));;
