@@ -1,5 +1,9 @@
 #! /bin/bash
 
+### XXX Chose not to 'set -e' because arithmetic evaluation can cause a non-zero exit.
+### XXX Chose not to 'set -u' because unset params ($1, $2, ...) cause failures.
+### Solutions to the above are ugly.
+
 declare -a paths
 declare -i n=0
 
@@ -28,43 +32,46 @@ paths_find() {
             (( n++ ))
             # \r jumps to the beginning of the line:
             printf '\rFound %d images.' "$n" >&2
-            paths["$n"]="$path"
+            paths["$(( n - 1 ))"]="$path"
         fi
     done
     unset IFS
     printf '\n' >&2
 }
 
+set_wallpaper() {
+    local -ri i="$1"
+    local -r path="$2"
+
+    printf '%d of %d %s\n' "$(( i + 1 ))" "$n" "$path"
+    feh --bg-scale "$path"
+}
+
 paths_preview() {
-    local -i i
-    local path
+    local -i i=0
+    local path="${paths[$i]}"
 
-    for ((i=1; i<=n; i++))
+    set_wallpaper "$i" "$path"
+
+    while :
     do
-        path="${paths[$i]}"
-
-        printf '%d of %d : %s\n' "$i" "$n" "$path"
-        feh --bg-scale "$path"
+        if [[ "${paths[$i]}" != "$path" ]]
+        then
+            path="${paths[$i]}"
+            set_wallpaper "$i" "$path"
+        fi
 
         case "$(read_command)" in
             CMD_QUIT)
                 exit 0;;
             CMD_MOVE_BACK)
-                # TODO Cycle around.
-                # One step further back than needed,
-                # to correct for the upcoming i++.
-                ((i = i - 2))
-                if [[ i -lt 0 ]]; then
-                    i=-1
-                fi;;
+                (( i = i == 0 ? (n - 1) : i - 1));;
             CMD_MOVE_FORWARD)
-                ;;
+                (( i = (i + 1) % n ));;
             CMD_FAVORITE)
-                wallpaper_fav
-                ((i--));;
+                wallpaper_fav;;
             CMD_UKNOWN)
-                # Remain
-                ((i--));;
+                continue;;
         esac
     done
 }
