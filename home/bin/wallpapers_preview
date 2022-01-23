@@ -17,6 +17,7 @@ read_command() {
         l | L) echo 'CMD_MOVE_FORWARD';;
         f | F) echo 'CMD_FAVORITE_ADD';;
         r | R) echo 'CMD_FAVORITE_REMOVE';;
+        s | S) echo 'CMD_SET_CURRENT';;
             *) echo 'CMD_UKNOWN';;
     esac
 }
@@ -84,6 +85,9 @@ paths_preview() {
                 | sort -u \
                 | sponge "$FILE_WALLPAPER_FAVS"
                 ;;
+            CMD_SET_CURRENT)
+                printf 'Setting as current: "%s"\n' "$path" >&2
+                echo "$path" > "$FILE_WALLPAPER_CURR";;
             CMD_UKNOWN)
                 continue;;
         esac
