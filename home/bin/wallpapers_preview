@@ -1,10 +1,84 @@
-#! /bin/sh
+#! /bin/bash
 
-case "$1" in
-    '') dir="$DIR_WALLPAPERS";;
-    *) dir="$1";;
-esac
+declare -a paths
+declare -i n=0
 
-# XXX Apparently injecting a filepath with {} is bad: https://github.com/koalaman/shellcheck/wiki/SC2156
-#find "$dir" -type f -exec bash -c 'feh --bg-scale "{}"; read' \;
-find "$dir" -type f -exec bash -c 'feh --bg-scale "$1"; read' shell '{}' \;
+read_command() {
+    local char
+
+    read -rsn 1 char
+    case "$char" in
+        q | Q) echo 'CMD_QUIT';;
+        h | H) echo 'CMD_MOVE_BACK';;
+        l | L) echo 'CMD_MOVE_FORWARD';;
+        f | F) echo 'CMD_FAVORITE';;
+            *) echo 'CMD_UKNOWN';;
+    esac
+}
+
+paths_find() {
+    local -r root_dir="$1"
+    local path
+
+    IFS=$'\n'
+    for path in $(find "$root_dir" -type f)
+    do
+        if file "$path" | grep 'image data' > /dev/null
+        then
+            (( n++ ))
+            # \r jumps to the beginning of the line:
+            printf '\rFound %d images.' "$n" >&2
+            paths["$n"]="$path"
+        fi
+    done
+    unset IFS
+    printf '\n' >&2
+}
+
+paths_preview() {
+    local -i i
+    local path
+
+    for ((i=1; i<=n; i++))
+    do
+        path="${paths[$i]}"
+
+        printf '%d of %d : %s\n' "$i" "$n" "$path"
+        feh --bg-scale "$path"
+
+        case "$(read_command)" in
+            CMD_QUIT)
+                exit 0;;
+            CMD_MOVE_BACK)
+                # TODO Cycle around.
+                # One step further back than needed,
+                # to correct for the upcoming i++.
+                ((i = i - 2))
+                if [[ i -lt 0 ]]; then
+                    i=-1
+                fi;;
+            CMD_MOVE_FORWARD)
+                ;;
+            CMD_FAVORITE)
+                wallpaper_fav
+                ((i--));;
+            CMD_UKNOWN)
+                # Remain
+                ((i--));;
+        esac
+    done
+}
+
+main() {
+    local root_dir
+
+    case "$1" in
+        '') root_dir="$DIR_WALLPAPERS";;
+        *) root_dir="$1";;
+    esac
+
+    paths_find "$root_dir"
+    paths_preview
+}
+
+main "$@"
