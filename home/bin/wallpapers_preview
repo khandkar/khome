@@ -1,0 +1,10 @@
+#! /bin/sh
+
+case "$1" in
+    '') dir="$DIR_WALLPAPERS";;
+    *) dir="$1";;
+esac
+
+# XXX Apparently injecting a filepath with {} is bad: https://github.com/koalaman/shellcheck/wiki/SC2156
+#find "$dir" -type f -exec bash -c 'feh --bg-scale "{}"; read' \;
+find "$dir" -type f -exec bash -c 'feh --bg-scale "$1"; read' shell '{}' \;
