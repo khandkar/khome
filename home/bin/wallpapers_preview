@@ -15,7 +15,8 @@ read_command() {
         q | Q) echo 'CMD_QUIT';;
         h | H) echo 'CMD_MOVE_BACK';;
         l | L) echo 'CMD_MOVE_FORWARD';;
-        f | F) echo 'CMD_FAVORITE';;
+        f | F) echo 'CMD_FAVORITE_ADD';;
+        r | R) echo 'CMD_FAVORITE_REMOVE';;
             *) echo 'CMD_UKNOWN';;
     esac
 }
@@ -73,8 +74,16 @@ paths_preview() {
                 (( i = i == 0 ? (n - 1) : i - 1));;
             CMD_MOVE_FORWARD)
                 (( i = (i + 1) % n ));;
-            CMD_FAVORITE)
+            CMD_FAVORITE_ADD)
+                printf 'Adding to favorites set: "%s"\n' "$path" >&2
                 wallpaper_fav;;
+            CMD_FAVORITE_REMOVE)
+                printf 'Removing from favorites set: "%s"\n' "$path" >&2
+                digest=$(sha256sum "$path" | awk '{print $1}')
+                grep -v "$digest" "$FILE_WALLPAPER_FAVS" \
+                | sort -u \
+                | sponge "$FILE_WALLPAPER_FAVS"
+                ;;
             CMD_UKNOWN)
                 continue;;
         esac
