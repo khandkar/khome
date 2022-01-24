@@ -7,18 +7,45 @@
 declare -a paths
 declare -i n=0
 
+declare _command
+declare -i _goto=0
+
+read_command_goto() {
+    local buf
+
+    printf ':' >&2
+    read -r buf
+    printf '\n' >&2
+    if [[ "$buf" =~ ^[0-9]+$ ]]; then
+        if [[ "$buf" -gt 0 && "$buf" -le "$n" ]]; then
+            (( buf-- ))
+            _goto="$buf"
+            _command='CMD_GOTO'
+        else
+            printf 'Error: out of range: %s\n' "$buf" >&2
+            _command='CMD_UKNOWN'
+        fi
+    else
+        printf 'Error: not an integer: %s\n' "$buf" >&2
+        _command='CMD_UKNOWN'
+    fi
+}
+
 read_command() {
     local char
 
     read -rsn 1 char
     case "$char" in
-        q | Q) echo 'CMD_QUIT';;
-        h | H) echo 'CMD_MOVE_BACK';;
-        l | L) echo 'CMD_MOVE_FORWARD';;
-        f | F) echo 'CMD_FAVORITE_ADD';;
-        r | R) echo 'CMD_FAVORITE_REMOVE';;
-        s | S) echo 'CMD_SET_CURRENT';;
-            *) echo 'CMD_UKNOWN';;
+        q | Q) _command='CMD_QUIT';;
+        h | H) _command='CMD_MOVE_BACK';;
+        l | L) _command='CMD_MOVE_FORWARD';;
+        f | F) _command='CMD_FAVORITE_ADD';;
+        r | R) _command='CMD_FAVORITE_REMOVE';;
+        s | S) _command='CMD_SET_CURRENT';;
+            :) read_command_goto;;
+            *)
+                printf 'Error: unknown command: %s\n' "$char" >&2
+                _command='CMD_UKNOWN';;
     esac
 }
 
@@ -68,10 +95,13 @@ paths_preview() {
             set_wallpaper "$i" "$path"
         fi
 
-        case "$(read_command)" in
+        read_command
+        case "$_command" in
             CMD_QUIT)
                 feh --bg-scale "$(< "$FILE_WALLPAPER_CURR")"
                 exit 0;;
+            CMD_GOTO)
+                i="$_goto";;
             CMD_MOVE_BACK)
                 (( i = i == 0 ? (n - 1) : i - 1));;
             CMD_MOVE_FORWARD)
