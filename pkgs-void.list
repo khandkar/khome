@@ -31,6 +31,7 @@ chez-scheme
 chromium
 clang
 cmake
+cool-retro-term
 corecollector
 cronie
 cryptsetup
@@ -38,7 +39,9 @@ cups
 curl
 dbus-devel
 dbus-libs-dbg
+ddcutil                 # Control external monitor's brightness (and more).
 dejavu-fonts-ttf
+delta                   # diff pager with syntax highlighting.
 device-mapper-dbg
 dfc
 dict
@@ -58,6 +61,7 @@ encfs
 erlang-doc
 erlang-wx
 eudev-libudev-dbg
+exiftool                # Access photo data.
 expat-dbg
 extra-cmake-modules
 feh
@@ -82,6 +86,7 @@ gdbm-devel
 gettext-devel-tools
 gimp
 git-all
+git-filter-repo         # Replacement for git-filter-branch.
 glibc-dbg
 glu-devel
 gmp-dbg
@@ -224,9 +229,11 @@ nnn
 nodejs
 ntfs-3g
 nvidia
+nyxt                    # Lispy web browser.
 onefetch                # Like neofetch, but for git repos.
 openbsd-netcat
 openntpd
+opensmtpd
 openssh
 openssl-dbg
 openssl-devel
@@ -280,6 +287,7 @@ strace
 streamripper
 swi-prolog
 sxiv
+symlinks                # Find broken symlinks and more.
 sysstat
 system-config-printer
 tealdeer
@@ -306,6 +314,7 @@ vscode
 vsv
 wget
 whois
+wine
 words-en
 words-ru
 wxWidgets-devel
