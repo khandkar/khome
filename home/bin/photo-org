@@ -1,0 +1,43 @@
+#! /bin/bash
+
+input_dir="$1"
+output_dir="$2"
+
+case "$output_dir" in
+    '') output_dir="$input_dir/auto-organized"
+esac
+
+find "$input_dir" -type f -iregex '^.+\.jp[e]*g$' | while read -r path; do
+    # TODO Use "exiftool" instead of "file". Unclear which timestamp field to use.
+    file_data=$(file "$path")
+    if echo "$file_data" | grep 'image data' > /dev/null; then
+        read -r year0 month0 day0 hour0 minute0 second0 < <(
+            echo "$file_data" \
+            | grep -o 'Exif Standard: \[.*\]' \
+            | grep -oE 'datetime=[0-9]{4}:[0-9]{2}:[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2}' \
+            | sed 's/^datetime=//' \
+            | sed 's/:/ /g'
+        )
+        if ! [[ "$year0" = '' && "$month0" = '' && "$day0" = '' && \
+                "$year0" -eq 0 && "$month0" -eq 0 && "$day0" -eq 0 ]]
+        then
+            # Force base 10, since leading zeros may cause an assumption of base 8:
+            year=$((  10#${year0}  ))
+            month=$(( 10#${month0} ))
+            day=$((   10#${day0}   ))
+            hour=$((  10#${hour0}  ))
+            minute=$((10#${minute0}))
+            second=$((10#${second0}))
+
+            digest=$(sha256sum "$path" | awk '{print $1}')
+            suffix=$(echo "$path" | awk -F . '{print tolower($NF)}')
+            new_dir="${output_dir}/${year}/${month}/${day}"
+            new_name="${year}-${month}-${day}--${hour}-${minute}-${second}--${digest}.${suffix}"
+            new_path="$new_dir/$new_name"
+
+            printf 'old: %s\n' "$path"
+            printf 'new: %s\n' "$new_path"
+            printf '\n'
+        fi
+    fi
+done
