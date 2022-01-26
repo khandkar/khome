@@ -42,6 +42,7 @@ read_command() {
         f | F) _command='CMD_FAVORITE_ADD';;
         r | R) _command='CMD_FAVORITE_REMOVE';;
         s | S) _command='CMD_SET_CURRENT';;
+        z | Z) _command='CMD_FZF';;
             :) read_command_goto;;
             *)
                 printf 'Error: unknown command: %s\n' "$char" >&2
@@ -119,6 +120,14 @@ paths_preview() {
             CMD_SET_CURRENT)
                 printf 'Setting as current: "%s"\n' "$path" >&2
                 echo "$path" > "$FILE_WALLPAPER_CURR";;
+            CMD_FZF)
+                i=$(
+                    for j in "${!paths[@]}"; do
+                        printf '%d %s\n' "$((j + 1))" "${paths[j]}"
+                    done \
+                    | fzf -e \
+                    | awk '{print $1 - 1}'
+                );;
             CMD_UKNOWN)
                 continue;;
         esac
