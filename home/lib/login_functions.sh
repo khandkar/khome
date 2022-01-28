@@ -384,15 +384,6 @@ note() {
     vim -c 'set spell' "$DIR_NOTES/$(date +'%Y_%m_%d--%H_%M_%S%z')--$1.md"
 }
 
-weather() {
-    local _weather_location
-    case "$1" in
-        '') _weather_location="$WEATHER_LOCATION";;
-         *) _weather_location="$1"
-    esac
-    curl "http://wttr.in/$_weather_location?format=v2"
-}
-
 _bt_devs_infos() {
     # grep's defintion of a line does not include \r, wile awk's does and
     # which bluetoothctl outputs
