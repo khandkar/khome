@@ -1,5 +1,13 @@
 #! /bin/bash
 
+max() {
+    if [[ "$1" -gt "$2" ]]; then echo "$1"; else echo "$2"; fi
+}
+
+min() {
+    if [[ "$1" -lt "$2" ]]; then echo "$1"; else echo "$2"; fi
+}
+
 _get() {
     sudo ddcutil getvcp 10 | grep -o ' current value = \+[0-9]\+' | awk '{print $4}'
 }
@@ -12,6 +20,8 @@ args="$*"
 
 case "$args" in
     '') _get;;
+    i | inc | increase) _set "$(min $(( $(_get) + 5)) 100)";;
+    d | dec | decrease) _set "$(max $(( $(_get) - 5)) 0)";;
     *)
         if [[ "$args" =~ ^[0-9]+$ && "$args" -gt -1 && "$args" -lt 101 ]]; then
             _set "$args"
