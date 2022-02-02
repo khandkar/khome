@@ -1,5 +1,33 @@
 #
 
+## p : string -> unit
+p() {
+    awk \
+	-v _s="$1" \
+	'
+	    BEGIN {_s = tolower(_s)}
+
+	    /^[a-zA-Z]/ && tolower($1) ~ _s && NF >= 2 {
+		s = $1
+		p = $NF
+		if (NF == 2) {
+		    e = ""
+		    u = ""
+		} else if (NF == 3) {
+		    e = $2
+		    u = ""
+		} else {
+		    e = $2
+		    u = $3
+		} # TODO What would NF > 4 mean?
+		printf("s:\"%s\", e:\"%s\", u:\"%s\"\n", s, e, u) > "/dev/stderr"
+		printf "%s", p # XXX Intentionally avoiding newline in the result.
+	    }
+	' \
+	~/._p/p \
+	| xsel -i -b -t 30000
+}
+
 ## web search
 ## ws : string -> unit
 ws() {
