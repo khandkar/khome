@@ -3,24 +3,24 @@
 ## p : string -> unit
 p() {
     awk \
-	-v _s="$1" \
-	'
-	    BEGIN {_s = tolower(_s)}
+        -v _s="$1" \
+        '
+            BEGIN {_s = tolower(_s)}
 
-	    /^[a-zA-Z]/ && tolower($1) ~ _s && NF >= 2 {
-		n++
-		s = $1
-		p = $NF
-		if (NF == 2) {
-		    e = ""
-		    u = ""
-		} else if (NF == 3) {
-		    e = $2
-		    u = ""
-		} else {
-		    e = $2
-		    u = $3
-		} # TODO What would NF > 4 mean?
+            /^[a-zA-Z]/ && tolower($1) ~ _s && NF >= 2 {
+                n++
+                s = $1
+                p = $NF
+                if (NF == 2) {
+                    e = ""
+                    u = ""
+                } else if (NF == 3) {
+                    e = $2
+                    u = ""
+                } else {
+                    e = $2
+                    u = $3
+                } # TODO What would NF > 4 mean?
 
                 printf("%d [O] s:\"%s\", e:\"%s\", u:\"%s\"\n", n, s, e, u) > "/dev/stderr"
                 if (match(u, "@")) {
@@ -30,11 +30,11 @@ p() {
                     printf("%d [C] s:\"%s\", e:\"%s\", u:\"%s\"\n", n, s, e, u) > "/dev/stderr"
                 }
 
-		printf "%s", p # XXX Intentionally avoiding newline in the result.
-	    }
-	' \
-	~/._p/p \
-	| xsel -i -b -t 30000
+                printf "%s", p # XXX Intentionally avoiding newline in the result.
+            }
+        ' \
+        ~/._p/p \
+        | xsel -i -b -t 30000
 }
 
 ## web search
@@ -699,33 +699,33 @@ status() {
     sudo -n netstat -tulnp \
     | awk -v indent="${indent_unit}${indent_unit}" '
         NR > 2 && ((/^tcp/ && proc = $7) || (/^udp/ && proc = $6)) {
-	    protocol = $1
-	    addr = $4
-	    port = a[split(addr, a, ":")]
-	    name = p[split(proc, p, "/")]
-	    names[name] = 1
-	    protocols[protocol] = 1
-	    if (!seen[protocol, name, port]++)
-		ports[protocol, name, ++seen[protocol, name]] = port
-	}
+            protocol = $1
+            addr = $4
+            port = a[split(addr, a, ":")]
+            name = p[split(proc, p, "/")]
+            names[name] = 1
+            protocols[protocol] = 1
+            if (!seen[protocol, name, port]++)
+                ports[protocol, name, ++seen[protocol, name]] = port
+        }
 
-	END {
-	    for (protocol in protocols) {
-		printf "%s%s\t", indent, toupper(protocol)
-		for (name in names) {
-		    if (n = seen[protocol, name]) {
-			sep = ""
-			printf "%s:", name
-			for (i = 1; i <= n; i++) {
-			    printf "%s%d", sep, ports[protocol, name, i]
-			    sep = ","
-			}
-			printf "  "
-		    }
-		}
-		printf "\n"
-	    }
-	}'
+        END {
+            for (protocol in protocols) {
+                printf "%s%s\t", indent, toupper(protocol)
+                for (name in names) {
+                    if (n = seen[protocol, name]) {
+                        sep = ""
+                        printf "%s:", name
+                        for (i = 1; i <= n; i++) {
+                            printf "%s%d", sep, ports[protocol, name, i]
+                            sep = ","
+                        }
+                        printf "  "
+                    }
+                }
+                printf "\n"
+            }
+        }'
 
     echo "${indent_unit}<->"
 
@@ -763,32 +763,32 @@ ssh_invalid_by_addr() {
 
 ssh_invalid_by_day() {
     awk '
-	BEGIN {
-	    m["Jan"] = "01"
-	    m["Feb"] = "02"
-	    m["Mar"] = "03"
-	    m["Apr"] = "04"
-	    m["May"] = "05"
-	    m["Jun"] = "06"
-	    m["Jul"] = "07"
-	    m["Aug"] = "08"
-	    m["Sep"] = "09"
-	    m["Oct"] = "10"
-	    m["Nov"] = "11"
-	    m["Dec"] = "12"
-	}
+        BEGIN {
+            m["Jan"] = "01"
+            m["Feb"] = "02"
+            m["Mar"] = "03"
+            m["Apr"] = "04"
+            m["May"] = "05"
+            m["Jun"] = "06"
+            m["Jul"] = "07"
+            m["Aug"] = "08"
+            m["Sep"] = "09"
+            m["Oct"] = "10"
+            m["Nov"] = "11"
+            m["Dec"] = "12"
+        }
 
-	/: Invalid user/ && $5 ~ /^sshd/ {
-	    day = m[$1] "-" $2
-	    max++
-	    by_day[day]++
-	}
+        /: Invalid user/ && $5 ~ /^sshd/ {
+            day = m[$1] "-" $2
+            max++
+            by_day[day]++
+        }
 
-	END {
-	    for (day in by_day)
-		if ((c = by_day[day]) > 1)
-		    printf "%d %d %s\n", c, max, day
-	}
+        END {
+            for (day in by_day)
+                if ((c = by_day[day]) > 1)
+                    printf "%d %d %s\n", c, max, day
+        }
         ' \
         /var/log/auth.log \
         /var/log/auth.log.1 \
