@@ -8,6 +8,7 @@ p() {
 	    BEGIN {_s = tolower(_s)}
 
 	    /^[a-zA-Z]/ && tolower($1) ~ _s && NF >= 2 {
+		n++
 		s = $1
 		p = $NF
 		if (NF == 2) {
@@ -20,7 +21,15 @@ p() {
 		    e = $2
 		    u = $3
 		} # TODO What would NF > 4 mean?
-		printf("s:\"%s\", e:\"%s\", u:\"%s\"\n", s, e, u) > "/dev/stderr"
+
+                printf("%d [O] s:\"%s\", e:\"%s\", u:\"%s\"\n", n, s, e, u) > "/dev/stderr"
+                if (match(u, "@")) {
+                    tmp = e
+                    e = u
+                    u = tmp
+                    printf("%d [C] s:\"%s\", e:\"%s\", u:\"%s\"\n", n, s, e, u) > "/dev/stderr"
+                }
+
 		printf "%s", p # XXX Intentionally avoiding newline in the result.
 	    }
 	' \
