@@ -25,3 +25,4 @@ alias ideas='cd ~/doc/ideas && vim ideas.md'
 alias quotes='cd ~/doc/quotations && vim quotations.md'
 alias bitcoin='nc ticker.bitcointicker.co 10080'  # https://github.com/chubin/awesome-console-services#Money
 alias weather='cat ~/.pista-out/weather-summary'
+alias notify_status='s="$?"; if [[ "$s" -eq 0 ]]; then notify-send "done OK: $s"; else notify-send -u critical "done ERROR: $s"; fi'

@@ -43,6 +43,7 @@ application/x-extension-xhtml=firefox.desktop;userapp-Firefox-FY7R00.desktop;
 application/x-extension-xht=firefox.desktop;userapp-Firefox-FY7R00.desktop;
 audio/vnd.audible.aax=vlc.desktop;
 text/vnd.graphviz=gvim.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-Q1EZH1.desktop;
 
 [Default Applications]
 application/illustrator=gimp.desktop
@@ -92,3 +93,4 @@ application/x-extension-xhtml=userapp-Firefox-FY7R00.desktop
 application/x-extension-xht=userapp-Firefox-FY7R00.desktop
 audio/vnd.audible.aax=vlc.desktop
 x-scheme-handler/signalcaptcha=signal.desktop
+x-scheme-handler/tg=userapp-Telegram Desktop-Q1EZH1.desktop

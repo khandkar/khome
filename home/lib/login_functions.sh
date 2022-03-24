@@ -335,7 +335,7 @@ _yt() {
     mkdir -p "$dir"
     cd "$dir" || kill -INT $$
     echo "$uri" > 'uri'
-    youtube-dlc $opts -c --write-description --write-info-json "$uri"
+    youtube-dlc $opts -c --write-all-thumbnails --write-description --write-info-json "$uri"
 }
 
 yt_audio() {

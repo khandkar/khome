@@ -5,10 +5,9 @@ set -e
 declare -a ZONES=(
     US/Pacific
     US/Eastern
-    Europe/Moscow
-    #Europe/Rome
-    Poland
-    Asia/Calcutta
+    Europe/Warsaw
+    Europe/Samara
+    Asia/Manila
     NZ
 )
 
