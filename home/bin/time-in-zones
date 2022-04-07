@@ -3,6 +3,7 @@
 set -e
 
 declare -a ZONES=(
+    UTC
     US/Pacific
     US/Eastern
     Europe/Warsaw
