@@ -363,7 +363,7 @@ gh_clone() {
     mkdir -p "$gh_dir"
     cd "$gh_dir" || kill -INT $$
     gh_fetch_repos "$gh_user_type" "$gh_user_name" \
-    | jq --raw-output '.[] | select(.fork | not) | .git_url' \
+    | jq --raw-output '.[] | select(.fork | not) | .clone_url' \
     | parallel -j 25 \
     git clone {}
 }
