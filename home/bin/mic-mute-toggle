@@ -1,0 +1,7 @@
+#! /bin/sh
+
+# Default
+#pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# All
+pactl list sources | awk -F\# '/^Source #[0-9]+/ {print $2}' | xargs -I % pactl set-source-mute % toggle
