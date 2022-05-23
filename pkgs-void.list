@@ -4,6 +4,8 @@ GraphicsMagick
 MultiMC
 R
 Signal-Desktop
+adwaita-plus
+alpine
 alsa-plugins-pulseaudio
 apache-fop
 arandr
@@ -23,6 +25,7 @@ bind-utils
 bison
 bluez
 bottom
+brother-brlaser
 bzip2-dbg
 c-ares-dbg
 cairo-dbg
@@ -36,9 +39,13 @@ corecollector
 cronie
 cryptsetup
 cups
+cups-filters
+cups-pdf
 curl
 dbus-devel
 dbus-libs-dbg
+dcpl5600dncupswrapper-32bit
+dcpl5600dnlpr-32bit
 ddcutil                 # Control external monitor's brightness (and more).
 dejavu-fonts-ttf
 delta                   # diff pager with syntax highlighting.
@@ -56,11 +63,9 @@ dunst
 e2fsprogs-libs-dbg
 element-desktop         # Matrix.org client, replaces Riot
 elinks
-elixir
 encfs
-erlang-doc
-erlang-wx
 eudev-libudev-dbg
+evtest
 exiftool                # Access photo data.
 expat-dbg
 extra-cmake-modules
@@ -87,6 +92,7 @@ gettext-devel-tools
 gimp
 git-all
 git-filter-repo         # Replacement for git-filter-branch.
+git-lfs
 glibc-dbg
 glu-devel
 gmp-dbg
@@ -111,6 +117,7 @@ httpie
 i3lock
 icu-devel
 icu-libs-dbg
+ifuse
 inetutils
 iptables-dbg
 jansson-dbg
@@ -145,9 +152,11 @@ libffi-dbg
 libfontenc-dbg
 libgcc-dbg
 libgcrypt-dbg
+libglade-devel
 libglvnd-dbg
 libgpg-error-dbg
 libharfbuzz-dbg
+libheif-tools
 libidn2-dbg
 libldap-dbg
 liblz4-devel
@@ -199,6 +208,7 @@ man-pages-devel
 masscan
 mate
 mate-extra
+mate-icon-theme-faenza
 mdadm
 mdns-scan
 mediainfo
@@ -208,11 +218,13 @@ mlocate
 moreutils
 mpc
 mpd
+mpdevil
 mpeg4ip
 mpv
 mtools
 multitail
 mupdf
+nautilus-devel
 nawk                    # The one, true implementation of AWK
 ncmpc
 ncmpcpp
@@ -224,9 +236,11 @@ netbsd-wtf
 nettle-dbg
 network-manager-applet
 nghttp2-dbg
+nix
 nmap
 nnn
 nodejs
+nq
 ntfs-3g
 nvidia
 nyxt                    # Lispy web browser.
@@ -240,7 +254,11 @@ openssl-devel
 p11-kit-dbg
 p7zip
 pango-dbg
+paper-gtk-theme
+paper-icon-theme
+papirus-icon-theme
 parallel
+pass
 patch
 pciutils-dbg
 pcmanfm
@@ -258,8 +276,10 @@ pidgin-libnotify
 pidgin-otr
 pixman-dbg
 pkg-config
+pulsemixer
 python3-dbg
 python3-devel
+python3-gobject-devel
 python3-pip
 qutebrowser
 racket
@@ -273,7 +293,8 @@ runit-iptables
 rustup
 sacc                    # gopher client
 scrot
-sct
+sct                     # Set the Color Temperature of the screen. Minimalist Night Shift.
+sent
 setxkbmap
 shellcheck
 smartmontools
@@ -291,14 +312,20 @@ symlinks                # Find broken symlinks and more.
 sysstat
 system-config-printer
 tealdeer
+telegram-desktop
+telegram-tg
 terminus-font
+tesseract-ocr
+tesseract-ocr-eng
 texinfo
 texlive
 texlive-fontsextra
 texlive-latexextra
 thunderbird
+tidy5
 tig
 tmux
+tpm
 tree
 udisks2
 ueberzug                # For drawing images on terminals. Something built from src needed it.
@@ -309,12 +336,15 @@ unzip
 vim
 vlc
 void-repo-debug
+void-repo-multilib
 void-repo-nonfree
 vscode
 vsv
 wget
 whois
 wine
+wine-mono
+wireless_tools
 words-en
 words-ru
 wxWidgets-devel
@@ -322,6 +352,7 @@ xauth
 xbindkeys
 xdg-user-dirs
 xen-libs-dbg
+xev
 xinput
 xkcdpass
 xorg-input-drivers
@@ -340,6 +371,7 @@ zathura
 zathura-djvu
 zathura-pdf-mupdf
 zeal
+zim
 zip
 zlib-dbg
 zsh

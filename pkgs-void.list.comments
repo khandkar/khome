@@ -12,6 +12,7 @@ onefetch                # Like neofetch, but for git repos.
 perl-List-MoreUtils-XS  # Dependency of feedgnuplot, which isn't in Void repos.
 picom                   # Replaces compton.
 sacc                    # gopher client
+sct                     # Set the Color Temperature of the screen. Minimalist Night Shift.
 symlinks                # Find broken symlinks and more.
 ueberzug                # For drawing images on terminals. Something built from src needed it.
 xsv                     # CLI CSV tool
