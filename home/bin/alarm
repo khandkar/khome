@@ -7,7 +7,14 @@ case "$1"
         seconds="$1"
 esac
 
-snore "$seconds"
+if which snore
+then
+    _sleep=snore;
+else
+    _sleep=sleep;
+fi
+
+"$_sleep" "$seconds"
 
 printf "!!! TIMES UP !!!\n"
 
