@@ -167,6 +167,10 @@ pull:
 	| xargs -0 -I% sh -c '$(DIFF) -q ~/% home/% > /dev/null || cp ~/% home/%'
 
 push:
+	# TODO Backup files before replacing.
+	#      But - recursive copy is not a good strategy for this.
+	#      Need to do a file by file pass, like the diff recipe.
+	#
 	# Limit depth because directories are copied recursively:
 	find home -maxdepth 1 -print0 \
 	| $(GREP) -zv '^home$$' \
