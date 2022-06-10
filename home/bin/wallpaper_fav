@@ -2,5 +2,33 @@
 
 set -e
 
-awk 'NR == 2 {sub("^" $1 " +" $2 " +" $3 " +", ""); print}' ~/.fehbg | xargs sha256sum >> "$FILE_WALLPAPER_FAVS"
+case "$1" in
+    '')
+        current_wallpaper_file=$(
+            awk '
+                NR == 2 {
+                    if (NF > 3) {
+                        # XXX Assume feh wrote a N>4-field command line, like:
+                        #         feh --no-fehbg --bg-scale $file
+                        sub("^" $1 " +" $2 " +" $3 " +", "")
+                    } else if (NF < 4) {
+                        # XXX Assume feh wrote a N<4-field command line, like:
+                        #         feh --bg-scale $file
+                        sub("^" $1 " +" $2 " +", "")
+                    } else {
+                        printf "[error] Unexpected number of fields in ~/.fehbg command: %s\n" $0 > "/dev/stderr"
+                        exit 1
+                    }
+                    print
+                    exit 0
+                }
+                ' \
+                ~/.fehbg \
+            | xargs  # Unquote the filename, which feh puts in single quotes.
+        );;
+    *)
+        current_wallpaper_file="$1"
+esac
+
+sha256sum "$current_wallpaper_file" >> "$FILE_WALLPAPER_FAVS"
 sort -u "$FILE_WALLPAPER_FAVS" | sponge "$FILE_WALLPAPER_FAVS"

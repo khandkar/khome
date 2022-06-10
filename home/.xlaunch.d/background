@@ -3,8 +3,12 @@
 set -e
 
 BG_COLOR='#b2b2a0'
-BG_IMAGE=$(< "$FILE_WALLPAPER_CURR")
 
 #xsetroot -solid "$BG_COLOR"
 hsetroot -solid "$BG_COLOR"   # Because xsetroot is incompatible with compton.
-feh --bg-scale "$BG_IMAGE"
+
+if test -f "$FILE_WALLPAPER_CURR"
+then
+    bg_image=$(< "$FILE_WALLPAPER_CURR")
+    feh --bg-scale "$bg_image"
+fi
