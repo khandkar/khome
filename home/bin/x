@@ -6,7 +6,7 @@ name=$(echo "$@" | sed 's/\s\+/-/g');
 
 if [ "$name" != "" ];
 then
-    timestamp=$(date +'%F--%H-%M--%S');
+    timestamp=$(date +'%F--%H-%M-%S');
     directory="$HOME/x/$timestamp--$name";
     mkdir -p "$directory";
     cd "$directory";
