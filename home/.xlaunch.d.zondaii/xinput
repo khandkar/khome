@@ -1,0 +1,8 @@
+#! /bin/bash
+
+set -e
+
+touchpad_name='DLL096D:01 06CB:CDE6 Touchpad'   # Dell XPS 13 9300
+
+# Enable tap-to-click (1-finger: left-click, 2-finger: right-click)
+xinput set-prop "$touchpad_name" 'libinput Tapping Enabled' 1

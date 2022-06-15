@@ -1,0 +1,8 @@
+#! /bin/bash
+
+compton \
+    --shadow \
+    &
+#    --active-opacity=0.9 \
+#    --inactive-opacity=0.6 \
+#    &
