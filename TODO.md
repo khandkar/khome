@@ -16,3 +16,4 @@
 - [ ] specialize configs by host
   - [ ] dunstrc
   - [ ] xbindkeysrc
+- [ ] implement `home/.xlaunch.d/oom_kill_notify`
