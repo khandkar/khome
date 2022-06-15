@@ -134,6 +134,26 @@ paths_preview() {
     done
 }
 
+help_print() {
+    cat <<EOF >&2
+
+Navigation help:
+
+key | action
+----+----------------------------------------------
+ q  |  quit
+ h  |  move back
+ l  |  move forward
+ f  |  add to favorites
+ r  |  remove from favorites
+ s  |  set current
+ z  |  fuzzy search for next file path
+ :N |  goto Nth image
+----+----------------------------------------------
+
+EOF
+}
+
 main() {
     case "$1" in
         f | fav) paths_set_from_favs;;
@@ -145,7 +165,7 @@ main() {
             printf 'Error: unknown source "%s"\n' "$1" >&2
             exit 1;;
     esac
-
+    help_print
     paths_preview
 }
 
