@@ -29,6 +29,12 @@ export FILE_WALLPAPER_FAVS="$HOME/wallpaper_favs.txt"
 #export DOTNET_ROOT="$DOTNET_ROOT_dirname"
 export PATH=$PATH:$HOME/.dotnet/tools
 
+# Erlang
+ERL_AFLAGS="+pc unicode"
+ERL_AFLAGS="$ERL_AFLAGS -kernel shell_history enabled"
+ERL_AFLAGS="$ERL_AFLAGS -kernel shell_history_path '\"$HOME/.erl_history\"'"
+export ERL_AFLAGS
+
 # Rust / cargo
 export PATH=$PATH:$HOME/.cargo/bin
 
