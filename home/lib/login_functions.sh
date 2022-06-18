@@ -7,6 +7,7 @@ p() {
         '
             BEGIN {_s = tolower(_s)}
 
+            # TODO fzf/dmenu select instead of searching:
             /^[a-zA-Z]/ && tolower($1) ~ _s && NF >= 2 {
                 n++
                 s = $1
@@ -31,6 +32,19 @@ p() {
                 }
 
                 printf "%s", p # XXX Intentionally avoiding newline in the result.
+            }
+
+            END {
+                if (n == 1) {
+                    exit 0
+                } else if (n == 0) {
+                    printf "[ERROR] Found nothing.\n" > "/dev/stderr"
+                    exit 1
+                } else if (n > 1) {
+                    # TODO fzf-select which of the records the user (ahem, me) wants.
+                    printf "[WARNING] Found more than one record.\n" > "/dev/stderr"
+                    exit 0
+                }
             }
         ' \
         ~/._p/p \
