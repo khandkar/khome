@@ -178,6 +178,7 @@ libpcre-dbg
 libpng-dbg
 libreadline8-dbg
 libreoffice
+libsanitizer
 libsasl-dbg
 libsensors-dbg
 libsodium-dbg
