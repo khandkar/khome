@@ -342,14 +342,15 @@ _yt() {
     local -r uri="$2"
     local -r opts="$3"
 
-    local -r id=$(youtube-dlc --get-id "$uri")
-    local -r title=$(youtube-dlc --get-title "$uri" | sed 's/[^А-Яа-яA-Za-z0-9._-]/_/g')
+    local -r yt=youtube-dl
+    local -r id=$("$yt" --get-id "$uri")
+    local -r title=$("$yt" --get-title "$uri" | sed 's/[^А-Яа-яA-Za-z0-9._-]/_/g')
     local -r dir="${base_dir}/${title}--${id}"
 
     mkdir -p "$dir"
     cd "$dir" || kill -INT $$
     echo "$uri" > 'uri'
-    youtube-dlc $opts -c --write-all-thumbnails --write-description --write-info-json "$uri"
+    "$yt" $opts -c --write-all-thumbnails --write-description --write-info-json "$uri"
 }
 
 yt_audio() {
