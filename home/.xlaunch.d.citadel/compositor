@@ -2,7 +2,7 @@
 
 picom \
     --shadow \
-    --active-opacity=0.85 \
-    --inactive-opacity=0.65 \
     --config ~/.compton.conf \
     &
+#    --active-opacity=0.85 \
+#    --inactive-opacity=0.65 \
