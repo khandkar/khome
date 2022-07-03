@@ -8,8 +8,12 @@ set -e
 #     > options that were set before (as saved in root window  proper‐ ties).
 #     > If you want to replace all previously specified options, use the
 #     > -option flag with an empty argument first.
+
+# English, Russian, Greek
 #setxkbmap -layout us,ru,el -variant ',phonetic_winkeys,' -option ''
 #setxkbmap -layout us,ru,el -variant ',phonetic_winkeys,' -option grp:ctrls_toggle
+
+# English, Russian
 setxkbmap -layout us,ru -variant ',phonetic_winkeys' -option ''
 setxkbmap -layout us,ru -variant ',phonetic_winkeys' -option grp:ctrls_toggle
 
