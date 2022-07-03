@@ -1,5 +1,20 @@
 #
 
+## notify_done : unit -> unit
+notify_done() {
+    local -r _status_code="$?"
+    local -r _program="$1"
+    local _timestamp
+    _timestamp="$(timestamp)"
+    local -r _msg="$_timestamp [$_program] done "
+    if [[ "$_status_code" -eq 0 ]]
+    then
+        notify-send -u normal "$_msg OK: $_status_code"
+    else
+        notify-send -u critical "$_msg ERROR: $_status_code"
+    fi
+}
+
 ## p : string -> unit
 p() {
     awk \
