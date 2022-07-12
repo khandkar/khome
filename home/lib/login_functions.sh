@@ -1,5 +1,16 @@
 #
 
+## open : string -> unit
+##
+## Fork xdg-open so we don't block current terminal session when opening
+## things like pdf files. For example:
+##
+##    open book.pdf
+##
+open() {
+    (xdg-open "$1" &) &
+}
+
 ## notify_done : unit -> unit
 notify_done() {
     local -r _status_code="$?"
