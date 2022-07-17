@@ -22,7 +22,7 @@ endif
     diff \
     pull \
     push \
-    mpdconf_dirs \
+    dirs \
     pkgs_void \
     pkgs_void_update \
     pkgs_brew_cask_install \
@@ -43,13 +43,18 @@ default:
 	@echo '================================================================================'
 	@exit 1
 
-home: compiled | mpdconf_dirs
+home: compiled dirs
 	cp -Rp bin $(HOME)/
 	$(MAKE) push
 	xdg-user-dirs-update
 
-mpdconf_dirs:
+dirs:
 	mkdir -p ~/arc/aud
+	mkdir -p ~/arc/img
+	mkdir -p ~/arc/vid
+	mkdir -p ~/dl
+	mkdir -p ~/doc
+	mkdir -p ~/proj/{pub,priv}
 	mkdir -p ~/var/lib/mpd/playlists
 	mkdir -p ~/var/log/mpd
 	mkdir -p ~/var/run/mpd
