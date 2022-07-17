@@ -1,11 +1,11 @@
 #
 9base
 GraphicsMagick
-MultiMC
 R
 Signal-Desktop
 adwaita-plus
 alpine
+alsa-lib-devel
 alsa-plugins-pulseaudio
 apache-fop
 arandr
@@ -17,6 +17,7 @@ auto-auto-complete
 autoconf
 automake
 avahi
+avahi-utils
 aws-cli
 base-system
 bash-completion
@@ -63,6 +64,7 @@ dunst
 e2fsprogs-libs-dbg
 element-desktop         # Matrix.org client, replaces Riot
 elinks
+emacs
 encfs
 eudev-libudev-dbg
 evtest
@@ -80,6 +82,8 @@ font-util-dbg
 fontconfig-dbg
 fonts-croscore-ttf
 fonts-droid-ttf
+foomatic-db             # Brother printer stuff
+foomatic-db-nonfree     # Brother printer stuff
 freetype-dbg
 fribidi-dbg
 fswatch
@@ -100,6 +104,7 @@ gmp-devel
 gnome-keyring
 gnuplot
 gnutls-dbg
+go
 google-fonts-ttf
 gparted
 gpick
@@ -200,10 +205,10 @@ libxcb-dbg
 libxml2-dbg
 libzstd-dbg
 lm_sensors
+lowdown
 lvm2
 lxdm
 lzo-dbg
-mDNSResponder           # Bonjour
 make
 man-pages-devel
 masscan
@@ -242,6 +247,7 @@ nmap
 nnn
 nodejs
 nq
+nss-mdns
 ntfs-3g
 nvidia
 nyxt                    # Lispy web browser.
@@ -289,6 +295,7 @@ ripgrep
 rrdtool-dbg
 rsstail
 rsync
+rtl-sdr
 run-parts-dbg
 runit-iptables
 rustup
@@ -322,6 +329,7 @@ texinfo
 texlive
 texlive-fontsextra
 texlive-latexextra
+thingmenu
 thunderbird
 tidy5
 tig
@@ -336,6 +344,7 @@ unrar
 unzip
 vim
 vlc
+void-docs
 void-repo-debug
 void-repo-multilib
 void-repo-nonfree

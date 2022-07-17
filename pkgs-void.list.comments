@@ -3,6 +3,8 @@ ddcutil                 # Control external monitor's brightness (and more).
 delta                   # diff pager with syntax highlighting.
 element-desktop         # Matrix.org client, replaces Riot
 exiftool                # Access photo data.
+foomatic-db             # Brother printer stuff
+foomatic-db-nonfree     # Brother printer stuff
 git-filter-repo         # Replacement for git-filter-branch.
 mDNSResponder           # Bonjour
 nawk                    # The one, true implementation of AWK
