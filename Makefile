@@ -50,14 +50,34 @@ home: compiled dirs
 
 dirs:
 	mkdir -p ~/arc/aud
+	mkdir -p ~/arc/backup
+	mkdir -p ~/arc/doc
 	mkdir -p ~/arc/img
+	mkdir -p ~/arc/log
+	mkdir -p ~/arc/misc
+	mkdir -p ~/arc/sw/bin
+	mkdir -p ~/arc/sw/src/misc
+	mkdir -p ~/arc/sw/src/pkgs
+	mkdir -p ~/arc/sw/src/repos
+	mkdir -p ~/arc/sw/src/tarballs
 	mkdir -p ~/arc/vid
+	mkdir -p ~/arc/work
+	mkdir -p ~/bin
 	mkdir -p ~/dl
 	mkdir -p ~/doc
-	mkdir -p ~/proj/{pub,priv}
+	mkdir -p ~/ex
+	mkdir -p ~/fork
+	mkdir -p ~/lib
+	mkdir -p ~/org
+	mkdir -p ~/proj/priv
+	mkdir -p ~/proj/pub
+	mkdir -p ~/snips
+	mkdir -p ~/tmp
 	mkdir -p ~/var/lib/mpd/playlists
 	mkdir -p ~/var/log/mpd
 	mkdir -p ~/var/run/mpd
+	mkdir -p ~/work
+	mkdir -p ~/x
 
 compiled:
 	mkdir -p bin
