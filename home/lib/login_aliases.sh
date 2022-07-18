@@ -1,3 +1,4 @@
+alias n=notify_done
 alias s=status
 alias g=git
 alias gr='git remote -v'
