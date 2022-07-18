@@ -74,7 +74,7 @@ pkgs_void_update:
 # Golang
 #
 pkgs_golang: list pkgs-golang.list
-	go get -u $(shell ./list pkgs-golang.list)
+	go install $(shell ./list pkgs-golang.list)
 
 #
 # Ubuntu
