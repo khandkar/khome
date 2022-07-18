@@ -15,9 +15,14 @@ launch_common() {
 
 launch_specialized() {
     # XXX dunst lazily started by dbus
-    for script in ~/.xlaunch.d."$(hostname)"/*; do
-        "$script"
-    done
+    local -r scripts_dir=~/.xlaunch.d."$(hostname)"
+
+    if test -f "$scripts_dir"
+    then
+        for script in "$scripts_dir"/*; do
+            "$script"
+        done
+    fi
 }
 
 launch_common
