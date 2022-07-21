@@ -1,5 +1,5 @@
 alias n=notify_done
-alias s=status
+alias s='echo $?'
 alias g=git
 alias gr='git remote -v'
 alias e='emacs -nw'
