@@ -17,11 +17,13 @@ launch_specialized() {
     # XXX dunst lazily started by dbus
     local -r scripts_dir=~/.xlaunch.d."$(hostname)"
 
-    if test -f "$scripts_dir"
+    if test -d "$scripts_dir"
     then
         for script in "$scripts_dir"/*; do
             "$script"
         done
+    else
+        printf '[error] scripts_dir not found: %s\n' "$scripts_dir" >&2
     fi
 }
 
