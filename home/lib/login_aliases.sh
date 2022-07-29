@@ -17,7 +17,6 @@ alias tm='tmux'
 #alias startx='printf "Use a specialized startx-...\n"'
 alias mans='man $(man -k . | sort | fzf -e | awk "{print \$1}")'
 alias twread='twtxt timeline --limit 1000 | less'
-alias todo='cd ~/doc/TODO && vim TODO.md'
 alias work_todo="cd $DIR_WORK/docs/TODO && vim -c NERDTreeFind TODO"
 alias drafts='cd ~/doc/drafts && drafts_prepend && vim -c NERDTreeFind drafts.md'
 alias notes='cd ~/doc/notes && notes_prepend && vim notes.md'

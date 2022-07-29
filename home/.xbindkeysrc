@@ -138,9 +138,12 @@
 "emacs"
     Mod4 + Shift + e
 
-# Edit specific files
-"cd ~/doc/TODO && gvim TODO.md"
+
+### Edit specific files
+
+"todo.launch.sh"
     Mod4 + t
+
 "cd ~/doc/ideas && gvim ideas.md"
     Mod4 + i
 #"cd ~/doc/drafts && drafts_prepend && gvim -c NERDTreeFind drafts.md"
@@ -152,6 +155,7 @@
     Mod4 + b
 "cd ~/doc/quotations && gvim quotations.md"
     Mod4 + q
+
 
 # File browser
 "pcmanfm"

@@ -425,6 +425,24 @@ gh_clone_repo() {
     git clone "$1"
 }
 
+todo() {
+    local date
+    local timestamp
+    local bar
+    date=$(date +%F)
+    timestamp=$(date '+%F %A')
+    bar=$(for _ in {1..80}; do printf '='; done)
+    local -r dir="$DIR_TODO/daily"
+    local -r file="$dir/$date.txt"
+
+    mkdir -p "$dir"
+    if [ ! -f "$file" ]
+    then
+        printf '%s\n%s\n%s\n' "$bar" "$timestamp" "$bar" > "$file"
+    fi
+    cd "$DIR_TODO" && "$EDITOR" "$file"
+}
+
 work_log_template() {
 cat << EOF
 $(date '+%F %A')

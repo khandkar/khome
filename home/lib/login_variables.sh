@@ -12,6 +12,7 @@ export DIR_LOG="$HOME/var/log"
 export DIR_LOG_MPD="$DIR_LOG/mpd"
 export DIR_NQ="$HOME/var/run/nq"
 export DIR_WALLPAPERS="$HOME/arc/img/Wallpapers"
+export DIR_TODO="$HOME/doc/TODO"
 
 # ensure all DIRs exist:
 env | grep ^DIR_ | awk -F= '{print $2}' | xargs -I% mkdir -p '%'
@@ -44,9 +45,6 @@ export PATH=$PATH:$HOME/.racket/"$RACKET_VERSION"/bin
 
 # Gambit Scheme
 export PATH=$PATH:/usr/local/Gambit/bin
-
-# DPI
-. "$HOME/lib/login_variables_dpi.sh"
 
 # Doom
 export PATH=$PATH:$HOME/.emacs.d/bin
