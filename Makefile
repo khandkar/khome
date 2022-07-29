@@ -158,6 +158,10 @@ diff:
 	| sort -zr \
 	| xargs -0 -I% sh -c 'echo %; $(DIFF) --color=auto ~/% home/%'
 
+.PHONY: diff_bins_untracked
+diff_bins_untracked:
+	ls -1 ~/bin | sort | grep -vf <(ls -1 home/bin | sort)
+
 pull:
 	find home -type f -print0 \
 	| $(SED) -z 's/^home\///g' \
