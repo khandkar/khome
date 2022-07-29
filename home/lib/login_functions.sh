@@ -425,6 +425,14 @@ gh_clone_repo() {
     git clone "$1"
 }
 
+bar() {
+    local -r len="${1:-79}" # 1st arg or 79.
+    local -r char="${2:--}" # 2nd arg or a dash.
+    for _ in {1.."$len"}; do
+        printf '%c' "$char";
+    done
+}
+
 daily_todo_file_template() {
 cat << EOF
 ===============================================================================
