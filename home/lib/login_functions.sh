@@ -445,7 +445,7 @@ backlog
 EOF
 }
 
-todo() {
+today() {
     local date
     date="$(date +%F)"
     local -r dir="$DIR_TODO/daily"
@@ -457,6 +457,10 @@ todo() {
         daily_todo_file_template > "$file"
     fi
     cd "$DIR_TODO" && "$EDITOR" "$file"
+}
+
+todo() {
+    cd "$DIR_TODO" && "$EDITOR" TODO
 }
 
 work_log_template() {

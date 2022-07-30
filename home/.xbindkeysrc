@@ -141,7 +141,7 @@
 
 ### Edit specific files
 
-"todo.launch.sh"
+"today.launch.sh"
     Mod4 + t
 
 "cd ~/doc/ideas && gvim ideas.md"
