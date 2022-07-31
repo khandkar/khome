@@ -191,7 +191,6 @@ libsodium-devel
 libssh2-dbg
 libssl1.1-dbg
 libssl47
-libssl48
 libstdc++-dbg
 libtasn1-dbg
 libthai-dbg
@@ -237,6 +236,7 @@ ncmpcpp
 ncurses-devel
 ncurses-libs-dbg
 neofetch
+neovim
 net-tools               # ifconfig et al
 netbsd-wtf
 nettle-dbg
@@ -342,6 +342,7 @@ units
 unixodbc-devel
 unrar
 unzip
+valgrind
 vim
 vlc
 void-docs
