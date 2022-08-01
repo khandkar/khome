@@ -3,8 +3,6 @@
 set -e
 set -o pipefail
 
-LINES=60
-
-mpc listall | khomenu -l "$LINES" | mpc insert
+mpc listall | khomenu | mpc insert
 mpc play
 st -e ncmpc

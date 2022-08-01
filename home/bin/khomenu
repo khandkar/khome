@@ -4,8 +4,9 @@ set -e
 
 # TODO: Get theme-appropriate font and colors from some central config file.
 
+LINES=45
 FONT_NAME='Iosevka'
-FONT_SIZE=20
+FONT_SIZE=30
 FONT="$FONT_NAME:pixelsize=$FONT_SIZE:antialias=true:autohint=true"
 BG_NORM='#3a3a3a'
 FG_NORM='#dcdccc'
@@ -19,4 +20,5 @@ dmenu \
     -nf "$FG_NORM" \
     -sb "$BG_SELECTED" \
     -sf "$FG_SELECTED" \
+    -l "$LINES" \
     $@
