@@ -2,6 +2,15 @@
 
 set -e
 
+LOG_FILE=~/var/log/xlaunch.log
+
+log() {
+    local -r fmt="$1"
+    shift
+
+    printf "${fmt}\n" $@ | twrap.sh >> "$LOG_FILE"
+}
+
 launch_then_killall() {
     local -r program="$1"
     local -r timeout="${2:-1}" # 2nd arg or default to 1.
@@ -15,6 +24,7 @@ dpi_scale() {
     # IDK what magic is at work here, but launching mate-appearance-properties
     # does the job better than setting scaling variables.
     # TODO Get to the bottom of how it works and replicate directly.
+    # TODO Try this: https://wiki.archlinux.org/title/HiDPI#Xorg
     launch_then_killall 'mate-appearance-properties' 1
 
     # GDK 3 (GTK 3)
@@ -30,31 +40,45 @@ dpi_scale() {
 }
 
 launch_common() {
+    local -r scripts_dir=~/.xlaunch.d
+
+    # XXX dunst lazily started by dbus?
+    dunst --startup_notification -conf ~/.config/dunst/dunstrc &
     xbindkeys
     xscreensaver &
     dpi_scale&
     #mpd --kill || true
     #mpd
-    for script in ~/.xlaunch.d/*; do
+    log '[error] Looking for scripts in directory: "%s"' "$scripts_dir"
+    for script in "$scripts_dir"/*; do
+        log '[debug] Launching script: "%s"' "$script"
         "$script"
     done
 }
 
 launch_specialized() {
-    # XXX dunst lazily started by dbus
     local -r scripts_dir=~/.xlaunch.d."$(hostname)"
 
+    log '[error] Looking for scripts in directory: "%s"' "$scripts_dir"
     if test -d "$scripts_dir"
     then
         for script in "$scripts_dir"/*; do
+            log '[debug] Launching script: "%s"' "$script"
             "$script"
         done
     else
-        printf '[error] scripts_dir not found: %s\n' "$scripts_dir" >&2
+        log '[error] scripts_dir not found: %s' "$scripts_dir"
     fi
 }
 
-launch_common
-launch_specialized
+main() {
+    log '[info] Starting X11'
 
-exec dwm
+    launch_common
+    launch_specialized
+
+    log '[info] Launching dwm'
+    exec dwm
+}
+
+main
