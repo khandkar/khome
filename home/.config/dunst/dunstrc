@@ -70,10 +70,15 @@
 
     # 3840x2160
     #geometry = "0x10-5+35"
-    offset = 10x45
+
+    #offset = 10x45
+    #font = Iosevka 20
+
+    offset = 2x20 # left x top
+    font = Iosevka 11
+
     width = (100, 2100)
     height = 3000
-    font = Iosevka 20
 
     # 3440x1440
     #geometry = "400x80-0+30"
