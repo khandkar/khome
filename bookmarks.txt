@@ -1,0 +1,1 @@
+https://direnv.net/
