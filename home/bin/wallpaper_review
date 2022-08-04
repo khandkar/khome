@@ -154,11 +154,30 @@ key | action
 EOF
 }
 
+usage() {
+    cat <<EOF >&2
+
+$(basename "$0") [cmd]
+
+cmd | args  | meaning
+----+-------+------------------------------------------------
+ f  |       | favorites
+ d  | <dir> | from given dir
+ a  |       | all from $DIR_WALLPAPERS <- DEFAULT if no cmd.
+ h  |       | usage help. i.e. this message.
+----+-------+------------------------------------------------
+
+EOF
+}
+
 main() {
     case "$1" in
         f | fav) paths_set_from_favs;;
         d | dir) paths_set_from_dir_find "$2";;
         a | all) paths_set_from_dir_find "$DIR_WALLPAPERS";;
+        h | -h | help | -help | --help)
+            usage;
+            exit 1;;
         '')
             paths_set_from_dir_find "$DIR_WALLPAPERS";;
         *)
