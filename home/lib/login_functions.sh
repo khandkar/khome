@@ -471,7 +471,7 @@ today() {
     then
         daily_todo_file_template > "$file"
     fi
-    cd "$DIR_TODO" && "$EDITOR" "$file"
+    cd "$DIR_TODO" && "$EDITOR" $EDITOR_ARGS "$file"
 }
 
 todo() {
