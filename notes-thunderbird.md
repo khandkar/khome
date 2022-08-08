@@ -24,7 +24,8 @@ In config editor, find property:
 
     layout.css.devPixelsPerPx
 
-then change its value from 2.0 to 1.0.
+then change its value from 2.0 to 1.0,
+or to -1.0 (which means match current X11 settings).
 
 #### Source
 
