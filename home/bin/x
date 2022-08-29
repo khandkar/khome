@@ -12,6 +12,7 @@ then
     cd "$directory";
     printf '# %s\n' "$name" > README;
     git init >&2
+    git commit --allow-empty -m 'Root commit' >&2
     git add . >&2
     git commit -m 'Initial commit' >&2
     echo "$directory";
