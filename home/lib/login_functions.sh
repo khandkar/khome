@@ -56,11 +56,11 @@ p() {
                     u = tmp
                     printf("%d [C] s:\"%s\", e:\"%s\", u:\"%s\"\n", n, s, e, u) > "/dev/stderr"
                 }
-
-                printf "%s", p # XXX Intentionally avoiding newline in the result.
+                ps[n] = p
             }
 
             END {
+                printf "%s", ps[n]  # XXX Intentionally avoiding newline in the result.
                 if (n == 1) {
                     exit 0
                 } else if (n == 0) {
@@ -68,7 +68,7 @@ p() {
                     exit 1
                 } else if (n > 1) {
                     # TODO fzf-select which of the records the user (ahem, me) wants.
-                    printf "[WARNING] Found more than one record.\n" > "/dev/stderr"
+                    printf "[WARNING] Found more than one record. Selecting the last one.\n" > "/dev/stderr"
                     exit 0
                 }
             }
