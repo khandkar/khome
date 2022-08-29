@@ -1,0 +1,10 @@
+#! /bin/bash
+
+set -e
+
+sleep 3 # wait for dunst to hopefully restart
+sudo dmesg --follow --level=warn --since=now \
+| while read line
+    do
+        notify-send -u low 'dmesg warning' "$line"
+    done

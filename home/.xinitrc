@@ -9,4 +9,4 @@ else
 fi
 
 dbus-update-activation-environment $opt_systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
-exec dbus-launch --sh-syntax --exit-with-session ~/.xlaunch
+exec dbus-launch --sh-syntax --exit-with-session ~/.xlaunch startx

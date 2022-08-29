@@ -1,0 +1,25 @@
+#! /bin/sh
+
+set -e
+
+# XXX dunst lazily started by dbus, but need to remove competing notification systems, like:
+#
+#         $ grep -rIHn 'org.freedesktop.Notifications' /usr/share/dbus-1/services
+#         $ sudo rm /usr/share/dbus-1/services/org.freedesktop.mate.Notifications.service
+#
+#dunst --startup_notification -conf ~/.config/dunst/dunstrc
+
+# Initially dunst is started before hidpi settings are complete, so we need to
+# restarted it after they have done so.
+
+# Hope this is enough for the initial dunst start to have been triggered.
+sleep 1
+
+# XXX Not using pkill to avoid killing self, which is expected to be named dunst as well.
+ps -eo pid,cmd | awk '$2 ~ /\/usr\/bin\/dunst\>/ {print $1}' | xargs -I% kill %
+
+# Hope this is enough for hidpi stuff to finish setting.
+sleep 1
+
+# Now dunst should start scaled:
+dunst --startup_notification

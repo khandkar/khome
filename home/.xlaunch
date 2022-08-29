@@ -2,6 +2,9 @@
 
 set -e
 
+SOCK="$HOME/.xlaunch.sock"
+SESSION='xlaunch'
+TMUX="tmux -S $SOCK"
 LOG_FILE=~/var/log/xlaunch.log
 
 log() {
@@ -11,74 +14,86 @@ log() {
     printf "${fmt}\n" $@ | twrap.sh >> "$LOG_FILE"
 }
 
-launch_then_killall() {
-    local -r program="$1"
-    local -r timeout="${2:-1}" # 2nd arg or default to 1.
+counter_next() {
+    local -r file="$_counter_file"
 
-    "$program"&
-    sleep "$timeout"
-    killall "$program"
+    awk '{n = $1} END {print n + 1}' "$file" | sponge "$file"
+    cat "$file"
 }
 
-dpi_scale() {
-    # IDK what magic is at work here, but launching mate-appearance-properties
-    # does the job better than setting scaling variables.
-    # TODO Get to the bottom of how it works and replicate directly.
-    # TODO Try this: https://wiki.archlinux.org/title/HiDPI#Xorg
-    launch_then_killall 'mate-appearance-properties' 1
+tmux_new_win() {
+    local -r command="$1"
+    local -r window_id=$(counter_next)
+    local -r window_name=$(basename "$command")
+    local -r pane=0
 
-    # GDK 3 (GTK 3)
-    # https://wiki.archlinux.org/index.php/HiDPI#GDK_3_(GTK_3)
-    #export GDK_SCALE=2
+    log \
+        '[debug] tmux window_id:"%s", window_name:"%s", command:"%s"' \
+        "$window_id" "$window_name" "$command"
 
-    # QT
-    # https://wiki.archlinux.org/index.php/HiDPI#Qt_5
-    # https://doc.qt.io/qt-5/highdpi.html
-    # https://blog.qt.io/blog/2016/01/26/high-dpi-support-in-qt-5-6/
-    #export QT_SCALE_FACTOR=2  # Causes qutebrowser UI fonts to have large gaps.
-    #export QT_FONT_DPI=192  # Scales qutebrowser UI fonts as expected.
+    $TMUX new-window -t "$SESSION" -n "$window_name"
+    $TMUX send-keys  -t "$SESSION":"$window_id"."$pane" "$command" ENTER
 }
 
-launch_common() {
-    local -r scripts_dir=~/.xlaunch.d
+launch_from_directory() {
+    local -r scripts_dir="$1"
 
-    # XXX dunst lazily started by dbus?
-    dunst --startup_notification -conf ~/.config/dunst/dunstrc &
-    xbindkeys
-    xscreensaver &
-    dpi_scale&
-    #mpd --kill || true
-    #mpd
-    log '[error] Looking for scripts in directory: "%s"' "$scripts_dir"
-    for script in "$scripts_dir"/*; do
-        log '[debug] Launching script: "%s"' "$script"
-        "$script"
-    done
-}
-
-launch_specialized() {
-    local -r scripts_dir=~/.xlaunch.d."$(hostname)"
-
-    log '[error] Looking for scripts in directory: "%s"' "$scripts_dir"
+    log '[info] Looking for scripts in directory: "%s"' "$scripts_dir"
     if test -d "$scripts_dir"
     then
         for script in "$scripts_dir"/*; do
             log '[debug] Launching script: "%s"' "$script"
-            "$script"
+            tmux_new_win "$script"
+            sleep 0.1 # TODO Find a way to block between starts instead.
         done
     else
-        log '[error] scripts_dir not found: %s' "$scripts_dir"
+        log '[warning] Directory not found: %s' "$scripts_dir"
     fi
 }
 
-main() {
+_start() {
+    $TMUX new-session -d -s "$SESSION"
+    $TMUX set-option -gt "$SESSION" allow-rename off
+
+    _counter_file=$(mktemp)
+    launch_from_directory ~/.xlaunch.d
+    launch_from_directory ~/.xlaunch.d."$(hostname)"
+}
+
+_startx() {
     log '[info] Starting X11'
-
-    launch_common
-    launch_specialized
-
+    _restart
     log '[info] Launching dwm'
     exec dwm
 }
 
-main
+_stop() {
+    $TMUX kill-session -t "$SESSION"
+}
+
+_restart() {
+    _stop || true
+    _start
+}
+
+_attach() {
+    $TMUX attach -t "$SESSION"
+}
+
+main() {
+    local -r command="$1"
+
+    case "$command" in
+        #'' ) _startx;;
+        'startx'  ) _startx;;
+        'start'   ) _start;;
+        'stop'    ) _stop;;
+        'restart' ) _restart;;
+        'attach'  ) _attach;;
+        *)
+            echo "[error] Unknown command: \"$command\". Known: startx, start, stop, restart, attach."
+            exit 1;;
+    esac
+}
+
+main "$*"
