@@ -54,5 +54,16 @@ export PATH="$PATH":"$HOME"/.gem/ruby/2.5.0/bin
 
 # Go
 export GOPATH=$HOME/.go
+export PATH=$GOPATH/bin:"$PATH"
 
-export PATH=$HOME/bin:$HOME/.local/bin:$GOPATH/bin:/snap/bin:/sbin:/usr/sbin:$PATH
+# Node.js
+export PATH="$HOME"/node_modules/.bin:"$PATH"
+
+# Solana
+export PATH="$HOME"/.local/share/solana/install/active_release/bin:"$PATH"
+
+# VS Code
+export PATH=/opt/VSCode-linux-x64/bin:"$PATH"
+
+# personal
+export PATH=$HOME/bin:$HOME/.local/bin:/snap/bin:/sbin:/usr/sbin:"$PATH"
