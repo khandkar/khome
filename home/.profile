@@ -20,7 +20,7 @@ fi
 ## TODO Rename status to motd
 case "$-" in
     # Only execute if shell is interactive.
-    *i*) status;;
+    *i*) ;;#status;;
 esac
 
 printf '\n'
