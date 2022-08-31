@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+set -o pipefail
+
+DIR=~/arc/vid/screencasts
+EXT=mkv
+#EXT=ogv # Low quality for some reason
+
+main() {
+    local -r timestamp=$(date +'%Y-%m-%d--%H-%M-%S') || exit 1
+    local -r file_name="screen--${timestamp}.$EXT"
+    local -r file_path="$DIR"/"$file_name"
+    local -r slop=$(slop -f '%x %y %w %h') || exit 1
+
+    mkdir -p "$DIR"
+    read -r X Y W H <<< "$slop"
+    ffmpeg -f x11grab -s "$W"x"$H" -i :0.0+"$X","$Y" -f pulse -ac 2 -i default "$file_path"
+}
+
+main "$@"
