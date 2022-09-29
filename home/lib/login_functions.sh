@@ -28,8 +28,27 @@ notify_done() {
 
 ## p : string -> unit
 p() {
+    local -r usage='Usage: p [FILE] NAME'
+    local name
+    local file
+
+    case "$#" in
+        0)
+            echo "$usage" >&2
+            return 1;;
+        1)
+            file=~/._p/p
+            name="$1";;
+        2)
+            file="$1"
+            name="$2";;
+        *)
+            echo "$usage" >&2
+            return 1;;
+    esac
+
     awk \
-        -v _s="$1" \
+        -v _s="$name" \
         '
             BEGIN {_s = tolower(_s)}
 
@@ -73,7 +92,7 @@ p() {
                 }
             }
         ' \
-        ~/._p/p \
+        "$file" \
         | xsel -i -b -t 30000
 }
 
