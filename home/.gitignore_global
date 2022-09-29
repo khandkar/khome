@@ -27,3 +27,5 @@ _wip/
 
 # F# plugin for VS Code
 .ionide/
+
+.idea/
