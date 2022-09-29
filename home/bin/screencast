@@ -8,6 +8,16 @@ EXT=mkv
 #EXT=ogv # Low quality for some reason
 
 main() {
+    local response
+    printf 'Proceed? (Y/n)\n'
+    read -rsn 1 response
+    case "$response" in
+        '' | y | Y )
+            true;;
+        *)
+            exit 1;;
+    esac
+
     local -r timestamp=$(date +'%Y-%m-%d--%H-%M-%S') || exit 1
     local -r file_name="screen--${timestamp}.$EXT"
     local -r file_path="$DIR"/"$file_name"
