@@ -63,7 +63,10 @@ export PATH="$HOME"/node_modules/.bin:"$PATH"
 export PATH="$HOME"/.local/share/solana/install/active_release/bin:"$PATH"
 
 # VS Code
-export PATH=/opt/VSCode-linux-x64/bin:"$PATH"
+export PATH=/opt/VSCode/bin:"$PATH"
+
+# CLion
+export PATH=/opt/clion/bin:"$PATH"
 
 # personal
 export PATH=$HOME/bin:$HOME/.local/bin:/snap/bin:/sbin:/usr/sbin:"$PATH"
