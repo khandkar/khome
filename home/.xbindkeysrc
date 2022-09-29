@@ -113,6 +113,10 @@
 "scrot --select --freeze 'screen--%Y-%m-%d--%H-%M-%S.png' -e 'mv $f ~/arc/img/Screenshots/'"
     Print
 
+# Screencast
+"st -c screencast -e ~/bin/screencast"
+    Shift + Print
+
 # ----------------
 # App launchers
 # ----------------
