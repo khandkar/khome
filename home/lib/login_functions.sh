@@ -674,11 +674,14 @@ status() {
 
     echo 'accounting'
 
-    printf '%stmux\n%ssessions %d, clients %d\n' \
+    printf '%stmux\n%sservers %d, clients %d\n' \
         "$indent_unit" \
         "${indent_unit}${indent_unit}" \
-        "$(tmux list-sessions 2> /dev/null | wc -l)" \
-        "$(tmux list-clients  2> /dev/null | wc -l)"
+        "$(pgrep -l 'tmux: server' | wc -l)" \
+        "$(pgrep -l 'tmux: client' | wc -l)"
+        # TODO sessions and clients per server
+        #"$(tmux list-sessions 2> /dev/null | wc -l)" \
+        #"$(tmux list-clients  2> /dev/null | wc -l)"
 
     echo
 
