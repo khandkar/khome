@@ -2,9 +2,9 @@
 
 set -e
 
-SOCK="$HOME/.xlaunch.sock"
 SESSION='xlaunch'
-TMUX="tmux -S $SOCK"
+SOCK_NAME="$SESSION"
+TMUX="tmux -L $SOCK_NAME"
 LOG_FILE=~/var/log/xlaunch.log
 
 log() {
