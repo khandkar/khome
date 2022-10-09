@@ -153,7 +153,7 @@
 #"cd ~/doc/drafts && drafts_prepend && gvim -c NERDTreeFind drafts.md"
 "cd ~/doc/drafts && drafts_prepend && gvim drafts.md"
     Mod4 + d
-"cd ~/doc/notes && notes_prepend && gvim notes.md"
+"cd ~/doc/notes && notes_prepend && gvim -c NERDTreeFind notes.md"
     Mod4 + n
 "cd ~/doc/bookmarks && gvim bookmarks.md"
     Mod4 + b
