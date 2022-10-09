@@ -11,7 +11,7 @@ log() {
     local -r fmt="$1"
     shift
 
-    printf "${fmt}\n" $@ | twrap.sh >> "$LOG_FILE"
+    printf "[%s] ${fmt}\n" "$(date +'%F %T')" $@ >> "$LOG_FILE"
 }
 
 counter_next() {
