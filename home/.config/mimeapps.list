@@ -45,7 +45,7 @@ x-scheme-handler/ftp=firefox.desktop;
 x-scheme-handler/http=chromium.desktop;userapp-Firefox-FY7R00.desktop;
 x-scheme-handler/https=chromium.desktop;userapp-Firefox-FY7R00.desktop;
 x-scheme-handler/mailto=thunderbird.desktop;
-x-scheme-handler/tg=userapp-Telegram Desktop-Q1EZH1.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-Q1EZH1.desktop;userapp-Telegram Desktop-NYSNT1.desktop;
 x-scheme-handler/trash=caja.desktop
 
 [Default Applications]
@@ -97,6 +97,7 @@ x-scheme-handler/https=chromium.desktop
 x-scheme-handler/mailto=thunderbird.desktop
 x-scheme-handler/sgnl=signal.desktop
 x-scheme-handler/signalcaptcha=signal.desktop
-x-scheme-handler/tg=userapp-Telegram Desktop-Q1EZH1.desktop
+x-scheme-handler/tg=userapp-Telegram Desktop-NYSNT1.desktop
 x-scheme-handler/trash=caja.desktop
 x-scheme-handler/unknown=firefox.desktop
+x-scheme-handler/webcal=chromium.desktop
