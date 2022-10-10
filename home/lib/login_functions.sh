@@ -674,14 +674,46 @@ status() {
 
     echo 'accounting'
 
-    printf '%stmux\n%sservers %d, clients %d\n' \
-        "$indent_unit" \
-        "${indent_unit}${indent_unit}" \
-        "$(pgrep -l 'tmux: server' | wc -l)" \
-        "$(pgrep -l 'tmux: client' | wc -l)"
-        # TODO sessions and clients per server
-        #"$(tmux list-sessions 2> /dev/null | wc -l)" \
-        #"$(tmux list-clients  2> /dev/null | wc -l)"
+    printf '%stmux (s->c)\n' "$indent_unit"
+    ps -eo comm,cmd \
+    | awk '
+        # Expecting lines like:
+        #     "tmux: server    tmux -L pistactl new-session -d -s pistactl"
+        #     "tmux: client    tmux -L foo"
+        #     "tmux: client    tmux -Lbar"
+        /^tmux:/ {
+            # XXX This of course assumes pervasive usage of -L
+            # TODO Handle -S
+            role=$2
+            split($0, sides_of_L, "-L")
+            split(sides_of_L[2], words_right_of_L, FS)
+            sock=words_right_of_L[1]
+            if (!sock) {
+                sock = "anon"
+            } else {
+                sock = "named." sock
+            }
+            roles[role]++
+            socks[sock]++
+            count[role, sock]++
+        }
+
+        END {
+            sock_sep = ""
+            for (sock in socks) {
+                printf "%s%s ", sock_sep, sock
+                sock_sep = "\n"
+                role_sep = ""
+                for (role in roles) {
+                    printf "%s%d", role_sep, count[role, sock]
+                    role_sep = "->"
+                }
+            }
+            printf "\n"
+        }' \
+    | sort \
+    | column -t \
+    | indent "${indent_unit}${indent_unit}"
 
     echo
 
