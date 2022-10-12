@@ -8,6 +8,8 @@ declare -a ZONES=(
     US/Mountain
     US/Eastern
     Europe/Warsaw
+    Europe/Kyiv
+    Europe/Moscow
     Europe/Samara
     Asia/Manila
     NZ
