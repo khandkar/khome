@@ -674,7 +674,7 @@ status() {
 
     echo 'accounting'
 
-    printf '%stmux (s->c)\n' "$indent_unit"
+    printf '%stmux\n' "$indent_unit"
     ps -eo comm,cmd \
     | awk '
         # Expecting lines like:
@@ -689,9 +689,9 @@ status() {
             split(sides_of_L[2], words_right_of_L, FS)
             sock=words_right_of_L[1]
             if (!sock) {
-                sock = "anon"
+                sock = "default"
             } else {
-                sock = "named." sock
+                sock = "\"" sock "\""
             }
             roles[role]++
             socks[sock]++
@@ -699,15 +699,13 @@ status() {
         }
 
         END {
-            sock_sep = ""
             for (sock in socks) {
-                printf "%s%s ", sock_sep, sock
-                sock_sep = "\n"
-                role_sep = ""
-                for (role in roles) {
-                    printf "%s%d", role_sep, count[role, sock]
-                    role_sep = "->"
+                clients = count["client", sock]
+                printf "%s ", sock
+                if (clients) {
+                    printf "<-> %d", clients
                 }
+                printf "\n"
             }
             printf "\n"
         }' \
