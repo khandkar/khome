@@ -681,18 +681,27 @@ status() {
         #     "tmux: server    tmux -L pistactl new-session -d -s pistactl"
         #     "tmux: client    tmux -L foo"
         #     "tmux: client    tmux -Lbar"
+        #     "tmux: client    tmux"
+        #     "tmux: server    tmux -L foo -S bar" <-- -S takes precedence
         /^tmux:/ {
             # XXX This of course assumes pervasive usage of -L
             # TODO Handle -S
             role=$2
+
+            split($0, sides_of_S, "-S")
+            split(sides_of_S[2], words_right_of_S, FS)
+
             split($0, sides_of_L, "-L")
             split(sides_of_L[2], words_right_of_L, FS)
-            sock=words_right_of_L[1]
-            if (!sock) {
-                sock = "default"
+
+            if (words_right_of_S[1]) {
+                sock = "path." words_right_of_S[1]
+            } else if (words_right_of_L[1]) {
+                sock = "name." words_right_of_L[1]
             } else {
-                sock = "\"" sock "\""
+                sock = "default"
             }
+
             roles[role]++
             socks[sock]++
             count[role, sock]++
