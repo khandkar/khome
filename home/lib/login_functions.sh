@@ -674,6 +674,7 @@ status() {
 
     echo 'accounting'
 
+    # TODO Bring back seesion and client listing, but per server/socket.
     printf '%stmux\n' "$indent_unit"
     ps -eo comm,cmd \
     | awk '
