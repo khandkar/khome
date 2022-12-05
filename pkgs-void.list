@@ -1,8 +1,5 @@
 #
 9base
-GraphicsMagick
-R
-Signal-Desktop
 adwaita-plus
 alpine
 alsa-lib-devel
@@ -22,14 +19,15 @@ aws-cli
 base-system
 bash-completion
 bat
+biber
 bind-utils
 bison
 bluez
 bottom
 brother-brlaser
 bzip2-dbg
-c-ares-dbg
 cairo-dbg
+c-ares-dbg
 cheese
 chez-scheme
 chromium
@@ -45,8 +43,6 @@ cups-pdf
 curl
 dbus-devel
 dbus-libs-dbg
-dcpl5600dncupswrapper-32bit
-dcpl5600dnlpr-32bit
 ddcutil                 # Control external monitor's brightness (and more).
 dejavu-fonts-ttf
 delta                   # diff pager with syntax highlighting.
@@ -54,6 +50,7 @@ device-mapper-dbg
 dfc
 dict
 dictd
+direnv
 dmenu
 dnsmasq-dbg
 docker
@@ -66,6 +63,9 @@ element-desktop         # Matrix.org client, replaces Riot
 elinks
 emacs
 encfs
+erlang
+erlang-doc
+erlang-wx
 eudev-libudev-dbg
 evtest
 exiftool                # Access photo data.
@@ -76,14 +76,15 @@ figlet
 firefox
 flex
 font-adobe-source-code-pro-2.038R~ro+1.058R~it+1.018R~VAR_1
+fontconfig-dbg
 font-iosevka
 font-misc-misc
-font-util-dbg
-fontconfig-dbg
 fonts-croscore-ttf
 fonts-droid-ttf
+font-util-dbg
 foomatic-db             # Brother printer stuff
 foomatic-db-nonfree     # Brother printer stuff
+fractal
 freetype-dbg
 fribidi-dbg
 fswatch
@@ -108,6 +109,7 @@ go
 google-fonts-ttf
 gparted
 gpick
+GraphicsMagick
 graphite-dbg
 graphviz
 grub-i386-efi
@@ -119,32 +121,27 @@ gvim
 hsetroot
 htop
 httpie
+i2c-tools-devel
 i3lock
 icu-devel
 icu-libs-dbg
 ifuse
+ImageMagick
 inetutils
+intellij-idea-community-edition
 iptables-dbg
 jansson-dbg
 jq
 lagrange
 less-dbg
 lftp
-libX11-dbg
-libX11-devel
-libXau-dbg
-libXdmcp-dbg
-libXext-dbg
-libXft-devel
-libXinerama-devel
-libXrender-dbg
 libaio-dbg
 libapparmor-dbg
 libblkid-dbg
+libbluetooth-devel
 libcap-ng-dbg
 libcrypto1.1-dbg
 libcrypto45
-libcrypto46
 libcurl-dbg
 libdatrie-dbg
 libdb-dbg
@@ -170,8 +167,8 @@ libmariadbclient-dbg
 libmd-devel
 libmnl-dbg
 libmount-dbg
-libnet-snmp-dbg
 libnetfilter_conntrack-dbg
+libnet-snmp-dbg
 libnfnetlink-dbg
 libnftnl-dbg
 libnl3-dbg
@@ -181,6 +178,7 @@ libpcap-dbg
 libpciaccess-dbg
 libpcre-dbg
 libpng-dbg
+libpurple-telegram
 libreadline8-dbg
 libreoffice
 libsanitizer
@@ -200,15 +198,24 @@ libunbound-dbg
 libunistring-dbg
 libuuid-dbg
 libvirt-dbg
+libX11-dbg
+libX11-devel
+libXau-dbg
 libxcb-dbg
+libXdmcp-dbg
+libXext-dbg
+libXft-devel
+libXinerama-devel
 libxml2-dbg
+libXrender-dbg
 libzstd-dbg
 lm_sensors
 lowdown
+lsof
+lsw
 lvm2
 lxdm
 lzo-dbg
-make
 man-pages-devel
 masscan
 mate
@@ -217,6 +224,7 @@ mate-icon-theme-faenza
 mdadm
 mdns-scan
 mediainfo
+mercurial
 mit-krb5-libs-dbg
 mkfontscale-dbg
 mlocate
@@ -237,9 +245,10 @@ ncurses-devel
 ncurses-libs-dbg
 neofetch
 neovim
-net-tools               # ifconfig et al
 netbsd-wtf
 nettle-dbg
+net-tools               # ifconfig et al
+NetworkManager
 network-manager-applet
 nghttp2-dbg
 nix
@@ -252,6 +261,7 @@ ntfs-3g
 nvidia
 nyxt                    # Lispy web browser.
 onefetch                # Like neofetch, but for git repos.
+opam
 openbsd-netcat
 openntpd
 opensmtpd
@@ -260,6 +270,8 @@ openssl-dbg
 openssl-devel
 p11-kit-dbg
 p7zip
+pamixer
+pandoc
 pango-dbg
 paper-gtk-theme
 paper-icon-theme
@@ -270,11 +282,12 @@ patch
 pciutils-dbg
 pcmanfm
 pcre-devel
+pdfgrep
+perl-dbg
 perl-File-MimeInfo
 perl-IPC-System-Simple
 perl-List-MoreUtils-XS  # Dependency of feedgnuplot, which isn't in Void repos.
 perl-String-ShellQuote
-perl-dbg
 pfetch
 picom                   # Replaces compton.
 pidgin
@@ -283,28 +296,37 @@ pidgin-libnotify
 pidgin-otr
 pixman-dbg
 pkg-config
+plantuml
+protobuf
+protobuf-devel
 pulsemixer
 python3-dbg
 python3-devel
 python3-gobject-devel
 python3-pip
+qrencode
 qutebrowser
+R
 racket
 racket-doc
+recutils
 ripgrep
 rrdtool-dbg
 rsstail
 rsync
 rtl-sdr
-run-parts-dbg
 runit-iptables
+run-parts-dbg
 rustup
 sacc                    # gopher client
 scrot
 sct                     # Set the Color Temperature of the screen. Minimalist Night Shift.
+SDL2-devel
 sent
 setxkbmap
 shellcheck
+Signal-Desktop
+slop
 smartmontools
 snappy-devel
 socklog
@@ -328,13 +350,22 @@ tesseract-ocr-eng
 texinfo
 texlive
 texlive-fontsextra
+texlive-full
 texlive-latexextra
+texlive-XeTeX
 thingmenu
+Thunar
+thunar-archive-plugin
+thunar-media-tags-plugin
+thunar-volman
 thunderbird
 tidy5
 tig
+time
+tlp
 tmux
 tpm
+translate-shell
 tree
 udisks2
 ueberzug                # For drawing images on terminals. Something built from src needed it.
@@ -356,6 +387,7 @@ whois
 wine
 wine-mono
 wireless_tools
+wmname
 words-en
 words-ru
 wxWidgets-devel
@@ -366,17 +398,21 @@ xen-libs-dbg
 xev
 xinput
 xkcdpass
+xmodmap
 xorg-input-drivers
 xorg-minimal
 xorg-video-drivers
+xournalpp
 xprop
 xrandr
 xscreensaver
 xsel
+xsetroot
 xsv                     # CLI CSV tool
 xtools
 xwininfo                # Needed for picom-trans to work, but isn't a dep of picom.
 yajl-dbg
+youtube-dl
 zathura
 zathura-djvu
 zathura-pdf-mupdf
@@ -388,3 +424,4 @@ zsh
 zsh-completions
 zsh-history-substring-search
 zsh-syntax-highlighting
+zzz-user-hooks
