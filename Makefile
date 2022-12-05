@@ -66,6 +66,14 @@ font_cache:
 pkgs_void:
 	sudo xbps-install $(shell ./list pkgs-void.list)
 
+# Mark $pkg as manually-installed:
+#
+#     sudo xbps-pkgdb -m manual $pkg
+#
+# List manually-installed packages:
+#
+#     xbps-query -m
+#
 pkgs_void_update:
 	xbps-query -m | awk -F - '{sub("-" $$NF "$$", ""); print}' | sort -fu | grep -vf <(./list -v sep='\n' -v end='\n' pkgs-void-src.list) > pkgs-void.list
 	(echo '#'; ./patch-comments pkgs-void.list.comments pkgs-void.list) | sponge pkgs-void.list
