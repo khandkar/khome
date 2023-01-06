@@ -1,0 +1,27 @@
+#! /bin/bash
+
+total_cargo_build_space() {
+    local -r dir="$1"
+
+    local cargo_toml_path
+    local target_path
+
+    find "$dir" -type f -name Cargo.toml \
+    | while read -r cargo_toml_path
+    do
+        target_path=$(dirname "$cargo_toml_path")/target;
+        if test -d "$target_path"
+        then
+            du -s "$target_path"; fi
+        done \
+    | awk '{tot += $1} END {print tot * 1024}' \
+    | numfmt --to=iec
+}
+
+main() {
+    local -r dir="${1-$HOME}"
+
+    total_cargo_build_space "$dir"
+}
+
+main "$@"
