@@ -1,0 +1,51 @@
+#! /usr/bin/env racket
+#lang racket
+;;; vim:ft=racket:
+
+(require (prefix-in  env:  web-server/servlet-env)
+         (prefix-in  log:  web-server/dispatchers/dispatch-log)
+         (prefix-in  res:  web-server/configuration/responders)
+         (prefix-in  xpr:  web-server/http/xexpr))
+
+;; TODO SSL
+
+(module+ main
+  (let* ([program (path->string (find-system-path 'run-file))]
+         [log-file (string-append program ".log")]
+         [listen-addr "0.0.0.0"]
+         [listen-port 8000]
+         [paths-to-serve '()]
+         [browser? #f])
+    (command-line
+      #:program program
+      #:once-each
+      [("-b" "--browser")
+       "Launch web browser."
+       (set! browser? #t)]
+      [("-a" "--addr")
+       ip-addr "Listen address."
+       (set! listen-addr ip-addr)]
+      [("-p" "--port")
+       port-number "Listen port."
+       (set! listen-port port-number)]
+      [("-l" "--log")
+       file "Log file."
+       (set! log-file file)]
+      #:args (path . paths)
+      (set! paths-to-serve (cons path paths)))
+    (define (custom-dispatcher _)
+      (xpr:response/xexpr
+        '(html
+          (head)
+          (body "if you're reading this - server configuration is wrong."))))
+    (env:serve/servlet
+      custom-dispatcher
+      #:listen-ip listen-addr
+      #:port listen-port
+      #:launch-browser? browser?
+      #:extra-files-paths paths-to-serve
+      #:log-file log-file
+      #:log-format log:paren-format
+      #:servlet-path ""
+      ;#:servlet-regexp #rx"" ; <-- causes / to be routed to custom-dispatcher.
+      )))
