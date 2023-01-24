@@ -2,6 +2,7 @@
 
 total_cargo_build_space() {
     local -r dir="$1"
+    local -r list="$2"
 
     local cargo_toml_path
     local target_path
@@ -12,16 +13,49 @@ total_cargo_build_space() {
         target_path=$(dirname "$cargo_toml_path")/target;
         if test -d "$target_path"
         then
-            du -s "$target_path"; fi
-        done \
-    | awk '{tot += $1} END {print tot * 1024}' \
-    | numfmt --to=iec
+            if [[ "$list" -eq 1 ]]
+            then
+                du -sh "$target_path"
+            else
+                du -s "$target_path"
+            fi
+        fi
+    done \
+    | if [[ "$list" -eq 1 ]]
+    then
+        sort -h -k 1
+    else
+        awk '{tot += $1} END {print tot * 1024}' | numfmt --to=iec
+    fi
 }
 
 main() {
-    local -r dir="${1-$HOME}"
+    local dir="$HOME"
+    local list=0
+    local arg
 
-    total_cargo_build_space "$dir"
+    while :
+    do
+        arg="$1"
+        case "$arg" in
+            '')
+                break
+                ;;
+            -l | --list)
+                list=1
+                shift
+                ;;
+            -*)
+                printf 'Unknown flag: "%s"\n' "$arg" >&2
+                exit 1
+                ;;
+            *)
+                dir="$arg"
+                shift
+        esac
+    done
+
+    total_cargo_build_space "$dir" "$list"
 }
 
 main "$@"
