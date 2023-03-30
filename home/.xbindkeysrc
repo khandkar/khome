@@ -171,7 +171,7 @@
 # Weather
 "notify_weather"
     Mod4 + w
-"xdg-open 'https://forecast.weather.gov/MapClick.php?lat=42.9581&lon=-71.4856&unit=0&lg=english&FcstType=graphical&menu=1'"
+"xdg-open 'https://forecast.weather.gov/MapClick.php?lat=42.9581&lon=-71.4856'"
     Mod4 + Shift + w
 
 # Calendar
