@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+DEFAULT_BASE="$HOME/doc/drafts/adhoc"
+
 bar() {
     local -r len="${1:-80}" # 1st arg or 80.
     local -r char="${2:--}" # 2nd arg or a dash.
@@ -10,10 +12,11 @@ bar() {
 }
 
 main() {
+    local -r base="${1:-$DEFAULT_BASE}"
+
     local -r title_given='Untitled'
     local -r title_lower=$(echo "$title_given" | tr '[:upper:]' '[:lower:]')
     local -r title_lower_dashed=$(echo "$title_lower" | sed 's/\s\+/-/g')
-    local -r base="${HOME}/doc/drafts/adhoc"
     local -r timestamp="$(date --iso-8601=ns)"
     local -r file="${base}/${timestamp}--${title_lower_dashed}.md"
 
