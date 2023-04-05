@@ -826,6 +826,9 @@ status() {
 
     echo "${indent_unit}-->"
 
+    # TODO Populate pid->cmd dict from `ps -eo pid,comm` and lookup progs there
+    #      since netstat -p output comes out truncated.
+
     sudo -n netstat -tulnp \
     | awk -v indent="${indent_unit}${indent_unit}" '
         NR > 2 && ((/^tcp/ && proc = $7) || (/^udp/ && proc = $6)) {
