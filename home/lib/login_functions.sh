@@ -256,32 +256,12 @@ top_commands() {
 }
 
 ## Top Disk-Using directories
-## TODO: Consider using numfmt instead of awk
 ## tdu : path-string -> (size:number * directory:path-string) list
 tdu() {
     local -r root_path="$1"
 
-    du "$root_path" \
-    | awk '
-        {
-            size = $1
-            path = $0
-            sub("^" $1 "\t+", "", path)
-            paths[path] = size
-            if (size > max)
-                max = size
-        }
-
-        END {
-            for (path in paths) {
-                size = paths[path]
-                pct = 100 * (size / max)
-                gb = size / 1024 / 1024
-                printf("%6.2f %3d%% %s\n", gb, pct, path)
-            }
-        }
-    ' \
-    | sort -r -n -k 1 \
+    du -h "$root_path" \
+    | sort -r -h -k 1 \
     | head -50 \
     | tac
     # A slight optimization: head can exit before traversing the full input.
@@ -293,14 +273,8 @@ tduf() {
     find "$@" -type f -printf '%s\t%p\0' \
     | sort -z -n -k 1 \
     | tail -z -n 50 \
-    | gawk -v RS='\0' '
-        {
-            size = $1
-            path = $0
-            sub("^" $1 "\t+", "", path)
-            gb = size / 1024 / 1024 / 1024
-            printf("%f\t%s\n", gb, path)
-        }'
+    | numfmt -z --to=iec \
+    | tr '\0' '\n'
 }
 
 # Most-recently modified file system objects
