@@ -3,7 +3,9 @@ alias s='echo $?'
 alias g=git
 alias gr='git remote -v'
 alias e='emacs -nw'
-alias v=vim
+alias v=nvim
+alias vim=nvim
+alias ovim=/usr/bin/vim  # old vim
 alias c='cal -vm3'  # -v: vertical, -m: start week with Monday, -3: show 3 months (prev, curr, next)
 alias h='history | fzf -e'
 alias   l='ls -lFhv --group-directories-first --color=auto'
