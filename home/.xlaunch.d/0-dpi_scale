@@ -2,32 +2,34 @@
 
 set -e
 
-launch_then_killall() {
-    local -r program="$1"
-    local -r timeout="${2:-1}" # 2nd arg or default to 1.
+#launch_then_killall() {
+#    local -r program="$1"
+#    local -r timeout="${2:-1}" # 2nd arg or default to 1.
+#
+#    "$program"&
+#    sleep "$timeout"
+#    killall "$program"
+#}
+#
+#main() {
+#    # IDK what magic is at work here, but launching mate-appearance-properties
+#    # does the job better than setting scaling variables.
+#    # TODO Get to the bottom of how it works and replicate directly.
+#    # TODO Try this: https://wiki.archlinux.org/title/HiDPI#Xorg
+#    launch_then_killall 'mate-appearance-properties' 1
+#
+#    # GDK 3 (GTK 3)
+#    # https://wiki.archlinux.org/index.php/HiDPI#GDK_3_(GTK_3)
+#    #export GDK_SCALE=2
+#
+#    # QT
+#    # https://wiki.archlinux.org/index.php/HiDPI#Qt_5
+#    # https://doc.qt.io/qt-5/highdpi.html
+#    # https://blog.qt.io/blog/2016/01/26/high-dpi-support-in-qt-5-6/
+#    #export QT_SCALE_FACTOR=2  # Causes qutebrowser UI fonts to have large gaps.
+#    #export QT_FONT_DPI=192  # Scales qutebrowser UI fonts as expected.
+#}
+#
+#main
 
-    "$program"&
-    sleep "$timeout"
-    killall "$program"
-}
-
-main() {
-    # IDK what magic is at work here, but launching mate-appearance-properties
-    # does the job better than setting scaling variables.
-    # TODO Get to the bottom of how it works and replicate directly.
-    # TODO Try this: https://wiki.archlinux.org/title/HiDPI#Xorg
-    launch_then_killall 'mate-appearance-properties' 1
-
-    # GDK 3 (GTK 3)
-    # https://wiki.archlinux.org/index.php/HiDPI#GDK_3_(GTK_3)
-    #export GDK_SCALE=2
-
-    # QT
-    # https://wiki.archlinux.org/index.php/HiDPI#Qt_5
-    # https://doc.qt.io/qt-5/highdpi.html
-    # https://blog.qt.io/blog/2016/01/26/high-dpi-support-in-qt-5-6/
-    #export QT_SCALE_FACTOR=2  # Causes qutebrowser UI fonts to have large gaps.
-    #export QT_FONT_DPI=192  # Scales qutebrowser UI fonts as expected.
-}
-
-main
+/usr/libexec/mate-settings-daemon --replace --debug
