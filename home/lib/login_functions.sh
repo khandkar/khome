@@ -96,6 +96,16 @@ p() {
         | xsel -i -b -t 30000
 }
 
+dl() {
+    local -r timestamp="$(date --iso-8601=ns)"
+    local -r dir="$HOME"/dl/adhoc/"$timestamp"
+    local -r url_file_path="${dir}/url"
+
+    mkdir -p "$dir"
+    touch "$url_file_path"
+    cd "$dir"
+}
+
 ## web search
 ## ws : string -> unit
 ws() {
