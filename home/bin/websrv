@@ -11,7 +11,7 @@
 
 (module+ main
   (let* ([program (path->string (find-system-path 'run-file))]
-         [log-file (string-append program ".log")]
+         [log-file (current-error-port)]
          [listen-addr "0.0.0.0"]
          [listen-port 8000]
          [paths-to-serve '()]
@@ -27,9 +27,9 @@
        (set! listen-addr ip-addr)]
       [("-p" "--port")
        port-number "Listen port."
-       (set! listen-port port-number)]
+       (set! listen-port (string->number port-number))]
       [("-l" "--log")
-       file "Log file."
+       file "Log file [default: stderr]."
        (set! log-file file)]
       #:args (path . paths)
       (set! paths-to-serve (cons path paths)))
