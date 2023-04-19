@@ -68,5 +68,11 @@ export PATH=/opt/VSCode/bin:"$PATH"
 # CLion
 export PATH=/opt/clion/bin:"$PATH"
 
+# DataGrip
+export PATH=/opt/DataGrip/bin:"$PATH"
+
+# JetBrains Toolbox
+export PATH="$PATH":"$HOME"/.local/share/JetBrains/Toolbox/scripts
+
 # personal
 export PATH=$HOME/bin:$HOME/.local/bin:/snap/bin:/sbin:/usr/sbin:"$PATH"
