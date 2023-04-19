@@ -17,7 +17,12 @@ set -e
 setxkbmap -layout us,ru -variant ',phonetic_winkeys' -option ''
 setxkbmap -layout us,ru -variant ',phonetic_winkeys' -option grp:ctrls_toggle
 
-#xmodmap -e 'remove lock = Caps_Lock'
-#setxkbmap -option ctrl:nocaps
+# TODO Why did I have this line? What is/was its unique contribution?
+xmodmap -e 'remove lock = Caps_Lock'
 
+# XXX Update 1: without this, caps-lock remap goes away after waking up from sleep.
+# XXX Update 2: with this, caps-lock remap still goes away after waking up from sleep.
+setxkbmap -option ctrl:nocaps
+
+# The actual remapping:
 setxkbmap -option caps:ctrl_modifier
