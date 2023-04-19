@@ -1,9 +1,8 @@
 {
     "FSharp.useSdkScripts": true,
     "editor.fontFamily": "'Iosevka','Iosevka Fixed SS09 Extended', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "workbench.colorTheme": "Pale Fire",
+    "workbench.colorTheme": "Nord",
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/local/bin/nvim",
-    "editor.fontSize": 16,
     "workbench.startupEditor": "newUntitledFile",
     "todo-tree.tree.showScanModeButton": false,
     "editor.minimap.enabled": false,
@@ -18,5 +17,8 @@
         "plaintext": true,
         "markdown": false
     },
-    "window.zoomLevel": -1
+    "editor.fontSize": 13,
+    "debug.console.fontSize": 13,
+    "markdown.preview.fontSize": 13,
+    "terminal.integrated.fontSize": 13
 }
