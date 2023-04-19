@@ -4,8 +4,11 @@ adwaita-plus
 alpine
 alsa-lib-devel
 alsa-plugins-pulseaudio
+anki
 apache-fop
 arandr
+arduino
+arduino-cli
 ario                    # GUI (GTK) MPD client
 arp-scan
 aspell-en
@@ -19,6 +22,7 @@ aws-cli
 base-system
 bash-completion
 bat
+Bear
 biber
 bind-utils
 bison
@@ -27,11 +31,13 @@ bottom
 brother-brlaser
 bzip2-dbg
 cairo-dbg
+caja-open-terminal
 c-ares-dbg
 cheese
 chez-scheme
 chromium
 clang
+clang-tools-extra
 cmake
 cool-retro-term
 corecollector
@@ -61,6 +67,7 @@ dunst
 e2fsprogs-libs-dbg
 element-desktop         # Matrix.org client, replaces Riot
 elinks
+elixir
 emacs
 encfs
 erlang
@@ -75,7 +82,12 @@ feh
 figlet
 firefox
 flex
+font-adobe-100dpi
+font-adobe-75dpi
 font-adobe-source-code-pro-2.038R~ro+1.058R~it+1.018R~VAR_1
+font-adobe-utopia-100dpi
+font-adobe-utopia-75dpi
+font-adobe-utopia-type1
 fontconfig-dbg
 font-iosevka
 font-misc-misc
@@ -94,6 +106,7 @@ gdb
 gdbm-dbg
 gdbm-devel
 gettext-devel-tools
+ghc
 gimp
 git-all
 git-filter-repo         # Replacement for git-filter-branch.
@@ -118,6 +131,8 @@ gvfs-afc
 gvfs-mtp
 gvfs-smb
 gvim
+heaptrack
+heaptrack-gui
 hsetroot
 htop
 httpie
@@ -132,6 +147,8 @@ intellij-idea-community-edition
 iptables-dbg
 jansson-dbg
 jq
+konqueror
+ktorrent
 lagrange
 less-dbg
 lftp
@@ -194,6 +211,7 @@ libtasn1-dbg
 libthai-dbg
 libtirpc-dbg
 libtool
+libtorrent
 libunbound-dbg
 libunistring-dbg
 libuuid-dbg
@@ -209,6 +227,7 @@ libXinerama-devel
 libxml2-dbg
 libXrender-dbg
 libzstd-dbg
+llvm
 lm_sensors
 lowdown
 lsof
@@ -225,8 +244,10 @@ mdadm
 mdns-scan
 mediainfo
 mercurial
+mesa-vulkan-intel
 mit-krb5-libs-dbg
 mkfontscale-dbg
+mktorrent
 mlocate
 moreutils
 mpc
@@ -237,7 +258,9 @@ mpv
 mtools
 multitail
 mupdf
+nautilus
 nautilus-devel
+nautilus-dropbox
 nawk                    # The one, true implementation of AWK
 ncmpc
 ncmpcpp
@@ -245,13 +268,15 @@ ncurses-devel
 ncurses-libs-dbg
 neofetch
 neovim
+nerd-fonts
 netbsd-wtf
 nettle-dbg
 net-tools               # ifconfig et al
 NetworkManager
 network-manager-applet
+newsboat
+newsflash
 nghttp2-dbg
-nix
 nmap
 nnn
 nodejs
@@ -259,6 +284,7 @@ nq
 nss-mdns
 ntfs-3g
 nvidia
+nvtop
 nyxt                    # Lispy web browser.
 onefetch                # Like neofetch, but for git repos.
 opam
@@ -283,6 +309,7 @@ pciutils-dbg
 pcmanfm
 pcre-devel
 pdfgrep
+perf
 perl-dbg
 perl-File-MimeInfo
 perl-IPC-System-Simple
@@ -297,6 +324,9 @@ pidgin-otr
 pixman-dbg
 pkg-config
 plantuml
+pluma
+polyml
+postgresql
 protobuf
 protobuf-devel
 pulsemixer
@@ -309,6 +339,8 @@ qutebrowser
 R
 racket
 racket-doc
+R-cran-ggplot2
+R-cran-systemfonts
 recutils
 ripgrep
 rrdtool-dbg
@@ -326,6 +358,7 @@ sent
 setxkbmap
 shellcheck
 Signal-Desktop
+slack-desktop
 slop
 smartmontools
 snappy-devel
@@ -333,9 +366,12 @@ socklog
 socklog-void
 sox
 speedtest-cli
+spim
+sqlitebrowser
 sqlite-dbg
 strace
 streamripper
+sublime-text4
 swi-prolog
 sxiv
 symlinks                # Find broken symlinks and more.
@@ -366,7 +402,11 @@ tlp
 tmux
 tpm
 translate-shell
+transmission
+transmission-gtk
+trayer-srg
 tree
+twitch-cli
 udisks2
 ueberzug                # For drawing images on terminals. Something built from src needed it.
 units
@@ -399,6 +439,7 @@ xev
 xinput
 xkcdpass
 xmodmap
+xorg-fonts
 xorg-input-drivers
 xorg-minimal
 xorg-video-drivers
@@ -412,7 +453,6 @@ xsv                     # CLI CSV tool
 xtools
 xwininfo                # Needed for picom-trans to work, but isn't a dep of picom.
 yajl-dbg
-youtube-dl
 zathura
 zathura-djvu
 zathura-pdf-mupdf
