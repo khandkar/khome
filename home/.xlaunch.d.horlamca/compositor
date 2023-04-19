@@ -3,8 +3,8 @@
 # XXX Trying --experimental-backends due to crashes. https://superuser.com/a/1686011
 
 picom \
-    --experimental-backends \
     --shadow \
     --config ~/.compton.conf
+#    --experimental-backends \
 #    --active-opacity=0.85 \
 #    --inactive-opacity=0.65 \
