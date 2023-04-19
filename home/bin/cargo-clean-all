@@ -6,8 +6,6 @@ main() {
     local -r dir="${1-$HOME}"
     local -r jobs="${1-$N_CPUS}"
 
-    # XXX Just doing 'rm -rf' because 'cargo clean' starts doing extra work
-    #     and in some cases even downloads new deps, etc.
     find "$dir" -type f -name Cargo.toml -print0 \
     | xargs -0 -I % -P "$jobs" sh -c 'rm -rf $(dirname "%")/target'
 }
