@@ -7,6 +7,7 @@ FILE="$DIR/error.log"
 
 mkdir -p "$DIR"
 sleep 3 # wait for dunst to hopefully restart
+# TODO File with ignore patterns
 sudo dmesg --follow --level=emerg,alert,crit,err --since=now --ctime \
 | while read -r line
     do
