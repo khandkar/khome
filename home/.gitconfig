@@ -2,7 +2,7 @@
         name = Siraaj Khandkar
         email = siraaj@khandkar.net
 [core]
-        editor = /usr/bin/vim
+        editor = /usr/bin/nvim
         excludesfile = ~/.gitignore_global
 [color]
         ui = true
