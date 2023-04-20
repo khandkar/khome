@@ -101,6 +101,7 @@ freetype-dbg
 fribidi-dbg
 fswatch
 fuse-dbg
+fzf
 gcc
 gdb
 gdbm-dbg

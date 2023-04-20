@@ -1,0 +1,85 @@
+#! /bin/bash
+
+set -eo pipefail
+
+PROG=$0
+
+find() {
+    local -r name="$1"
+    local -r file="$2"
+
+    awk \
+        -v _s="$name" \
+        '
+            BEGIN {_s = tolower(_s)}
+
+            /^[a-zA-Z]/ && tolower($1) ~ _s && NF >= 2 {
+                n++
+                s = $1
+                p = $NF
+                if (NF == 2) {
+                    e = ""
+                    u = ""
+                } else if (NF == 3) {
+                    e = $2
+                    u = ""
+                } else {
+                    e = $2
+                    u = $3
+                } # TODO What would NF > 4 mean?
+
+                printf("%d [O] s:\"%s\", e:\"%s\", u:\"%s\"\n", n, s, e, u) > "/dev/stderr"
+                if (match(u, "@")) {
+                    tmp = e
+                    e = u
+                    u = tmp
+                    printf("%d [C] s:\"%s\", e:\"%s\", u:\"%s\"\n", n, s, e, u) > "/dev/stderr"
+                }
+                printf("%d s:\"%s\" e:\"%s\" u:\"%s\" %s\n", n, s, e, u, p)
+            }
+        ' \
+        "$file"
+}
+
+main() {
+    local -r default_file="$HOME"/._p/p
+    local -r usage="Usage: $PROG [FILE] NAME"
+    local name file records i meta data datum
+
+    case "$#" in
+        0)
+            echo "$usage" >&2
+            return 1;;
+        1)
+            file="$default_file"
+            name="$1";;
+        2)
+            file="$1"
+            name="$2";;
+        *)
+            echo "$usage" >&2
+            return 1;;
+    esac
+
+    records=$(find "$name" "$file")
+    meta=$(echo "$records" | awk '{print($1, $2, $3, $4)}')
+    data=$(echo "$records" | awk '{print($1, $5)}')
+
+    # XXX Even an empty result will count as one line after echo, so need to filter:
+    case "$(echo "$records" | grep -vc '^$')" in
+        0)
+            echo '[ERROR] Found nothing.' >&2
+            exit 1;;
+        1)
+            datum="$data";;
+        *)
+            i=$(echo "$meta" | column -t | fzf | awk '{print $1}')
+            datum=$(echo "$data" | awk -v i="$i" 'NR == i');;
+    esac
+
+    # XXX Intentionally avoiding newline:
+    echo "$datum" | awk '{printf "%s", $2}' | xsel -i -b -t 30000
+
+}
+
+main "$@"
