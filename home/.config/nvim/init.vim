@@ -9,6 +9,7 @@
 " Run :PlugInstall after adding a new plugin
 call plug#begin()
 
+Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 Plug 'dense-analysis/ale' " Syntastic's spiritual succesor
 Plug 'preservim/nerdtree'
 "Plug 'nvim-tree/nvim-web-devicons' " Needs patched fonts: https://www.nerdfonts.com/
@@ -43,6 +44,10 @@ let NERDTreeShowLineNumbers=1
 
 " rust.vim
 let g:rustfmt_autosave = 1
+
+" shfmt
+let g:shfmt_extra_args = '--indent 4 --language-dialect bash'
+" let g:shfmt_fmt_on_save = 1 " on-save probably to invasive to mod existing scripts.
 
 "==============================================================================
 " Defaults

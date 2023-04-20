@@ -358,6 +358,7 @@ SDL2-devel
 sent
 setxkbmap
 shellcheck
+shfmt
 Signal-Desktop
 slack-desktop
 slop
