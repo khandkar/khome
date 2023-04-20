@@ -2,6 +2,9 @@
 " Plugins
 "==============================================================================
 
+" Alternative plugin managers to try:
+" - https://github.com/Shougo/dein.vim
+
 " BEGIN Vim-Plug (https://github.com/junegunn/vim-plug)
 " Run :PlugInstall after adding a new plugin
 call plug#begin()
