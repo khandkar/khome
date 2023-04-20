@@ -38,6 +38,9 @@ source ~/.config/nvim/setup-coc.vim
 " NERDTree
 let NERDTreeShowLineNumbers=1
 
+" rust.vim
+let g:rustfmt_autosave = 1
+
 "==============================================================================
 " Defaults
 "==============================================================================
