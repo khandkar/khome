@@ -47,18 +47,22 @@ main() {
     local name file records i meta data datum
 
     case "$#" in
-        0)
-            echo "$usage" >&2
-            return 1;;
-        1)
-            file="$default_file"
-            name="$1";;
-        2)
-            file="$1"
-            name="$2";;
-        *)
-            echo "$usage" >&2
-            return 1;;
+    0)
+        echo "$usage" >&2
+        return 1
+        ;;
+    1)
+        file="$default_file"
+        name="$1"
+        ;;
+    2)
+        file="$1"
+        name="$2"
+        ;;
+    *)
+        echo "$usage" >&2
+        return 1
+        ;;
     esac
 
     records=$(find "$name" "$file")
@@ -67,14 +71,17 @@ main() {
 
     # XXX Even an empty result will count as one line after echo, so need to filter:
     case "$(echo "$records" | grep -vc '^$')" in
-        0)
-            echo '[ERROR] Found nothing.' >&2
-            exit 1;;
-        1)
-            datum="$data";;
-        *)
-            i=$(echo "$meta" | column -t | fzf | awk '{print $1}')
-            datum=$(echo "$data" | awk -v i="$i" 'NR == i');;
+    0)
+        echo '[ERROR] Found nothing.' >&2
+        exit 1
+        ;;
+    1)
+        datum="$data"
+        ;;
+    *)
+        i=$(echo "$meta" | column -t | fzf | awk '{print $1}')
+        datum=$(echo "$data" | awk -v i="$i" 'NR == i')
+        ;;
     esac
 
     # XXX Intentionally avoiding newline:
