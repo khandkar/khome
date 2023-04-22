@@ -82,12 +82,7 @@ feh
 figlet
 firefox
 flex
-font-adobe-100dpi
-font-adobe-75dpi
 font-adobe-source-code-pro-2.038R~ro+1.058R~it+1.018R~VAR_1
-font-adobe-utopia-100dpi
-font-adobe-utopia-75dpi
-font-adobe-utopia-type1
 fontconfig-dbg
 font-iosevka
 font-misc-misc
@@ -441,7 +436,6 @@ xev
 xinput
 xkcdpass
 xmodmap
-xorg-fonts
 xorg-input-drivers
 xorg-minimal
 xorg-video-drivers
