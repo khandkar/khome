@@ -13,7 +13,7 @@ find() {
         '
             BEGIN {_s = tolower(_s)}
 
-            /^[a-zA-Z]/ && tolower($1) ~ _s && NF >= 2 {
+            /^[^ \t]/ && tolower($1) ~ _s && NF >= 2 {
                 n++
                 s = $1
                 p = $NF
