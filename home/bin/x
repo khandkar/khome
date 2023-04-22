@@ -2,12 +2,15 @@
 
 set -e;
 
+README='README.md'
+
 name=$(echo "$@" | sed 's/\s\+/-/g');
 timestamp=$(date +'%F--%H-%M-%S');
 directory="$HOME/x/$timestamp--$name";
 mkdir -p "$directory";
 cd "$directory";
-printf '# %s\n' "$name" > README;
+printf '%s\n' "$name" > "$README";
+seq 80 | xargs | sed -E 's/\s*[0-9]+\s*/=/g' >> "$README"
 git init >&2
 git commit --allow-empty -m 'Root commit' >&2
 git add . >&2
