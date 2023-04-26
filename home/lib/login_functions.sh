@@ -26,13 +26,30 @@ notify_done() {
     fi
 }
 
+_dl_script() {
+cat << EOF
+#! /bin/bash
+wget -c \$(< ./url)
+EOF
+}
+
 dl() {
+    local -r name="$1"
+    local -r url="$2"
+
     local -r timestamp="$(date --iso-8601=ns)"
-    local -r dir="$HOME"/dl/adhoc/"$timestamp"
+    local -r dir="$HOME"/dl/adhoc/"$timestamp"--"$name"
     local -r url_file_path="${dir}/url"
+    local -r dl_file_path="${dir}/dl"
 
     mkdir -p "$dir"
     touch "$url_file_path"
+    if [ "$url" != '' ]
+    then
+        echo "$url" > "$url_file_path"
+    fi
+    _dl_script > "$dl_file_path"
+    chmod +x "$dl_file_path"
     cd "$dir"
 }
 
