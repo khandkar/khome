@@ -17,6 +17,7 @@ sacc                    # gopher client
 sct                     # Set the Color Temperature of the screen. Minimalist Night Shift.
 symlinks                # Find broken symlinks and more.
 ueberzug                # For drawing images on terminals. Something built from src needed it.
+#xorg-video-drivers     # Was conflicting with NVIDIA and causing ext monitor to only update on mouse move.
 xsv                     # CLI CSV tool
 xwininfo                # Needed for picom-trans to work, but isn't a dep of picom.
 youtube-dl              # pkg too stale. Better to build manually from src repo.

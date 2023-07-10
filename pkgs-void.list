@@ -62,7 +62,7 @@ dnsmasq-dbg
 docker
 docker-compose
 doxygen
-dropbox
+dropbox-2023.02.27+cf4ccaa_1
 dunst
 e2fsprogs-libs-dbg
 element-desktop         # Matrix.org client, replaces Riot
@@ -115,6 +115,7 @@ gnome-keyring
 gnuplot
 gnutls-dbg
 go
+goaccess
 google-fonts-ttf
 gparted
 gpick
@@ -143,6 +144,7 @@ intellij-idea-community-edition
 iptables-dbg
 jansson-dbg
 jq
+kate5
 konqueror
 ktorrent
 lagrange
@@ -185,6 +187,7 @@ libnet-snmp-dbg
 libnfnetlink-dbg
 libnftnl-dbg
 libnl3-dbg
+libnotify-devel
 libnuma-dbg
 libparted-dbg
 libpcap-dbg
@@ -197,6 +200,7 @@ libreoffice
 libsanitizer
 libsasl-dbg
 libsensors-dbg
+libsensors-devel
 libsodium-dbg
 libsodium-devel
 libssh2-dbg
@@ -326,6 +330,7 @@ postgresql
 protobuf
 protobuf-devel
 pulsemixer
+pv
 python3-dbg
 python3-devel
 python3-gobject-devel
@@ -343,6 +348,7 @@ rrdtool-dbg
 rsstail
 rsync
 rtl-sdr
+ruby
 runit-iptables
 run-parts-dbg
 rustup
@@ -403,6 +409,7 @@ transmission
 transmission-gtk
 trayer-srg
 tree
+tuimoji
 twitch-cli
 udisks2
 ueberzug                # For drawing images on terminals. Something built from src needed it.
@@ -438,10 +445,10 @@ xkcdpass
 xmodmap
 xorg-input-drivers
 xorg-minimal
-xorg-video-drivers
 xournalpp
 xprop
 xrandr
+xrdb
 xscreensaver
 xsel
 xsetroot
