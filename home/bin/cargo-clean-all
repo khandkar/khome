@@ -4,12 +4,12 @@ N_CPUS=$(nproc 2> /dev/null || gnproc 2> /dev/null || sysctl -n hw.ncpu 2> /dev/
 
 main() {
     local -r dir="${1-$HOME}"
-    local -r jobs="${1-$N_CPUS}"
+    local -r jobs="${2-$N_CPUS}"
 
     # XXX Just doing 'rm -rf' because 'cargo clean' starts doing extra work
     #     and in some cases even downloads new deps, etc.
     find "$dir" -type f -name Cargo.toml -print0 \
-    | xargs -0 -I % -P "$jobs" sh -c 'rm -rf $(dirname "%")/target'
+    | xargs -0 -I % -P "$jobs" sh -c 'rm -r $(dirname "%")/target'
 }
 
 main "$@"
