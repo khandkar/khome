@@ -2,4 +2,6 @@
 
 set -e
 
-pistactl restart ~/.pistactl."$(hostname)"
+# pistactl --config ~/.pistactl."$(hostname)" restart
+# pistactl --config ~/.pistactl.toml restart
+pistactl restart

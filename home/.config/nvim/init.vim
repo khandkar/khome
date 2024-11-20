@@ -31,6 +31,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Plug 'simrat39/rust-tools.nvim'
 
+Plug 'simrat39/symbols-outline.nvim'
+
 call plug#end()
 " END Vim-Plug
 
@@ -38,6 +40,9 @@ lua require('Comment').setup()
 " luafile ~/.config/nvim/setup-rust-tools.lua
 "luafile ~/.config/nvim/setup-lsp-rust-jonhoo.lua
 source ~/.config/nvim/setup-coc.vim
+
+lua require("symbols-outline").setup()
+" luafile ~/.config/nvim/setup-symbols-outline.lua
 
 " NERDTree
 let NERDTreeShowLineNumbers=1

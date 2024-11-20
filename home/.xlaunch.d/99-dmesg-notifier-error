@@ -9,6 +9,7 @@ mkdir -p "$DIR"
 sleep 3 # wait for dunst to hopefully restart
 # TODO File with ignore patterns
 sudo dmesg --follow --level=emerg,alert,crit,err --since=now --ctime \
+| grep -v 'Unexpected DE Misc interrupt' \
 | while read -r line
     do
         notify-send -u critical 'dmesg error' "$line"

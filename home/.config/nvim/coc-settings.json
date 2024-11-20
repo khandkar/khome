@@ -1,3 +1,4 @@
+// vim:ft=jsonc:
 {
     "languageserver": {
         "rust": {
@@ -13,11 +14,21 @@
             "command": "opam",
             "args": ["config", "exec", "--", "ocamllsp"],
             "filetypes": ["ocaml", "reason"]
+        },
+        "clangd": {
+            "command": "clangd",
+            "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
+            "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
         }
     },
-    "bash": {
-        "command": "bash-language-server",
-        "args": ["start"],
-        "filetypes": ["sh"]
+    "markdownlint.config": {
+        // Allow mixed usage of both styles of heading indicators.
+        // (i.e. leading hashes (###) for level 3+ after
+        // dashes (---) and equals (===) for levels 2 and 1, respectively).
+        // Ref:
+        // - https://github.com/fannheyward/coc-markdownlint
+        // - https://github.com/DavidAnson/markdownlint/blob/main/doc/md003.md
+        // - https://github.com/DavidAnson/markdownlint/blob/3561fc3f38b05b3c55f44e371c2cd9bda194598a/doc/md003.md
+        "MD003": { "style": "setext_with_atx" }
     }
 }

@@ -31,3 +31,5 @@ printf '\n'
 #    'BEGIN {srand()} {fortunes[n++] = $0} END {print fortunes[int(n * rand())]}' \
 #    ~/arc/doc/fortunes/orangebook_.txt \
 #| fold -s
+
+export PATH="/home/xand/.local/share/solana/install/active_release/bin:$PATH"

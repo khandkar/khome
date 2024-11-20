@@ -39,6 +39,9 @@
    XF86ScreenSaver
 "xscreensaver-command -activate"
    control + alt + l
+"~/.on-resume"
+   Mod4 + l
+   # control + alt + shift + l
 #"lock"
 #   XF86ScreenSaver
 #"lock"
@@ -134,6 +137,10 @@
 # Search mpd lib and play selection
 "mpplay"
     Mod4 + p
+
+# Search mpd lib and insert selection
+"mpc listall | khomenu | mpc insert"
+    Mod4 + Control + p
 
 # Search video catalog and play selection
 "video-catalog-play"

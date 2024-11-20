@@ -1,5 +1,4 @@
 #! /bin/bash
 
-set -e
-
-~/.xlaunch.d/setxkbmap && xset b off
+~/.xlaunch.d/setxkbmap
+~/.xlaunch.d."$(hostname)"/xset

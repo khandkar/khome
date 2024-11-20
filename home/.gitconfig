@@ -9,7 +9,7 @@
 [cola]
 	spellcheck = false
 [init]
-	defaultBranch = dominus
+	defaultBranch = electus
 #[filter "lfs"]
 #	required = true
 #	clean = git-lfs clean -- %f

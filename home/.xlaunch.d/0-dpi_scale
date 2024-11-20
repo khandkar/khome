@@ -32,4 +32,5 @@ set -e
 #
 #main
 
-/usr/libexec/mate-settings-daemon --replace --debug
+# /usr/libexec/mate-settings-daemon --replace --debug
+/usr/libexec/mate-settings-daemon --replace

@@ -2,6 +2,8 @@
 
 set -e
 
+echo "DISPLAY=$DISPLAY" >&2
+
 #-- Keyboard layout
 # From setxkbmap man page:
 #     > Note that setxkbmap adds options specified in the command line to the
