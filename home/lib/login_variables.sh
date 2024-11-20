@@ -35,6 +35,7 @@ ERL_AFLAGS="+pc unicode"
 ERL_AFLAGS="$ERL_AFLAGS -kernel shell_history enabled"
 ERL_AFLAGS="$ERL_AFLAGS -kernel shell_history_path '\"$HOME/.erl_history\"'"
 export ERL_AFLAGS
+. /home/xand/.kerl/installations/25.3.2.13/activate
 
 # Rust / cargo
 export PATH=$PATH:$HOME/.cargo/bin

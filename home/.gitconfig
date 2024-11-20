@@ -8,8 +8,12 @@
         ui = true
 [cola]
 	spellcheck = false
+
 [init]
-	defaultBranch = electus
+    # As in "electus ramus" - "the chosen branch".
+    # The One, which was arbitrarily chosen to serve as default.
+    defaultBranch = electus
+
 #[filter "lfs"]
 #	required = true
 #	clean = git-lfs clean -- %f

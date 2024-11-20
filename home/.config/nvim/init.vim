@@ -9,6 +9,8 @@
 " Run :PlugInstall after adding a new plugin
 call plug#begin()
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 Plug 'dense-analysis/ale' " Syntastic's spiritual succesor
 Plug 'preservim/nerdtree'
@@ -33,6 +35,15 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'simrat39/symbols-outline.nvim'
 
+" Typst stuff:
+Plug 'kaarmu/typst.vim'
+" https://typst.app/
+" https://github.com/typst/typst
+" https://github.com/typst/typst/issues/175
+" https://github.com/kaarmu/typst.vim
+" https://github.com/chomosuke/typst-preview.nvim
+" https://github.com/SeniorMars/typst.nvim
+
 call plug#end()
 " END Vim-Plug
 
@@ -49,10 +60,13 @@ let NERDTreeShowLineNumbers=1
 
 " rust.vim
 let g:rustfmt_autosave = 1
+"let g:rustfmt_options = '--edition 2021' " XXX Without specifying edition,
+                                         " presence of async in file prevents
+                                         " it from being formatted on save.
 
 " shfmt
 let g:shfmt_extra_args = '--indent 4 --language-dialect bash'
-" let g:shfmt_fmt_on_save = 1 " on-save probably to invasive to mod existing scripts.
+" let g:shfmt_fmt_on_save = 1 " on-save probably too invasive to mod existing scripts.
 
 "==============================================================================
 " Defaults
@@ -81,7 +95,18 @@ set spelllang=en,ru
 " lightline
 set laststatus=2
 set noshowmode
-let g:lightline = {'colorscheme': 'seoul256'}
+let g:lightline = {
+    \ 'colorscheme': 'seoul256',
+    \ 'component_function': {
+    \   'filename': 'LightlineFilename'
+    \ }
+\}
+
+function! LightlineFilename()
+  let l:filename = expand('%:t')
+  let l:parentdir = expand('%:h:t')
+  return l:parentdir . '/' . l:filename
+endfunction
 
 "------------------------------------------------------------------------------
 " Color

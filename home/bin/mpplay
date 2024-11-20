@@ -4,5 +4,5 @@ set -e
 set -o pipefail
 
 mpc listall | khomenu | mpc insert
-mpc play
-st -e ncmpc
+# mpc play
+# st -e ncmpc

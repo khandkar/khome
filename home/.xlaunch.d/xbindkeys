@@ -6,4 +6,4 @@ set -e
 #     1. not using killall;
 #     2. using "command" (or "cmd") instead of "comm".
 ps -eo pid,command | awk '$2 ~ "^xbindkeys" {print $1}' | xargs -I% kill %
-xbindkeys -n -v
+xbindkeys -n #-v

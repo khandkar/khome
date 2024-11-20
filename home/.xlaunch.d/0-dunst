@@ -21,5 +21,9 @@ ps -eo pid,cmd | awk '$2 ~ /\/usr\/bin\/dunst\>/ {print $1}' | xargs -I% kill %
 # Hope this is enough for hidpi stuff to finish setting.
 sleep 1
 
+# XXX mate-settings-daemon, on which we rely on for hidpi settings, starts
+#     mate-notification-daemon and interferes with our start.
+pkill mate-notificati || true
+
 # Now dunst should start scaled:
 dunst --startup_notification

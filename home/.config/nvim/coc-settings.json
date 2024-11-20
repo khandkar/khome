@@ -21,6 +21,7 @@
             "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
         }
     },
+
     "markdownlint.config": {
         // Allow mixed usage of both styles of heading indicators.
         // (i.e. leading hashes (###) for level 3+ after
@@ -29,6 +30,22 @@
         // - https://github.com/fannheyward/coc-markdownlint
         // - https://github.com/DavidAnson/markdownlint/blob/main/doc/md003.md
         // - https://github.com/DavidAnson/markdownlint/blob/3561fc3f38b05b3c55f44e371c2cd9bda194598a/doc/md003.md
-        "MD003": { "style": "setext_with_atx" }
-    }
+        "MD003": { "style": "setext_with_atx" },
+
+        // Allow different list item markers (-, +, *) in unordered lists, as
+        // long as each level uses the same one.
+        // Ref: https://github.com/DavidAnson/markdownlint/blob/main/doc/md004.md
+        "MD004": { "style": "sublist" },
+
+        // Allow duplicate headings with different parents.
+        // Ref: https://github.com/DavidAnson/markdownlint/blob/main/doc/md024.md
+        "MD024": { "siblings_only": true }
+    },
+
+    // FIXME These rust-analyzer settings do not seem to work. Why?
+    // Ref: https://github.com/fannheyward/coc-rust-analyzer
+    // "rust-analyzer.inlayHints.typeHints.enable": false,
+    // "rust-analyzer.inlayHints.maxLength": 0,
+    // "rust-analyzer.inlayHints.parameterHints.enable": false
+    "rust-analyzer.cargo.features": "all"
 }

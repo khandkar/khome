@@ -12,13 +12,15 @@
     ],
     "editor.inlineSuggest.enabled": true,
     "github.copilot.enable": {
-        "*": false,
-        "yaml": false,
+        "*": true,
         "plaintext": true,
-        "markdown": false
+        "markdown": false,
+        "scminput": false,
+        "yaml": false
     },
     "editor.fontSize": 13,
     "debug.console.fontSize": 13,
     "markdown.preview.fontSize": 13,
-    "terminal.integrated.fontSize": 13
+    "terminal.integrated.fontSize": 13,
+    "lldb.suppressUpdateNotifications": true
 }

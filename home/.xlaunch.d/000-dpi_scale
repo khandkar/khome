@@ -32,5 +32,6 @@ set -e
 #
 #main
 
+# sleep 1 # XXX Slow down to let dunst and xscreensaver win the start-up race.
 # /usr/libexec/mate-settings-daemon --replace --debug
 /usr/libexec/mate-settings-daemon --replace

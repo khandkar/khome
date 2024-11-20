@@ -15,6 +15,22 @@ emoji() {
     khomenu < ~/emoji.txt | awk '{print $1}' | xsel --input --clipboard
 }
 
+links_aggregate_md() {
+    printf 'Daily Links\n'
+    printf '%s\n' "$(bar 78 '=')"
+    find ~/arc/doc/links -maxdepth 1 -mindepth 1 -type f \
+    | sort -r \
+    | while read -r file_path; do
+        printf '\n'
+        basename $file_path
+        printf '%s\n' "$(bar 78 '-')"
+        printf '\n'
+        while read -r url; do
+            printf '- <%s>\n' "$url"
+        done < "$file_path"
+    done
+}
+
 ## notify_done : unit -> unit
 notify_done() {
     local -r _status_code="$?"
@@ -322,7 +338,8 @@ _yt() {
     local -r uri="$2"
     local -r opts="$3"
 
-    local -r yt=youtube-dl
+    # local -r yt=youtube-dl
+    local -r yt=yt-dlp
     local -r id=$("$yt" --get-id "$uri")
     local -r title=$("$yt" --get-title "$uri" | sed 's/[^А-Яа-яA-Za-z0-9._-]/_/g')
     local -r dir="${base_dir}/${title}--${id}"
@@ -934,4 +951,8 @@ loggers() {
     | sort -n -k 1 \
     | bar_gauge -v num=1 -v ch_right=' ' -v ch_left=' ' -v ch_blank=' ' \
     | column -t
+}
+
+load() {
+    awk -v n="$(nproc)" 'NR == 1 {printf "%.2f %.2f %.2f\n", $1 / n, $2 / n, $3 / n}' /proc/loadavg
 }

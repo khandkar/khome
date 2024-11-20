@@ -166,6 +166,8 @@
 "cd ~/doc/drafts && gvim $(draft ~/doc/drafts/adhoc)"
     Mod4 + d
 
+"cd ~/doc/notes/job-search-2024 && gvim README.md"
+    Mod4 + j
 "cd ~/doc/notes && notes_prepend && gvim -c NERDTreeFind notes.md"
     Mod4 + n + Shift
 "cd ~/doc/notes && gvim $(draft ~/doc/notes/adhoc)"
@@ -196,7 +198,7 @@
 "notify_status"
     Mod4 + s
 
-"notify_time-in-zones"
+"notify-send -u low 'time in zones' "$(tiz UTC US/Pacific US/Mountain US/Eastern Europe/Warsaw Europe/Kyiv Europe/Moscow Europe/Samara Asia/Manila NZ)""
     Mod4 + z
 
 # MPD

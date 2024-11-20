@@ -2,4 +2,8 @@
 
 set -e
 
+# XXX mate-settings-daemon, on which we rely on for hidpi settings, starts
+#     mate-screensaver and interferes with our start.
+pkill mate-screensave || true
+
 xscreensaver
