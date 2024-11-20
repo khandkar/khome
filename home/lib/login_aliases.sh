@@ -29,7 +29,6 @@ alias bitcoin='nc ticker.bitcointicker.co 10080'  # https://github.com/chubin/aw
 alias weather='cat ~/.pista-out/weather-summary'
 alias sccache-restart='sccache --stop-server; sccache --start-server'
 alias nightshift=sct
-alias links='vim ~/arc/doc/links/"$(date +%F)"'
 alias gh-clone-repo=gh_clone_repo
 alias gh-clone-user=gh_clone_user
 alias gh-clone-org=gh_clone_org

@@ -15,6 +15,15 @@ emoji() {
     khomenu < ~/emoji.txt | awk '{print $1}' | xsel --input --clipboard
 }
 
+links() {
+    local -r file="$HOME"/arc/doc/links/"$(date +%F)"
+
+    case "$1" in
+        '') vim "$file";;
+        *) echo "$1" >> "$file";;
+    esac
+}
+
 links_aggregate_md() {
     printf 'Daily Links\n'
     printf '%s\n' "$(bar 78 '=')"
