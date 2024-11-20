@@ -27,3 +27,4 @@ alias ideas='cd ~/doc/ideas && vim ideas.md'
 alias quotes='cd ~/doc/quotations && vim quotations.md'
 alias bitcoin='nc ticker.bitcointicker.co 10080'  # https://github.com/chubin/awesome-console-services#Money
 alias weather='cat ~/.pista-out/weather-summary'
+alias sccache-restart='sccache --stop-server; sccache --start-server'
