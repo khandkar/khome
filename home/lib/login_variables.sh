@@ -68,6 +68,9 @@ export PATH=/opt/VSCode/bin:"$PATH"
 # CLion
 export PATH=/opt/clion/bin:"$PATH"
 
+# RustRover
+export PATH=/opt/RustRover/bin:"$PATH"
+
 # DataGrip
 export PATH=/opt/DataGrip/bin:"$PATH"
 
