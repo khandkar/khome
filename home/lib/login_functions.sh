@@ -11,6 +11,10 @@ open() {
     (xdg-open "$1" &) &
 }
 
+emoji() {
+    khomenu < ~/emoji.txt | awk '{print $1}' | xsel --input --clipboard
+}
+
 ## notify_done : unit -> unit
 notify_done() {
     local -r _status_code="$?"
