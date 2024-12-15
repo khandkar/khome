@@ -90,7 +90,7 @@ filetype on
 filetype plugin on
 set mouse=a                 " To scroll Coc tooltips. https://github.com/neoclide/coc.nvim/issues/1405
 set spellfile=~/.vim/spell/en.utf-8.add
-set spelllang=en,ru
+set spelllang=en,ru,la
 
 " lightline
 set laststatus=2

@@ -19,7 +19,7 @@ links() {
     local -r file="$HOME"/arc/doc/links/"$(date +%F)"
 
     case "$1" in
-        '') vim "$file";;
+        '') "$EDITOR" "$file";;
         *) echo "$1" >> "$file";;
     esac
 }

@@ -34,3 +34,4 @@ alias gh-clone-user=gh_clone_user
 alias gh-clone-org=gh_clone_org
 alias j=jobs
 alias t='tiz UTC US/Pacific US/Mountain US/Eastern Europe/Warsaw Europe/Kyiv Europe/Moscow Europe/Samara Asia/Manila NZ'
+alias ghr=gh-clone-repo

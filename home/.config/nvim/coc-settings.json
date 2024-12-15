@@ -1,5 +1,10 @@
 // vim:ft=jsonc:
 {
+    // "coc.preferences.formatOnSaveFiletypes": ["sql"],
+    // "formatter.sql": {
+    //     "command": "prettier",
+    //     "args": ["--plugin", "prettier-plugin-sql"]
+    // },
     "languageserver": {
         "rust": {
             "command": "rust-analyzer",
@@ -19,6 +24,11 @@
             "command": "clangd",
             "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
             "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
+        },
+        "sql": {
+            "command": "sql-language-server",
+            "args": ["up", "--method", "node-ipc"],
+            "filetypes": ["sql", "sqlite"]
         }
     },
 

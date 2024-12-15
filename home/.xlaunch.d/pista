@@ -1,7 +1,0 @@
-#! /bin/sh
-
-# set -e
-
-# pistactl --config ~/.pistactl."$(hostname)" restart
-# pistactl --config ~/.pistactl.toml restart
-# pistactl restart

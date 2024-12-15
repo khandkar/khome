@@ -4,7 +4,18 @@
 
 picom \
     --shadow \
+    --backend glx \
     --config ~/.compton.conf
 #    --experimental-backends \
 #    --active-opacity=0.85 \
 #    --inactive-opacity=0.65 \
+
+
+# $ /home/xand/.xlaunch.d.horlamca/compositor
+# [ 12/11/2024 14:08:34.080 sanitize_options ERROR ] Backend not specified. You must choose one explicitly. Valid ones are:
+# [ 12/11/2024 14:08:34.080 sanitize_options ERROR ]      glx
+# [ 12/11/2024 14:08:34.080 sanitize_options ERROR ]      egl
+# [ 12/11/2024 14:08:34.080 sanitize_options ERROR ]      xrender
+# [ 12/11/2024 14:08:34.080 sanitize_options ERROR ]      dummy
+# [ 12/11/2024 14:08:34.080 session_init FATAL ERROR ] Failed to get configuration, usually mean you have specified invalid options.
+# [ 12/11/2024 14:08:34.080 main FATAL ERROR ] Failed to create new session.
