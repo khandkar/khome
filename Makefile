@@ -53,8 +53,8 @@ dirs:
 
 compiled:
 	mkdir -p bin
-	cd src && make
-	mv src/clockloop bin/
+	cd src_c && make
+	mv src_c/clockloop bin/
 
 font_cache:
 	fc-cache -fv
@@ -187,4 +187,4 @@ push:
 
 clean:
 	rm -rf ./debfiles
-	cd src && make clean
+	cd src_c && make clean
